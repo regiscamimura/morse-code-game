@@ -3,35 +3,20 @@
 
 TAP space = dit (•)    HOLD space = dah (━)
 
-The space bar's real press and release come from the Windows console, the
-Kitty keyboard protocol (Ghostty, Kitty, WezTerm, iTerm2...) or /dev/input on
-Linux; a press of --dah-time or longer is a dah. Elsewhere terminals send no
-key-release events, so a hold is recognised from the keyboard's autorepeat
+A press of --dah-time or longer is a dah when the terminal reports key releases
+(see engine.py). Otherwise a hold is recognised from the keyboard's autorepeat
 burst; tune --repeat-delay / --repeat-interval then.
 """
 import argparse
 import itertools
-import json
-import math
 import os
 import random
-import re
-import select
-import struct
-import subprocess
-import sys
-import threading
 import time
-import unicodedata
 
-WINDOWS = sys.platform == 'win32'
-if WINDOWS:
-    import ctypes
-    from ctypes import wintypes
-else:
-    import fcntl
-    import termios
-    import tty
+from engine import (FONT, RATE, Audio, Canvas, Eject, add_arguments, big, big_center, big_text_width,
+                    load_save, noise, notes, open_terminal, read_system_key_repeat, rest, run,
+                    save_file_path, slide, sprite, square, draw_typed_lines, user_data_dir, write_save)
+import engine
 
 MORSE = {
     'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....',
@@ -67,7 +52,7 @@ FAINT, DIM, AMBER = (62, 70, 88), (130, 138, 152), (218, 166, 60)
 PAPER, BRIGHT, ALERT = (234, 224, 198), (255, 246, 220), (210, 66, 52)
 TEAL, GO, LAMP, FLAME = (72, 178, 172), (118, 192, 96), (252, 208, 88), (236, 124, 40)
 EMBER, BAND, SEND_BAND, LISTEN_BAND = (72, 20, 14), (22, 32, 60), (110, 32, 30), (18, 72, 78)
-PAL = {'K': INK, 'D': FAINT, 'S': DIM, 'A': AMBER, 'O': FLAME, 'W': PAPER, 'Y': LAMP,
+PALETTE = {'K': INK, 'D': FAINT, 'S': DIM, 'A': AMBER, 'O': FLAME, 'W': PAPER, 'Y': LAMP,
        'R': ALERT, 'T': TEAL}
 
 SPRITES = {
@@ -762,48 +747,6 @@ UI = {
 }
 
 # 5x7 font, drawn with half blocks: one cell wide, half a cell tall per pixel.
-_FONT = """
-A .###. #...# #...# ##### #...# #...# #...#
-B ####. #...# #...# ####. #...# #...# ####.
-C .###. #...# #.... #.... #.... #...# .###.
-D ####. #...# #...# #...# #...# #...# ####.
-E ##### #.... #.... ####. #.... #.... #####
-F ##### #.... #.... ####. #.... #.... #....
-G .###. #...# #.... #.### #...# #...# .####
-H #...# #...# #...# ##### #...# #...# #...#
-I .###. ..#.. ..#.. ..#.. ..#.. ..#.. .###.
-J ..### ...#. ...#. ...#. ...#. #..#. .##..
-K #...# #..#. #.#.. ##... #.#.. #..#. #...#
-L #.... #.... #.... #.... #.... #.... #####
-M #...# ##.## #.#.# #.#.# #...# #...# #...#
-N #...# #...# ##..# #.#.# #..## #...# #...#
-O .###. #...# #...# #...# #...# #...# .###.
-P ####. #...# #...# ####. #.... #.... #....
-Q .###. #...# #...# #...# #.#.# #..#. .##.#
-R ####. #...# #...# ####. #.#.. #..#. #...#
-S .#### #.... #.... .###. ....# ....# ####.
-T ##### ..#.. ..#.. ..#.. ..#.. ..#.. ..#..
-U #...# #...# #...# #...# #...# #...# .###.
-V #...# #...# #...# #...# #...# .#.#. ..#..
-W #...# #...# #...# #.#.# #.#.# #.#.# .#.#.
-X #...# #...# .#.#. ..#.. .#.#. #...# #...#
-Y #...# #...# .#.#. ..#.. ..#.. ..#.. ..#..
-Z ##### ....# ...#. ..#.. .#... #.... #####
-0 .###. #...# #..## #.#.# ##..# #...# .###.
-1 ..#.. .##.. ..#.. ..#.. ..#.. ..#.. .###.
-2 .###. #...# ....# ...#. ..#.. .#... #####
-3 ##### ...#. ..#.. ...#. ....# #...# .###.
-4 ...#. ..##. .#.#. #..#. ##### ...#. ...#.
-5 ##### #.... ####. ....# ....# #...# .###.
-6 ..##. .#... #.... ####. #...# #...# .###.
-7 ##### ....# ...#. ..#.. .#... .#... .#...
-8 .###. #...# #...# .###. #...# #...# .###.
-9 .###. #...# #...# .#### ....# ...#. .##..
-! ..#.. ..#.. ..#.. ..#.. ..#.. ..... ..#..
-? .###. #...# ....# ...#. ..#.. ..... ..#..
-_ ..... ..... ..... ..... ..... ..... #####
-"""
-FONT = {line[0]: line[2:].split() for line in _FONT.strip().splitlines()}
 
 
 def pretty(pattern):
@@ -921,84 +864,9 @@ class PressKeyer:
             return pattern
 
 
-KEY_SPACE, EV_KEY, INPUT_EVENT = 57, 1, struct.Struct('llHHi')
+# --------------------------------------------------------------------- signal
 
-
-def open_keyboards():
-    """Non-blocking fds for every input device that has a space key.
-
-    Includes virtual keyboards (keyd, kanata...), which grab the physical ones
-    and re-emit every key from a device with no /dev/input/by-path entry.
-    """
-    fds = []
-    try:
-        with open('/proc/bus/input/devices') as f:
-            blocks = f.read().split('\n\n')
-    except OSError:
-        return fds
-    for block in blocks:
-        handlers = next((ln for ln in block.splitlines() if ln.startswith('H: Handlers=')), '')
-        keys = next((ln for ln in block.splitlines() if ln.startswith('B: KEY=')), '')
-        events = [h for h in handlers.split('=', 1)[-1].split() if h.startswith('event')]
-        bitmap = keys.split('=', 1)[-1].split()
-        if not events or not bitmap:
-            continue
-        # KEY= is a list of 64-bit hex words, most significant first
-        if not int(''.join(w.zfill(16) for w in bitmap), 16) >> KEY_SPACE & 1:
-            continue
-        try:
-            fds.append(os.open(f'/dev/input/{events[0]}', os.O_RDONLY | os.O_NONBLOCK))
-        except OSError:
-            pass
-    return fds
-
-
-def read_space_events(fd):
-    """Yield True for space down, False for space up (autorepeat ignored)."""
-    try:
-        data = os.read(fd, INPUT_EVENT.size * 64)
-    except OSError:
-        return
-    for off in range(0, len(data) - INPUT_EVENT.size + 1, INPUT_EVENT.size):
-        _, _, kind, code, value = INPUT_EVENT.unpack_from(data, off)
-        if kind == EV_KEY and code == KEY_SPACE and value in (0, 1):
-            yield value == 1
-
-
-# --------------------------------------------------------------------- audio
-
-RATE, KEY_HZ, SIG_HZ = 11025, 700, 600
-
-
-def square(freq, dur, vol=.2):
-    phase = 0.0
-    for _ in range(int(dur * RATE)):
-        phase = (phase + freq / RATE) % 1
-        yield vol if phase < .5 else -vol
-
-
-def slide(f0, f1, dur, vol=.2):
-    n, phase = int(dur * RATE), 0.0
-    for i in range(n):
-        phase = (phase + (f0 + (f1 - f0) * i / n) / RATE) % 1
-        yield vol if phase < .5 else -vol
-
-
-def noise(dur, vol=.3, hold=12):
-    """Sample-and-hold noise with a linear fade: the TIA rumble."""
-    n, v = int(dur * RATE), 0.0
-    for i in range(n):
-        if i % hold == 0:
-            v = random.uniform(-vol, vol)
-        yield v * (1 - i / n)
-
-
-def rest(dur):
-    return itertools.repeat(0.0, int(dur * RATE))
-
-
-def notes(freqs, dur=.1, vol=.15):
-    return itertools.chain(*(square(f, dur, vol) if f else rest(dur) for f in freqs))
+SIG_HZ = 600
 
 
 def schedule(word, wpm, farnsworth):
@@ -1021,404 +889,15 @@ def signal(on):
         prev = e
 
 
-class Audio:
-    """Two queued channels (fx, sig) plus the player's sidetone.
-
-    Played through PortAudio (the sounddevice package) where it's available,
-    else streamed to aplay on Linux, else the game is silent.
-    """
-
-    OUT_RATE = RATE * 4  # sound cards rarely accept 11025 Hz; each sample is played 4 times
-
-    def __init__(self, volume):
-        self.volume = volume
-        self.lock = threading.Lock()
-        self.queues = {'fx': [], 'sig': []}
-        self.key_on, self.blip, self.phase = False, 0, 0.0
-        self.proc = None
-        self.stream = self._open_portaudio()
-        if self.stream or WINDOWS:
-            return
-        try:
-            self.proc = subprocess.Popen(
-                ['aplay', '-q', '-t', 'raw', '-f', 'U8', '-r', str(RATE), '-c', '1',
-                 '--buffer-time=30000', '--period-time=7500'],
-                stdin=subprocess.PIPE, stderr=subprocess.DEVNULL, bufsize=0,
-                env={**os.environ, 'PIPEWIRE_LATENCY': f'128/{RATE}'})
-        except OSError:
-            return  # no aplay either: play silently
-        threading.Thread(target=self._stream_to_aplay, daemon=True).start()
-
-    def _open_portaudio(self):
-        try:
-            import sounddevice
-        except (ImportError, OSError):  # not installed, or no PortAudio library on this system
-            return None
-        try:
-            stream = sounddevice.RawOutputStream(samplerate=self.OUT_RATE, channels=1, dtype='uint8',
-                                                 latency='low', callback=self._fill_portaudio)
-            stream.start()
-            return stream
-        except sounddevice.PortAudioError:
-            return None
-
-    def _fill_portaudio(self, outdata, frames, time_info, status):
-        samples = self._render_audio(-(-frames // 4))
-        out = bytearray(len(samples) * 4)
-        for i in range(4):
-            out[i::4] = samples
-        outdata[:] = bytes(out[:frames])
-
-    def play(self, gen, channel='fx', cut=False):
-        with self.lock:
-            if cut:
-                self.queues[channel].clear()
-            self.queues[channel].append(gen)
-
-    def stop_signal(self):
-        with self.lock:
-            self.queues['sig'].clear()
-
-    def _next_sample(self, queue):
-        while queue:
-            v = next(queue[0], None)
-            if v is not None:
-                return v
-            queue.pop(0)
-        return 0.0
-
-    def _render_audio(self, sample_count):
-        """The next `sample_count` 8-bit samples at RATE: both channels plus the sidetone."""
-        buf = bytearray(sample_count)
-        with self.lock:
-            for i in range(sample_count):
-                v = self._next_sample(self.queues['fx']) + self._next_sample(self.queues['sig'])
-                if self.key_on or self.blip > 0:
-                    self.blip -= 1
-                    self.phase = (self.phase + KEY_HZ / RATE) % 1
-                    v += .25 if self.phase < .5 else -.25
-                buf[i] = max(0, min(255, int(128 + v * 100 * self.volume)))
-        return buf
-
-    def _stream_to_aplay(self):
-        # A pipe holds ~6 s of 11 kHz U8 audio; writing freely queues the sidetone
-        # behind all of it. Only top up when less than LEAD is waiting in the pipe.
-        fd, lead = self.proc.stdin.fileno(), int(.02 * RATE)
-        while True:
-            try:
-                queued = struct.unpack('i', fcntl.ioctl(fd, termios.FIONREAD, b'\0\0\0\0'))[0]
-            except OSError:
-                return
-            if queued > lead:
-                time.sleep(.003)
-                continue
-            try:
-                os.write(fd, self._render_audio(64))
-            except OSError:
-                return
-
-    def close(self):
-        if self.stream:
-            self.stream.close()
-        if self.proc:
-            self.proc.kill()
-
-
-# --------------------------------------------------------------------- terminal
-
-SETUP_SCREEN = '\x1b[?1049h\x1b[?25l\x1b[?7l'
-RESTORE_SCREEN = '\x1b[0m\x1b[?7h\x1b[?25h\x1b[?1049l'
-# Kitty keyboard protocol flags: 1 disambiguate + 2 report press/release + 8 every key as a code
-KITTY_PUSH, KITTY_POP = '\x1b[>11u', '\x1b[<u'
-KITTY_KEY = re.compile(r'\x1b\[(\d+)(?::\d*)*(?:;(\d*)(?::(\d+))?)?(?:;[\d:]*)?u')
-INPUT_TOKEN = re.compile(r'\x1b\[[0-9:;?<=>]*[ -/]*[@-~]|\x1bO.|\x1b|.', re.S)
-KITTY_NAMED = {13: '\n', 9: '\t', 127: '\x7f', 8: '\x7f', 27: 'ESC'}
-KITTY_PRESS, KITTY_REPEAT, KITTY_RELEASE, KITTY_CTRL = 1, 2, 3, 4
-
-
-class UnixTerminal:
-    """cbreak tty. Space releases come from the Kitty keyboard protocol when the
-    terminal speaks it, else from /dev/input on Linux, else they're unknown.
-
-    read() returns events: ('space', True/False) for a real press/release, or
-    ('key', k) for anything typed (k == ' ' only when releases are unknown).
-    """
-
-    def __init__(self, use_devices):
-        self.fd = sys.stdin.fileno()
-        self.saved = termios.tcgetattr(self.fd)
-        tty.setcbreak(self.fd)
-        self.kitty = self._terminal_reports_releases()
-        if self.kitty:
-            self.write(KITTY_PUSH)
-        on_linux = sys.platform.startswith('linux')
-        self.devices = open_keyboards() if use_devices and on_linux and not self.kitty else []
-        self.device_seen = False
-        self.write(SETUP_SCREEN)
-
-    @property
-    def reports_release(self):
-        return self.kitty or bool(self.devices)
-
-    def write(self, text):
-        sys.stdout.write(text)
-        sys.stdout.flush()
-
-    def _terminal_reports_releases(self):
-        # Ask for the Kitty keyboard flags, then for the device attributes every
-        # terminal answers. A flags reply arriving first means the protocol works.
-        self.write('\x1b[?u\x1b[c')
-        reply, deadline = '', time.monotonic() + .5
-        while not re.search(r'\x1b\[\?[\d;]*c', reply) and time.monotonic() < deadline:
-            if select.select([self.fd], [], [], .05)[0]:
-                reply += os.read(self.fd, 256).decode(errors='ignore')
-        return bool(re.search(r'\x1b\[\?\d+u', reply))
-
-    def read(self, timeout):
-        events = []
-        ready = select.select([self.fd] + self.devices, [], [], timeout)[0]
-        for device in self.devices:
-            if device in ready:
-                for down in read_space_events(device):
-                    self.device_seen = True
-                    events.append(('space', down))
-        if self.fd in ready:
-            for token in INPUT_TOKEN.findall(os.read(self.fd, 256).decode(errors='ignore')):
-                events += self._decode_token(token)
-        return events
-
-    def _decode_token(self, token):
-        match = KITTY_KEY.fullmatch(token)
-        if match:
-            code, mods, kind = int(match[1]), int(match[2] or 1) - 1, int(match[3] or KITTY_PRESS)
-            if code == 32:
-                return [] if kind == KITTY_REPEAT else [('space', kind == KITTY_PRESS)]
-            if kind == KITTY_RELEASE:
-                return []
-            if mods & KITTY_CTRL and code == ord('c'):
-                raise KeyboardInterrupt
-            if code in KITTY_NAMED:
-                return [('key', KITTY_NAMED[code])]
-            return [('key', chr(code))] if 32 < code < 0xE000 else []  # skip modifier-only keys
-        if token == '\x1b':
-            return [('key', 'ESC')]
-        if token.startswith('\x1b'):
-            return []
-        if token == ' ' and self.devices:
-            if self.device_seen:
-                return []  # the devices already reported this press
-            # the terminal saw a space the devices didn't: they aren't this keyboard
-            for device in self.devices:
-                os.close(device)
-            self.devices = []
-        return [('key', token)]
-
-    def restore(self):
-        if self.kitty:
-            self.write(KITTY_POP)
-        self.write(RESTORE_SCREEN)
-        termios.tcsetattr(self.fd, termios.TCSADRAIN, self.saved)
-        for device in self.devices:
-            os.close(device)
-
-
-if WINDOWS:
-    class KEY_EVENT_RECORD(ctypes.Structure):
-        _fields_ = [('bKeyDown', wintypes.BOOL), ('wRepeatCount', wintypes.WORD),
-                    ('wVirtualKeyCode', wintypes.WORD), ('wVirtualScanCode', wintypes.WORD),
-                    ('uChar', wintypes.WCHAR), ('dwControlKeyState', wintypes.DWORD)]
-
-    class INPUT_RECORD(ctypes.Structure):
-        # the real Event is a union; the key record is its largest member
-        _fields_ = [('EventType', wintypes.WORD), ('Event', KEY_EVENT_RECORD)]
-
-
-class WindowsConsole:
-    """Windows console input records carry real key-down and key-up events.
-
-    read() returns the same events as UnixTerminal.read().
-    """
-
-    reports_release = True
-    KEY_EVENT, VK_SPACE, VK_ESCAPE, VK_C, CTRL_PRESSED = 1, 0x20, 0x1B, 0x43, 0x0C
-    INPUT_RAW = 0x0080  # extended flags only: no line input, echo, quick-edit or Ctrl+C handling
-    OUTPUT_ANSI = 0x0001 | 0x0004  # processed output + virtual terminal sequences
-
-    def __init__(self):
-        self.kernel = ctypes.windll.kernel32
-        self.kernel.GetStdHandle.restype = wintypes.HANDLE
-        self.stdin, self.stdout = self.kernel.GetStdHandle(-10), self.kernel.GetStdHandle(-11)
-        self.saved_in, self.saved_out = wintypes.DWORD(), wintypes.DWORD()
-        self.kernel.GetConsoleMode(self.stdin, ctypes.byref(self.saved_in))
-        self.kernel.GetConsoleMode(self.stdout, ctypes.byref(self.saved_out))
-        self.kernel.SetConsoleMode(self.stdin, self.INPUT_RAW)
-        self.kernel.SetConsoleMode(self.stdout, self.saved_out.value | self.OUTPUT_ANSI)
-        self.kernel.SetConsoleOutputCP(65001)
-        sys.stdout.reconfigure(encoding='utf-8')
-        self.space_down = False
-        self.write(SETUP_SCREEN)
-
-    def write(self, text):
-        sys.stdout.write(text)
-        sys.stdout.flush()
-
-    def read(self, timeout):
-        events = []
-        if self.kernel.WaitForSingleObject(self.stdin, int(timeout * 1000)) != 0:
-            return events
-        count = wintypes.DWORD()
-        self.kernel.GetNumberOfConsoleInputEvents(self.stdin, ctypes.byref(count))
-        if not count.value:
-            return events
-        records = (INPUT_RECORD * count.value)()
-        self.kernel.ReadConsoleInputW(self.stdin, records, count.value, ctypes.byref(count))
-        for record in records[:count.value]:
-            if record.EventType != self.KEY_EVENT:
-                continue
-            key = record.Event
-            if key.wVirtualKeyCode == self.VK_SPACE:
-                if bool(key.bKeyDown) != self.space_down:  # held keys repeat their key-down
-                    self.space_down = bool(key.bKeyDown)
-                    events.append(('space', self.space_down))
-            elif not key.bKeyDown:
-                continue
-            elif key.wVirtualKeyCode == self.VK_ESCAPE:
-                events.append(('key', 'ESC'))
-            elif key.wVirtualKeyCode == self.VK_C and key.dwControlKeyState & self.CTRL_PRESSED:
-                raise KeyboardInterrupt
-            elif key.uChar not in ('', '\x00'):  # keys that type nothing carry NUL
-                events.append(('key', {'\r': '\n', '\x08': '\x7f'}.get(key.uChar, key.uChar)))
-        return events
-
-    def restore(self):
-        self.write(RESTORE_SCREEN)
-        self.kernel.SetConsoleMode(self.stdin, self.saved_in.value)
-        self.kernel.SetConsoleMode(self.stdout, self.saved_out.value)
-
-
-# --------------------------------------------------------------------- drawing
-
-class Canvas:
-    """Full-terminal cell grid; drawing coordinates are an 80x24 area centred in it."""
-
-    def __init__(self, width, height):
-        self.W, self.H = width, height
-        self.ox, self.oy = (width - 80) // 2, (height - 24) // 2
-        self.cells = [[(' ', PAPER, INK)] * width for _ in range(height)]
-
-    def _at(self, x, y):
-        X, Y = x + self.ox, y + self.oy
-        return (X, Y) if 0 <= X < self.W and 0 <= Y < self.H else None
-
-    def put(self, x, y, text, fg=PAPER, bg=None):
-        for i, ch in enumerate(text):
-            p = self._at(x + i, y)
-            if p:
-                X, Y = p
-                self.cells[Y][X] = (ch, fg, bg or self.cells[Y][X][2])
-
-    def bg_at(self, x, y):
-        p = self._at(x, y)
-        return self.cells[p[1]][p[0]][2] if p else INK
-
-    def band(self, y0, y1, bg):
-        for y in range(y0, y1):
-            Y = y + self.oy
-            if 0 <= Y < self.H:
-                self.cells[Y] = [(' ', PAPER, bg)] * self.W
-
-    def center(self, y, text, fg=PAPER, bg=None):
-        self.put(40 - len(text) // 2, y, text, fg, bg)
-
-    def render(self):
-        out, last = [], None
-        for Y, row in enumerate(self.cells):
-            out.append(f'\x1b[{Y + 1};1H')
-            for ch, fg, bg in row:
-                if (fg, bg) != last:
-                    out.append('\x1b[38;2;%d;%d;%d;48;2;%d;%d;%dm' % (fg + bg))
-                    last = (fg, bg)
-                out.append(ch)
-        return ''.join(out)
-
-
-def bigw(text):
-    return len(text) * 6 - 1
-
-
-def big(c, x, y, text, color):
-    """5x7 pixel font, 4 cells tall."""
-    for n, ch in enumerate(text):
-        glyph = FONT.get(ch) or FONT.get(unicodedata.normalize('NFD', ch)[0])
-        if not glyph:
-            continue
-        rows = glyph + ['.....']
-        for r in range(0, 8, 2):
-            for i in range(5):
-                a, b = rows[r][i] == '#', rows[r + 1][i] == '#'
-                X, Y = x + n * 6 + i, y + r // 2
-                if a:
-                    c.put(X, Y, '▀', color, color if b else c.bg_at(X, Y))
-                elif b:
-                    c.put(X, Y, '▄', color)
-
-
-def big_center(c, y, text, color):
-    big(c, 40 - bigw(text) // 2, y, text, color)
-
-
-def sprite(c, x, y, rows, flicker=False, faded=False):
-    """Pixel art packed two rows per cell with half blocks; '.' is transparent."""
-    if len(rows) % 2:
-        rows = rows + ['.' * len(rows[0])]
-
-    def color(p, under):
-        if p == '.':
-            return under
-        if faded:
-            return FAINT
-        if flicker and p in 'OY':
-            p = 'Y' if p == 'O' else 'O'
-        return PAL[p]
-
-    for r in range(0, len(rows), 2):
-        for i, (a, b) in enumerate(zip(rows[r], rows[r + 1])):
-            if a == '.' and b == '.':
-                continue
-            under = c.bg_at(x + i, y + r // 2)
-            c.put(x + i, y + r // 2, '▀', color(a, under), color(b, under))
-
-
 # --------------------------------------------------------------------- game
 
-def save_file_path():
-    """Per-user data file: a one-file build unpacks itself into a temporary folder."""
-    if WINDOWS:
-        base = os.environ.get('APPDATA') or os.path.expanduser('~')
-    elif sys.platform == 'darwin':
-        base = os.path.expanduser('~/Library/Application Support')
-    else:
-        base = os.environ.get('XDG_DATA_HOME') or os.path.expanduser('~/.local/share')
-    return os.path.join(base, 'morse-code', 'save.json')
-
-
-def load_save(path):
-    # .save.json beside the script is where saves lived before they moved to `path`
-    beside_script = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.save.json')
-    for candidate in (path, beside_script):
-        try:
-            with open(candidate) as f:
-                return json.load(f)
-        except (OSError, ValueError):
-            pass
-    return {}
-
-
-class Game:
+class MorseGame:
     def __init__(self, args, audio, releases):
         self.args, self.audio, self.releases = args, audio, releases
-        self.save_path = save_file_path()
-        saved = load_save(self.save_path)
+        self.save_path = save_file_path('morse')
+        # earlier versions saved beside the script, then in a morse-code folder
+        saved = load_save(self.save_path, os.path.join(user_data_dir(), 'morse-code', 'save.json'),
+                          os.path.join(os.path.dirname(os.path.abspath(__file__)), '.save.json'))
         self.hi, self.saved_chapter = saved.get('hi', 0), saved.get('chapter', 1)
         self.lang = saved.get('lang') if saved.get('lang') in LANGS else 'en'
         self.score = self.lives = self.combo = self.beat_no = 0
@@ -1426,13 +905,8 @@ class Game:
         self.msg_until = 0.0
         self.set_state('lang', time.monotonic())
 
-    def write_save(self):
-        try:
-            os.makedirs(os.path.dirname(self.save_path), exist_ok=True)
-            with open(self.save_path, 'w') as f:
-                json.dump({'hi': self.hi, 'chapter': self.saved_chapter, 'lang': self.lang}, f)
-        except OSError:
-            pass
+    def store_progress(self):
+        write_save(self.save_path, {'hi': self.hi, 'chapter': self.saved_chapter, 'lang': self.lang})
 
     def text(self, key, **values):
         return UI[self.lang][key].format(**values)
@@ -1460,7 +934,7 @@ class Game:
         self.keyer = self.new_keyer()
 
     def to_title(self, now):
-        self.audio.stop_signal()
+        self.audio.stop_signal_playback()
         self.set_state('title', now)
 
     def start_game(self, chapter, now):
@@ -1471,7 +945,7 @@ class Game:
         if self.chapter > len(self.chapters):
             return self.finish(now)
         self.saved_chapter = max(self.saved_chapter, self.chapter)
-        self.write_save()
+        self.store_progress()
         self.beat_no, self.free_text = 0, ''
         self.new_letters = LEVELS[self.chapter - 1]
         self.set_state('chapter', now)
@@ -1488,7 +962,7 @@ class Game:
         self.mode = self.beat['mode']
         echo = self.beat['echo'] and self.last_word
         self.word = self.last_word if echo else pick_word(self.chapter, self.lang)
-        self.audio.stop_signal()
+        self.audio.stop_signal_playback()
         self.set_state('brief', now)
 
     def start_play(self, now):
@@ -1540,14 +1014,14 @@ class Game:
         self.banner = random.choice(WIN_BANNERS[self.lang])
         if self.mode == 'decode':
             self.last_word = self.word
-        self.audio.stop_signal()
+        self.audio.stop_signal_playback()
         self.set_state('win', now)
         self.audio.play(notes([523, 659, 784], .12, .1), cut=True)
 
     def lose(self, now):
         self.p_end, self.lives, self.combo = 1.0, self.lives - 1, 0
         self.banner = random.choice(LOSE_BANNERS[self.lang])
-        self.audio.stop_signal()
+        self.audio.stop_signal_playback()
         self.set_state('lose', now)
         self.audio.play(noise(1.4, .25, 40), cut=True)
 
@@ -1563,11 +1037,11 @@ class Game:
     def record_score(self):
         self.new_hi = self.score > self.hi
         self.hi = max(self.hi, self.score)
-        self.write_save()
+        self.store_progress()
 
     def game_over(self, now):
         self.record_score()
-        self.set_state('over', now)
+        self.set_state('game_over', now)
         self.audio.play(slide(300, 80, 1.0, .12), cut=True)
 
     def finish(self, now):
@@ -1597,24 +1071,24 @@ class Game:
             self.keyer.release(now)
             self.audio.key_on = self.keyer.sounding()
 
-    def key(self, k, now):
+    def on_key_press(self, k, now):
         s = self.state
         if k == 'ESC':
             if s in ('title', 'lang'):
-                raise SystemExit
+                raise Eject
             return self.to_title(now)
         if k == ' ':  # a typed space: only sent when releases are unknown
             self.space_down(now)
             return
         enter = k in ('\r', '\n')
         if enter and s in ('chapter', 'brief', 'ending') and not self.typed_all:
-            self.t_state -= 100  # skip the typewriter
+            self.t_state -= 100  # skip the draw_typed_lines
             return
         if s == 'lang':
             if k in ('1', '2'):
                 self.lang = LANGS[int(k) - 1]
             elif enter:
-                self.write_save()
+                self.store_progress()
                 self.to_title(now)
         elif s == 'title':
             if enter:
@@ -1627,7 +1101,7 @@ class Game:
             elif k in ('l', 'L'):
                 self.set_state('lang', now)
             elif k in ('q', 'Q'):
-                raise SystemExit
+                raise Eject
         elif s == 'chapter':
             if enter:
                 self.open_beat(now)
@@ -1637,7 +1111,7 @@ class Game:
             self.start_play(now)
         elif s in ('win', 'lose') and enter and now - self.t_state > 1.0:
             self.after_result(now)
-        elif s in ('over', 'ending') and enter and now - self.t_state > 1.5:
+        elif s in ('game_over', 'ending') and enter and now - self.t_state > 1.5:
             self.to_title(now)
         elif s == 'free' and k in ('\x7f', '\x08'):
             self.free_text = self.free_text[:-1]
@@ -1691,7 +1165,7 @@ class Game:
 
     def draw(self, now):
         width, height = os.get_terminal_size()
-        c = Canvas(width, height)
+        c = Canvas(width, height, PAPER, INK)
         if width < 80 or height < 24:
             c.ox = c.oy = 0
             c.put(0, 0, self.text('size'), AMBER)
@@ -1699,12 +1173,8 @@ class Game:
         getattr(self, 'draw_' + self.state)(c, now)
         return c
 
-    def typewriter(self, c, y, lines, now, col=PAPER):
-        budget = int((now - self.t_state) * 40)
-        for i, line in enumerate(lines):
-            c.center(y + i, line[:max(0, budget)].ljust(len(line)), col)
-            budget -= len(line) + 8  # a short pause between lines
-        self.typed_all = budget >= 0
+    def draw_typed_lines(self, c, y, lines, now, col=PAPER):
+        self.typed_all = draw_typed_lines(c, y, lines, now - self.t_state, col)
         return self.typed_all
 
     def fmt(self, text):
@@ -1760,7 +1230,7 @@ class Game:
         my = 4 if mover in FLYERS else 11 - mh
         if mover == 'spark' and won_t is None:
             c.put(mx + 2, my, '━' * (tx - mx), DIM)
-        sprite(c, tx, ty, tgt)
+        sprite(c, tx, ty, tgt, PALETTE)
         if lost_t is not None:
             for i in range(14):
                 r = random.Random(i)
@@ -1772,9 +1242,9 @@ class Game:
                 if (x * 7 + int(now * 3)) % 4 == 0:
                     c.put(x, ty, '▲', AMBER if (x + int(now * 2)) % 2 else ALERT)
         if won_t is None:
-            sprite(c, mx, my, mov, flicker=int(now * 4) % 2)
+            sprite(c, mx, my, mov, PALETTE, flicker=int(now * 4) % 2)
         elif won_t < 1.5:
-            sprite(c, mx, my, mov, faded=True)
+            sprite(c, mx, my, mov, PALETTE, faded=FAINT)
 
     def draw_title(self, c, now):
         self.draw_scene(c, now, 'wireless', (now / 120) % 1)
@@ -1794,7 +1264,7 @@ class Game:
         self.draw_hud(c)
         c.center(2, self.text('chapter_label', n=self.chapter), DIM)
         big_center(c, 3, chap['title'], AMBER)
-        self.typewriter(c, 8, chap['intro'], now)
+        self.draw_typed_lines(c, 8, chap['intro'], now)
         c.center(12, self.text('first_letters' if self.chapter == 1 else 'new_letters'), TEAL)
         col_w = 76 // len(self.new_letters)
         last = self.free_text.rstrip()[-1:]
@@ -1812,7 +1282,7 @@ class Game:
         self.draw_hud(c)
         self.draw_header(c, self.text('brief_line', n=self.chapter, title=self.chapters[self.chapter - 1]['title']))
         self.draw_scene(c, now, self.beat['scene'], 0)
-        if self.typewriter(c, 14, self.beat['brief'] + ['', self.beat['task']], now):
+        if self.draw_typed_lines(c, 14, self.beat['brief'] + ['', self.beat['task']], now):
             if self.mode == 'encode':
                 c.center(19, self.text('code_word', word=self.word), AMBER)
             if int(now * 1.5) % 2:
@@ -1829,7 +1299,7 @@ class Game:
         c.put(7, 13, '▬' * n, col)
         c.put(7 + n, 13, '▬' * (60 - n), BAND)
         c.put(70, 13, f'{left:4.0f}s', col)
-        x0 = 40 - bigw(self.word) // 2
+        x0 = 40 - big_text_width(self.word) // 2
         for i, ch in enumerate(self.word):
             done = i < self.pos
             col = GO if done else LAMP if i == self.pos else FAINT
@@ -1895,7 +1365,7 @@ class Game:
         self.draw_key(c, 24, 19, now)
         c.center(23, self.text('free_help'), FAINT)
 
-    def draw_over(self, c, now):
+    def draw_game_over(self, c, now):
         big_center(c, 5, self.text('over_big'), ALERT)
         c.center(11, self.text('over_line'), DIM)
         c.center(14, self.text('final_score', score=self.score), AMBER)
@@ -1908,7 +1378,7 @@ class Game:
     def draw_ending(self, c, now):
         self.draw_scene(c, now, 'wireless', 1.0, won_t=9)
         big_center(c, 14, self.text('end_big'), AMBER)
-        if self.typewriter(c, 19, ENDING[self.lang], now, DIM):
+        if self.draw_typed_lines(c, 19, ENDING[self.lang], now, DIM):
             line = self.text('final_score', score=self.score)
             c.center(23, line + ('  ·  ' + self.text('new_best') if self.new_hi else ''), AMBER)
 
@@ -1924,23 +1394,8 @@ class Game:
 
 # --------------------------------------------------------------------- main
 
-def read_system_key_repeat():
-    """(delay, interval) in seconds from macOS or GNOME settings, else common defaults."""
-    def run(*command):
-        return subprocess.run(command, capture_output=True, text=True, timeout=1).stdout
-
-    try:
-        if sys.platform == 'darwin':  # macOS stores both in units of 15 ms
-            return (int(run('defaults', 'read', '-g', 'InitialKeyRepeat')) * .015,
-                    int(run('defaults', 'read', '-g', 'KeyRepeat')) * .015)
-        gnome = 'org.gnome.desktop.peripherals.keyboard'
-        return (int(run('gsettings', 'get', gnome, 'delay').split()[-1]) / 1000,
-                int(run('gsettings', 'get', gnome, 'repeat-interval').split()[-1]) / 1000)
-    except (OSError, ValueError, IndexError, subprocess.SubprocessError):
-        return .5, .033
-
-
 def selftest():
+    """Assert the keyers and the story data; raises AssertionError at the first problem."""
     def run(times):
         k = Keyer(.25, .045, .8)
         for t in times:
@@ -1961,74 +1416,46 @@ def selftest():
         k.press(down)
         k.release(up)
     assert k.tick(2) == '.-.'
-    kitty = UnixTerminal.__new__(UnixTerminal)
-    kitty.devices = []
-    assert kitty._decode_token('\x1b[32u') == [('space', True)]
-    assert kitty._decode_token('\x1b[32;1:3u') == [('space', False)]
-    assert kitty._decode_token('\x1b[32;1:2u') == []
-    assert kitty._decode_token('\x1b[97;2u') == [('key', 'a')]
-    assert kitty._decode_token('\x1b[13u') == [('key', '\n')]
-    assert kitty._decode_token('\x1b[57441;2u') == []
-    assert INPUT_TOKEN.findall('a\x1b[32;1:3ub') == ['a', '\x1b[32;1:3u', 'b']
     assert DECODE['.-'] == 'A'
-    assert all(len(g) == 7 and all(len(r) == 5 for r in g) for g in FONT.values())
     assert all(ch in FONT for ch in MORSE)
-    assert all(len(set(map(len, rows))) == 1 and set(''.join(rows)) <= set(PAL) | {'.'}
+    assert all(len(set(map(len, rows))) == 1 and set(''.join(rows)) <= set(PALETTE) | {'.'}
                for rows in SPRITES.values())
     for lang in LANGS:
         chapters = CHAPTERS[lang]
         assert len(chapters) == len(LEVELS) and set(UI[lang]) == set(UI['en'])
         assert all(set(w) <= set(MORSE) for w in WORDS[lang])
-        assert all(len(ch['beats']) == 3 and bigw(ch['title']) <= 80 for ch in chapters)
-        assert all(bigw(b) <= 80 for b in WIN_BANNERS[lang] + LOSE_BANNERS[lang])
+        assert all(len(ch['beats']) == 3 and big_text_width(ch['title']) <= 80 for ch in chapters)
+        assert all(big_text_width(b) <= 80 for b in WIN_BANNERS[lang] + LOSE_BANNERS[lang])
         lines = ENDING[lang] + [ln for ch in chapters for ln in ch['intro']]
         for b in (b for ch in chapters for b in ch['beats']):
             assert b['scene'] in SCENES
             lines += b['brief'] + [b['task'], b['win'].format(word='W' * 8), b['lose'].format(word='W' * 8)]
         assert all(len(ln) <= 78 for ln in lines), [ln for ln in lines if len(ln) > 78]
-    print('selftest ok')
+
+
+def add_morse_arguments(parser):
+    delay, interval = read_system_key_repeat()
+    parser.add_argument('--repeat-delay', type=float, default=delay, help='keyboard autorepeat delay, seconds')
+    parser.add_argument('--repeat-interval', type=float, default=interval, help='autorepeat interval, seconds')
+    parser.add_argument('--letter-gap', type=float, default=.3, help='silence that ends a letter, seconds')
+    parser.add_argument('--dah-time', type=float, default=.2,
+                        help='with key releases reported: press at least this long for a dah, seconds')
 
 
 def main():
-    delay, interval = read_system_key_repeat()
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('--repeat-delay', type=float, default=delay, help='keyboard autorepeat delay, seconds')
-    ap.add_argument('--repeat-interval', type=float, default=interval, help='autorepeat interval, seconds')
-    ap.add_argument('--letter-gap', type=float, default=.3, help='silence that ends a letter, seconds')
-    ap.add_argument('--volume', type=float, default=.4, help='0 (mute) to 1')
-    ap.add_argument('--dah-time', type=float, default=.2,
-                    help='with a real keyboard device: press at least this long for a dah, seconds')
-    ap.add_argument('--no-evdev', action='store_true',
-                    help="Linux: don't read /dev/input when the terminal can't report releases")
-    ap.add_argument('--selftest', action='store_true')
+    add_arguments(ap)
+    add_morse_arguments(ap)
     args = ap.parse_args()
     if args.selftest:
-        return selftest()
-
+        engine.selftest()
+        selftest()
+        return print('selftest ok')
     audio = Audio(args.volume)
-    terminal = WindowsConsole() if WINDOWS else UnixTerminal(use_devices=not args.no_evdev)
-    game = Game(args, audio, terminal.reports_release)
+    terminal = open_terminal(args)
     try:
-        last = ''
-        while True:
-            events = terminal.read(1 / 30)
-            now = time.monotonic()
-            if terminal.reports_release != game.releases:  # /dev/input turned out not to be ours
-                game.use_release_keys(terminal.reports_release)
-            for kind, value in events:
-                if kind == 'space':
-                    game.space_down(now) if value else game.space_up(now)
-                else:
-                    game.key(value, now)
-            game.tick(now)
-            frame = game.draw(now).render()
-            if frame != last:
-                terminal.write(frame)
-                last = frame
-    except (KeyboardInterrupt, SystemExit):
-        pass
+        run(MorseGame(args, audio, terminal.reports_release), terminal)
     finally:
-        terminal.restore()
         audio.close()
 
 
