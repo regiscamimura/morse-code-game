@@ -2,15 +2,35 @@
 
 A terminal game that teaches Morse code through a spy story. You are the night
 operator at a coastal wireless station in 1936, and every message you send or
-receive moves the story forward. The game is available in English and
-Brazilian Portuguese.
+receive moves the story forward. Available in English and Brazilian Portuguese.
+
+## Get it
+
+Download the file for your system from the
+[Releases page](https://github.com/regiscamimura/morse-code-game/releases) and
+run it in a terminal. Nothing else to install.
+
+| System  | File                       | Run it                                       |
+|---------|----------------------------|----------------------------------------------|
+| Windows | `morse-windows-x64.exe`    | double-click, or `.\morse-windows-x64.exe`   |
+| macOS   | `morse-macos-arm64`        | `chmod +x morse-macos-arm64 && ./morse-macos-arm64` |
+| Linux   | `morse-linux-x64`          | `chmod +x morse-linux-x64 && ./morse-linux-x64` |
+
+macOS blocks downloaded programs that aren't signed. Clear the flag once:
 
 ```
-./morse.py
+xattr -d com.apple.quarantine morse-macos-arm64
 ```
 
-One Python file. It needs nothing beyond the standard library plus `aplay` for
-sound, and it runs on Linux.
+Or run it from source with Python 3.10+ (`sounddevice` is optional, for sound
+outside Linux):
+
+```
+pip install sounddevice
+python morse.py
+```
+
+The terminal needs to be at least 80×24.
 
 ## How you play
 
@@ -45,7 +65,7 @@ A wrong letter costs time and shows the correct pattern, so the mistake turns
 into a lesson:
 
 ```
-SENT N • ━   NEED A • ━   ← "Sent" in English, "Enviou" in Portuguese
+SENT N • ━   NEED A • ━
 ```
 
 Each chapter teaches new letters in Koch order (`ETAN`, then `IM`, `SO`, `RK`
@@ -66,49 +86,43 @@ words only use letters you've already learned.
 ## Options
 
 ```
-./morse.py --volume .2         # quieter (0 = mute, 1 = loud, default .4)
-./morse.py --letter-gap .4     # more time between letters, for beginners
-./morse.py --dah-time .25      # a press must be longer to count as a dah
-./morse.py --no-evdev          # ignore /dev/input, use the autorepeat fallback
-./morse.py --selftest          # check the keying logic and the story text
+morse --volume .2         # quieter (0 = mute, 1 = loud, default .4)
+morse --letter-gap .4     # more time between letters, for beginners
+morse --dah-time .25      # a press must be longer to count as a dah
+morse --selftest          # check the keying logic and the story text
 ```
 
-`--selftest` prints `selftest ok` or stops at the first failed assert.
+## Which terminals work best
 
-## How the space bar is read
+Timing a dah needs to know when you *release* the space bar, and most terminals
+only report presses. The game uses the best source it finds:
 
-Terminals report when a key is pressed but never when it's released. That
-isn't enough to time a dah, so the game has two modes.
+| Where you run it | Key releases come from | Feel |
+|---|---|---|
+| Windows (any console) | the Windows console's own key events | exact |
+| Ghostty, Kitty, WezTerm, foot, iTerm2 3.5+ | the Kitty keyboard protocol | exact |
+| Linux, inside tmux or any terminal | `/dev/input` (needs the `input` group) | exact |
+| macOS Terminal.app, others | guessed from keyboard autorepeat | laggier |
 
-**Direct (default).** If you can read `/dev/input` (be in the `input` group),
-the game reads the keyboard device itself and gets the real press and release
-times. Key remappers such as keyd work too, because their virtual keyboard is
-read as well.
+In the autorepeat case a dah only registers once the key starts repeating
+(about 0.3 s), and the gap between letters can't go below about 0.45 s. The
+repeat timing is read from GNOME or macOS settings; override it with
+`--repeat-delay` and `--repeat-interval`.
 
-```
-$ id
-... groups=...,992(input),...    ← you have it
-```
-
-Direct mode sees the keyboard system-wide, so pressing space in another window
-also keys in the game while it runs.
-
-**Autorepeat fallback.** Without device access, a hold is recognised from the
-keyboard's autorepeat: one key event means a tap, and a burst of repeats means
-a hold. The delay and rate are read from GNOME's settings, or you can set them:
-
-```
-./morse.py --repeat-delay .25 --repeat-interval .045
-```
-
-This mode is laggier: a dah only registers once the repeats start (about
-0.3 s), and the letter gap can't go below about 0.45 s. If the game opens
-device access but no space press ever arrives from it, it switches to this mode
-on its own.
+On Linux, `/dev/input` sees the keyboard system-wide: while the game runs,
+pressing space in another window also keys in the game. `--no-evdev` turns
+that source off. Key remappers such as keyd work, because their virtual
+keyboard is read too.
 
 ## Saves
 
-Progress lives in `.save.json` next to the script:
+Progress is kept per user:
+
+| System  | File |
+|---------|------|
+| Linux   | `~/.local/share/morse-code/save.json` |
+| macOS   | `~/Library/Application Support/morse-code/save.json` |
+| Windows | `%APPDATA%\morse-code\save.json` |
 
 ```json
 {"hi": 4210, "chapter": 5, "lang": "pt"}
@@ -118,12 +132,32 @@ Progress lives in `.save.json` next to the script:
 "continue" on the title screen) and `lang` is the last language used. Delete
 the file to start over.
 
+## Building the executables
+
+`.github/workflows/build.yml` builds all three with PyInstaller on GitHub's
+Linux, macOS and Windows machines (PyInstaller can't build for another OS).
+
+- **Actions tab → build → Run workflow:** builds and attaches the files to
+  the run.
+- **Push a tag** such as `v1.0`: builds and publishes them as a release.
+
+```
+git tag v1.0 && git push origin v1.0
+```
+
+To build one locally for your own system:
+
+```
+pip install pyinstaller sounddevice
+pyinstaller --onefile --name morse morse.py     # → dist/morse
+```
+
 ## Troubleshooting
 
 | Symptom | Fix |
 |---|---|
-| No sound | Check that `aplay` exists (`alsa-utils`); the game stays silent without it |
-| Crackling sound | The audio buffer is too small for your system: raise the `.02` in `Audio._stream` |
+| No sound on Linux | Install PortAudio (`libportaudio2`) or `alsa-utils` (`aplay`); without either the game is silent |
+| Crackling sound | The audio buffer is too small for your system: raise the `.02` in `Audio._stream_to_aplay` |
 | Dahs come out as dits | Hold longer, or lower `--dah-time` |
 | A letter splits in two | You paused mid-letter: raise `--letter-gap` |
 | "MAKE THE TERMINAL AT LEAST 80x24" | Enlarge the window |

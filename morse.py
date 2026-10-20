@@ -3,27 +3,35 @@
 
 TAP space = dit (•)    HOLD space = dah (━)
 
-With access to /dev/input (the `input` group) the space bar's real press and
-release are read, and a press of --dah-time or longer is a dah. Without it,
-terminals send no key-release events, so a hold is recognised from the
-keyboard's autorepeat burst; tune --repeat-delay / --repeat-interval then.
+The space bar's real press and release come from the Windows console, the
+Kitty keyboard protocol (Ghostty, Kitty, WezTerm, iTerm2...) or /dev/input on
+Linux; a press of --dah-time or longer is a dah. Elsewhere terminals send no
+key-release events, so a hold is recognised from the keyboard's autorepeat
+burst; tune --repeat-delay / --repeat-interval then.
 """
 import argparse
-import fcntl
 import itertools
 import json
 import math
 import os
 import random
+import re
 import select
 import struct
 import subprocess
 import sys
-import termios
 import threading
 import time
-import tty
 import unicodedata
+
+WINDOWS = sys.platform == 'win32'
+if WINDOWS:
+    import ctypes
+    from ctypes import wintypes
+else:
+    import fcntl
+    import termios
+    import tty
 
 MORSE = {
     'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....',
@@ -1014,13 +1022,23 @@ def signal(on):
 
 
 class Audio:
-    """Two queued channels (fx, sig) plus the player's sidetone, streamed to aplay."""
+    """Two queued channels (fx, sig) plus the player's sidetone.
+
+    Played through PortAudio (the sounddevice package) where it's available,
+    else streamed to aplay on Linux, else the game is silent.
+    """
+
+    OUT_RATE = RATE * 4  # sound cards rarely accept 11025 Hz; each sample is played 4 times
 
     def __init__(self, volume):
         self.volume = volume
         self.lock = threading.Lock()
         self.queues = {'fx': [], 'sig': []}
         self.key_on, self.blip, self.phase = False, 0, 0.0
+        self.proc = None
+        self.stream = self._open_portaudio()
+        if self.stream or WINDOWS:
+            return
         try:
             self.proc = subprocess.Popen(
                 ['aplay', '-q', '-t', 'raw', '-f', 'U8', '-r', str(RATE), '-c', '1',
@@ -1028,9 +1046,28 @@ class Audio:
                 stdin=subprocess.PIPE, stderr=subprocess.DEVNULL, bufsize=0,
                 env={**os.environ, 'PIPEWIRE_LATENCY': f'128/{RATE}'})
         except OSError:
-            self.proc = None  # no aplay: play silently
-            return
-        threading.Thread(target=self._stream, daemon=True).start()
+            return  # no aplay either: play silently
+        threading.Thread(target=self._stream_to_aplay, daemon=True).start()
+
+    def _open_portaudio(self):
+        try:
+            import sounddevice
+        except (ImportError, OSError):  # not installed, or no PortAudio library on this system
+            return None
+        try:
+            stream = sounddevice.RawOutputStream(samplerate=self.OUT_RATE, channels=1, dtype='uint8',
+                                                 latency='low', callback=self._fill_portaudio)
+            stream.start()
+            return stream
+        except sounddevice.PortAudioError:
+            return None
+
+    def _fill_portaudio(self, outdata, frames, time_info, status):
+        samples = self._render_audio(-(-frames // 4))
+        out = bytearray(len(samples) * 4)
+        for i in range(4):
+            out[i::4] = samples
+        outdata[:] = bytes(out[:frames])
 
     def play(self, gen, channel='fx', cut=False):
         with self.lock:
@@ -1050,7 +1087,20 @@ class Audio:
             queue.pop(0)
         return 0.0
 
-    def _stream(self):
+    def _render_audio(self, sample_count):
+        """The next `sample_count` 8-bit samples at RATE: both channels plus the sidetone."""
+        buf = bytearray(sample_count)
+        with self.lock:
+            for i in range(sample_count):
+                v = self._next_sample(self.queues['fx']) + self._next_sample(self.queues['sig'])
+                if self.key_on or self.blip > 0:
+                    self.blip -= 1
+                    self.phase = (self.phase + KEY_HZ / RATE) % 1
+                    v += .25 if self.phase < .5 else -.25
+                buf[i] = max(0, min(255, int(128 + v * 100 * self.volume)))
+        return buf
+
+    def _stream_to_aplay(self):
         # A pipe holds ~6 s of 11 kHz U8 audio; writing freely queues the sidetone
         # behind all of it. Only top up when less than LEAD is waiting in the pipe.
         fd, lead = self.proc.stdin.fileno(), int(.02 * RATE)
@@ -1062,23 +1112,188 @@ class Audio:
             if queued > lead:
                 time.sleep(.003)
                 continue
-            buf = bytearray(64)
-            with self.lock:
-                for i in range(64):
-                    v = self._next_sample(self.queues['fx']) + self._next_sample(self.queues['sig'])
-                    if self.key_on or self.blip > 0:
-                        self.blip -= 1
-                        self.phase = (self.phase + KEY_HZ / RATE) % 1
-                        v += .25 if self.phase < .5 else -.25
-                    buf[i] = max(0, min(255, int(128 + v * 100 * self.volume)))
             try:
-                os.write(fd, buf)
+                os.write(fd, self._render_audio(64))
             except OSError:
                 return
 
     def close(self):
+        if self.stream:
+            self.stream.close()
         if self.proc:
             self.proc.kill()
+
+
+# --------------------------------------------------------------------- terminal
+
+SETUP_SCREEN = '\x1b[?1049h\x1b[?25l\x1b[?7l'
+RESTORE_SCREEN = '\x1b[0m\x1b[?7h\x1b[?25h\x1b[?1049l'
+# Kitty keyboard protocol flags: 1 disambiguate + 2 report press/release + 8 every key as a code
+KITTY_PUSH, KITTY_POP = '\x1b[>11u', '\x1b[<u'
+KITTY_KEY = re.compile(r'\x1b\[(\d+)(?::\d*)*(?:;(\d*)(?::(\d+))?)?(?:;[\d:]*)?u')
+INPUT_TOKEN = re.compile(r'\x1b\[[0-9:;?<=>]*[ -/]*[@-~]|\x1bO.|\x1b|.', re.S)
+KITTY_NAMED = {13: '\n', 9: '\t', 127: '\x7f', 8: '\x7f', 27: 'ESC'}
+KITTY_PRESS, KITTY_REPEAT, KITTY_RELEASE, KITTY_CTRL = 1, 2, 3, 4
+
+
+class UnixTerminal:
+    """cbreak tty. Space releases come from the Kitty keyboard protocol when the
+    terminal speaks it, else from /dev/input on Linux, else they're unknown.
+
+    read() returns events: ('space', True/False) for a real press/release, or
+    ('key', k) for anything typed (k == ' ' only when releases are unknown).
+    """
+
+    def __init__(self, use_devices):
+        self.fd = sys.stdin.fileno()
+        self.saved = termios.tcgetattr(self.fd)
+        tty.setcbreak(self.fd)
+        self.kitty = self._terminal_reports_releases()
+        if self.kitty:
+            self.write(KITTY_PUSH)
+        on_linux = sys.platform.startswith('linux')
+        self.devices = open_keyboards() if use_devices and on_linux and not self.kitty else []
+        self.device_seen = False
+        self.write(SETUP_SCREEN)
+
+    @property
+    def reports_release(self):
+        return self.kitty or bool(self.devices)
+
+    def write(self, text):
+        sys.stdout.write(text)
+        sys.stdout.flush()
+
+    def _terminal_reports_releases(self):
+        # Ask for the Kitty keyboard flags, then for the device attributes every
+        # terminal answers. A flags reply arriving first means the protocol works.
+        self.write('\x1b[?u\x1b[c')
+        reply, deadline = '', time.monotonic() + .5
+        while not re.search(r'\x1b\[\?[\d;]*c', reply) and time.monotonic() < deadline:
+            if select.select([self.fd], [], [], .05)[0]:
+                reply += os.read(self.fd, 256).decode(errors='ignore')
+        return bool(re.search(r'\x1b\[\?\d+u', reply))
+
+    def read(self, timeout):
+        events = []
+        ready = select.select([self.fd] + self.devices, [], [], timeout)[0]
+        for device in self.devices:
+            if device in ready:
+                for down in read_space_events(device):
+                    self.device_seen = True
+                    events.append(('space', down))
+        if self.fd in ready:
+            for token in INPUT_TOKEN.findall(os.read(self.fd, 256).decode(errors='ignore')):
+                events += self._decode_token(token)
+        return events
+
+    def _decode_token(self, token):
+        match = KITTY_KEY.fullmatch(token)
+        if match:
+            code, mods, kind = int(match[1]), int(match[2] or 1) - 1, int(match[3] or KITTY_PRESS)
+            if code == 32:
+                return [] if kind == KITTY_REPEAT else [('space', kind == KITTY_PRESS)]
+            if kind == KITTY_RELEASE:
+                return []
+            if mods & KITTY_CTRL and code == ord('c'):
+                raise KeyboardInterrupt
+            if code in KITTY_NAMED:
+                return [('key', KITTY_NAMED[code])]
+            return [('key', chr(code))] if 32 < code < 0xE000 else []  # skip modifier-only keys
+        if token == '\x1b':
+            return [('key', 'ESC')]
+        if token.startswith('\x1b'):
+            return []
+        if token == ' ' and self.devices:
+            if self.device_seen:
+                return []  # the devices already reported this press
+            # the terminal saw a space the devices didn't: they aren't this keyboard
+            for device in self.devices:
+                os.close(device)
+            self.devices = []
+        return [('key', token)]
+
+    def restore(self):
+        if self.kitty:
+            self.write(KITTY_POP)
+        self.write(RESTORE_SCREEN)
+        termios.tcsetattr(self.fd, termios.TCSADRAIN, self.saved)
+        for device in self.devices:
+            os.close(device)
+
+
+if WINDOWS:
+    class KEY_EVENT_RECORD(ctypes.Structure):
+        _fields_ = [('bKeyDown', wintypes.BOOL), ('wRepeatCount', wintypes.WORD),
+                    ('wVirtualKeyCode', wintypes.WORD), ('wVirtualScanCode', wintypes.WORD),
+                    ('uChar', wintypes.WCHAR), ('dwControlKeyState', wintypes.DWORD)]
+
+    class INPUT_RECORD(ctypes.Structure):
+        # the real Event is a union; the key record is its largest member
+        _fields_ = [('EventType', wintypes.WORD), ('Event', KEY_EVENT_RECORD)]
+
+
+class WindowsConsole:
+    """Windows console input records carry real key-down and key-up events.
+
+    read() returns the same events as UnixTerminal.read().
+    """
+
+    reports_release = True
+    KEY_EVENT, VK_SPACE, VK_ESCAPE, VK_C, CTRL_PRESSED = 1, 0x20, 0x1B, 0x43, 0x0C
+    INPUT_RAW = 0x0080  # extended flags only: no line input, echo, quick-edit or Ctrl+C handling
+    OUTPUT_ANSI = 0x0001 | 0x0004  # processed output + virtual terminal sequences
+
+    def __init__(self):
+        self.kernel = ctypes.windll.kernel32
+        self.kernel.GetStdHandle.restype = wintypes.HANDLE
+        self.stdin, self.stdout = self.kernel.GetStdHandle(-10), self.kernel.GetStdHandle(-11)
+        self.saved_in, self.saved_out = wintypes.DWORD(), wintypes.DWORD()
+        self.kernel.GetConsoleMode(self.stdin, ctypes.byref(self.saved_in))
+        self.kernel.GetConsoleMode(self.stdout, ctypes.byref(self.saved_out))
+        self.kernel.SetConsoleMode(self.stdin, self.INPUT_RAW)
+        self.kernel.SetConsoleMode(self.stdout, self.saved_out.value | self.OUTPUT_ANSI)
+        self.kernel.SetConsoleOutputCP(65001)
+        sys.stdout.reconfigure(encoding='utf-8')
+        self.space_down = False
+        self.write(SETUP_SCREEN)
+
+    def write(self, text):
+        sys.stdout.write(text)
+        sys.stdout.flush()
+
+    def read(self, timeout):
+        events = []
+        if self.kernel.WaitForSingleObject(self.stdin, int(timeout * 1000)) != 0:
+            return events
+        count = wintypes.DWORD()
+        self.kernel.GetNumberOfConsoleInputEvents(self.stdin, ctypes.byref(count))
+        if not count.value:
+            return events
+        records = (INPUT_RECORD * count.value)()
+        self.kernel.ReadConsoleInputW(self.stdin, records, count.value, ctypes.byref(count))
+        for record in records[:count.value]:
+            if record.EventType != self.KEY_EVENT:
+                continue
+            key = record.Event
+            if key.wVirtualKeyCode == self.VK_SPACE:
+                if bool(key.bKeyDown) != self.space_down:  # held keys repeat their key-down
+                    self.space_down = bool(key.bKeyDown)
+                    events.append(('space', self.space_down))
+            elif not key.bKeyDown:
+                continue
+            elif key.wVirtualKeyCode == self.VK_ESCAPE:
+                events.append(('key', 'ESC'))
+            elif key.wVirtualKeyCode == self.VK_C and key.dwControlKeyState & self.CTRL_PRESSED:
+                raise KeyboardInterrupt
+            elif key.uChar not in ('', '\x00'):  # keys that type nothing carry NUL
+                events.append(('key', {'\r': '\n', '\x08': '\x7f'}.get(key.uChar, key.uChar)))
+        return events
+
+    def restore(self):
+        self.write(RESTORE_SCREEN)
+        self.kernel.SetConsoleMode(self.stdin, self.saved_in.value)
+        self.kernel.SetConsoleMode(self.stdout, self.saved_out.value)
 
 
 # --------------------------------------------------------------------- drawing
@@ -1176,24 +1391,44 @@ def sprite(c, x, y, rows, flicker=False, faded=False):
 
 # --------------------------------------------------------------------- game
 
-class Game:
-    def __init__(self, args, audio):
-        self.args, self.audio = args, audio
-        self.save_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.save.json')
+def save_file_path():
+    """Per-user data file: a one-file build unpacks itself into a temporary folder."""
+    if WINDOWS:
+        base = os.environ.get('APPDATA') or os.path.expanduser('~')
+    elif sys.platform == 'darwin':
+        base = os.path.expanduser('~/Library/Application Support')
+    else:
+        base = os.environ.get('XDG_DATA_HOME') or os.path.expanduser('~/.local/share')
+    return os.path.join(base, 'morse-code', 'save.json')
+
+
+def load_save(path):
+    # .save.json beside the script is where saves lived before they moved to `path`
+    beside_script = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.save.json')
+    for candidate in (path, beside_script):
         try:
-            with open(self.save_path) as f:
-                saved = json.load(f)
+            with open(candidate) as f:
+                return json.load(f)
         except (OSError, ValueError):
-            saved = {}
+            pass
+    return {}
+
+
+class Game:
+    def __init__(self, args, audio, releases):
+        self.args, self.audio, self.releases = args, audio, releases
+        self.save_path = save_file_path()
+        saved = load_save(self.save_path)
         self.hi, self.saved_chapter = saved.get('hi', 0), saved.get('chapter', 1)
         self.lang = saved.get('lang') if saved.get('lang') in LANGS else 'en'
         self.score = self.lives = self.combo = self.beat_no = 0
         self.chapter, self.mode, self.free_text, self.last_word = 1, 'encode', '', None
-        self.msg_until, self.device_seen = 0.0, False
+        self.msg_until = 0.0
         self.set_state('lang', time.monotonic())
 
     def write_save(self):
         try:
+            os.makedirs(os.path.dirname(self.save_path), exist_ok=True)
             with open(self.save_path, 'w') as f:
                 json.dump({'hi': self.hi, 'chapter': self.saved_chapter, 'lang': self.lang}, f)
         except OSError:
@@ -1210,12 +1445,19 @@ class Game:
 
     def set_state(self, state, now):
         self.state, self.t_state, self.typed_all = state, now, False
-        a = self.args
-        if a.evdev:
-            self.keyer = PressKeyer(a.dah_time, a.letter_gap)
-        else:
-            self.keyer = Keyer(a.repeat_delay, a.repeat_interval, a.letter_gap)
+        self.keyer = self.new_keyer()
         self.audio.key_on = False
+
+    def new_keyer(self):
+        a = self.args
+        if self.releases:
+            return PressKeyer(a.dah_time, a.letter_gap)
+        return Keyer(a.repeat_delay, a.repeat_interval, a.letter_gap)
+
+    def use_release_keys(self, releases):
+        """Switch between timing real presses and guessing holds from autorepeat."""
+        self.releases = releases
+        self.keyer = self.new_keyer()
 
     def to_title(self, now):
         self.audio.stop_signal()
@@ -1355,24 +1597,14 @@ class Game:
             self.keyer.release(now)
             self.audio.key_on = self.keyer.sounding()
 
-    def device_space(self, down, now):
-        self.device_seen = True
-        self.space_down(now) if down else self.space_up(now)
-
     def key(self, k, now):
         s = self.state
         if k == 'ESC':
             if s in ('title', 'lang'):
                 raise SystemExit
             return self.to_title(now)
-        if k == ' ':
-            if self.args.evdev and not self.device_seen:
-                # the terminal saw a space the devices didn't: fall back to autorepeat
-                a = self.args
-                a.evdev = False
-                self.keyer = Keyer(a.repeat_delay, a.repeat_interval, a.letter_gap)
-            if not self.args.evdev:  # with evdev, the device events drive the key
-                self.space_down(now)
+        if k == ' ':  # a typed space: only sent when releases are unknown
+            self.space_down(now)
             return
         enter = k in ('\r', '\n')
         if enter and s in ('chapter', 'brief', 'ending') and not self.typed_all:
@@ -1692,14 +1924,18 @@ class Game:
 
 # --------------------------------------------------------------------- main
 
-def gnome_key_repeat():
-    """(delay, interval) in seconds from GNOME settings, else common defaults."""
+def read_system_key_repeat():
+    """(delay, interval) in seconds from macOS or GNOME settings, else common defaults."""
+    def run(*command):
+        return subprocess.run(command, capture_output=True, text=True, timeout=1).stdout
+
     try:
-        def get(key):
-            out = subprocess.run(['gsettings', 'get', 'org.gnome.desktop.peripherals.keyboard', key],
-                                 capture_output=True, text=True, timeout=1).stdout
-            return int(out.split()[-1]) / 1000
-        return get('delay'), get('repeat-interval')
+        if sys.platform == 'darwin':  # macOS stores both in units of 15 ms
+            return (int(run('defaults', 'read', '-g', 'InitialKeyRepeat')) * .015,
+                    int(run('defaults', 'read', '-g', 'KeyRepeat')) * .015)
+        gnome = 'org.gnome.desktop.peripherals.keyboard'
+        return (int(run('gsettings', 'get', gnome, 'delay').split()[-1]) / 1000,
+                int(run('gsettings', 'get', gnome, 'repeat-interval').split()[-1]) / 1000)
     except (OSError, ValueError, IndexError, subprocess.SubprocessError):
         return .5, .033
 
@@ -1725,6 +1961,15 @@ def selftest():
         k.press(down)
         k.release(up)
     assert k.tick(2) == '.-.'
+    kitty = UnixTerminal.__new__(UnixTerminal)
+    kitty.devices = []
+    assert kitty._decode_token('\x1b[32u') == [('space', True)]
+    assert kitty._decode_token('\x1b[32;1:3u') == [('space', False)]
+    assert kitty._decode_token('\x1b[32;1:2u') == []
+    assert kitty._decode_token('\x1b[97;2u') == [('key', 'a')]
+    assert kitty._decode_token('\x1b[13u') == [('key', '\n')]
+    assert kitty._decode_token('\x1b[57441;2u') == []
+    assert INPUT_TOKEN.findall('a\x1b[32;1:3ub') == ['a', '\x1b[32;1:3u', 'b']
     assert DECODE['.-'] == 'A'
     assert all(len(g) == 7 and all(len(r) == 5 for r in g) for g in FONT.values())
     assert all(ch in FONT for ch in MORSE)
@@ -1745,7 +1990,7 @@ def selftest():
 
 
 def main():
-    delay, interval = gnome_key_repeat()
+    delay, interval = read_system_key_repeat()
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--repeat-delay', type=float, default=delay, help='keyboard autorepeat delay, seconds')
     ap.add_argument('--repeat-interval', type=float, default=interval, help='autorepeat interval, seconds')
@@ -1754,46 +1999,36 @@ def main():
     ap.add_argument('--dah-time', type=float, default=.2,
                     help='with a real keyboard device: press at least this long for a dah, seconds')
     ap.add_argument('--no-evdev', action='store_true',
-                    help="don't read /dev/input; detect holds from autorepeat instead")
+                    help="Linux: don't read /dev/input when the terminal can't report releases")
     ap.add_argument('--selftest', action='store_true')
     args = ap.parse_args()
     if args.selftest:
         return selftest()
 
-    kbd_fds = [] if args.no_evdev else open_keyboards()
-    args.evdev = bool(kbd_fds)
     audio = Audio(args.volume)
-    game = Game(args, audio)
-    fd, out = sys.stdin.fileno(), sys.stdout
-    saved = termios.tcgetattr(fd)
+    terminal = WindowsConsole() if WINDOWS else UnixTerminal(use_devices=not args.no_evdev)
+    game = Game(args, audio, terminal.reports_release)
     try:
-        tty.setcbreak(fd)
-        out.write('\x1b[?1049h\x1b[?25l\x1b[?7l')
         last = ''
         while True:
-            ready, _, _ = select.select([fd] + kbd_fds, [], [], 1 / 30)
+            events = terminal.read(1 / 30)
             now = time.monotonic()
-            for kfd in kbd_fds:
-                if kfd in ready:
-                    for down in read_space_events(kfd):
-                        game.device_space(down, now)
-            if fd in ready:
-                data = os.read(fd, 64).decode(errors='ignore')
-                keys = (['ESC'] if data == '\x1b' else []) if data.startswith('\x1b') else list(data)
-                for k in keys:
-                    game.key(k, now)
+            if terminal.reports_release != game.releases:  # /dev/input turned out not to be ours
+                game.use_release_keys(terminal.reports_release)
+            for kind, value in events:
+                if kind == 'space':
+                    game.space_down(now) if value else game.space_up(now)
+                else:
+                    game.key(value, now)
             game.tick(now)
             frame = game.draw(now).render()
             if frame != last:
-                out.write(frame)
-                out.flush()
+                terminal.write(frame)
                 last = frame
     except (KeyboardInterrupt, SystemExit):
         pass
     finally:
-        termios.tcsetattr(fd, termios.TCSADRAIN, saved)
-        out.write('\x1b[0m\x1b[?7h\x1b[?25h\x1b[?1049l')
-        out.flush()
+        terminal.restore()
         audio.close()
 
 
