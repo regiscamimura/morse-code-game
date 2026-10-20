@@ -427,19 +427,19 @@ CHAPTERS_PT = [
             "UMA LONGA PAUSA. HALE: 'NÃO CONTE A NINGUÉM.'",
             'A LINHA CAI.', 'wireless', echo=True),
     ]),
-    dict(title='BACURAU', intro=[
+    dict(title='CARCARÁ', intro=[
         'HALE EXPLICA NUMA CARTA LACRADA, ENTREGUE EM MÃOS.',
-        'BACURAU: UMA REDE QUE VENDE SEGREDOS NAVAIS A QUEM PAGAR MAIS.',
+        'CARCARÁ: UMA REDE QUE VENDE SEGREDOS NAVAIS A QUEM PAGAR MAIS.',
         'ELES FALAM À NOITE, E FALAM EM MORSE.'], beats=[
         beat('decode', 'O ENCONTRO', [
-            'TRÁFEGO DO BACURAU NA FAIXA NOTURNA.',
+            'TRÁFEGO DO CARCARÁ NA FAIXA NOTURNA.',
             'UM LUGAR ESTÁ SENDO MENCIONADO.'],
             'DECIFRE O LOCAL DO ENCONTRO.',
             'O ENCONTRO É EM {word}. HALE MANDA HOMENS VIGIAREM.',
             'A MENSAGEM TERMINA. NINGUÉM VIGIA O ENCONTRO.', 'wireless'),
         beat('encode', 'O TREM NOTURNO', [
             'UM MENSAGEIRO COM PAPÉIS DO ALMIRANTADO ESTÁ NO TREM NOTURNO.',
-            'HOMENS DO BACURAU EMBARCARAM NA ÚLTIMA PARADA.'],
+            'HOMENS DO CARCARÁ EMBARCARAM NA ÚLTIMA PARADA.'],
             'TELEGRAFE À PRÓXIMA ESTAÇÃO PARA SEGURAR O TREM.',
             'O TREM É RETIDO. O MENSAGEIRO ESTÁ A SALVO.',
             'O TREM SEGUE. DE MANHÃ, OS PAPÉIS SUMIRAM.', 'rail'),
@@ -470,7 +470,7 @@ CHAPTERS_PT = [
             'MANHÃ. UM BILHETE DOBRADO SOB A PORTA DO POSTO.',
             'NÃO ESCRITO: FURADO EM PONTOS E TRAÇOS.'],
             'DECIFRE O BILHETE ANTES QUE A CHUVA O ESTRAGUE.',
-            "O BILHETE DIZ {word}. ASSINADO: 'C'.",
+            "O BILHETE DIZ {word}. ASSINADO: 'S'.",
             'A TINTA ESCORRE. O BILHETE SE PERDE.', 'wireless'),
     ]),
     dict(title='O TEMPORAL', intro=[
@@ -491,33 +491,33 @@ CHAPTERS_PT = [
             'AS BATERIAS MORREM NO MEIO DA PALAVRA.', 'fog'),
         beat('encode', 'O PACOTE', [
             'UM PACOTE CHEGOU COM A TEMPESTADE. ELE FAZ TIQUE-TAQUE.',
-            'UM ARTEFATO DO BACURAU, COM UM MANIPULADOR TELEGRÁFICO COMO TRAVA.'],
+            'UM ARTEFATO DO CARCARÁ, COM UM MANIPULADOR TELEGRÁFICO COMO TRAVA.'],
             'BATA O CÓDIGO QUE O DESLIGA.',
             'O TIQUE-TAQUE PARA.',
             'A PRAIA SE ILUMINA POR UM INSTANTE. DEPOIS, ESCURIDÃO.', 'bomb'),
     ]),
-    dict(title='CORRUÍRA', intro=[
-        "O BILHETE ESTAVA ASSINADO 'C'.",
-        'HALE ENFIM ADMITE: CORRUÍRA NOS PASSA INFORMAÇÕES DE DENTRO DO BACURAU.',
-        'CORRUÍRA SÓ FALA COM VOCÊ.'], beats=[
+    dict(title='SABIÁ', intro=[
+        "O BILHETE ESTAVA ASSINADO 'S'.",
+        'HALE ENFIM ADMITE: SABIÁ NOS PASSA INFORMAÇÕES DE DENTRO DO CARCARÁ.',
+        'SABIÁ SÓ FALA COM VOCÊ.'], beats=[
         beat('encode', 'RECONHECIMENTO', [
-            'CORRUÍRA SÓ RESPONDE À PALAVRA DE RECONHECIMENTO CERTA.',
-            'UM CARRO DE PATRULHA DO BACURAU JÁ ESTÁ NA ESTRADA DA COSTA.'],
+            'SABIÁ SÓ RESPONDE À PALAVRA DE RECONHECIMENTO CERTA.',
+            'UM CARRO DE PATRULHA DO CARCARÁ JÁ ESTÁ NA ESTRADA DA COSTA.'],
             'ENVIE A PALAVRA DE RECONHECIMENTO.',
-            'UMA PAUSA. DEPOIS, DOIS PONTOS. CORRUÍRA ESTÁ OUVINDO.',
-            'NENHUMA RESPOSTA. CORRUÍRA FICA EM SILÊNCIO.', 'road'),
+            'UMA PAUSA. DEPOIS, DOIS PONTOS. SABIÁ ESTÁ OUVINDO.',
+            'NENHUMA RESPOSTA. SABIÁ FICA EM SILÊNCIO.', 'road'),
         beat('decode', 'O QUE FOI LEVADO', [
-            'CORRUÍRA TRANSMITE DEPRESSA, COM A MÃO TRÊMULA.',
-            'O BACURAU LEVOU ALGO DE UM ARSENAL DA MARINHA.'],
+            'SABIÁ TRANSMITE DEPRESSA, COM A MÃO TRÊMULA.',
+            'O CARCARÁ LEVOU ALGO DE UM ARSENAL DA MARINHA.'],
             'DECIFRE O QUE FOI LEVADO.',
-            "CORRUÍRA: '{word}. E A NOVA MÁQUINA DE CIFRA.'",
-            'CORRUÍRA PARA NO MEIO DA FRASE.', 'wireless'),
+            "SABIÁ: '{word}. E A NOVA MÁQUINA DE CIFRA.'",
+            'SABIÁ PARA NO MEIO DA FRASE.', 'wireless'),
         beat('decode', 'A ROTA', [
             'A MÁQUINA SERÁ VENDIDA NO EXTERIOR.',
-            'CORRUÍRA CONHECE A ROTA.'],
+            'SABIÁ CONHECE A ROTA.'],
             'DECIFRE A ROTA.',
             'ELA SAI POR {word}. O CERCO SE FECHA.',
-            'ESTÁTICA. CORRUÍRA SUMIU POR ESTA NOITE.', 'wireless'),
+            'ESTÁTICA. SABIÁ SUMIU POR ESTA NOITE.', 'wireless'),
     ]),
     dict(title='O ZEPELIM', intro=[
         'A MÁQUINA DE CIFRA ESTÁ A BORDO DE UM ZEPELIM RUMO AO CONTINENTE.',
@@ -566,31 +566,31 @@ CHAPTERS_PT = [
             'O SUBMARINO ESCAPA NO ESCURO.', 'harbour'),
     ]),
     dict(title='QUEIMADO', intro=[
-        'CORRUÍRA MANDA UMA LINHA EM PLENO DIA, CONTRA TODAS AS REGRAS:',
+        'SABIÁ MANDA UMA LINHA EM PLENO DIA, CONTRA TODAS AS REGRAS:',
         "'ELES SABEM.'",
         'DEPOIS, NADA.'], beats=[
         beat('decode', 'ESCONDERIJO', [
             'HORAS DEPOIS. UM SINAL FRACO VINDO DO INTERIOR.',
-            'CORRUÍRA SE ESCONDEU E ESTÁ MANDANDO O ENDEREÇO.'],
+            'SABIÁ SE ESCONDEU E ESTÁ MANDANDO O ENDEREÇO.'],
             'DECIFRE O ESCONDERIJO.',
-            'CORRUÍRA ESTÁ EM {word}. AGUENTE FIRME, CORRUÍRA.',
+            'SABIÁ ESTÁ EM {word}. AGUENTE FIRME, SABIÁ.',
             'O SINAL CAI.', 'wireless'),
         beat('encode', 'RESGATE', [
-            'UM CARRO DO BACURAU JÁ ESTÁ A CAMINHO DO ESCONDERIJO.',
+            'UM CARRO DO CARCARÁ JÁ ESTÁ A CAMINHO DO ESCONDERIJO.',
             'NOSSO MOTORISTA SÓ ESPERA A PALAVRA.'],
             'ENVIE A PALAVRA.',
-            'FARÓIS NA ESTRADINHA. CORRUÍRA JÁ ESTÁ LONGE DALI.',
-            'O CARRO DO BACURAU CHEGA PRIMEIRO.', 'road'),
-        beat('decode', 'O AVISO DE CORRUÍRA', [
-            'DO BANCO DE TRÁS, CORRUÍRA BATE UMA PALAVRA NUM RÁDIO PORTÁTIL.',
-            'O CODINOME DE QUEM COMANDA O BACURAU.'],
+            'FARÓIS NA ESTRADINHA. SABIÁ JÁ ESTÁ LONGE DALI.',
+            'O CARRO DO CARCARÁ CHEGA PRIMEIRO.', 'road'),
+        beat('decode', 'O AVISO DE SABIÁ', [
+            'DO BANCO DE TRÁS, SABIÁ BATE UMA PALAVRA NUM RÁDIO PORTÁTIL.',
+            'O CODINOME DE QUEM COMANDA O CARCARÁ.'],
             'DECIFRE O CODINOME.',
-            'QUEM COMANDA O BACURAU É {word}. ALGUÉM DE DENTRO.',
+            'QUEM COMANDA O CARCARÁ É {word}. ALGUÉM DE DENTRO.',
             'O CARRO SAI DO ALCANCE.', 'road'),
     ]),
     dict(title='A BATIDA', intro=[
         'TODO TELEGRAFISTA TEM UMA BATIDA: UM RITMO TÃO PESSOAL QUANTO A LETRA.',
-        'O BACURAU SEMPRE SOUBE O QUE O ALMIRANTADO SABIA.',
+        'O CARCARÁ SEMPRE SOUBE O QUE O ALMIRANTADO SABIA.',
         'VOCÊ COMEÇA A OUVIR GRAVAÇÕES ANTIGAS.'], beats=[
         beat('decode', 'OS CILINDROS', [
             'CILINDROS DE CERA COM O TRÁFEGO DO ALMIRANTADO DO MÊS PASSADO.',
@@ -600,9 +600,9 @@ CHAPTERS_PT = [
             'O CILINDRO RACHA.', 'wireless'),
         beat('encode', 'NÃO CONFIE EM NINGUÉM', [
             'HALE CONTROLA AS LINHAS DO ALMIRANTADO.',
-            'SÓ SE PODE CONFIAR EM CORRUÍRA AGORA.'],
-            'ENVIE A PALAVRA DE ALERTA A CORRUÍRA.',
-            "CORRUÍRA RESPONDE: 'ENTENDIDO. NÃO CONFIE EM NINGUÉM.'",
+            'SÓ SE PODE CONFIAR EM SABIÁ AGORA.'],
+            'ENVIE A PALAVRA DE ALERTA A SABIÁ.',
+            "SABIÁ RESPONDE: 'ENTENDIDO. NÃO CONFIE EM NINGUÉM.'",
             'A MENSAGEM SAI NUMA FAIXA ABERTA. HALE ESCUTA.', 'wireless'),
         beat('decode', 'HALE CHAMA', [
             'A LINHA DO ALMIRANTADO ABRE. HALE ESTÁ CHAMANDO. MUITO CALMO.',
@@ -613,7 +613,7 @@ CHAPTERS_PT = [
     ]),
     dict(title='SEM ALIADOS', intro=[
         'AGORA O ALMIRANTADO DIZ QUE VOCÊ ABANDONOU O POSTO.',
-        'UM AVIÃO DO BACURAU ESTÁ VINDO PARA O POSTO.',
+        'UM AVIÃO DO CARCARÁ ESTÁ VINDO PARA O POSTO.',
         'O CAMPO DE POUSO AINDA PODE OUVIR UM CHAMADO HONESTO.'], beats=[
         beat('encode', 'PEDIDO DE SOCORRO', [
             'O AVIÃO JÁ ESTÁ SOBRE O MAR.',
@@ -622,7 +622,7 @@ CHAPTERS_PT = [
             'DOIS BIPLANOS SOBEM PARA ENFRENTÁ-LO. O INTRUSO RECUA.',
             'NINGUÉM RESPONDE.', 'air'),
         beat('decode', 'O PILOTO', [
-            'O BACURAU BLOQUEIA A FAIXA. UM DOS PILOTOS AINDA CONSEGUE PASSAR.',
+            'O CARCARÁ BLOQUEIA A FAIXA. UM DOS PILOTOS AINDA CONSEGUE PASSAR.',
             'VOCÊ PRECISA SABER QUEM ESTÁ LÁ EM CIMA.'],
             'DECIFRE O INDICATIVO DO PILOTO.',
             'INDICATIVO {word}. UM ALIADO. O CÉU ESTÁ GARANTIDO.',
@@ -639,8 +639,8 @@ CHAPTERS_PT = [
         'UM ARTEFATO FOI DEIXADO SOB A SALA DO TRANSMISSOR.',
         'O RELÓGIO JÁ ESTÁ CORRENDO.'], beats=[
         beat('decode', 'O DIAGRAMA', [
-            'CORRUÍRA TEM O DIAGRAMA.',
-            'CORRUÍRA TRANSMITE O PRIMEIRO PASSO, DEVAGAR.'],
+            'SABIÁ TEM O DIAGRAMA.',
+            'SABIÁ TRANSMITE O PRIMEIRO PASSO, DEVAGAR.'],
             'DECIFRE O PRIMEIRO FIO.',
             'O FIO {word} ESTÁ CORTADO. SUAS MÃOS TREMEM.',
             'VOCÊ ERRA. O RELÓGIO ACELERA.', 'bomb'),
@@ -677,13 +677,13 @@ CHAPTERS_PT = [
             'TODAS AS ESTAÇÕES DA COSTA ESTÃO ESCUTANDO ESTA NOITE.',
             'CONTE A ELAS.'],
             'ENVIE A PALAVRA FINAL.',
-            'A MENSAGEM CHEGA A TODAS AS ESTAÇÕES. O BACURAU ACABOU.',
+            'A MENSAGEM CHEGA A TODAS AS ESTAÇÕES. O CARCARÁ ACABOU.',
             'O TRANSMISSOR FALHA. ENVIE DE NOVO.', 'wireless'),
     ]),
 ]
 ENDING_PT = [
     'AMANHECE NA COSTA. O TEMPORAL PASSOU.',
-    'CORRUÍRA ENVIA UM ÚLTIMO SINAL: PONTO PONTO PONTO TRAÇO PONTO TRAÇO.',
+    'SABIÁ ENVIA UM ÚLTIMO SINAL: PONTO PONTO PONTO TRAÇO PONTO TRAÇO.',
     'SK. FIM DO SERVIÇO.',
     'O POSTO SETE ENCERRA AS TRANSMISSÕES.',
 ]
