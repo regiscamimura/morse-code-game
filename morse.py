@@ -420,19 +420,19 @@ CHAPTERS_PT = [
             "UMA LONGA PAUSA. HALE: 'NÃO CONTE A NINGUÉM.'",
             'A LINHA CAI.', 'wireless', echo=True),
     ]),
-    dict(title='CARCARÁ', intro=[
+    dict(title='CORVO', intro=[
         'HALE EXPLICA NUMA CARTA LACRADA, ENTREGUE EM MÃOS.',
-        'CARCARÁ: UMA REDE QUE VENDE SEGREDOS NAVAIS A QUEM PAGAR MAIS.',
+        'CORVO: UMA REDE QUE VENDE SEGREDOS NAVAIS A QUEM PAGAR MAIS.',
         'ELES FALAM À NOITE, E FALAM EM MORSE.'], beats=[
         beat('decode', 'O ENCONTRO', [
-            'TRÁFEGO DO CARCARÁ NA FAIXA NOTURNA.',
+            'TRÁFEGO DO CORVO NA FAIXA NOTURNA.',
             'UM LUGAR ESTÁ SENDO MENCIONADO.'],
             'DECIFRE O LOCAL DO ENCONTRO.',
             'O ENCONTRO É EM {word}. HALE MANDA HOMENS VIGIAREM.',
             'A MENSAGEM TERMINA. NINGUÉM VIGIA O ENCONTRO.', 'wireless'),
         beat('encode', 'O TREM NOTURNO', [
             'UM MENSAGEIRO COM PAPÉIS DO ALMIRANTADO ESTÁ NO TREM NOTURNO.',
-            'HOMENS DO CARCARÁ EMBARCARAM NA ÚLTIMA PARADA.'],
+            'HOMENS DO CORVO EMBARCARAM NA ÚLTIMA PARADA.'],
             'TELEGRAFE À PRÓXIMA ESTAÇÃO PARA SEGURAR O TREM.',
             'O TREM É RETIDO. O MENSAGEIRO ESTÁ A SALVO.',
             'O TREM SEGUE. DE MANHÃ, OS PAPÉIS SUMIRAM.', 'rail'),
@@ -484,24 +484,24 @@ CHAPTERS_PT = [
             'AS BATERIAS MORREM NO MEIO DA PALAVRA.', 'fog'),
         beat('encode', 'O PACOTE', [
             'UM PACOTE CHEGOU COM A TEMPESTADE. ELE FAZ TIQUE-TAQUE.',
-            'UM ARTEFATO DO CARCARÁ, COM UM MANIPULADOR TELEGRÁFICO COMO TRAVA.'],
+            'UM ARTEFATO DO CORVO, COM UM MANIPULADOR TELEGRÁFICO COMO TRAVA.'],
             'BATA O CÓDIGO QUE O DESLIGA.',
             'O TIQUE-TAQUE PARA.',
             'A PRAIA SE ILUMINA POR UM INSTANTE. DEPOIS, ESCURIDÃO.', 'bomb'),
     ]),
     dict(title='SABIÁ', intro=[
         "O BILHETE ESTAVA ASSINADO 'S'.",
-        'HALE ENFIM ADMITE: SABIÁ NOS PASSA INFORMAÇÕES DE DENTRO DO CARCARÁ.',
+        'HALE ENFIM ADMITE: SABIÁ NOS PASSA INFORMAÇÕES DE DENTRO DO CORVO.',
         'SABIÁ SÓ FALA COM VOCÊ.'], beats=[
         beat('encode', 'RECONHECIMENTO', [
             'SABIÁ SÓ RESPONDE À PALAVRA DE RECONHECIMENTO CERTA.',
-            'UM CARRO DE PATRULHA DO CARCARÁ JÁ ESTÁ NA ESTRADA DA COSTA.'],
+            'UM CARRO DE PATRULHA DO CORVO JÁ ESTÁ NA ESTRADA DA COSTA.'],
             'ENVIE A PALAVRA DE RECONHECIMENTO.',
             'UMA PAUSA. DEPOIS, DOIS PONTOS. SABIÁ ESTÁ OUVINDO.',
             'NENHUMA RESPOSTA. SABIÁ FICA EM SILÊNCIO.', 'road'),
         beat('decode', 'O QUE FOI LEVADO', [
             'SABIÁ TRANSMITE DEPRESSA, COM A MÃO TRÊMULA.',
-            'O CARCARÁ LEVOU ALGO DE UM ARSENAL DA MARINHA.'],
+            'O CORVO LEVOU ALGO DE UM ARSENAL DA MARINHA.'],
             'DECIFRE O QUE FOI LEVADO.',
             "SABIÁ: '{word}. E A NOVA MÁQUINA DE CIFRA.'",
             'SABIÁ PARA NO MEIO DA FRASE.', 'wireless'),
@@ -569,21 +569,21 @@ CHAPTERS_PT = [
             'SABIÁ ESTÁ EM {word}. AGUENTE FIRME, SABIÁ.',
             'O SINAL CAI.', 'wireless'),
         beat('encode', 'RESGATE', [
-            'UM CARRO DO CARCARÁ JÁ ESTÁ A CAMINHO DO ESCONDERIJO.',
+            'UM CARRO DO CORVO JÁ ESTÁ A CAMINHO DO ESCONDERIJO.',
             'NOSSO MOTORISTA SÓ ESPERA A PALAVRA.'],
             'ENVIE A PALAVRA.',
             'FARÓIS NA ESTRADINHA. SABIÁ JÁ ESTÁ LONGE DALI.',
-            'O CARRO DO CARCARÁ CHEGA PRIMEIRO.', 'road'),
+            'O CARRO DO CORVO CHEGA PRIMEIRO.', 'road'),
         beat('decode', 'O AVISO DE SABIÁ', [
             'DO BANCO DE TRÁS, SABIÁ BATE UMA PALAVRA NUM RÁDIO PORTÁTIL.',
-            'O CODINOME DE QUEM COMANDA O CARCARÁ.'],
+            'O CODINOME DE QUEM COMANDA O CORVO.'],
             'DECIFRE O CODINOME.',
-            'QUEM COMANDA O CARCARÁ É {word}. ALGUÉM DE DENTRO.',
+            'QUEM COMANDA O CORVO É {word}. ALGUÉM DE DENTRO.',
             'O CARRO SAI DO ALCANCE.', 'road'),
     ]),
     dict(title='A BATIDA', intro=[
         'TODO TELEGRAFISTA TEM UMA BATIDA: UM RITMO TÃO PESSOAL QUANTO A LETRA.',
-        'O CARCARÁ SEMPRE SOUBE O QUE O ALMIRANTADO SABIA.',
+        'O CORVO SEMPRE SOUBE O QUE O ALMIRANTADO SABIA.',
         'VOCÊ COMEÇA A OUVIR GRAVAÇÕES ANTIGAS.'], beats=[
         beat('decode', 'OS CILINDROS', [
             'CILINDROS DE CERA COM O TRÁFEGO DO ALMIRANTADO DO MÊS PASSADO.',
@@ -606,7 +606,7 @@ CHAPTERS_PT = [
     ]),
     dict(title='SEM ALIADOS', intro=[
         'AGORA O ALMIRANTADO DIZ QUE VOCÊ ABANDONOU O POSTO.',
-        'UM AVIÃO DO CARCARÁ ESTÁ VINDO PARA O POSTO.',
+        'UM AVIÃO DO CORVO ESTÁ VINDO PARA O POSTO.',
         'O CAMPO DE POUSO AINDA PODE OUVIR UM CHAMADO HONESTO.'], beats=[
         beat('encode', 'PEDIDO DE SOCORRO', [
             'O AVIÃO JÁ ESTÁ SOBRE O MAR.',
@@ -615,7 +615,7 @@ CHAPTERS_PT = [
             'DOIS BIPLANOS SOBEM PARA ENFRENTÁ-LO. O INTRUSO RECUA.',
             'NINGUÉM RESPONDE.', 'air'),
         beat('decode', 'O PILOTO', [
-            'O CARCARÁ BLOQUEIA A FAIXA. UM DOS PILOTOS AINDA CONSEGUE PASSAR.',
+            'O CORVO BLOQUEIA A FAIXA. UM DOS PILOTOS AINDA CONSEGUE PASSAR.',
             'VOCÊ PRECISA SABER QUEM ESTÁ LÁ EM CIMA.'],
             'DECIFRE O INDICATIVO DO PILOTO.',
             'INDICATIVO {word}. UM ALIADO. O CÉU ESTÁ GARANTIDO.',
@@ -670,7 +670,7 @@ CHAPTERS_PT = [
             'TODAS AS ESTAÇÕES DA COSTA ESTÃO ESCUTANDO ESTA NOITE.',
             'CONTE A ELAS.'],
             'ENVIE A PALAVRA FINAL.',
-            'A MENSAGEM CHEGA A TODAS AS ESTAÇÕES. O CARCARÁ ACABOU.',
+            'A MENSAGEM CHEGA A TODAS AS ESTAÇÕES. O CORVO ACABOU.',
             'O TRANSMISSOR FALHA. ENVIE DE NOVO.', 'wireless'),
     ]),
 ]
