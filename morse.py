@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MORSE CODE - Station Seven, 1936. A Morse code story for the terminal.
+"""MORSE CODE - The Listener, 1912-1944. A Morse code story for the terminal.
 
 TAP space = dit (•)    HOLD space = dah (━)
 
@@ -28,8 +28,12 @@ MORSE = {
 DECODE = {v: k for k, v in MORSE.items()}
 DOT, DAH = '•', '━'
 
-# Koch-style unlock order: chapter N adds LEVELS[N-1].
-LEVELS = ['ETAN', 'IM', 'SO', 'RK', 'DU', 'GW', 'HV', 'FL', 'BC', 'PJ', 'XY', 'ZQ']
+# Koch-style unlock order: chapter N adds LEVELS[N-1]. '' is a review chapter: no new letters,
+# drilling the two groups learned just before it.
+LEVELS = ['ETAN', 'IM', 'SO', '', 'RK', 'DU', '', 'GW', 'HV', '', 'FL', 'BC', '', 'PJ', 'XY', '', 'ZQ']
+# Receiving aids come off in steps, each on a review chapter so the letters are already familiar:
+# lamp and scrolling tape, then the lamp alone, then sound only.
+LAMP_ONLY_FROM, SOUND_ONLY_FROM = 7, 10
 
 WORDS_EN = """
 TNT NET TEN TAN NEAT TENT ANTE ANTENNA AIM MINE MINT TIME MAN MEN TEAM ITEM MAIN INMATE MEANT
@@ -75,6 +79,8 @@ SPRITES = {
     'lighthouse': ['..YYYY..', '..DSSD..', '...RR...', '...WW...',
                    '...RR...', '..WWWW..', '..RRRR..', '.SSSSSS.'],
     'car': ['....TTTT....', '..TTTTTTTT..', '.TTTTTTTTTTY', 'TTTTTTTTTTTT', '.DD......DD.'],
+    'iceberg': ['.....W......', '....WWW.....', '...WWTWW....', '..WWWTWW.W..',
+                '.WWWTTWWWWW.', '.WWTTTWWWWWW', 'WWWTTTTWWWWW', 'TTTTTTTTTTTT'],
 }
 FLYERS = {'airship', 'biplane'}
 
@@ -84,300 +90,415 @@ SCENES = {
     'rail': ('train', 'city', NIGHT, EARTH),
     'harbour': ('submarine', 'liner', NIGHT, SEA),
     'fog': ('liner', 'lighthouse', FOG, SEA),
+    'sea': ('liner', 'lighthouse', NIGHT, SEA),
+    'ice': ('liner', 'iceberg', NIGHT, SEA),
     'bomb': ('spark', 'bomb', NIGHT, EARTH),
     'road': ('car', 'station', NIGHT, EARTH),
     'air': ('biplane', 'station', NIGHT, EARTH),
 }
 
 
-def beat(mode, title, brief, task, win, lose, scene, echo=False):
-    """One mission. echo=True reuses the word decoded in the previous mission."""
-    return dict(mode=mode, title=title, brief=brief, task=task, win=win, lose=lose, scene=scene, echo=echo)
+def new_mission(mode, title, brief, task, win, lose, scene, echo=False, word=None):
+    """One mission. echo=True reuses the word decoded in the previous mission; word fixes it outright."""
+    return dict(mode=mode, title=title, brief=brief, task=task, win=win, lose=lose, scene=scene, echo=echo,
+                word=word)
 
 
 CHAPTERS_EN = [
-    dict(title='STATION SEVEN', intro=[
-        'NOVEMBER 1936. A WIRELESS STATION ON A GREY STRETCH OF COAST.',
-        'YOUR POSTING: NIGHT OPERATOR. YOUR DUTY: LISTEN.',
-        'COMMANDER HALE OF NAVAL INTELLIGENCE CALLS IT A QUIET POST.'], beats=[
-        beat('encode', 'FIRST WATCH', [
-            'MIDNIGHT. THE VALVES WARM. THE AERIAL HUMS IN THE WIND.',
-            'THE ADMIRALTY EXPECTS A SIGNAL CHECK BEFORE THE HOUR.'],
-            'SEND THE CHECK WORD.',
-            "HALE: 'RECEIVED, SPARKS. KEEP YOUR EARS OPEN.'",
-            'THE HOUR PASSES. YOUR SILENCE IS NOTED IN THE LOG.', 'wireless'),
-        beat('decode', 'AN UNLISTED BAND', [
-            '0300. A SIGNAL ON A FREQUENCY NO ONE IS ASSIGNED.',
-            'IT REPEATS. SLOW AND DELIBERATE.'],
-            'DECODE IT BEFORE IT FADES.',
-            'ONE WORD: {word}. THEN NOTHING.',
-            'THE SIGNAL SINKS INTO THE STATIC.', 'wireless'),
-        beat('encode', 'REPORT', [
-            'HALE MUST HEAR OF THIS TONIGHT.',
-            'REPEAT THE WORD EXACTLY AS YOU RECEIVED IT.'],
-            'SEND THE WORD TO THE ADMIRALTY.',
-            "A LONG PAUSE. HALE: 'SAY NOTHING TO ANYONE.'",
-            'THE LINE GOES DEAD.', 'wireless', echo=True),
+    dict(title='RADIO ROOM', intro=[
+        'APRIL 1912. RMS CARPATHIA, NEW YORK TO FIUME.',
+        'NIGHT OPERATOR. THE CREW CALLS YOU CORUJA: THE OWL. IT STICKS.',
+        'PASSENGERS PAY BY THE WORD TO TELL THE WORLD THEY ARE AT SEA.',
+        'TO SAVE MONEY THEY USE THE CODE BOOK: ONE WORD FOR A WHOLE SENTENCE.'], beats=[
+        new_mission('encode', 'THE FIRST WIRE', [
+            'MRS PEABODY OF OHIO WANTS HER SISTER TO KNOW THE SOUP WAS COLD.',
+            "IN THE CODE BOOK THAT IS '{word}'. SIXPENCE, PAID IN ADVANCE."],
+            'SEND THE CODE WORD TO CAPE RACE.',
+            'CAPE RACE ACKNOWLEDGES. MRS PEABODY TIPS YOU A PENNY.',
+            'CAPE RACE FADES. MRS PEABODY COMPLAINS TO THE PURSER.', 'sea'),
+        new_mission('decode', 'THE NEWS', [
+            '2300. CAPE RACE SENDS THE NIGHTLY NEWS.',
+            'CAPTAIN ROSTRON LIKES THE BASEBALL SCORES WITH HIS COCOA.'],
+            'COPY THE CODE WORD.',
+            "'{word}'. THE CAPTAIN GRUNTS. IT WILL DO.",
+            'THE NEWS SINKS INTO THE STATIC. THE COCOA GOES COLD.', 'sea'),
+        new_mission('encode', 'A COMPLAINT', [
+            'A GENTLEMAN IN FIRST CLASS IS SEASICK AND PESSIMISTIC.',
+            "HIS BROKER MUST HAVE '{word}' AT ONCE. IT MEANS: SELL EVERYTHING."],
+            'SEND IT BEFORE HE COMES BACK.',
+            'SENT. THE GENTLEMAN GOES BACK TO BED. THE MARKET IS UNMOVED.',
+            'HE COMES BACK. HE BRINGS HIS WIFE.', 'sea'),
     ]),
-    dict(title='NIGHTJAR', intro=[
-        'HALE EXPLAINS IN A SEALED LETTER, DELIVERED BY HAND.',
-        'NIGHTJAR: A RING THAT SELLS NAVAL SECRETS TO THE HIGHEST BIDDER.',
-        'THEY TALK AT NIGHT, AND THEY TALK IN MORSE.'], beats=[
-        beat('decode', 'THE MEETING', [
-            'NIGHTJAR TRAFFIC ON THE NIGHT BAND.',
-            'A PLACE IS BEING NAMED.'],
-            'DECODE THE MEETING PLACE.',
-            'THEY MEET AT {word}. HALE SENDS MEN TO WATCH.',
-            'THE MESSAGE ENDS. THE MEETING GOES UNOBSERVED.', 'wireless'),
-        beat('encode', 'THE NIGHT TRAIN', [
-            'A COURIER WITH ADMIRALTY PAPERS IS ON THE NIGHT TRAIN.',
-            'NIGHTJAR MEN BOARDED AT THE LAST STOP.'],
-            'WIRE THE NEXT STATION TO HOLD THE TRAIN.',
-            'THE TRAIN IS HELD. THE COURIER IS SAFE.',
-            'THE TRAIN RUNS ON. THE PAPERS ARE GONE BY MORNING.', 'rail'),
-        beat('decode', 'A NAME', [
-            'THE COURIER HEARD THE MEN TAP A NAME ON THE CARRIAGE WALL.',
-            'THEY THOUGHT NO ONE ABOARD COULD READ IT.'],
-            'DECODE THE NAME.',
-            'THE NAME IS {word}. HALE GOES VERY QUIET.',
-            'THE COURIER CANNOT RECALL IT.', 'rail'),
+    dict(title='BUSY NIGHT', intro=[
+        'THE BIG NEW SHIP IS ON THE AIR, OUTBOUND ON HER MAIDEN VOYAGE.',
+        'TITANIC. CALL SIGN MGY. HER OPERATORS ARE BURIED IN PASSENGER TRAFFIC.',
+        'EVERY MILLIONAIRE ABOARD WANTS TO WIRE HIS VALET.'], beats=[
+        new_mission('decode', 'A RELAY', [
+            'MGY ASKS YOU TO RELAY A MESSAGE THE SHORE CANNOT HEAR.',
+            'FROM A MISS EVELYN MARSH, NINETEEN, TO HER AUNT IN SOUTHAMPTON.'],
+            "COPY MISS MARSH'S CODE WORD.",
+            "'{word}': THE DOG IS SEASICK. I AM NOT. BEST TRIP OF MY LIFE.",
+            'THE RELAY FAILS. THE AUNT WILL NEVER HEAR ABOUT THE DOG.', 'sea'),
+        new_mission('encode', 'PASS IT ON', [
+            'THE AUNT MUST HAVE IT TONIGHT.',
+            'PASS IT EAST TO THE NEXT STATION, EXACTLY AS YOU HEARD IT.'],
+            "SEND MISS MARSH'S WORD ON.",
+            'RECEIVED. IN SOUTHAMPTON, AN AUNT IS RELIEVED ABOUT A DOG.',
+            'THE STATION DOES NOT ANSWER.', 'sea', echo=True),
+        new_mission('decode', 'ICE', [
+            'A STEAMER TO THE NORTH IS WARNING ANYONE WHO WILL LISTEN.',
+            'MGY TELLS IT TO SHUT UP. MGY IS BUSY.'],
+            'COPY THE ICE REPORT.',
+            "'{word}'. YOU PIN IT ABOVE THE KEY. ICE, ALL ALONG HER ROUTE.",
+            "THE WARNING IS LOST UNDER MGY'S PASSENGER CHATTER.", 'ice'),
     ]),
-    dict(title='THE LAMP', intro=[
-        'ONLY THREE PEOPLE KNEW THE COURIER WAS ON THAT TRAIN.',
-        'HALE. THE COURIER. AND YOU.',
-        'TONIGHT, A LAMP IS SIGNALLING FROM THE HEADLAND.'], beats=[
-        beat('decode', 'THE HEADLAND', [
-            'A LIGHT ON THE CLIFFS. ON. OFF. ON.',
-            'SOMEONE IS SIGNALLING A VESSEL OFFSHORE.'],
-            'READ THE LAMP.',
-            'THE LAMP SPELLS {word}. THEY KNOW THE STATION IS LISTENING.',
-            'THE LAMP GOES OUT.', 'harbour'),
-        beat('encode', 'THE HARBOUR MASTER', [
-            'A VESSEL IS COMING IN FOR WHOEVER HOLDS THE LAMP.',
-            'THE HARBOUR CAN BE CLOSED, IF THE MASTER IS WARNED IN TIME.'],
-            'SEND THE CLOSURE ORDER.',
-            'THE BOOM IS DRAWN ACROSS THE HARBOUR. THE VESSEL TURNS AWAY.',
-            'THE VESSEL COMES AND GOES UNSEEN.', 'harbour'),
-        beat('decode', 'THE NOTE', [
-            'MORNING. A FOLDED NOTE UNDER THE STATION DOOR.',
-            'NOT WRITTEN. PRICKED IN DOTS AND DASHES.'],
-            'DECODE THE NOTE BEFORE THE RAIN RUINS IT.',
-            "THE NOTE READS {word}. IT IS SIGNED 'W'.",
-            'THE INK RUNS. THE NOTE IS LOST.', 'wireless'),
+    dict(title='COME AT ONCE', intro=[
+        '14 APRIL 1912. 2335. YOUR WATCH IS OVER. ONE BOOT IS ALREADY OFF.',
+        'YOU KEEP THE HEADPHONES ON A MOMENT LONGER, TO PASS MGY SOME NEWS.',
+        'MGY ANSWERS BEFORE YOU FINISH.'], beats=[
+        new_mission('decode', 'DISTRESS', [
+            'TITANIC: COME AT ONCE. WE HAVE STRUCK A BERG.',
+            'THEN THE NEW CALL. NO OPERATOR HAS EVER HEARD IT IN EARNEST.'],
+            'COPY THE CALL.',
+            '{word}. YOU RUN TO THE BRIDGE IN ONE BOOT.',
+            'IT MUST BE A JOKE. IT IS NOT. LISTEN AGAIN.', 'ice', word='SOS'),
+        new_mission('encode', 'COMING HARD', [
+            'CAPTAIN ROSTRON TURNS THE SHIP BEFORE HE IS DRESSED.',
+            'FIFTY-EIGHT MILES. FOUR HOURS AT FULL STEAM, THROUGH ICE.'],
+            'TELL THEM YOU ARE COMING.',
+            "MGY: 'COME AS QUICK AS POSSIBLE, OLD MAN. ENGINE ROOM FILLING.'",
+            'MGY KEEPS CALLING. THEY DO NOT KNOW ANYONE HEARD.', 'ice'),
+        new_mission('decode', 'THE LAST WORD', [
+            '0127. MGY IS FAINT NOW. HER POWER IS FAILING.',
+            'ONE MORE WORD FROM THE DYING SHIP.'],
+            'COPY IT.',
+            '{word}. THEN STATIC. ONLY STATIC.',
+            'THE STATIC TAKES IT. LISTEN. PLEASE.', 'ice'),
     ]),
-    dict(title='THE GALE', intro=[
-        'THE WORST GALE IN TWENTY YEARS.',
-        'THE MAINS FAIL AT MIDNIGHT. THE STATION RUNS ON BATTERIES.',
-        'EVERY MINUTE OF POWER COUNTS.'], beats=[
-        beat('decode', 'DISTRESS', [
-            'A LINER IS LOST IN FOG OFF THE POINT. HER SIGNAL IS WEAK.',
-            'HER OPERATOR IS SENDING WHAT CAN BE SEEN FROM THE BRIDGE.'],
-            'DECODE THE LANDMARK.',
-            'THEY CAN SEE {word}. YOU KNOW EXACTLY WHERE THAT IS.',
-            'THE SIGNAL DIES IN THE GALE.', 'fog'),
-        beat('encode', 'THE BEARING', [
-            'THE LINER IS STEAMING TOWARD THE ROCKS.',
-            'ONE CORRECTION, BEFORE THE BATTERIES GIVE OUT.'],
-            'SEND THE BEARING.',
-            'THE LINER TURNS. HER LIGHTS PASS SAFELY BY THE POINT.',
-            'THE BATTERIES FAIL MID-WORD.', 'fog'),
-        beat('encode', 'THE PARCEL', [
-            'A PARCEL WASHED UP WITH THE STORM. IT IS TICKING.',
-            'A NIGHTJAR DEVICE, WITH A TELEGRAPH KEY FOR A LOCK.'],
-            'TAP THE CODE THAT STOPS IT.',
-            'THE TICKING STOPS.',
-            'THE BEACH IS LIT FOR A MOMENT. THEN DARK.', 'bomb'),
+    dict(title='NAMES', intro=[
+        '0410. LIFEBOATS IN THE GREY LIGHT. NO SHIP. ONLY ICE AND WRECKAGE.',
+        'THE CARPATHIA TAKES ON 705 SOULS. THE WORLD IS SCREAMING FOR NEWS.',
+        'THE CAPTAIN ORDERS: SURVIVOR NAMES FIRST. NOTHING FOR THE PRESS.'], beats=[
+        new_mission('encode', 'THE LIST', [
+            'NAME AFTER NAME, THIRTY HOURS WITHOUT SLEEP.',
+            "THE NEXT FAMILY ASKED FOR A CODE WORD: '{word}'. IT MEANS ALIVE."],
+            'SEND IT.',
+            'ACKNOWLEDGED. SOMEWHERE, A FAMILY STOPS WAITING.',
+            'YOUR HAND CRAMPS. THE SHORE STATION LOSES YOU.', 'sea'),
+        new_mission('decode', 'A NAME YOU KNOW', [
+            'ON THE LIST: MARSH, E., MISS. ALIVE. SHE FINDS THE RADIO ROOM.',
+            'SHE LEARNED MORSE WATCHING THE OPERATORS ON TITANIC.',
+            'SHE TAPS HER MESSAGE ON YOUR DESK WITH A PENCIL.'],
+            'READ WHAT SHE TAPS.',
+            "'{word}'. SHE WANTS IT SENT TO THE AUNT. THE DOG DID NOT MAKE IT.",
+            'SHE TAPS TOO FAST. SHE LAUGHS, FOR THE FIRST TIME IN TWO DAYS.', 'sea'),
+        new_mission('encode', 'THE AUNT', [
+            'THE SAME AUNT. THE SAME STATION. A DIFFERENT KIND OF MESSAGE.'],
+            "SEND MISS MARSH'S WORD.",
+            'THE AUNT ANSWERS IN FOUR MINUTES. MISS MARSH CRIES, AT LAST.',
+            'THE LINE IS JAMMED WITH PRESS TRAFFIC.', 'sea', echo=True),
     ]),
-    dict(title='WREN', intro=[
-        "THE NOTE WAS SIGNED 'W'.",
-        'HALE ADMITS IT AT LAST: WREN IS OUR AGENT INSIDE NIGHTJAR.',
-        'WREN WILL SPEAK TO NO ONE BUT YOU.'], beats=[
-        beat('encode', 'RECOGNITION', [
-            'WREN WILL ONLY ANSWER THE CORRECT RECOGNITION WORD.',
-            'A NIGHTJAR PATROL CAR IS ALREADY ON THE COAST ROAD.'],
-            'SEND THE RECOGNITION WORD.',
-            'A PAUSE. THEN TWO DOTS. WREN IS LISTENING.',
-            'NO REPLY. WREN STAYS SILENT.', 'road'),
-        beat('decode', 'WHAT WAS TAKEN', [
-            'WREN SENDS QUICKLY, HAND UNSTEADY.',
-            'NIGHTJAR HAS TAKEN SOMETHING FROM A NAVAL ARSENAL.'],
-            'DECODE WHAT WAS TAKEN.',
-            "WREN: '{word}. AND THE NEW CIPHER MACHINE.'",
-            'WREN STOPS MID-SENTENCE.', 'wireless'),
-        beat('decode', 'THE ROUTE', [
-            'THE MACHINE IS TO BE SOLD ABROAD.',
-            'WREN KNOWS THE ROUTE.'],
-            'DECODE THE ROUTE.',
-            'IT LEAVES BY {word}. THE NET TIGHTENS.',
-            'STATIC. WREN IS GONE FOR THE NIGHT.', 'wireless'),
+    dict(title='ROOM 40', intro=[
+        'AUGUST 1914. WAR.',
+        'A MAN FROM THE ADMIRALTY KNOWS WHO KEPT THE CARPATHIA ON THE AIR.',
+        'HE WANTS THAT EAR ON THE NORFOLK COAST, ON THE GERMAN FLEET.',
+        'THE GROUPS YOU COPY GO TO A ROOM IN LONDON. ROOM 40.'], beats=[
+        new_mission('decode', 'INTERCEPT', [
+            'GERMAN NAVAL TRAFFIC. GROUPS OF LETTERS THAT MEAN NOTHING TO YOU.',
+            'YOU ARE NOT TOLD WHAT THEY MEAN. YOU ARE TOLD NOT TO MISS ONE.'],
+            'COPY THE GROUP.',
+            '{word}. A DESPATCH RIDER TAKES IT TO LONDON. NO ONE SAYS THANKS.',
+            'THE GROUP IS GONE. A CLERK IN LONDON HAS A HOLE IN HIS PAGE.', 'wireless'),
+        new_mission('encode', 'THE LANDLINE', [
+            'ROOM 40 WANTS EVERY GROUP WITHIN THE HOUR.',
+            'THEY HAVE A CAPTURED GERMAN CODE BOOK. NO ONE TELLS YOU THAT.'],
+            'PASS THE GROUP TO LONDON.',
+            'LONDON ACKNOWLEDGES. SOMEONE OPENS A BOOK YOU WILL NEVER SEE.',
+            'THE LINE IS BUSY. LONDON WAITS.', 'wireless', echo=True),
+        new_mission('decode', 'THE RAID', [
+            'DECEMBER. THE GERMAN SQUADRON IS AT SEA. THE TRAFFIC DOUBLES.',
+            'A CARELESS OPERATOR NAMES A TARGET.'],
+            'COPY THE TARGET.',
+            '{word}. LONDON KNOWS BEFORE THE SHIPS ARRIVE. NOBODY ASKS HOW.',
+            'THE TRAFFIC STOPS. THE GUNS DO NOT.', 'harbour'),
     ]),
-    dict(title='THE AIRSHIP', intro=[
-        'THE CIPHER MACHINE IS ABOARD AN AIRSHIP BOUND FOR THE CONTINENT.',
-        'NO PASSENGERS LISTED. NO CARGO DECLARED.',
-        'IT CROSSES THE COAST TONIGHT.'], beats=[
-        beat('decode', 'NAVIGATION', [
-            'THE AIRSHIP CHECKS IN WITH A GROUND STATION.',
-            'IT IS NAMING ITS NEXT WAYPOINT.'],
-            'DECODE THE WAYPOINT.',
-            'WAYPOINT {word}. NOW YOU KNOW ITS COURSE.',
-            'THE AIRSHIP PASSES OVER IN SILENCE.', 'wireless'),
-        beat('encode', 'FALSE STATION', [
-            'IF THE CAPTAIN HEARS THE WRONG CALL SIGN, THE AIRSHIP WILL TURN.',
-            'PRETEND TO BE THEIR GROUND STATION.'],
-            'SEND THE FALSE CALL SIGN.',
-            'THE AIRSHIP ALTERS COURSE, INLAND, TOWARD OUR AIRFIELD.',
-            'THE CAPTAIN IS NOT DECEIVED.', 'wireless'),
-        beat('encode', 'INTERCEPT', [
-            'TWO BIPLANES ARE READY AT THE AIRFIELD.',
-            'THEY WILL NOT TAKE OFF WITHOUT ORDERS.'],
-            'SEND THE ORDER TO INTERCEPT.',
-            'THE AIRSHIP IS BROUGHT DOWN INTACT. THE HOLD IS EMPTY.',
-            'THE AIRSHIP VANISHES INTO CLOUD.', 'wireless'),
+    dict(title='LUSITANIA', intro=[
+        'MAY 1915. A U-BOAT OFF THE IRISH COAST REPORTS EVERY NIGHT.',
+        'YOU KNOW ITS OPERATOR BY HIS FIST: A LAZY SWING ON THE DAHS.',
+        'THE LUSITANIA HAS SAILED FROM NEW YORK. TWO THOUSAND ABOARD.'], beats=[
+        new_mission('decode', 'THE SWING', [
+            'THE U-BOAT SENDS ITS POSITION. THE SAME LAZY DAHS.'],
+            'COPY THE POSITION.',
+            '{word}. RIGHT ACROSS THE LINER ROUTE.',
+            'THE U-BOAT DIVES. THE SEA GOES QUIET.', 'harbour'),
+        new_mission('encode', 'WARNING', [
+            'YOU WIRE THE ADMIRALTY. DIVERT THE LINER.',
+            'THEY HAVE THEIR REASONS. THEY DO NOT SHARE THEM.'],
+            'SEND THE WARNING ANYWAY.',
+            'RECEIVED. FILED. NOTHING IS DONE.',
+            'THE LINE IS DEAD.', 'harbour'),
+        new_mission('decode', 'EIGHTEEN MINUTES', [
+            '7 MAY. 1410. A CALL FROM OFF THE OLD HEAD OF KINSALE.',
+            'LUSITANIA. COME AT ONCE. BIG LIST.'],
+            'COPY IT.',
+            '{word}. AGAIN. EIGHTEEN MINUTES. 1,198 DEAD. YOU WERE TOO FAR.',
+            'YOU MISS IT. IT WOULD NOT HAVE MATTERED. LISTEN AGAIN.', 'harbour', word='SOS'),
     ]),
-    dict(title='BENEATH', intro=[
-        'THE AIRSHIP WAS A DECOY.',
-        'THE MACHINE WENT TO SEA INSTEAD,',
-        'ABOARD A SUBMARINE THAT FLIES NO FLAG.'], beats=[
-        beat('decode', 'HYDROPHONE', [
-            'THE SUBMARINE SIGNALS ITS TENDER BY TAPPING ON THE HULL.',
-            'THE HYDROPHONE STATION PATCHES THE TAPPING THROUGH TO YOU.'],
-            'DECODE THE TAPPING.',
-            'THE SUBMARINE SENDS {word}. IT IS STALKING THE MAIL STEAMER.',
-            'THE TAPPING STOPS. THE SUBMARINE DIVES.', 'harbour'),
-        beat('encode', 'WARN THE STEAMER', [
-            'THE MAIL STEAMER DOES NOT KNOW IT IS BEING FOLLOWED.',
-            'THE SUBMARINE IS CLOSING.'],
-            'SEND THE WARNING.',
-            'THE STEAMER CHANGES COURSE AND RUNS FOR PORT.',
-            'THE STEAMER NEVER HEARD YOU.', 'harbour'),
-        beat('encode', 'SURFACE', [
-            'A DESTROYER HAS THE SUBMARINE BOXED IN.',
-            'IT WANTS THE MACHINE BACK, NOT A WRECK.'],
-            'SEND THE ORDER TO SURFACE.',
-            'THE SUBMARINE SURFACES. THE CREW SURRENDERS. NO MACHINE ABOARD.',
-            'THE SUBMARINE SLIPS AWAY IN THE DARK.', 'harbour'),
+    dict(title='ZEPPELINS', intro=[
+        'SEPTEMBER 1916. GERMAN AIRSHIPS BOMB LONDON BY NIGHT.',
+        'THEY ASK THEIR OWN STATIONS FOR BEARINGS. EVERY ASK GIVES THEM AWAY.',
+        'YOU HAVE A DIRECTION-FINDING SET NOW, AND NO SLEEP.'], beats=[
+        new_mission('decode', 'THE BEARING', [
+            'AN AIRSHIP ASKS FOR A BEARING. IT SENDS TOO LONG, TOO OFTEN.',
+            'THE DAHS SWING. YOU KNOW THAT FIST. THE U-BOAT MAN HAS WINGS NOW.'],
+            'COPY THE CALL SIGN.',
+            '{word}. THE BEARINGS CROSS OVER ESSEX. YOU HAVE HIM.',
+            'THE AIRSHIP GOES QUIET OVER THE SEA.', 'wireless'),
+        new_mission('encode', 'NIGHT FIGHTERS', [
+            'THE FIGHTERS AT THE AIRFIELD NEED A HEIGHT AND A HEADING.'],
+            'SEND THE INTERCEPT ORDER.',
+            'THE AIRSHIP BURNS OVER ESSEX. YOU WATCH IT FROM THE STATION ROOF.',
+            'THE FIGHTERS CLIMB INTO EMPTY SKY.', 'air'),
+        new_mission('decode', 'ONE SURVIVOR', [
+            'ONE MAN WALKED OUT OF THE WRECK: THE WIRELESS OPERATOR.',
+            'IN HIS CELL HE TAPS ON THE PIPES. HE THINKS NO ONE CAN READ IT.'],
+            'COPY WHAT HE TAPS.',
+            '{word}. HIS NAME IS BRANDT. HE TAPS WITH A LAZY SWING.',
+            'HE STOPS. HE HAS HEARD YOU BREATHING BEHIND THE WALL.', 'wireless'),
     ]),
-    dict(title='BURNED', intro=[
-        'WREN SENDS ONE LINE IN DAYLIGHT, AGAINST EVERY RULE:',
-        "'THEY KNOW.'",
-        'THEN NOTHING.'], beats=[
-        beat('decode', 'SAFE HOUSE', [
-            'HOURS LATER. A FAINT SIGNAL FROM INLAND.',
-            'WREN IS HIDING, AND SENDING THE ADDRESS.'],
-            'DECODE THE HIDING PLACE.',
-            'WREN IS AT {word}. HOLD ON, WREN.',
-            'THE SIGNAL CUTS OUT.', 'wireless'),
-        beat('encode', 'EXTRACTION', [
-            'A NIGHTJAR CAR IS ALREADY ON THE ROAD TO THE SAFE HOUSE.',
-            'OUR DRIVER WAITS ONLY FOR THE WORD.'],
-            'SEND THE WORD.',
-            'HEADLAMPS IN THE LANE. WREN IS AWAY.',
-            'THE NIGHTJAR CAR ARRIVES FIRST.', 'road'),
-        beat('decode', "WREN'S WARNING", [
-            'FROM THE BACK OF THE CAR, WREN TAPS ONE WORD ON A PORTABLE SET.',
-            'THE CODENAME OF WHOEVER RUNS NIGHTJAR.'],
-            'DECODE THE CODENAME.',
-            'NIGHTJAR IS RUN BY {word}. WREN SAYS IT IS SOMEONE INSIDE.',
-            'THE CAR DRIVES OUT OF RANGE.', 'road'),
+    dict(title='ZIMMERMANN', intro=[
+        'JANUARY 1917. BRANDT IS IN A CAMP. THE WAR IS NOT.',
+        'A LONG TELEGRAM GOES FROM BERLIN TO WASHINGTON, IN CODE.',
+        'ROOM 40 HAS A COPY. IT NEEDS EVERY GROUP, CLEAN.'], beats=[
+        new_mission('decode', 'THE GROUPS', [
+            'THE GROUPS COME DOWN THE WIRE FROM THE CABLE OFFICE.',
+            'ONE WRONG LETTER AND THE CODEBREAKERS LOSE A WEEK.'],
+            'COPY THE GROUP.',
+            '{word}. THE CODEBREAKERS ASK FOR YOU BY NAME. THEN FORGET IT.',
+            'A GARBLED GROUP. SOMEONE IN ROOM 40 SWEARS.', 'wireless'),
+        new_mission('decode', 'IN CLEAR', [
+            'ONE WORD COMES OUT OF THE CODE, THEN ANOTHER.',
+            'GERMANY OFFERS MEXICO AN ALLIANCE. AND TEXAS.'],
+            'COPY THE WORD.',
+            '{word}. YOU UNDERSTAND WHAT YOU ARE HOLDING. AMERICA WILL COME IN.',
+            'THE WORD SLIPS AWAY. ASK FOR IT AGAIN.', 'wireless'),
+        new_mission('encode', 'COVER STORY', [
+            'THE AMERICANS MUST BELIEVE IT CAME FROM ANYWHERE BUT ROOM 40.',
+            "THE COVER WORD FOR 'A CLEVER SPY IN MEXICO' IS '{word}'."],
+            'SEND THE COVER WORD.',
+            'APRIL 1917. AMERICA DECLARES WAR. THE PAPERS PRAISE A CLEVER SPY.',
+            'THE LINE DROPS. THE SECRET HOLDS. FOR NOW.', 'rail'),
     ]),
-    dict(title='THE FIST', intro=[
-        'EVERY OPERATOR HAS A FIST: A RHYTHM AS PERSONAL AS HANDWRITING.',
-        'NIGHTJAR ALWAYS KNEW WHAT THE ADMIRALTY KNEW.',
-        'YOU BEGIN TO LISTEN TO OLD RECORDINGS.'], beats=[
-        beat('decode', 'THE CYLINDERS', [
-            'WAX CYLINDERS OF ADMIRALTY TRAFFIC FROM LAST MONTH.',
-            'BENEATH THE ROUTINE MESSAGES, A SECOND HAND IS SENDING.'],
-            'DECODE THE HIDDEN SENDING.',
-            'IT SAYS {word}. YOU KNOW THAT FIST. IT IS HALE.',
-            'THE CYLINDER CRACKS.', 'wireless'),
-        beat('encode', 'TRUST NO ONE', [
-            'HALE CONTROLS THE ADMIRALTY LINES.',
-            'ONLY WREN CAN BE TRUSTED NOW.'],
-            'SEND WREN THE ALARM WORD.',
-            "WREN ANSWERS: 'UNDERSTOOD. TRUST NO ONE.'",
-            'THE MESSAGE GOES OUT ON AN OPEN BAND. HALE HEARS IT.', 'wireless'),
-        beat('decode', 'HALE CALLS', [
-            'THE ADMIRALTY LINE OPENS. HALE IS CALLING. VERY CALM.',
-            'TOO CALM. A CODEWORD IS BURIED IN THE ROUTINE TRAFFIC.'],
-            'DECODE THE BURIED CODEWORD.',
-            'THE CODEWORD IS {word}. IT MEANS: SILENCE STATION SEVEN.',
-            'HALE CLOSES THE LINE.', 'wireless'),
+    dict(title='ARMISTICE', intro=[
+        'NOVEMBER 1918. THE GUNS ARE TO STOP AT ELEVEN.',
+        'THE ORDER MUST REACH EVERY SHIP AND EVERY TRENCH SET.',
+        'UNTIL ELEVEN, MEN ARE STILL DYING.'], beats=[
+        new_mission('decode', 'THE TOWER', [
+            'THE EIFFEL TOWER STATION SENDS THE TERMS TO THE WORLD.'],
+            'COPY THE CODE WORD.',
+            '{word}. HOSTILITIES CEASE AT 1100. YOU READ IT TWICE.',
+            'THE TOWER FADES. IT WILL REPEAT. LISTEN.', 'wireless'),
+        new_mission('encode', 'CEASE FIRE', [
+            'A DESTROYER IN THE CHANNEL HAS NOT HEARD. ITS GUNS ARE LOADED.'],
+            'SEND THE CEASE FIRE.',
+            'THE GUNS FALL SILENT AT ELEVEN. SO DOES THE WAR.',
+            'THE DESTROYER FIRES. SEND IT BEFORE IT FIRES AGAIN.', 'harbour'),
+        new_mission('encode', 'A LETTER', [
+            'A LETTER FROM LONDON IN A HAND YOU HAVE NOT SEEN IN SIX YEARS.',
+            'MISS E. MARSH, NOW OF THE WAR OFFICE. SHE WOULD LIKE TO MEET.',
+            'YOU ANSWER BY WIRE, OF COURSE.'],
+            'SEND YOUR ANSWER.',
+            'SHE WAITS FOR YOU AT THE STATION IN THE RAIN. SHE TAPS ON TABLES.',
+            'YOU LOSE YOUR NERVE. THE FORM SITS UNSENT.', 'rail'),
     ]),
-    dict(title='ALONE', intro=[
-        'THE ADMIRALTY NOW LISTS YOU AS ABSENT WITHOUT LEAVE.',
-        'A NIGHTJAR AIRCRAFT IS COMING FOR THE STATION.',
-        'THE AIRFIELD MAY STILL ANSWER AN HONEST OPERATOR.'], beats=[
-        beat('encode', 'DISTRESS CALL', [
-            'THE AIRCRAFT IS ALREADY OVER THE WATER.',
-            'THE AIRFIELD IS YOUR ONLY CHANCE.'],
-            'SEND THE DISTRESS CALL.',
-            'TWO BIPLANES RISE TO MEET IT. THE INTRUDER TURNS BACK.',
-            'NO ONE ANSWERS.', 'air'),
-        beat('decode', 'THE PILOT', [
-            'NIGHTJAR IS JAMMING THE BAND. ONE PILOT STILL GETS THROUGH.',
-            'YOU MUST KNOW WHO IS UP THERE.'],
-            "DECODE THE PILOT'S CALL SIGN.",
-            'CALL SIGN {word}. A FRIEND. THE SKY IS HELD.',
-            'THE JAMMING SWALLOWS EVERYTHING.', 'air'),
-        beat('encode', 'THE BAIT', [
-            'HALE BELIEVES YOU ARE FINISHED.',
-            'SEND SOMETHING HALE WILL BELIEVE: A SURRENDER.'],
-            'SEND THE SURRENDER WORD.',
-            "HALE TAKES THE BAIT: 'COME TO THE STATION. ALONE.'",
-            'HALE SUSPECTS THE TRAP.', 'wireless'),
+    dict(title='LAKEHURST', intro=[
+        'MAY 1937. PEACE, OF A KIND. YOU ARE OPERATOR ON A NORTH ATLANTIC LINER.',
+        'THE HINDENBURG IS INBOUND FROM FRANKFURT, LATE AGAINST HEADWINDS.',
+        'HER RADIO OFFICER SWINGS HIS DAHS. BRANDT, FREE AND FLYING AGAIN.'], beats=[
+        new_mission('decode', 'OLD ENEMIES', [
+            'BRANDT KNOWS YOUR FIST TOO. HE SENDS A JOKE, OFF THE LOG.'],
+            'COPY THE JOKE.',
+            "'{word}'. YOU LAUGH ALONE IN THE RADIO ROOM. TWENTY YEARS.",
+            'HE SENDS IT AGAIN, SLOWER. HE IS ENJOYING THIS.', 'wireless'),
+        new_mission('encode', 'WEATHER', [
+            'THE AIRSHIP WANTS THE WEATHER OVER NEW JERSEY.',
+            'STORMS, CLEARING BY EVENING.'],
+            'SEND THE WEATHER.',
+            "BRANDT: 'DANKE. SEE YOU IN THE NEXT WAR.' YOU BOTH PRETEND IT IS FUNNY.",
+            'THE AIRSHIP FLIES ON WITHOUT YOUR WEATHER.', 'wireless'),
+        new_mission('decode', 'THE FLASH', [
+            '1925. A PRESS FLASH ON THE NEWS CIRCUIT. THE SENDER IS SHAKING.',
+            'THE HINDENBURG HAS BURNED AT THE MAST. IN THIRTY-FOUR SECONDS.'],
+            'COPY THE FLASH.',
+            '{word}. THIRTY-SIX DEAD. THE RADIO OFFICER LIVED. HANDS BURNED.',
+            'THE FLASH IS LOST. THE WHOLE WORLD IS SENDING AT ONCE.', 'wireless'),
     ]),
-    dict(title='THE DEVICE', intro=[
-        'HALE DID NOT COME ALONE.',
-        'A DEVICE HAS BEEN LEFT BENEATH THE TRANSMITTER ROOM.',
-        'ITS CLOCK IS ALREADY RUNNING.'], beats=[
-        beat('decode', 'THE DIAGRAM', [
-            'WREN HAS THE DIAGRAM.',
-            'WREN SENDS THE FIRST STEP, SLOWLY.'],
-            'DECODE THE FIRST WIRE.',
-            'THE {word} WIRE IS CUT. YOUR HANDS ARE SHAKING.',
-            'YOU MISS IT. THE CLOCK RUNS FASTER.', 'bomb'),
-        beat('encode', 'THE KEY', [
-            'THE DEVICE HAS ITS OWN TELEGRAPH KEY.',
-            'IT WANTS A CODE, SENT CLEANLY.'],
-            'SEND THE DISARM CODE.',
-            'THE FIRST LOCK RELEASES. ONE REMAINS.',
-            'THE CLOCK DOES NOT STOP.', 'bomb'),
-        beat('encode', 'LAST LOCK', [
-            'ONE LOCK LEFT. THE CLOCK IS COUNTING IN SECONDS.',
-            'OUTSIDE, HALE IS WAITING TO HEAR IT GO.'],
-            'SEND THE FINAL CODE.',
-            'THE CLOCK STOPS. YOU REMEMBER TO BREATHE.',
-            'STATION SEVEN IS GONE.', 'bomb'),
+    dict(title='Y STATION', intro=[
+        'SEPTEMBER 1939. WAR AGAIN. TOO OLD, THEY SAY, UNTIL THEY HEAR YOU.',
+        'A HUT IN THE MIDLANDS. FORTY RECEIVERS. GERMAN TRAFFIC IN GROUPS.',
+        'IT GOES TO A PLACE CALLED STATION X. NO ONE TELLS YOU WHY.'], beats=[
+        new_mission('decode', 'THE MACHINE', [
+            'A LUFTWAFFE NET, FAST AND CLEAN.',
+            'A MACHINE CIPHER. THE GERMANS CALL IT UNBREAKABLE.'],
+            'COPY THE GROUP.',
+            '{word}. INTO THE BASKET. A MOTORCYCLE TAKES THE BASKET SOUTH.',
+            'GONE. THE OPERATOR NEXT TO YOU GOT IT. THIS TIME.', 'air'),
+        new_mission('decode', 'A LAZY OPERATOR', [
+            'ONE GERMAN OPERATOR BEGINS EVERY MESSAGE WITH THE SAME WORD.',
+            'STATION X CALLS THAT A CRIB. A CRIB OPENS A WHOLE DAY OF TRAFFIC.'],
+            'COPY HIS FAVOURITE WORD.',
+            '{word}. YOU CIRCLE IT TWICE IN RED PENCIL.',
+            'HE SENDS TOO FAST. WAIT FOR TOMORROW. HE WILL SEND IT AGAIN.', 'air'),
+        new_mission('encode', 'THE CRIB', [
+            'YOUR SUPERVISOR WANTS THE CRIB FLAGGED TO STATION X AT ONCE.'],
+            'SEND THE CRIB.',
+            'BY MIDNIGHT STATION X IS READING THE LUFTWAFFE. YOU ARE NOT TOLD.',
+            'THE TELEPRINTER JAMS.', 'wireless', echo=True),
+    ]),
+    dict(title='DUNKIRK', intro=[
+        'MAY 1940. THE ARMY IS TRAPPED ON A BEACH IN FRANCE.',
+        'EVERY BOAT ON THE SOUTH COAST IS GOING TO FETCH IT.',
+        'THE LITTLE BOATS HAVE NO RADIOS. THE DESTROYERS DO.'], beats=[
+        new_mission('decode', 'THE BEACH', [
+            'A DESTROYER OFF THE BEACH REPORTS WHERE THE MEN ARE THICKEST.'],
+            'COPY THE BEACH CODE.',
+            '{word}. THE LITTLE BOATS TURN TOWARD IT.',
+            'THE DESTROYER IS SHELLED OFF THE AIR. IT COMES BACK. LISTEN.', 'sea'),
+        new_mission('encode', 'DAWN RAID', [
+            'STATION X HAS READ A LUFTWAFFE ORDER: A RAID AT FIRST LIGHT.',
+            'NO ONE CAN SAY HOW THEY KNOW. YOU SEND IT AS A HUNCH.'],
+            'WARN THE DESTROYERS.',
+            'THE SHIPS SCATTER AT DAWN. THE BOMBS FALL INTO EMPTY WATER.',
+            'THE WARNING ARRIVES WITH THE BOMBS.', 'air'),
+        new_mission('decode', 'THE COUNT', [
+            '4 JUNE. THE LAST SHIP REPORTS HOW MANY CAME HOME.'],
+            'COPY THE CODE WORD.',
+            '{word}. 338,000 MEN. THE PAPERS CALL IT A MIRACLE.',
+            'THE SIGNAL BREAKS UP. IT WILL COME AGAIN.', 'sea'),
+    ]),
+    dict(title='BISMARCK', intro=[
+        'MAY 1941. THE BISMARCK HAS SUNK THE HOOD. 1,415 DEAD. THREE LIVED.',
+        'THEN THE BISMARCK VANISHES INTO THE ATLANTIC.',
+        'THE WHOLE NAVY IS LOOKING FOR HER. YOU ARE LISTENING.'], beats=[
+        new_mission('decode', 'THE LONG SIGNAL', [
+            'HER ADMIRAL THINKS HE IS STILL SHADOWED. HE SENDS FOR HALF AN HOUR.',
+            'A LONG SIGNAL IS A BEARING, IF YOU ARE QUICK.'],
+            'COPY HIS CALL SIGN.',
+            '{word}. THE BEARINGS CROSS. SHE IS RUNNING FOR FRANCE.',
+            'THE BEARING IS WIDE. LISTEN AGAIN.', 'harbour'),
+        new_mission('decode', 'A FATHER', [
+            'A LUFTWAFFE GENERAL ASKS WHERE THE BISMARCK IS GOING.',
+            'HIS SON IS ABOARD. HE ASKS ON A NET STATION X CAN READ.'],
+            'COPY THE ANSWER.',
+            '{word}. A FATHER WORRIED FOR HIS SON. IT WILL KILL THE SON.',
+            'THE ANSWER IS LOST. THE GENERAL WILL ASK AGAIN.', 'air', word='BREST'),
+        new_mission('encode', 'SWORDFISH', [
+            'OLD BIPLANES ON THE ARK ROYAL ARE WAITING FOR A HEADING.'],
+            'SEND THE HEADING.',
+            'A TORPEDO JAMS HER RUDDER. THE BISMARCK CAN ONLY TURN IN CIRCLES.',
+            'THE BIPLANES SEARCH AN EMPTY SEA.', 'air'),
+    ]),
+    dict(title='PIANIST', intro=[
+        '1943. A WOMAN IN UNIFORM COMES TO THE HUT. EVELYN MARSH.',
+        'SHE RUNS SIGNALS FOR A SERVICE THAT SENDS AGENTS INTO FRANCE.',
+        'ITS RADIO OPERATORS ARE CALLED PIANISTS. THEY LAST ABOUT SIX WEEKS.',
+        'SHE NEEDS THE BEST FIST IN ENGLAND. SHE IS SORRY TO ASK.'], beats=[
+        new_mission('encode', 'SECURITY CHECK', [
+            'EVERY PIANIST HAS A SECRET MISTAKE TO MAKE ON PURPOSE.',
+            'IF THE MISTAKE IS MISSING, LONDON KNOWS YOU HAVE BEEN TAKEN.'],
+            'SEND YOUR CHECK WORD.',
+            "MARSH: 'GOOD. NEVER FORGET IT. NEVER SEND IT IF THEY HAVE YOU.'",
+            'WRONG. AGAIN. YOUR LIFE WILL DEPEND ON THIS.', 'wireless'),
+        new_mission('encode', 'THE DROP', [
+            'A MOONLESS NIGHT OVER THE DORDOGNE. A STATIC LINE. A FIELD.',
+            'A TORCH FLASHES A LETTER FROM THE DARK. ANSWER WITH YOURS.'],
+            'FLASH THE ANSWER.',
+            'HANDS PULL YOU OUT OF THE WHEAT. YOU ARE IN FRANCE.',
+            'NO ANSWER FROM THE FIELD. THE PILOT CIRCLES ONCE MORE.', 'air'),
+        new_mission('decode', 'FIRST CONTACT', [
+            'YOUR SET IS IN A SUITCASE IN A BARN. LONDON CALLS AT 2100.',
+            'MARSH IS ON THE KEY HERSELF. YOU KNOW HER FIST.'],
+            'COPY LONDON.',
+            "{word}. THEN, OFF THE SCHEDULE: 'TAKE CARE, CORUJA.'",
+            'THE SCHEDULE PASSES. LONDON WILL TRY AGAIN TOMORROW.', 'wireless'),
+    ]),
+    dict(title='THE VAN', intro=[
+        'SPRING 1944. GERMAN DIRECTION-FINDING VANS PROWL THE LANES AT NIGHT.',
+        'THEIR BEST HUNTER IS AN OLD RADIO MAN WITH BURNED HANDS.',
+        'BRANDT. HE IS LISTENING FOR A FIST HE KNOWS.',
+        'SEND IN UNDER FIVE MINUTES. NEVER TWICE FROM THE SAME HOUSE.'], beats=[
+        new_mission('encode', 'FIVE MINUTES', [
+            'LONDON WANTS THE RAILWAY TIMETABLES. THE VAN IS ON THE MAIN ROAD.'],
+            'SEND IT AND GET OFF THE AIR.',
+            'OFF THE AIR. THE VAN DRIVES PAST THE FARM GATE. AND PAST.',
+            'THE VAN SLOWS AT THE GATE. YOU RUN. TRY AGAIN TOMORROW.', 'road'),
+        new_mission('decode', 'BRANDT CALLS', [
+            'ON YOUR OWN FREQUENCY, A LAZY SWING ON THE DAHS. NOT LONDON.',
+            'BRANDT IS SENDING TO YOU. HE WANTS YOU TO KNOW HE KNOWS.'],
+            'COPY BRANDT.',
+            "{word}. THEN: 'HELLO, CORUJA.' HE KNOWS YOUR NAME NOW.",
+            'HE STOPS. HE CAN WAIT. HE IS GOOD AT WAITING.', 'road'),
+        new_mission('encode', 'BLOWN', [
+            'YOU MOVE THE SET IN A CART OF TURNIPS TO A MILL BY THE RIVER.',
+            'LONDON MUST KNOW THE OLD SCHEDULE IS BLOWN.'],
+            'SEND THE ALARM.',
+            "MARSH: 'UNDERSTOOD. COME HOME.' YOU DO NOT ANSWER THAT PART.",
+            'THE CART LOSES A WHEEL. SET IT UP AGAIN.', 'road'),
+    ]),
+    dict(title='VIOLINS', intro=[
+        'JUNE 1944. THE BBC FRENCH SERVICE READS NONSENSE POEMS AFTER THE NEWS.',
+        'THE LONG SOBS OF THE VIOLINS OF AUTUMN. THE INVASION IS COMING.',
+        'THE RESISTANCE WILL CUT EVERY RAILWAY. ON YOUR WORD.'], beats=[
+        new_mission('decode', 'THE POEM', [
+            '5 JUNE. THE SECOND LINE OF THE POEM. IT MEANS TOMORROW.',
+            'LONDON CONFIRMS BY KEY. YOUR CIRCUIT HAS ITS OWN ACTION WORD.'],
+            'COPY THE ACTION WORD.',
+            '{word}. YOU CYCLE FARM TO FARM. BY MIDNIGHT THE RAILS ARE MINED.',
+            'THE SET HOWLS. LONDON REPEATS.', 'wireless'),
+        new_mission('encode', 'THE VIADUCT', [
+            'THE MAQUIS WILL BLOW THE VIADUCT ON YOUR SIGNAL.',
+            'A TROOP TRAIN IS DUE.'],
+            'SEND THE SIGNAL.',
+            'THE VIADUCT FALLS INTO THE RIVER. NOTHING CROSSES FOR A WEEK.',
+            'THE TRAIN CROSSES. WAIT FOR THE NEXT ONE.', 'rail'),
+        new_mission('decode', 'THE TANKS', [
+            '6 JUNE. THE LANDINGS HAVE BEGUN IN NORMANDY. NOT HERE.',
+            'HERE, AN SS PANZER DIVISION IS STARTING NORTH TO MEET THEM.'],
+            "COPY THE DIVISION'S ROUTE.",
+            '{word}. EVERY DAY THEY ARE LATE IS A BEACH THAT HOLDS.',
+            'A FARMER GARBLES IT. HE WILL SAY IT AGAIN.', 'road'),
     ]),
     dict(title='LAST SIGNAL', intro=[
-        'HALE IS RUNNING FOR THE HARBOUR.',
-        'THE WORLD SHOULD KNOW WHAT HALE HAS DONE.',
-        'ONE TRANSMITTER. ONE NIGHT. EVERY LETTER YOU KNOW.'], beats=[
-        beat('decode', 'THE ESCAPE', [
-            'HALE SIGNALS A WAITING VESSEL.',
-            "HALE'S FIST IS UNSTEADY NOW."],
-            'DECODE THE PLAN.',
-            'HALE MEANS TO SAIL FOR {word}. NOT TONIGHT.',
-            'THE VESSEL SLIPS ITS MOORINGS.', 'harbour'),
-        beat('encode', 'THE BOOM', [
-            'THE HARBOUR MASTER STILL TAKES ORDERS BY WIRE.',
-            'THE BOOM CAN BE CLOSED ONE LAST TIME.'],
-            'SEND THE CLOSURE ORDER.',
-            'THE BOOM SWINGS SHUT. HALE IS TAKEN ON THE QUAY.',
-            'THE VESSEL CLEARS THE HARBOUR.', 'harbour'),
-        beat('encode', 'ALL STATIONS', [
-            'EVERY STATION ON THE COAST IS LISTENING TONIGHT.',
-            'TELL THEM.'],
-            'SEND THE FINAL WORD.',
-            'THE MESSAGE GOES OUT TO ALL STATIONS. NIGHTJAR IS FINISHED.',
-            'THE TRANSMITTER FALTERS. SEND IT AGAIN.', 'wireless'),
+        '9 JUNE 1944. THE PANZERS WILL CROSS THE RIVER AT DAWN, AT ONE BRIDGE.',
+        'THE BOMBERS CAN STOP THEM, IF THEY KNOW WHICH BRIDGE. ONLY YOU KNOW.',
+        'IT IS A LONG MESSAGE. BRANDT IS ONE VILLAGE AWAY.',
+        'YOU BOLT THE MILL DOOR AND OPEN THE SUITCASE.'], beats=[
+        new_mission('encode', 'THE BRIDGE', [
+            'THE BRIDGE FIRST. FIVE MINUTES WILL NOT BE ENOUGH.',
+            'SEND IT ANYWAY.'],
+            'SEND THE BRIDGE.',
+            'LONDON ACKNOWLEDGES. HEADLAMPS ON THE RIVER ROAD.',
+            'THE SIGNAL BREAKS UP. SEND IT AGAIN.', 'road'),
+        new_mission('encode', 'THE HOUR', [
+            'NOW THE HOUR. THE VAN STOPS OUTSIDE. BOOTS ON THE GRAVEL.',
+            'THE BACK WINDOW IS OPEN. YOU STAY ON THE KEY.'],
+            'SEND THE HOUR.',
+            'ACKNOWLEDGED. THE DOOR SHAKES UNDER A RIFLE BUTT.',
+            'THEY CUT THE POWER. THE BATTERY. QUICKLY.', 'road'),
+        new_mission('encode', 'NO CHECK', [
+            'THE DOOR IS GIVING. TIME FOR ONE MORE WORD.',
+            'YOU LEAVE OUT YOUR SECURITY CHECK, SO LONDON WILL KNOW.',
+            'MARSH IS ON THE KEY. SHE WILL KNOW YOUR FIST.'],
+            'SEND THE LAST WORD.',
+            'SENT. THE DOOR GIVES. YOU TAKE YOUR HAND OFF THE KEY.',
+            'THEY ARE IN THE HALL. ONE MORE TRY.', 'road'),
     ]),
 ]
 ENDING_EN = [
-    'DAWN OVER THE COAST. THE GALE HAS PASSED.',
-    'WREN SENDS ONE LAST SIGNAL:  DIT DIT DIT DAH DIT DAH.',
-    'SK. END OF WORK.',
-    'STATION SEVEN CLOSES DOWN.',
+    'THE BRIDGE FALLS AT DAWN. THE PANZERS REACH NORMANDY TOO LATE.',
+    'IN LONDON, MARSH LOGS A LAST MESSAGE WITH NO SECURITY CHECK.',
+    'THE FILES ARE SEALED FOR FIFTY YEARS. NO ONE THANKS A NUMBER.',
+    'SHE KEYS ONE REPLY INTO THE SILENCE:  SK, CORUJA. END OF WORK.',
 ]
 WIN_BANNERS_EN = ['RECEIVED', 'CONFIRMED', 'ACKNOWLEDGED']
 LOSE_BANNERS_EN = ['TOO LATE', 'NO REPLY', 'SIGNAL LOST']
@@ -397,288 +518,402 @@ ZERO ZEPELIM QUARTEL ZONA AZUL CRUZ VOZ PAZ QUILHA BUZINA ZARPAR AQUI
 """.split()
 
 CHAPTERS_PT = [
-    dict(title='POSTO SETE', intro=[
-        'NOVEMBRO DE 1936. UM POSTO DE ESCUTA NUM TRECHO CINZENTO DO LITORAL.',
-        'SUA FUNÇÃO: RADIOTELEGRAFISTA DA NOITE. SEU DEVER: ESCUTAR.',
-        'O COMANDANTE HALE, DA INTELIGÊNCIA NAVAL, DIZ QUE AQUI NADA ACONTECE.'], beats=[
-        beat('encode', 'PRIMEIRO TURNO', [
-            'MEIA-NOITE. AS VÁLVULAS ESQUENTAM. A ANTENA ZUNE AO VENTO.',
-            'O ALMIRANTADO ESPERA UM TESTE DE SINAL ANTES DA HORA CHEIA.'],
-            'ENVIE A PALAVRA DE TESTE.',
-            "HALE: 'RECEBIDO, FAÍSCA. MANTENHA OS OUVIDOS ABERTOS.'",
-            'A HORA PASSA. SEU SILÊNCIO FICA REGISTRADO NO LIVRO.', 'wireless'),
-        beat('decode', 'UMA FAIXA SEM DONO', [
-            'TRÊS DA MANHÃ. UM SINAL NUMA FREQUÊNCIA QUE NINGUÉM USA.',
-            'ELE SE REPETE. LENTO E DELIBERADO.'],
-            'DECIFRE ANTES QUE ELE SUMA.',
-            'UMA PALAVRA: {word}. DEPOIS, NADA.',
-            'O SINAL SE PERDE NA ESTÁTICA.', 'wireless'),
-        beat('encode', 'RELATÓRIO', [
-            'HALE PRECISA SABER DISSO AINDA HOJE.',
-            'REPITA A PALAVRA EXATAMENTE COMO RECEBEU.'],
-            'ENVIE A PALAVRA AO ALMIRANTADO.',
-            "UMA LONGA PAUSA. HALE: 'NÃO CONTE A NINGUÉM.'",
-            'A LINHA CAI.', 'wireless', echo=True),
+    dict(title='SALA DE RÁDIO', intro=[
+        'ABRIL DE 1912. RMS CARPATHIA, DE NOVA YORK PARA FIUME.',
+        'TELEGRAFISTA DA NOITE. A TRIPULAÇÃO TE APELIDA DE CORUJA. O APELIDO PEGA.',
+        'OS PASSAGEIROS PAGAM POR PALAVRA PARA CONTAR AO MUNDO QUE ESTÃO NO MAR.',
+        'PARA ECONOMIZAR, USAM O LIVRO DE CÓDIGOS: UMA PALAVRA POR FRASE.'], beats=[
+        new_mission('encode', 'O PRIMEIRO TELEGRAMA', [
+            'A SRA. PEABODY, DE OHIO, QUER QUE A IRMÃ SAIBA QUE A SOPA ESTAVA FRIA.',
+            "NO LIVRO DE CÓDIGOS ISSO É '{word}'. PAGO ADIANTADO."],
+            'ENVIE A PALAVRA-CÓDIGO PARA CAPE RACE.',
+            'CAPE RACE CONFIRMA. A SRA. PEABODY TE DÁ UM CENTAVO DE GORJETA.',
+            'CAPE RACE SOME. A SRA. PEABODY RECLAMA COM O COMISSÁRIO.', 'sea'),
+        new_mission('decode', 'O NOTICIÁRIO', [
+            '23H. CAPE RACE TRANSMITE AS NOTÍCIAS DA NOITE.',
+            'O CAPITÃO ROSTRON GOSTA DE LER OS PLACARES DE BEISEBOL TOMANDO CHOCOLATE.'],
+            'COPIE A PALAVRA-CÓDIGO.',
+            "'{word}'. O CAPITÃO RESMUNGA. SERVE.",
+            'AS NOTÍCIAS AFUNDAM NA ESTÁTICA. O CHOCOLATE ESFRIA.', 'sea'),
+        new_mission('encode', 'UMA RECLAMAÇÃO', [
+            'UM CAVALHEIRO DA PRIMEIRA CLASSE ESTÁ ENJOADO E PESSIMISTA.',
+            "O CORRETOR DELE PRECISA RECEBER '{word}' JÁ. QUER DIZER: VENDA TUDO."],
+            'ENVIE ANTES QUE ELE VOLTE.',
+            'ENVIADO. O CAVALHEIRO VOLTA PARA A CAMA. A BOLSA NEM PERCEBE.',
+            'ELE VOLTA. E TRAZ A ESPOSA.', 'sea'),
     ]),
-    dict(title='CORVO', intro=[
-        'HALE EXPLICA NUMA CARTA LACRADA, ENTREGUE EM MÃOS.',
-        'CORVO: UMA REDE QUE VENDE SEGREDOS NAVAIS A QUEM PAGAR MAIS.',
-        'ELES FALAM À NOITE, E FALAM EM MORSE.'], beats=[
-        beat('decode', 'O ENCONTRO', [
-            'TRÁFEGO DO CORVO NA FAIXA NOTURNA.',
-            'UM LUGAR ESTÁ SENDO MENCIONADO.'],
-            'DECIFRE O LOCAL DO ENCONTRO.',
-            'O ENCONTRO É EM {word}. HALE MANDA HOMENS VIGIAREM.',
-            'A MENSAGEM TERMINA. NINGUÉM VIGIA O ENCONTRO.', 'wireless'),
-        beat('encode', 'O TREM NOTURNO', [
-            'UM MENSAGEIRO COM PAPÉIS DO ALMIRANTADO ESTÁ NO TREM NOTURNO.',
-            'HOMENS DO CORVO EMBARCARAM NA ÚLTIMA PARADA.'],
-            'TELEGRAFE À PRÓXIMA ESTAÇÃO PARA SEGURAR O TREM.',
-            'O TREM É RETIDO. O MENSAGEIRO ESTÁ A SALVO.',
-            'O TREM SEGUE. DE MANHÃ, OS PAPÉIS SUMIRAM.', 'rail'),
-        beat('decode', 'UM NOME', [
-            'O MENSAGEIRO OUVIU OS HOMENS BATEREM UM NOME NA PAREDE DO VAGÃO.',
-            'ACHAVAM QUE NINGUÉM A BORDO SABIA LER AQUILO.'],
-            'DECIFRE O NOME.',
-            'O NOME É {word}. HALE FICA MUITO QUIETO.',
-            'O MENSAGEIRO NÃO CONSEGUE LEMBRAR.', 'rail'),
+    dict(title='NOITE CHEIA', intro=[
+        'O GRANDE NAVIO NOVO ESTÁ TRANSMITINDO, EM PLENA VIAGEM INAUGURAL.',
+        'TITANIC. INDICATIVO MGY. OS TELEGRAFISTAS ESTÃO ATOLADOS DE MENSAGENS.',
+        'TODO MILIONÁRIO A BORDO QUER TELEGRAFAR PARA O MORDOMO.'], beats=[
+        new_mission('decode', 'RETRANSMISSÃO', [
+            'MGY PEDE QUE VOCÊ RETRANSMITA UMA MENSAGEM QUE A COSTA NÃO OUVE.',
+            'DE UMA TAL SRTA. EVELYN MARSH, DEZENOVE ANOS, PARA A TIA.'],
+            'COPIE A PALAVRA-CÓDIGO DA SRTA. MARSH.',
+            "'{word}': O CACHORRO ENJOOU. EU NÃO. MELHOR VIAGEM DA MINHA VIDA.",
+            'A RETRANSMISSÃO FALHA. A TIA NUNCA VAI SABER DO CACHORRO.', 'sea'),
+        new_mission('encode', 'PASSE ADIANTE', [
+            'A TIA PRECISA RECEBER HOJE.',
+            'PASSE PARA A PRÓXIMA ESTAÇÃO, EXATAMENTE COMO OUVIU.'],
+            'ENVIE A PALAVRA DA SRTA. MARSH.',
+            'RECEBIDO. EM SOUTHAMPTON, UMA TIA RESPIRA ALIVIADA POR UM CACHORRO.',
+            'A ESTAÇÃO NÃO RESPONDE.', 'sea', echo=True),
+        new_mission('decode', 'GELO', [
+            'UM VAPOR MAIS AO NORTE AVISA SOBRE GELO A QUEM QUISER OUVIR.',
+            'O MGY MANDA O VAPOR CALAR A BOCA. ESTÁ OCUPADO DEMAIS.'],
+            'COPIE O AVISO DE GELO.',
+            "'{word}'. VOCÊ PREGA O AVISO ACIMA DA TECLA. GELO NA ROTA TODA.",
+            'O AVISO SE PERDE NO FALATÓRIO DOS PASSAGEIROS DO MGY.', 'ice'),
     ]),
-    dict(title='A LANTERNA', intro=[
-        'SÓ TRÊS PESSOAS SABIAM QUE O MENSAGEIRO ESTAVA NAQUELE TREM.',
-        'HALE. O MENSAGEIRO. E VOCÊ.',
-        'ESTA NOITE, UMA LANTERNA PISCA NO PROMONTÓRIO.'], beats=[
-        beat('decode', 'O PROMONTÓRIO', [
-            'UMA LUZ NOS ROCHEDOS. ACESA. APAGADA. ACESA.',
-            'ALGUÉM SINALIZA PARA UMA EMBARCAÇÃO AO LARGO.'],
-            'LEIA A LANTERNA.',
-            'A LANTERNA SOLETRA {word}. ELES SABEM QUE O POSTO ESCUTA.',
-            'A LANTERNA SE APAGA.', 'harbour'),
-        beat('encode', 'O CAPITÃO DO PORTO', [
-            'UMA EMBARCAÇÃO VEM BUSCAR QUEM SEGURA A LANTERNA.',
-            'O PORTO PODE SER FECHADO, SE O CAPITÃO FOR AVISADO A TEMPO.'],
-            'ENVIE A ORDEM DE FECHAMENTO.',
-            'A BARREIRA FECHA O PORTO. A EMBARCAÇÃO DÁ MEIA-VOLTA.',
-            'A EMBARCAÇÃO VEM E VAI SEM SER VISTA.', 'harbour'),
-        beat('decode', 'O BILHETE', [
-            'MANHÃ. UM BILHETE DOBRADO SOB A PORTA DO POSTO.',
-            'NÃO ESCRITO: FURADO EM PONTOS E TRAÇOS.'],
-            'DECIFRE O BILHETE ANTES QUE A CHUVA O ESTRAGUE.',
-            "O BILHETE DIZ {word}. ASSINADO: 'S'.",
-            'A TINTA ESCORRE. O BILHETE SE PERDE.', 'wireless'),
+    dict(title='VENHAM JÁ', intro=[
+        '14 DE ABRIL DE 1912. 23H35. SEU TURNO ACABOU. VOCÊ JÁ TIROU UMA BOTA.',
+        'VOCÊ FICA COM OS FONES MAIS UM POUCO, PARA PASSAR UMA NOTÍCIA AO MGY.',
+        'O MGY RESPONDE ANTES DE VOCÊ TERMINAR.'], beats=[
+        new_mission('decode', 'SOCORRO', [
+            'TITANIC: VENHAM JÁ. BATEMOS NUM ICEBERG.',
+            'DEPOIS, O SINAL NOVO, QUE NINGUÉM AINDA TINHA OUVIDO A SÉRIO.'],
+            'COPIE A CHAMADA.',
+            '{word}. VOCÊ CORRE PARA A PONTE COM UMA BOTA SÓ.',
+            'DEVE SER BRINCADEIRA. NÃO É. ESCUTE DE NOVO.', 'ice', word='SOS'),
+        new_mission('encode', 'A TODO VAPOR', [
+            'O CAPITÃO ROSTRON VIRA O NAVIO ANTES DE TERMINAR DE SE VESTIR.',
+            'CINQUENTA E OITO MILHAS. QUATRO HORAS A TODO VAPOR, NO GELO.'],
+            'AVISE QUE VOCÊS ESTÃO A CAMINHO.',
+            "MGY: 'VENHAM O MAIS RÁPIDO POSSÍVEL. A CASA DE MÁQUINAS ESTÁ ALAGANDO.'",
+            'O MGY CONTINUA CHAMANDO. ELES NÃO SABEM QUE ALGUÉM OUVIU.', 'ice'),
+        new_mission('decode', 'A ÚLTIMA PALAVRA', [
+            '1H27. O MGY ESTÁ FRACO AGORA. A ENERGIA ESTÁ ACABANDO.',
+            'MAIS UMA PALAVRA DO NAVIO QUE AFUNDA.'],
+            'COPIE.',
+            '{word}. DEPOIS, ESTÁTICA. SÓ ESTÁTICA.',
+            'A ESTÁTICA LEVA A PALAVRA. ESCUTE. POR FAVOR.', 'ice'),
     ]),
-    dict(title='O TEMPORAL', intro=[
-        'O PIOR TEMPORAL EM VINTE ANOS.',
-        'A ENERGIA CAI À MEIA-NOITE. O POSTO FUNCIONA NAS BATERIAS.',
-        'CADA MINUTO DE CARGA CONTA.'], beats=[
-        beat('decode', 'SOCORRO', [
-            'UM TRANSATLÂNTICO SE PERDEU NA NÉVOA PERTO DA PONTA. SINAL FRACO.',
-            'O RADIOTELEGRAFISTA DE BORDO DESCREVE O QUE SE VÊ DA PONTE.'],
-            'DECIFRE O PONTO DE REFERÊNCIA.',
-            'ELES VEEM {word}. VOCÊ SABE EXATAMENTE ONDE FICA.',
-            'O SINAL MORRE NA TEMPESTADE.', 'fog'),
-        beat('encode', 'O RUMO', [
-            'O NAVIO SEGUE DIRETO PARA AS PEDRAS.',
-            'UMA CORREÇÃO, ANTES QUE AS BATERIAS ACABEM.'],
-            'ENVIE O RUMO.',
-            'O NAVIO VIRA. SUAS LUZES PASSAM EM SEGURANÇA PELA PONTA.',
-            'AS BATERIAS MORREM NO MEIO DA PALAVRA.', 'fog'),
-        beat('encode', 'O PACOTE', [
-            'UM PACOTE CHEGOU COM A TEMPESTADE. ELE FAZ TIQUE-TAQUE.',
-            'UM ARTEFATO DO CORVO, COM UM MANIPULADOR TELEGRÁFICO COMO TRAVA.'],
-            'BATA O CÓDIGO QUE O DESLIGA.',
-            'O TIQUE-TAQUE PARA.',
-            'A PRAIA SE ILUMINA POR UM INSTANTE. DEPOIS, ESCURIDÃO.', 'bomb'),
+    dict(title='NOMES', intro=[
+        '4H10. BOTES SALVA-VIDAS NA LUZ CINZENTA. NENHUM NAVIO. SÓ GELO E DESTROÇOS.',
+        'O CARPATHIA RECOLHE 705 ALMAS. O MUNDO GRITA POR NOTÍCIAS.',
+        'O CAPITÃO ORDENA: PRIMEIRO OS NOMES DOS SOBREVIVENTES. NADA PARA A IMPRENSA.'],
+        beats=[
+        new_mission('encode', 'A LISTA', [
+            'NOME APÓS NOME, TRINTA HORAS SEM DORMIR.',
+            "A PRÓXIMA FAMÍLIA PEDIU UMA PALAVRA-CÓDIGO: '{word}'. QUER DIZER VIVO."],
+            'ENVIE.',
+            'CONFIRMADO. EM ALGUM LUGAR, UMA FAMÍLIA PARA DE ESPERAR.',
+            'SUA MÃO TRAVA. A ESTAÇÃO EM TERRA PERDE O SEU SINAL.', 'sea'),
+        new_mission('decode', 'UM NOME CONHECIDO', [
+            'NA LISTA: MARSH, E., SRTA. VIVA. ELA APARECE NA SALA DE RÁDIO.',
+            'APRENDEU MORSE OLHANDO OS TELEGRAFISTAS DO TITANIC.',
+            'ELA BATE A MENSAGEM NA SUA MESA COM UM LÁPIS.'],
+            'LEIA O QUE ELA BATE.',
+            "'{word}'. PARA A TIA. O CACHORRO NÃO SOBREVIVEU.",
+            'ELA BATE RÁPIDO DEMAIS. E RI, PELA PRIMEIRA VEZ EM DOIS DIAS.', 'sea'),
+        new_mission('encode', 'A TIA', [
+            'A MESMA TIA. A MESMA ESTAÇÃO. OUTRO TIPO DE MENSAGEM.'],
+            'ENVIE A PALAVRA DA SRTA. MARSH.',
+            'A TIA RESPONDE EM QUATRO MINUTOS. A SRTA. MARSH ENFIM CHORA.',
+            'A LINHA ESTÁ ENTUPIDA DE TRÁFEGO DA IMPRENSA.', 'sea', echo=True),
     ]),
-    dict(title='SABIÁ', intro=[
-        "O BILHETE ESTAVA ASSINADO 'S'.",
-        'HALE ENFIM ADMITE: SABIÁ NOS PASSA INFORMAÇÕES DE DENTRO DO CORVO.',
-        'SABIÁ SÓ FALA COM VOCÊ.'], beats=[
-        beat('encode', 'RECONHECIMENTO', [
-            'SABIÁ SÓ RESPONDE À PALAVRA DE RECONHECIMENTO CERTA.',
-            'UM CARRO DE PATRULHA DO CORVO JÁ ESTÁ NA ESTRADA DA COSTA.'],
-            'ENVIE A PALAVRA DE RECONHECIMENTO.',
-            'UMA PAUSA. DEPOIS, DOIS PONTOS. SABIÁ ESTÁ OUVINDO.',
-            'NENHUMA RESPOSTA. SABIÁ FICA EM SILÊNCIO.', 'road'),
-        beat('decode', 'O QUE FOI LEVADO', [
-            'SABIÁ TRANSMITE DEPRESSA, COM A MÃO TRÊMULA.',
-            'O CORVO LEVOU ALGO DE UM ARSENAL DA MARINHA.'],
-            'DECIFRE O QUE FOI LEVADO.',
-            "SABIÁ: '{word}. E A NOVA MÁQUINA DE CIFRA.'",
-            'SABIÁ PARA NO MEIO DA FRASE.', 'wireless'),
-        beat('decode', 'A ROTA', [
-            'A MÁQUINA SERÁ VENDIDA NO EXTERIOR.',
-            'SABIÁ CONHECE A ROTA.'],
-            'DECIFRE A ROTA.',
-            'ELA SAI POR {word}. O CERCO SE FECHA.',
-            'ESTÁTICA. SABIÁ SUMIU POR ESTA NOITE.', 'wireless'),
+    dict(title='SALA 40', intro=[
+        'AGOSTO DE 1914. GUERRA.',
+        'UM HOMEM DO ALMIRANTADO SABE QUEM MANTEVE O CARPATHIA NO AR.',
+        'ELE QUER ESSE OUVIDO NA COSTA DE NORFOLK, ESCUTANDO A FROTA ALEMÃ.',
+        'OS GRUPOS QUE VOCÊ COPIA VÃO PARA UMA SALA EM LONDRES. A SALA 40.'], beats=[
+        new_mission('decode', 'INTERCEPTAÇÃO', [
+            'TRÁFEGO NAVAL ALEMÃO. GRUPOS DE LETRAS QUE NÃO SIGNIFICAM NADA PARA VOCÊ.',
+            'NINGUÉM TE DIZ O QUE SIGNIFICAM. SÓ TE DIZEM PARA NÃO PERDER NENHUM.'],
+            'COPIE O GRUPO.',
+            '{word}. UM MOTOCICLISTA LEVA PARA LONDRES. NINGUÉM AGRADECE.',
+            'O GRUPO SE FOI. ALGUÉM EM LONDRES FICA COM UMA LACUNA NA PÁGINA.',
+            'wireless'),
+        new_mission('encode', 'A LINHA TELEGRÁFICA', [
+            'A SALA 40 QUER CADA GRUPO EM MENOS DE UMA HORA.',
+            'ELES TÊM UM LIVRO DE CÓDIGOS ALEMÃO CAPTURADO. NINGUÉM TE CONTA.'],
+            'PASSE O GRUPO PARA LONDRES.',
+            'LONDRES CONFIRMA. ALGUÉM ABRE UM LIVRO QUE VOCÊ NUNCA VAI VER.',
+            'A LINHA ESTÁ OCUPADA. LONDRES ESPERA.', 'wireless', echo=True),
+        new_mission('decode', 'O ATAQUE', [
+            'DEZEMBRO. A ESQUADRA ALEMÃ ESTÁ NO MAR. O TRÁFEGO DOBRA.',
+            'UM TELEGRAFISTA DESCUIDADO DIZ O NOME DE UM ALVO.'],
+            'COPIE O ALVO.',
+            '{word}. LONDRES SABE ANTES DE OS NAVIOS CHEGAREM. NINGUÉM PERGUNTA COMO.',
+            'O TRÁFEGO PARA. OS CANHÕES, NÃO.', 'harbour'),
     ]),
-    dict(title='O ZEPELIM', intro=[
-        'A MÁQUINA DE CIFRA ESTÁ A BORDO DE UM ZEPELIM RUMO AO CONTINENTE.',
-        'NENHUM PASSAGEIRO LISTADO. NENHUMA CARGA DECLARADA.',
-        'ELE CRUZA A COSTA ESTA NOITE.'], beats=[
-        beat('decode', 'NAVEGAÇÃO', [
-            'O ZEPELIM SE COMUNICA COM UMA ESTAÇÃO EM TERRA.',
-            'ESTÁ INFORMANDO O PRÓXIMO PONTO DA ROTA.'],
-            'DECIFRE O PONTO DA ROTA.',
-            'PONTO {word}. AGORA VOCÊ CONHECE O CURSO DELE.',
-            'O ZEPELIM PASSA EM SILÊNCIO.', 'wireless'),
-        beat('encode', 'ESTAÇÃO FALSA', [
-            'SE O CAPITÃO OUVIR O INDICATIVO ERRADO, O ZEPELIM VAI VIRAR.',
-            'FINJA SER A ESTAÇÃO DELES.'],
-            'ENVIE O INDICATIVO FALSO.',
-            'O ZEPELIM MUDA DE CURSO, RUMO AO NOSSO CAMPO DE POUSO.',
-            'O CAPITÃO NÃO SE DEIXA ENGANAR.', 'wireless'),
-        beat('encode', 'INTERCEPTAR', [
-            'DOIS BIPLANOS ESTÃO PRONTOS NO CAMPO DE POUSO.',
-            'ELES NÃO DECOLAM SEM ORDENS.'],
+    dict(title='LUSITANIA', intro=[
+        'MAIO DE 1915. UM SUBMARINO NA COSTA DA IRLANDA TRANSMITE TODA NOITE.',
+        'VOCÊ CONHECE O TELEGRAFISTA PELA BATIDA: UM BALANÇO PREGUIÇOSO NOS TRAÇOS.',
+        'O LUSITANIA SAIU DE NOVA YORK. DUAS MIL PESSOAS A BORDO.'], beats=[
+        new_mission('decode', 'O BALANÇO', [
+            'O SUBMARINO MANDA A POSIÇÃO. OS MESMOS TRAÇOS PREGUIÇOSOS.'],
+            'COPIE A POSIÇÃO.',
+            '{word}. BEM NA ROTA DOS TRANSATLÂNTICOS.',
+            'O SUBMARINO MERGULHA. O MAR SILENCIA.', 'harbour'),
+        new_mission('encode', 'O AVISO', [
+            'VOCÊ TELEGRAFA AO ALMIRANTADO: DESVIEM O NAVIO.',
+            'ELES TÊM SEUS MOTIVOS. NÃO OS COMPARTILHAM.'],
+            'ENVIE O AVISO MESMO ASSIM.',
+            'RECEBIDO. ARQUIVADO. NADA É FEITO.',
+            'A LINHA ESTÁ MUDA.', 'harbour'),
+        new_mission('decode', 'DEZOITO MINUTOS', [
+            '7 DE MAIO. 14H10. UMA CHAMADA AO LARGO DE OLD HEAD OF KINSALE.',
+            'LUSITANIA. VENHAM JÁ. ADERNANDO MUITO.'],
+            'COPIE.',
+            '{word}. DE NOVO. DEZOITO MINUTOS. 1.198 MORTOS. VOCÊ ESTAVA LONGE DEMAIS.',
+            'VOCÊ NÃO PEGOU. NÃO TERIA FEITO DIFERENÇA. ESCUTE DE NOVO.', 'harbour', word='SOS'),
+    ]),
+    dict(title='ZEPELINS', intro=[
+        'SETEMBRO DE 1916. DIRIGÍVEIS ALEMÃES BOMBARDEIAM LONDRES À NOITE.',
+        'ELES PEDEM MARCAÇÕES ÀS PRÓPRIAS ESTAÇÕES. CADA PEDIDO OS DENUNCIA.',
+        'AGORA VOCÊ TEM UM RADIOGONIÔMETRO, E NENHUMA NOITE DE SONO.'], beats=[
+        new_mission('decode', 'A MARCAÇÃO', [
+            'UM DIRIGÍVEL PEDE MARCAÇÃO. TRANSMITE DEMAIS, E COM FREQUÊNCIA DEMAIS.',
+            'OS TRAÇOS BALANÇAM. É AQUELA BATIDA. O HOMEM DO SUBMARINO AGORA VOA.'],
+            'COPIE O INDICATIVO.',
+            '{word}. AS MARCAÇÕES SE CRUZAM SOBRE ESSEX. VOCÊ O ENCONTROU.',
+            'O DIRIGÍVEL SILENCIA SOBRE O MAR.', 'wireless'),
+        new_mission('encode', 'CAÇAS NOTURNOS', [
+            'OS CAÇAS NO CAMPO DE POUSO PRECISAM DE ALTITUDE E RUMO.'],
             'ENVIE A ORDEM DE INTERCEPTAR.',
-            'O ZEPELIM É FORÇADO A POUSAR INTACTO. O PORÃO ESTÁ VAZIO.',
-            'O ZEPELIM DESAPARECE NAS NUVENS.', 'wireless'),
+            'O DIRIGÍVEL QUEIMA SOBRE ESSEX. VOCÊ ASSISTE DO TELHADO DA ESTAÇÃO.',
+            'OS CAÇAS SOBEM PARA UM CÉU VAZIO.', 'air'),
+        new_mission('decode', 'UM SOBREVIVENTE', [
+            'UM HOMEM SAIU ANDANDO DOS DESTROÇOS: O TELEGRAFISTA.',
+            'NA CELA, ELE BATE NOS CANOS. ACHA QUE NINGUÉM SABE LER AQUILO.'],
+            'COPIE O QUE ELE BATE.',
+            '{word}. O NOME DELE É BRANDT. ELE BATE COM UM BALANÇO PREGUIÇOSO.',
+            'ELE PARA. OUVIU VOCÊ RESPIRAR DO OUTRO LADO DA PAREDE.', 'wireless'),
     ]),
-    dict(title='SUBMERSO', intro=[
-        'O ZEPELIM ERA UMA ISCA.',
-        'A MÁQUINA FOI PARA O MAR,',
-        'A BORDO DE UM SUBMARINO SEM BANDEIRA.'], beats=[
-        beat('decode', 'HIDROFONE', [
-            'O SUBMARINO SINALIZA AO NAVIO DE APOIO BATENDO NO CASCO.',
-            'A ESTAÇÃO DE HIDROFONE REPASSA AS BATIDAS PARA VOCÊ.'],
-            'DECIFRE AS BATIDAS.',
-            'O SUBMARINO ENVIA {word}. ESTÁ SEGUINDO O NAVIO-CORREIO.',
-            'AS BATIDAS PARAM. O SUBMARINO MERGULHA.', 'harbour'),
-        beat('encode', 'O NAVIO-CORREIO', [
-            'O NAVIO-CORREIO NÃO SABE QUE ESTÁ SENDO SEGUIDO.',
-            'O SUBMARINO SE APROXIMA.'],
-            'ENVIE O AVISO.',
-            'O NAVIO-CORREIO MUDA DE CURSO E CORRE PARA O PORTO.',
-            'O NAVIO-CORREIO NUNCA OUVIU VOCÊ.', 'harbour'),
-        beat('encode', 'EMERGIR', [
-            'UM CONTRATORPEDEIRO ENCURRALOU O SUBMARINO.',
-            'QUER A MÁQUINA DE VOLTA, NÃO UM NAUFRÁGIO.'],
-            'ENVIE A ORDEM PARA EMERGIR.',
-            'O SUBMARINO EMERGE. A TRIPULAÇÃO SE RENDE. NENHUMA MÁQUINA A BORDO.',
-            'O SUBMARINO ESCAPA NO ESCURO.', 'harbour'),
+    dict(title='ZIMMERMANN', intro=[
+        'JANEIRO DE 1917. BRANDT ESTÁ NUM CAMPO DE PRISIONEIROS. A GUERRA, NÃO.',
+        'UM TELEGRAMA LONGO VAI DE BERLIM PARA WASHINGTON, EM CÓDIGO.',
+        'A SALA 40 TEM UMA CÓPIA. PRECISA DE CADA GRUPO, LIMPO.'], beats=[
+        new_mission('decode', 'OS GRUPOS', [
+            'OS GRUPOS CHEGAM PELO FIO, VINDOS DA ESTAÇÃO DO CABO SUBMARINO.',
+            'UMA LETRA ERRADA E OS DECIFRADORES PERDEM UMA SEMANA.'],
+            'COPIE O GRUPO.',
+            '{word}. OS DECIFRADORES PEDEM POR VOCÊ PELO NOME. DEPOIS ESQUECEM.',
+            'UM GRUPO TRUNCADO. ALGUÉM NA SALA 40 PRAGUEJA.', 'wireless'),
+        new_mission('decode', 'EM CLARO', [
+            'UMA PALAVRA EMERGE DO CÓDIGO. DEPOIS OUTRA.',
+            'A ALEMANHA OFERECE AO MÉXICO UMA ALIANÇA. E O TEXAS.'],
+            'COPIE A PALAVRA.',
+            '{word}. VOCÊ ENTENDE O QUE TEM NAS MÃOS. OS EUA VÃO ENTRAR NA GUERRA.',
+            'A PALAVRA ESCAPA. PEÇA DE NOVO.', 'wireless'),
+        new_mission('encode', 'A HISTÓRIA DE FACHADA', [
+            'OS AMERICANOS PRECISAM ACHAR QUE VEIO DE QUALQUER LUGAR MENOS DA SALA 40.',
+            "O CÓDIGO PARA 'UM ESPIÃO ESPERTO NO MÉXICO' É '{word}'."],
+            'ENVIE A PALAVRA DE FACHADA.',
+            'ABRIL DE 1917. OS EUA DECLARAM GUERRA. OS JORNAIS ELOGIAM O ESPIÃO ESPERTO.',
+            'A LINHA CAI. O SEGREDO SE MANTÉM. POR ENQUANTO.', 'rail'),
     ]),
-    dict(title='QUEIMADO', intro=[
-        'SABIÁ MANDA UMA LINHA EM PLENO DIA, CONTRA TODAS AS REGRAS:',
-        "'ELES SABEM.'",
-        'DEPOIS, NADA.'], beats=[
-        beat('decode', 'ESCONDERIJO', [
-            'HORAS DEPOIS. UM SINAL FRACO VINDO DO INTERIOR.',
-            'SABIÁ SE ESCONDEU E ESTÁ MANDANDO O ENDEREÇO.'],
-            'DECIFRE O ESCONDERIJO.',
-            'SABIÁ ESTÁ EM {word}. AGUENTE FIRME, SABIÁ.',
-            'O SINAL CAI.', 'wireless'),
-        beat('encode', 'RESGATE', [
-            'UM CARRO DO CORVO JÁ ESTÁ A CAMINHO DO ESCONDERIJO.',
-            'NOSSO MOTORISTA SÓ ESPERA A PALAVRA.'],
-            'ENVIE A PALAVRA.',
-            'FARÓIS NA ESTRADINHA. SABIÁ JÁ ESTÁ LONGE DALI.',
-            'O CARRO DO CORVO CHEGA PRIMEIRO.', 'road'),
-        beat('decode', 'O AVISO DE SABIÁ', [
-            'DO BANCO DE TRÁS, SABIÁ BATE UMA PALAVRA NUM RÁDIO PORTÁTIL.',
-            'O CODINOME DE QUEM COMANDA O CORVO.'],
-            'DECIFRE O CODINOME.',
-            'QUEM COMANDA O CORVO É {word}. ALGUÉM DE DENTRO.',
-            'O CARRO SAI DO ALCANCE.', 'road'),
+    dict(title='ARMISTÍCIO', intro=[
+        'NOVEMBRO DE 1918. OS CANHÕES DEVEM PARAR ÀS ONZE.',
+        'A ORDEM PRECISA CHEGAR A CADA NAVIO E A CADA RÁDIO DE TRINCHEIRA.',
+        'ATÉ AS ONZE, HOMENS AINDA ESTÃO MORRENDO.'], beats=[
+        new_mission('decode', 'A TORRE', [
+            'A ESTAÇÃO DA TORRE EIFFEL TRANSMITE OS TERMOS AO MUNDO.'],
+            'COPIE A PALAVRA-CÓDIGO.',
+            '{word}. HOSTILIDADES CESSAM ÀS 11H. VOCÊ LÊ DUAS VEZES.',
+            'O SINAL DA TORRE SOME. ELA VAI REPETIR. ESCUTE.', 'wireless'),
+        new_mission('encode', 'CESSAR-FOGO', [
+            'UM CONTRATORPEDEIRO NO CANAL NÃO OUVIU. OS CANHÕES ESTÃO CARREGADOS.'],
+            'ENVIE O CESSAR-FOGO.',
+            'OS CANHÕES SE CALAM ÀS ONZE. A GUERRA TAMBÉM.',
+            'O NAVIO DISPARA. ENVIE ANTES QUE DISPARE DE NOVO.', 'harbour'),
+        new_mission('encode', 'UMA CARTA', [
+            'UMA CARTA DE LONDRES, NUMA LETRA QUE VOCÊ NÃO VÊ HÁ SEIS ANOS.',
+            'SRTA. E. MARSH, AGORA DO MINISTÉRIO DA GUERRA. ELA QUER TE VER.',
+            'VOCÊ RESPONDE POR TELEGRAMA, CLARO.'],
+            'ENVIE SUA RESPOSTA.',
+            'ELA TE ESPERA NA ESTAÇÃO, NA CHUVA. AINDA BATUCA NAS MESAS.',
+            'VOCÊ PERDE A CORAGEM. O FORMULÁRIO FICA NA GAVETA.', 'rail'),
     ]),
-    dict(title='A BATIDA', intro=[
-        'TODO TELEGRAFISTA TEM UMA BATIDA: UM RITMO TÃO PESSOAL QUANTO A LETRA.',
-        'O CORVO SEMPRE SOUBE O QUE O ALMIRANTADO SABIA.',
-        'VOCÊ COMEÇA A OUVIR GRAVAÇÕES ANTIGAS.'], beats=[
-        beat('decode', 'OS CILINDROS', [
-            'CILINDROS DE CERA COM O TRÁFEGO DO ALMIRANTADO DO MÊS PASSADO.',
-            'POR BAIXO DAS MENSAGENS DE ROTINA, UMA SEGUNDA MÃO TRANSMITE.'],
-            'DECIFRE A TRANSMISSÃO ESCONDIDA.',
-            'DIZ {word}. VOCÊ CONHECE ESSA BATIDA. É HALE.',
-            'O CILINDRO RACHA.', 'wireless'),
-        beat('encode', 'NÃO CONFIE EM NINGUÉM', [
-            'HALE CONTROLA AS LINHAS DO ALMIRANTADO.',
-            'SÓ SE PODE CONFIAR EM SABIÁ AGORA.'],
-            'ENVIE A PALAVRA DE ALERTA A SABIÁ.',
-            "SABIÁ RESPONDE: 'ENTENDIDO. NÃO CONFIE EM NINGUÉM.'",
-            'A MENSAGEM SAI NUMA FAIXA ABERTA. HALE ESCUTA.', 'wireless'),
-        beat('decode', 'HALE CHAMA', [
-            'A LINHA DO ALMIRANTADO ABRE. HALE ESTÁ CHAMANDO. MUITO CALMO.',
-            'CALMO DEMAIS. HÁ UMA PALAVRA-CÓDIGO ESCONDIDA NO TRÁFEGO.'],
-            'DECIFRE A PALAVRA-CÓDIGO.',
-            'A PALAVRA É {word}. SIGNIFICA: SILENCIAR O POSTO SETE.',
-            'HALE FECHA A LINHA.', 'wireless'),
+    dict(title='LAKEHURST', intro=[
+        'MAIO DE 1937. PAZ, MAIS OU MENOS. VOCÊ É TELEGRAFISTA NUM TRANSATLÂNTICO.',
+        'O HINDENBURG VEM DE FRANKFURT, ATRASADO PELO VENTO CONTRA.',
+        'O OFICIAL DE RÁDIO BALANÇA OS TRAÇOS. BRANDT, LIVRE E VOANDO DE NOVO.'], beats=[
+        new_mission('decode', 'VELHOS INIMIGOS', [
+            'BRANDT TAMBÉM CONHECE SUA BATIDA. MANDA UMA PIADA, FORA DO REGISTRO.'],
+            'COPIE A PIADA.',
+            "'{word}'. VOCÊ RI SOZINHO NA SALA DE RÁDIO. VINTE ANOS.",
+            'ELE MANDA DE NOVO, MAIS DEVAGAR. ESTÁ SE DIVERTINDO.', 'wireless'),
+        new_mission('encode', 'O TEMPO', [
+            'O DIRIGÍVEL QUER A PREVISÃO DO TEMPO EM NOVA JERSEY.',
+            'TEMPESTADES, MELHORANDO À NOITE.'],
+            'ENVIE A PREVISÃO.',
+            "BRANDT: 'DANKE. ATÉ A PRÓXIMA GUERRA.' VOCÊS FINGEM QUE TEM GRAÇA.",
+            'O DIRIGÍVEL SEGUE SEM A SUA PREVISÃO.', 'wireless'),
+        new_mission('decode', 'O FLASH', [
+            '19H25. UM FLASH NO CIRCUITO DE NOTÍCIAS. QUEM TRANSMITE ESTÁ TREMENDO.',
+            'O HINDENBURG PEGOU FOGO AO ATRACAR. QUEIMOU EM TRINTA E QUATRO SEGUNDOS.'],
+            'COPIE O FLASH.',
+            '{word}. TRINTA E SEIS MORTOS. O OFICIAL DE RÁDIO VIVEU. MÃOS QUEIMADAS.',
+            'O FLASH SE PERDE. O MUNDO INTEIRO ESTÁ TRANSMITINDO.', 'wireless'),
     ]),
-    dict(title='SEM ALIADOS', intro=[
-        'AGORA O ALMIRANTADO DIZ QUE VOCÊ ABANDONOU O POSTO.',
-        'UM AVIÃO DO CORVO ESTÁ VINDO PARA O POSTO.',
-        'O CAMPO DE POUSO AINDA PODE OUVIR UM CHAMADO HONESTO.'], beats=[
-        beat('encode', 'PEDIDO DE SOCORRO', [
-            'O AVIÃO JÁ ESTÁ SOBRE O MAR.',
-            'O CAMPO DE POUSO É SUA ÚNICA CHANCE.'],
-            'ENVIE O PEDIDO DE SOCORRO.',
-            'DOIS BIPLANOS SOBEM PARA ENFRENTÁ-LO. O INTRUSO RECUA.',
-            'NINGUÉM RESPONDE.', 'air'),
-        beat('decode', 'O PILOTO', [
-            'O CORVO BLOQUEIA A FAIXA. UM DOS PILOTOS AINDA CONSEGUE PASSAR.',
-            'VOCÊ PRECISA SABER QUEM ESTÁ LÁ EM CIMA.'],
-            'DECIFRE O INDICATIVO DO PILOTO.',
-            'INDICATIVO {word}. UM ALIADO. O CÉU ESTÁ GARANTIDO.',
-            'A INTERFERÊNCIA ENGOLE TUDO.', 'air'),
-        beat('encode', 'A ISCA', [
-            'HALE ACHA QUE ACABOU PARA VOCÊ.',
-            'ENVIE ALGO EM QUE HALE VAI ACREDITAR: UMA RENDIÇÃO.'],
-            'ENVIE A PALAVRA DE RENDIÇÃO.',
-            "HALE MORDE A ISCA: 'VENHA AO POSTO. SEM NINGUÉM.'",
-            'HALE DESCONFIA DA ARMADILHA.', 'wireless'),
+    dict(title='ESTAÇÃO Y', intro=[
+        'SETEMBRO DE 1939. GUERRA DE NOVO. VELHO DEMAIS, DIZEM, ATÉ TE OUVIREM.',
+        'UM BARRACÃO NO INTERIOR. QUARENTA RECEPTORES. TRÁFEGO ALEMÃO EM GRUPOS.',
+        'TUDO VAI PARA UM LUGAR CHAMADO ESTAÇÃO X. NINGUÉM TE DIZ POR QUÊ.'], beats=[
+        new_mission('decode', 'A MÁQUINA', [
+            'UMA REDE DA LUFTWAFFE, RÁPIDA E LIMPA.',
+            'UMA CIFRA DE MÁQUINA. OS ALEMÃES DIZEM QUE É INQUEBRÁVEL.'],
+            'COPIE O GRUPO.',
+            '{word}. NO CESTO. UM MOTOCICLISTA LEVA O CESTO PARA O SUL.',
+            'PERDEU. O COLEGA DO LADO PEGOU. DESTA VEZ.', 'air'),
+        new_mission('decode', 'UM TELEGRAFISTA PREGUIÇOSO', [
+            'UM TELEGRAFISTA ALEMÃO COMEÇA TODA MENSAGEM COM A MESMA PALAVRA.',
+            'A ESTAÇÃO X CHAMA ISSO DE COLA. UMA COLA ABRE UM DIA INTEIRO DE TRÁFEGO.'],
+            'COPIE A PALAVRA FAVORITA DELE.',
+            '{word}. VOCÊ CIRCULA DUAS VEZES COM LÁPIS VERMELHO.',
+            'ELE É RÁPIDO DEMAIS. AMANHÃ ELE MANDA DE NOVO.', 'air'),
+        new_mission('encode', 'A COLA', [
+            'SEU SUPERVISOR QUER A COLA NA ESTAÇÃO X IMEDIATAMENTE.'],
+            'ENVIE A COLA.',
+            'À MEIA-NOITE A ESTAÇÃO X ESTÁ LENDO A LUFTWAFFE. NINGUÉM TE CONTA.',
+            'O TELEIMPRESSOR TRAVA.', 'wireless', echo=True),
     ]),
-    dict(title='O ARTEFATO', intro=[
-        'HALE NÃO VEIO SEM COMPANHIA.',
-        'UM ARTEFATO FOI DEIXADO SOB A SALA DO TRANSMISSOR.',
-        'O RELÓGIO JÁ ESTÁ CORRENDO.'], beats=[
-        beat('decode', 'O DIAGRAMA', [
-            'SABIÁ TEM O DIAGRAMA.',
-            'SABIÁ TRANSMITE O PRIMEIRO PASSO, DEVAGAR.'],
-            'DECIFRE O PRIMEIRO FIO.',
-            'O FIO {word} ESTÁ CORTADO. SUAS MÃOS TREMEM.',
-            'VOCÊ ERRA. O RELÓGIO ACELERA.', 'bomb'),
-        beat('encode', 'O MANIPULADOR', [
-            'O ARTEFATO TEM SEU PRÓPRIO MANIPULADOR TELEGRÁFICO.',
-            'ELE QUER UM CÓDIGO, ENVIADO SEM ERROS.'],
-            'ENVIE O CÓDIGO DE DESARME.',
-            'A PRIMEIRA TRAVA SE SOLTA. FALTA UMA.',
-            'O RELÓGIO NÃO PARA.', 'bomb'),
-        beat('encode', 'ÚLTIMA TRAVA', [
-            'UMA TRAVA. O RELÓGIO CONTA EM SEGUNDOS.',
-            'LÁ FORA, HALE ESPERA OUVIR A EXPLOSÃO.'],
-            'ENVIE O CÓDIGO FINAL.',
-            'O RELÓGIO PARA. VOCÊ LEMBRA DE RESPIRAR.',
-            'O POSTO SETE DEIXOU DE EXISTIR.', 'bomb'),
+    dict(title='DUNQUERQUE', intro=[
+        'MAIO DE 1940. O EXÉRCITO ESTÁ ENCURRALADO NUMA PRAIA NA FRANÇA.',
+        'TODO BARCO DA COSTA SUL DA INGLATERRA VAI BUSCAR OS HOMENS.',
+        'OS BARQUINHOS NÃO TÊM RÁDIO. OS CONTRATORPEDEIROS TÊM.'], beats=[
+        new_mission('decode', 'A PRAIA', [
+            'UM CONTRATORPEDEIRO INFORMA ONDE HÁ MAIS HOMENS NA AREIA.'],
+            'COPIE O CÓDIGO DA PRAIA.',
+            '{word}. OS BARQUINHOS SEGUEM PARA LÁ.',
+            'O NAVIO SAI DO AR SOB FOGO. ELE VOLTA. ESCUTE.', 'sea'),
+        new_mission('encode', 'ATAQUE AO AMANHECER', [
+            'A ESTAÇÃO X LEU UMA ORDEM DA LUFTWAFFE: ATAQUE AO NASCER DO SOL.',
+            'NINGUÉM PODE DIZER COMO SABEM. VOCÊ MANDA COMO SE FOSSE UM PALPITE.'],
+            'AVISE OS CONTRATORPEDEIROS.',
+            'OS NAVIOS SE DISPERSAM. AS BOMBAS CAEM NA ÁGUA VAZIA.',
+            'O AVISO CHEGA JUNTO COM AS BOMBAS.', 'air'),
+        new_mission('decode', 'A CONTAGEM', [
+            '4 DE JUNHO. O ÚLTIMO NAVIO INFORMA QUANTOS VOLTARAM.'],
+            'COPIE A PALAVRA-CÓDIGO.',
+            '{word}. 338 MIL HOMENS. OS JORNAIS CHAMAM DE MILAGRE.',
+            'O SINAL SE DESFAZ. ELE VAI VOLTAR.', 'sea'),
+    ]),
+    dict(title='BISMARCK', intro=[
+        'MAIO DE 1941. O BISMARCK AFUNDOU O HOOD. 1.415 MORTOS. TRÊS SOBREVIVERAM.',
+        'DEPOIS O BISMARCK SOME NO ATLÂNTICO.',
+        'A MARINHA INTEIRA PROCURA POR ELE. VOCÊ ESCUTA.'], beats=[
+        new_mission('decode', 'O SINAL LONGO', [
+            'O ALMIRANTE ACHA QUE AINDA ESTÁ SENDO SEGUIDO. TRANSMITE POR MEIA HORA.',
+            'UM SINAL LONGO É UMA MARCAÇÃO, PARA QUEM FOR RÁPIDO.'],
+            'COPIE O INDICATIVO DELE.',
+            '{word}. AS MARCAÇÕES SE CRUZAM. ELE ESTÁ FUGINDO PARA A FRANÇA.',
+            'A MARCAÇÃO SAIU IMPRECISA. ESCUTE DE NOVO.', 'harbour'),
+        new_mission('decode', 'UM PAI', [
+            'UM GENERAL DA LUFTWAFFE PERGUNTA PARA ONDE VAI O BISMARCK.',
+            'O FILHO ESTÁ A BORDO. ELE PERGUNTA NUMA REDE QUE A ESTAÇÃO X LÊ.'],
+            'COPIE A RESPOSTA.',
+            '{word}. UM PAI PREOCUPADO COM O FILHO. ISSO VAI MATAR O FILHO.',
+            'A RESPOSTA SE PERDE. O GENERAL VAI PERGUNTAR DE NOVO.', 'air', word='BREST'),
+        new_mission('encode', 'SWORDFISH', [
+            'BIPLANOS VELHOS NO ARK ROYAL ESPERAM UM RUMO.'],
+            'ENVIE O RUMO.',
+            'UM TORPEDO TRAVA O LEME. O BISMARCK SÓ CONSEGUE NAVEGAR EM CÍRCULOS.',
+            'OS BIPLANOS VASCULHAM UM MAR VAZIO.', 'air'),
+    ]),
+    dict(title='PIANISTA', intro=[
+        '1943. UMA MULHER DE UNIFORME CHEGA AO BARRACÃO. EVELYN MARSH.',
+        'ELA COMANDA AS COMUNICAÇÕES DE UM SERVIÇO QUE MANDA AGENTES À FRANÇA.',
+        'OS RADIOTELEGRAFISTAS SÃO CHAMADOS DE PIANISTAS. DURAM UMAS SEIS SEMANAS.',
+        'ELA PRECISA DA MELHOR BATIDA DA INGLATERRA. LAMENTA TER DE PEDIR.'], beats=[
+        new_mission('encode', 'VERIFICAÇÃO', [
+            'TODO PIANISTA TEM UM ERRO SECRETO PARA COMETER DE PROPÓSITO.',
+            'SE O ERRO FALTAR, LONDRES SABE QUE VOCÊ FOI PRESO.'],
+            'ENVIE SUA PALAVRA DE VERIFICAÇÃO.',
+            "MARSH: 'ÓTIMO. NUNCA ESQUEÇA. NUNCA ENVIE SE ELES TE PEGAREM.'",
+            'ERRADO. DE NOVO. SUA VIDA VAI DEPENDER DISSO.', 'wireless'),
+        new_mission('encode', 'O SALTO', [
+            'NOITE SEM LUA SOBRE A DORDONHA. UM SALTO DE PARAQUEDAS. UM CAMPO.',
+            'UMA LANTERNA PISCA UMA LETRA NO ESCURO. RESPONDA COM A SUA.'],
+            'PISQUE A RESPOSTA.',
+            'MÃOS TE PUXAM DO TRIGAL. VOCÊ ESTÁ NA FRANÇA.',
+            'NENHUMA RESPOSTA DO CAMPO. O PILOTO DÁ MAIS UMA VOLTA.', 'air'),
+        new_mission('decode', 'PRIMEIRO CONTATO', [
+            'SEU RÁDIO ESTÁ NUMA MALA NUM CELEIRO. LONDRES CHAMA ÀS 21H.',
+            'É A PRÓPRIA MARSH NA TECLA. VOCÊ CONHECE A BATIDA DELA.'],
+            'COPIE LONDRES.',
+            "{word}. DEPOIS, FORA DO HORÁRIO: 'CUIDE-SE, CORUJA.'",
+            'O HORÁRIO COMBINADO PASSA. LONDRES TENTA AMANHÃ.', 'wireless'),
+    ]),
+    dict(title='O FURGÃO', intro=[
+        'PRIMAVERA DE 1944. FURGÕES ALEMÃES DE RADIOGONIOMETRIA RONDAM AS ESTRADAS.',
+        'O MELHOR CAÇADOR É UM VELHO RADIOTELEGRAFISTA COM AS MÃOS QUEIMADAS.',
+        'BRANDT. ELE ESTÁ À ESCUTA DE UMA BATIDA QUE CONHECE BEM.',
+        'TRANSMITA EM MENOS DE CINCO MINUTOS. NUNCA DUAS VEZES DA MESMA CASA.'], beats=[
+        new_mission('encode', 'CINCO MINUTOS', [
+            'LONDRES QUER OS HORÁRIOS DOS TRENS. O FURGÃO ESTÁ NA ESTRADA PRINCIPAL.'],
+            'ENVIE E SAIA DO AR.',
+            'FORA DO AR. O FURGÃO PASSA PELA PORTEIRA DA FAZENDA. E SEGUE.',
+            'O FURGÃO REDUZ NA PORTEIRA. CORRA. TENTE AMANHÃ.', 'road'),
+        new_mission('decode', 'BRANDT CHAMA', [
+            'NA SUA PRÓPRIA FREQUÊNCIA, UM BALANÇO PREGUIÇOSO NOS TRAÇOS. NÃO É LONDRES.',
+            'BRANDT ESTÁ TRANSMITINDO PARA VOCÊ. QUER QUE VOCÊ SAIBA QUE ELE SABE.'],
+            'COPIE BRANDT.',
+            "{word}. DEPOIS: 'OLÁ, CORUJA.' AGORA ELE SABE SEU NOME.",
+            'ELE PARA. ELE PODE ESPERAR. ELE É BOM EM ESPERAR.', 'road'),
+        new_mission('encode', 'QUEIMADO', [
+            'VOCÊ LEVA O RÁDIO NUMA CARROÇA DE NABOS ATÉ UM MOINHO NO RIO.',
+            'LONDRES PRECISA SABER QUE O HORÁRIO ANTIGO FOI DESCOBERTO.'],
+            'ENVIE O ALERTA.',
+            "MARSH: 'ENTENDIDO. VOLTE PARA CASA.' VOCÊ NÃO RESPONDE ESSA PARTE.",
+            'A CARROÇA PERDE UMA RODA. MONTE TUDO DE NOVO.', 'road'),
+    ]),
+    dict(title='VIOLINOS', intro=[
+        'JUNHO DE 1944. DEPOIS DO NOTICIÁRIO, A BBC LÊ RECADOS SEM SENTIDO EM FRANCÊS.',
+        'OS LONGOS SOLUÇOS DOS VIOLINOS DO OUTONO. A INVASÃO ESTÁ VINDO.',
+        'A RESISTÊNCIA VAI CORTAR CADA FERROVIA QUANDO VOCÊ DER A PALAVRA.'], beats=[
+        new_mission('decode', 'O POEMA', [
+            '5 DE JUNHO. O SEGUNDO VERSO DO POEMA. QUER DIZER AMANHÃ.',
+            'LONDRES CONFIRMA EM MORSE. SUA REDE TEM UMA PALAVRA DE AÇÃO PRÓPRIA.'],
+            'COPIE A PALAVRA DE AÇÃO.',
+            '{word}. VOCÊ PEDALA DE FAZENDA EM FAZENDA. À MEIA-NOITE, TRILHOS MINADOS.',
+            'O RÁDIO UIVA. LONDRES REPETE.', 'wireless'),
+        new_mission('encode', 'O VIADUTO', [
+            'OS MAQUIS VÃO EXPLODIR O VIADUTO AO SEU SINAL.',
+            'UM TREM DE TROPAS ESTÁ CHEGANDO.'],
+            'ENVIE O SINAL.',
+            'O VIADUTO CAI NO RIO. NADA ATRAVESSA POR UMA SEMANA.',
+            'O TREM PASSA. ESPERE O PRÓXIMO.', 'rail'),
+        new_mission('decode', 'OS TANQUES', [
+            '6 DE JUNHO. O DESEMBARQUE COMEÇOU NA NORMANDIA. NÃO AQUI.',
+            'AQUI, UMA DIVISÃO PANZER DA SS PARTE PARA O NORTE AO ENCONTRO DELES.'],
+            'COPIE A ROTA DA DIVISÃO.',
+            '{word}. CADA DIA DE ATRASO É UMA PRAIA QUE AGUENTA.',
+            'O FAZENDEIRO QUE VIU OS TANQUES SE ATRAPALHA. ELE VAI REPETIR.', 'road'),
     ]),
     dict(title='SINAL FINAL', intro=[
-        'HALE CORRE PARA O PORTO.',
-        'O MUNDO PRECISA SABER O QUE HALE FEZ.',
-        'UM TRANSMISSOR. UMA NOITE. TODAS AS LETRAS QUE VOCÊ SABE.'], beats=[
-        beat('decode', 'A FUGA', [
-            'HALE SINALIZA PARA UMA EMBARCAÇÃO À ESPERA.',
-            'A BATIDA DE HALE ESTÁ TRÊMULA AGORA.'],
-            'DECIFRE O PLANO.',
-            'HALE PRETENDE FUGIR PARA {word}. NÃO ESTA NOITE.',
-            'A EMBARCAÇÃO SOLTA AS AMARRAS.', 'harbour'),
-        beat('encode', 'A BARREIRA', [
-            'O CAPITÃO DO PORTO AINDA RECEBE ORDENS PELO TELÉGRAFO.',
-            'A BARREIRA PODE SER FECHADA UMA ÚLTIMA VEZ.'],
-            'ENVIE A ORDEM DE FECHAMENTO.',
-            'A BARREIRA SE FECHA. HALE É PRESO NO CAIS.',
-            'A EMBARCAÇÃO DEIXA O PORTO.', 'harbour'),
-        beat('encode', 'A TODAS AS ESTAÇÕES', [
-            'TODAS AS ESTAÇÕES DA COSTA ESTÃO ESCUTANDO ESTA NOITE.',
-            'CONTE A ELAS.'],
-            'ENVIE A PALAVRA FINAL.',
-            'A MENSAGEM CHEGA A TODAS AS ESTAÇÕES. O CORVO ACABOU.',
-            'O TRANSMISSOR FALHA. ENVIE DE NOVO.', 'wireless'),
+        '9 DE JUNHO DE 1944. OS PANZERS VÃO CRUZAR O RIO AO AMANHECER, POR UMA PONTE.',
+        'OS BOMBARDEIROS PODEM DETÊ-LOS, SE SOUBEREM QUAL PONTE. SÓ VOCÊ SABE.',
+        'É UMA MENSAGEM LONGA. BRANDT ESTÁ NA VILA VIZINHA.',
+        'VOCÊ TRANCA A PORTA DO MOINHO E ABRE A MALA.'], beats=[
+        new_mission('encode', 'A PONTE', [
+            'PRIMEIRO A PONTE. CINCO MINUTOS NÃO VÃO BASTAR.',
+            'ENVIE MESMO ASSIM.'],
+            'ENVIE A PONTE.',
+            'LONDRES CONFIRMA. FARÓIS NA ESTRADA DO RIO.',
+            'O SINAL SE DESFAZ. ENVIE DE NOVO.', 'road'),
+        new_mission('encode', 'A HORA', [
+            'AGORA A HORA. O FURGÃO PARA LÁ FORA. BOTAS NO CASCALHO.',
+            'A JANELA DOS FUNDOS ESTÁ ABERTA. VOCÊ FICA NA TECLA.'],
+            'ENVIE A HORA.',
+            'CONFIRMADO. A PORTA TREME SOB A CORONHA DE UM FUZIL.',
+            'CORTARAM A LUZ. A BATERIA. RÁPIDO.', 'road'),
+        new_mission('encode', 'SEM VERIFICAÇÃO', [
+            'A PORTA ESTÁ CEDENDO. DÁ TEMPO DE MAIS UMA PALAVRA.',
+            'VOCÊ OMITE SUA VERIFICAÇÃO, PARA QUE LONDRES SAIBA.',
+            'MARSH ESTÁ NA TECLA. ELA VAI RECONHECER SUA BATIDA.'],
+            'ENVIE A ÚLTIMA PALAVRA.',
+            'ENVIADA. A PORTA CEDE. VOCÊ TIRA A MÃO DA TECLA.',
+            'ELES ESTÃO NO CORREDOR. MAIS UMA TENTATIVA.', 'road'),
     ]),
 ]
 ENDING_PT = [
-    'AMANHECE NA COSTA. O TEMPORAL PASSOU.',
-    'SABIÁ ENVIA UM ÚLTIMO SINAL: PONTO PONTO PONTO TRAÇO PONTO TRAÇO.',
-    'SK. FIM DO SERVIÇO.',
-    'O POSTO SETE ENCERRA AS TRANSMISSÕES.',
+    'A PONTE CAI AO AMANHECER. OS PANZERS CHEGAM ATRASADOS À NORMANDIA.',
+    'EM LONDRES, MARSH REGISTRA UMA ÚLTIMA MENSAGEM SEM VERIFICAÇÃO.',
+    'OS ARQUIVOS FICAM LACRADOS POR 50 ANOS. VOCÊ VIRA UM NÚMERO NUMA PASTA.',
+    'ELA BATE UMA RESPOSTA NO SILÊNCIO:  SK, CORUJA. FIM DO SERVIÇO.',
 ]
 WIN_BANNERS_PT = ['RECEBIDO', 'CONFIRMADO', 'ENTENDIDO']
 LOSE_BANNERS_PT = ['TARDE DEMAIS', 'SEM RESPOSTA', 'SINAL PERDIDO']
@@ -698,21 +933,22 @@ UI = {
         'hints_on': 'HINTS ON  -{cost}', 'incorrect': 'INCORRECT.  {ch} IS {pattern}',
         'sent_need': 'SENT {got} {sent}   NEED {need} {needed}',
         'key': ' KEY ', 'lamp': ' LAMP ',
-        'title_big': 'MORSE CODE', 'subtitle': 'STATION SEVEN  ·  1936',
+        'title_big': 'MORSE CODE', 'subtitle': 'THE LISTENER  ·  1912 - 1944',
         'tap_hold': 'TAP SPACE = DIT {dot}        HOLD SPACE = DAH {dah}',
         'menu_begin': '[ENTER] BEGIN', 'menu_continue': '[C] CONTINUE FROM CHAPTER {n}',
         'menu_rest': '[F] PRACTICE   [L] LANGUAGE   [Q] QUIT',
         'chapter_label': 'CHAPTER {n}', 'first_letters': 'YOUR FIRST LETTERS', 'new_letters': 'NEW LETTERS',
+        'review_letters': 'REVIEW: NO NEW LETTERS, MORE PRACTICE',
         'try_them': 'TRY THEM ▸ ', 'enter_begin': '[ENTER] BEGIN',
         'chapter_help': 'TAP / HOLD SPACE TO PRACTISE   [TAB] HEAR THEM AGAIN',
         'brief_line': 'CHAPTER {n} · {title}', 'code_word': 'CODE WORD:  {word}', 'ready': '[ENTER] READY',
         'encode_help': 'TAP SPACE = DIT •    HOLD SPACE = DAH ━    [TAB] HINT    [ESC] QUIT',
-        'no_lamp': 'NO LAMP FROM HERE ON. LISTEN.',
+        'no_lamp': 'NO LAMP FROM HERE ON. LISTEN.', 'no_tape': 'NO TAPE NOW. WATCH THE LAMP, AND LISTEN.',
         'decode_help': 'TYPE THE LETTERS YOU HEAR    [TAB] REPEAT    [ESC] QUIT',
         'time_bonus': '+{bonus} TIME BONUS', 'lives_left': 'LIVES LEFT: {n}. TRY AGAIN.',
         'no_lives': 'NO LIVES LEFT.', 'continue': '[ENTER] CONTINUE',
         'practice': 'PRACTICE', 'free_help': 'TAP = DIT  ·  HOLD = DAH  ·  [BKSP] ERASE  ·  [ESC] BACK',
-        'over_big': 'SIGNAL LOST', 'over_line': 'STATION SEVEN HAS GONE SILENT.',
+        'over_big': 'SIGNAL LOST', 'over_line': 'THE KEY HAS GONE SILENT.',
         'final_score': 'FINAL SCORE {score:06d}', 'new_best': 'NEW BEST',
         'over_continue': 'CONTINUE FROM CHAPTER {n} ON THE TITLE SCREEN.',
         'end_big': 'END OF WORK',
@@ -724,22 +960,23 @@ UI = {
         'hints_on': 'DICAS LIGADAS  -{cost}', 'incorrect': 'ERRADO.  {ch} É {pattern}',
         'sent_need': 'ENVIOU {got} {sent}   ERA {need} {needed}',
         'key': ' TECLA ', 'lamp': ' LUZ ',
-        'title_big': 'CÓDIGO MORSE', 'subtitle': 'POSTO SETE  ·  1936',
+        'title_big': 'CÓDIGO MORSE', 'subtitle': 'O OUVINTE  ·  1912 - 1944',
         'tap_hold': 'TOQUE O ESPAÇO = PONTO {dot}      SEGURE O ESPAÇO = TRAÇO {dah}',
         'menu_begin': '[ENTER] COMEÇAR', 'menu_continue': '[C] CONTINUAR DO CAPÍTULO {n}',
         'menu_rest': '[P] PRATICAR   [L] IDIOMA   [Q] SAIR',
         'chapter_label': 'CAPÍTULO {n}', 'first_letters': 'SUAS PRIMEIRAS LETRAS', 'new_letters': 'LETRAS NOVAS',
+        'review_letters': 'REVISÃO: SEM LETRAS NOVAS, MAIS PRÁTICA',
         'try_them': 'EXPERIMENTE ▸ ', 'enter_begin': '[ENTER] COMEÇAR',
         'chapter_help': 'TOQUE / SEGURE O ESPAÇO PARA PRATICAR   [TAB] OUVIR DE NOVO',
         'brief_line': 'CAPÍTULO {n} · {title}', 'code_word': 'PALAVRA-CÓDIGO:  {word}', 'ready': '[ENTER] PRONTO',
         'encode_help': 'TOQUE = PONTO •    SEGURE = TRAÇO ━    [TAB] DICA    [ESC] SAIR',
-        'no_lamp': 'DAQUI EM DIANTE, SEM LUZ. ESCUTE.',
+        'no_lamp': 'DAQUI EM DIANTE, SEM LUZ. ESCUTE.', 'no_tape': 'SEM FITA AGORA. OLHE A LUZ E ESCUTE.',
         'decode_help': 'DIGITE AS LETRAS QUE OUVIR    [TAB] REPETIR    [ESC] SAIR',
         'time_bonus': '+{bonus} BÔNUS DE TEMPO', 'lives_left': 'VIDAS RESTANTES: {n}. TENTE DE NOVO.',
         'no_lives': 'SEM VIDAS.', 'continue': '[ENTER] CONTINUAR',
         'practice': 'PRÁTICA',
         'free_help': 'TOQUE = PONTO  ·  SEGURE = TRAÇO  ·  [BKSP] APAGAR  ·  [ESC] VOLTAR',
-        'over_big': 'SINAL PERDIDO', 'over_line': 'O POSTO SETE SILENCIOU.',
+        'over_big': 'SINAL PERDIDO', 'over_line': 'A TECLA SILENCIOU.',
         'final_score': 'PONTUAÇÃO FINAL {score:06d}', 'new_best': 'NOVO RECORDE',
         'over_continue': 'CONTINUE DO CAPÍTULO {n} NA TELA INICIAL.',
         'end_big': 'FIM DA ESCUTA',
@@ -757,10 +994,23 @@ def unlocked(chapter):
     return ''.join(LEVELS[:chapter])
 
 
-def pick_word(chapter, lang):
+def focus_letters(chapter):
+    """The letters a chapter drills: its new ones, or for a review chapter the two groups before it."""
+    return LEVELS[chapter - 1] or ''.join([g for g in LEVELS[:chapter] if g][-2:])
+
+
+def longest_word(chapter, mode):
+    """Received words restart short each time an aid comes off, then grow a letter a chapter."""
+    if mode == 'decode':
+        aid_removed_at = max(c for c in (1, LAMP_ONLY_FROM, SOUND_ONLY_FROM) if c <= chapter)
+        return min(7, 4 + chapter - aid_removed_at)
+    return min(8, 4 + chapter // 3)
+
+
+def pick_word(chapter, lang, mode):
     known = set(unlocked(chapter))
-    new = set(LEVELS[chapter - 1])
-    pool = [w for w in WORDS[lang] if set(w) <= known and len(w) <= 3 + chapter]
+    new = set(focus_letters(chapter))
+    pool = [w for w in WORDS[lang] if set(w) <= known and len(w) <= longest_word(chapter, mode)]
     fresh = [w for w in pool if set(w) & new]
     if fresh and random.random() < .7:
         return random.choice(fresh)
@@ -947,7 +1197,7 @@ class MorseGame:
         self.saved_chapter = max(self.saved_chapter, self.chapter)
         self.store_progress()
         self.beat_no, self.free_text = 0, ''
-        self.new_letters = LEVELS[self.chapter - 1]
+        self.new_letters = focus_letters(self.chapter)
         self.set_state('chapter', now)
         self.play_new_letters(delay=2.5)
 
@@ -961,7 +1211,7 @@ class MorseGame:
         self.beat = self.chapters[self.chapter - 1]['beats'][self.beat_no]
         self.mode = self.beat['mode']
         echo = self.beat['echo'] and self.last_word
-        self.word = self.last_word if echo else pick_word(self.chapter, self.lang)
+        self.word = self.beat['word'] or (self.last_word if echo else pick_word(self.chapter, self.lang, self.mode))
         self.audio.stop_signal_playback()
         self.set_state('brief', now)
 
@@ -970,13 +1220,13 @@ class MorseGame:
         self.pos, self.hint = 0, self.chapter <= 3
         ch, n = self.chapter, len(self.word)
         if self.mode == 'decode':
-            wpm, farnsworth = min(12 + ch, 24), max(1.0, 3.6 - .3 * ch)
+            wpm, farnsworth = min(11 + ch * .5, 19), max(1.3, 3.4 - .12 * ch)
             self.on, sig_len = schedule(self.word, wpm, farnsworth)
-            self.radio_only = ch > 4
+            self.show_lamp, self.show_tape = ch < SOUND_ONLY_FROM, ch < LAMP_ONLY_FROM
             self.replay(now, lead=.8)
-            budget = sig_len + .8 + n * max(1.8, 4.5 - .3 * ch)
+            budget = sig_len + .8 + n * max(2.5, 5 - .15 * ch)
         else:
-            budget = n * max(2.2, 7 - .45 * ch)
+            budget = n * max(3, 7 - .25 * ch)
         self.t_total = budget + 2
         self.t_end = now + self.t_total
         self.next_beat = now
@@ -1265,7 +1515,8 @@ class MorseGame:
         c.center(2, self.text('chapter_label', n=self.chapter), DIM)
         big_center(c, 3, chap['title'], AMBER)
         self.draw_typed_lines(c, 8, chap['intro'], now)
-        c.center(12, self.text('first_letters' if self.chapter == 1 else 'new_letters'), TEAL)
+        label = 'first_letters' if self.chapter == 1 else 'new_letters' if LEVELS[self.chapter - 1] else 'review_letters'
+        c.center(12, self.text(label), TEAL)
         col_w = 76 // len(self.new_letters)
         last = self.free_text.rstrip()[-1:]
         for i, ch in enumerate(self.new_letters):
@@ -1282,7 +1533,7 @@ class MorseGame:
         self.draw_hud(c)
         self.draw_header(c, self.text('brief_line', n=self.chapter, title=self.chapters[self.chapter - 1]['title']))
         self.draw_scene(c, now, self.beat['scene'], 0)
-        if self.draw_typed_lines(c, 14, self.beat['brief'] + ['', self.beat['task']], now):
+        if self.draw_typed_lines(c, 14, [self.fmt(ln) for ln in self.beat['brief']] + ['', self.beat['task']], now):
             if self.mode == 'encode':
                 c.center(19, self.text('code_word', word=self.word), AMBER)
             if int(now * 1.5) % 2:
@@ -1312,11 +1563,14 @@ class MorseGame:
             help_ = self.text('encode_help')
         else:
             t = now - self.sig_t0
-            if self.radio_only:
+            if not self.show_lamp:
                 c.center(20, self.text('no_lamp'), DIM)
             else:
                 lit = any(s <= t < e for s, e, _, _ in self.on)
                 c.put(2, 20, self.text('lamp'), INK if lit else DIM, LAMP if lit else FAINT)
+            if self.show_lamp and not self.show_tape:
+                c.put(10, 20, self.text('no_tape'), DIM)
+            elif self.show_tape:
                 letters = {}
                 for s, _, e, li in self.on:
                     if s <= t:
@@ -1424,12 +1678,17 @@ def selftest():
         chapters = CHAPTERS[lang]
         assert len(chapters) == len(LEVELS) and set(UI[lang]) == set(UI['en'])
         assert all(set(w) <= set(MORSE) for w in WORDS[lang])
+        for n, ch in enumerate(chapters, 1):
+            for b in ch['beats']:
+                assert not b['word'] or set(b['word']) <= set(unlocked(n)), (lang, n, b['word'])
+                assert any(set(w) <= set(unlocked(n)) and len(w) <= longest_word(n, b['mode'])
+                           for w in WORDS[lang]), (lang, n, b['mode'])
         assert all(len(ch['beats']) == 3 and big_text_width(ch['title']) <= 80 for ch in chapters)
         assert all(big_text_width(b) <= 80 for b in WIN_BANNERS[lang] + LOSE_BANNERS[lang])
         lines = ENDING[lang] + [ln for ch in chapters for ln in ch['intro']]
         for b in (b for ch in chapters for b in ch['beats']):
             assert b['scene'] in SCENES
-            lines += b['brief'] + [b['task'], b['win'].format(word='W' * 8), b['lose'].format(word='W' * 8)]
+            lines += [ln.format(word='W' * 8) for ln in b['brief']] + [b['task'], b['win'].format(word='W' * 8), b['lose'].format(word='W' * 8)]
         assert all(len(ln) <= 78 for ln in lines), [ln for ln in lines if len(ln) > 78]
 
 

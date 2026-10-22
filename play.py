@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""TERMINAL CARTRIDGES - pick a cartridge: MORSE CODE (Station Seven, 1936) or VIM (Sublevel 7, 1999).
+"""TERMINAL CARTRIDGES - pick a cartridge: MORSE CODE (The Listener, 1912-1944) or VIM (Sublevel 7, 1999).
 
 Left/right (or h/l) chooses, Enter or space inserts the cartridge, q quits.
 Each game's own quit (Esc or q on its title screen) ejects back here.
@@ -33,7 +33,7 @@ TERMINAL = ['..SSSSSSSSSSSSSSSS..', '..SKKKKKKKKKKKKKKS..', '..SKGGGG.PPPKKKKKS.
             '....................']
 
 CARTRIDGES = [
-    dict(title='MORSE CODE', subtitle='STATION SEVEN', stripes=[ORANGE, RED, BRASS], art=TELEGRAPH_KEY,
+    dict(title='MORSE CODE', subtitle='THE LISTENER', stripes=[ORANGE, RED, BRASS], art=TELEGRAPH_KEY,
          start=lambda args, audio, releases: morse.MorseGame(args, audio, releases)),
     dict(title='VIM', subtitle='SUBLEVEL 7', stripes=[GREEN, CYAN, PINK], art=TERMINAL,
          start=lambda args, audio, releases: vim.VimGame(args, audio, releases)),

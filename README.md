@@ -5,7 +5,7 @@ cartridge, Atari 2600 style:
 
 | Cartridge | You learn | The story |
 |---|---|---|
-| **MORSE CODE** | Morse code, sending and receiving | 1936. Night operator at a coastal wireless station, chasing a ring of spies. English or Brazilian Portuguese. |
+| **MORSE CODE** | Morse code, sending and receiving | 1912–1944. One wireless operator's life: the Titanic's SOS, Room 40, the Hindenburg, Bletchley's listeners, a last transmission in occupied France. English or Brazilian Portuguese. |
 | **VIM** | vim, from `hjkl` to `.` and `:wq` | December 31, 1999. A lab AI is rewriting the reactor's code, and the only working terminal runs vim. |
 
 ## Get it
@@ -40,7 +40,7 @@ The terminal needs to be at least 80×24. On the picker, `←` `→` (or `h` `l`
 choose, `Enter` inserts the cartridge, `q` quits. Leaving a game's title screen
 (`Esc` or `q`) ejects back to the picker.
 
-## Morse Code — Station Seven, 1936
+## Morse Code — The Listener, 1912–1944
 
 The space bar is your telegraph key.
 
@@ -63,12 +63,15 @@ KEY  • ━            = A   ▮▮▮▯▯
 - **Send missions:** tap out the code word before the timer runs out, while
   the threat on screen (a fuse, an airship, a submarine) moves closer.
 - **Receive missions:** a signal plays and you type the letters you hear.
-  Until chapter 4 a lamp flashes along and the dits and dahs scroll past.
-  From chapter 5 you only hear it.
+  Through chapter 6 a lamp flashes along and the dits and dahs scroll past;
+  chapters 7–9 keep only the lamp; from chapter 10 you only hear it. Each time
+  an aid comes off, received words drop back to four letters and grow again.
 - **Mistakes:** a wrong letter costs time and shows the right pattern:
   `SENT N • ━   NEED A • ━`.
 - **Learning order:** new letters arrive in Koch order (`ETAN`, `IM`, `SO`…),
-  each with a practice screen. Code words only use letters you've learned.
+  each with a practice screen. Every third chapter is a review with no new
+  letters, drilling the two groups before it. Code words only use letters
+  you've learned.
 
 | Screen  | Key | Does |
 |---------|-----|------|
