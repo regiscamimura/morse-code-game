@@ -1,0 +1,3994 @@
+{
+ "levels": [
+  "ETAN",
+  "IM",
+  "SO",
+  "",
+  "RK",
+  "DU",
+  "",
+  "GW",
+  "HV",
+  "",
+  "FL",
+  "BC",
+  "",
+  "PJ",
+  "XY",
+  "",
+  "ZQ"
+ ],
+ "pace": {
+  "wpm": [
+   11,
+   16
+  ],
+  "spacing": [
+   3.4,
+   1.8
+  ],
+  "receive_time": [
+   6.5,
+   3
+  ],
+  "send_time": [
+   8,
+   3.5
+  ],
+  "tape_chapters": 6,
+  "lamp_chapters": 9
+ },
+ "words": {
+  "en": [
+   "TNT",
+   "NET",
+   "TEN",
+   "TAN",
+   "NEAT",
+   "TENT",
+   "ANTE",
+   "ANTENNA",
+   "AIM",
+   "MINE",
+   "MINT",
+   "TIME",
+   "MAN",
+   "MEN",
+   "TEAM",
+   "ITEM",
+   "MAIN",
+   "INMATE",
+   "MEANT",
+   "SOS",
+   "STONE",
+   "SAINT",
+   "MOST",
+   "MOAT",
+   "ATOMS",
+   "MOTION",
+   "NATION",
+   "STATION",
+   "MANSION",
+   "AMMO",
+   "SEA",
+   "MASON",
+   "MOON",
+   "NOON",
+   "ARMS",
+   "STORM",
+   "SMOKE",
+   "STRIKE",
+   "TRAITOR",
+   "MARKS",
+   "TRAIN",
+   "MARINE",
+   "ARMOR",
+   "RANK",
+   "MARK",
+   "STAR",
+   "TRAMS",
+   "ROSE",
+   "RAID",
+   "DUST",
+   "UNDER",
+   "ROUND",
+   "SOUND",
+   "MURDER",
+   "TORNADO",
+   "DIAMOND",
+   "DOOR",
+   "DUKE",
+   "DRUM",
+   "RADIO",
+   "ROUTE",
+   "WAR",
+   "GUN",
+   "GUNS",
+   "WORD",
+   "SWORD",
+   "TOWER",
+   "WAGON",
+   "GRENADE",
+   "WARDEN",
+   "WIDOW",
+   "MAGNET",
+   "WIRE",
+   "WIRES",
+   "WATER",
+   "WINTER",
+   "AGENT",
+   "HUNT",
+   "HUNTER",
+   "SHADOW",
+   "HERO",
+   "SHOT",
+   "THUNDER",
+   "WARHEAD",
+   "INVADE",
+   "INVADER",
+   "HAVEN",
+   "ANTHEM",
+   "NORTH",
+   "SOUTH",
+   "FLAG",
+   "FIRE",
+   "FLARE",
+   "FUSE",
+   "FLEET",
+   "SHELL",
+   "NAVAL",
+   "RIFLE",
+   "FLAME",
+   "FUEL",
+   "SOLDIER",
+   "SIGNAL",
+   "ADMIRAL",
+   "TELEGRAM",
+   "LIGHT",
+   "BOMB",
+   "BUNKER",
+   "CODE",
+   "SECRET",
+   "CANNON",
+   "ATTACK",
+   "BOMBER",
+   "ABORT",
+   "COMBAT",
+   "CASTLE",
+   "BRIDGE",
+   "BULLET",
+   "DECODE",
+   "BEACON",
+   "DOCK",
+   "HARBOUR",
+   "CABLE",
+   "COURIER",
+   "TORPEDO",
+   "PATROL",
+   "PIRATE",
+   "PILOT",
+   "SNIPER",
+   "ESCAPE",
+   "PANIC",
+   "HIJACK",
+   "CIPHER",
+   "PERIL",
+   "TRAP",
+   "CAPTAIN",
+   "PLANS",
+   "PLANE",
+   "OPERATOR",
+   "PASSPORT",
+   "SPY",
+   "ENEMY",
+   "ARMY",
+   "NAVY",
+   "EXPLODE",
+   "MYSTERY",
+   "TYPHOON",
+   "PAYLOAD",
+   "JETTY",
+   "EXPRESS",
+   "ZERO",
+   "BLITZ",
+   "QUAKE",
+   "SQUAD",
+   "QUEST",
+   "FREEZE",
+   "QUAY",
+   "AZIMUTH",
+   "QUEEN",
+   "ZEPPELIN",
+   "AT TEN",
+   "NAN ATE",
+   "TEA AT TEN",
+   "NEAT TENT",
+   "EAT AT TEN",
+   "MEET ME",
+   "I AM IN",
+   "TIME IT",
+   "MINT TEA",
+   "TEN MEN",
+   "NINE MEN",
+   "I MEANT IT",
+   "MEET ME AT NINE",
+   "TINA ATE",
+   "SEE TOM",
+   "MISS ANNA",
+   "AS SOON AS",
+   "MOST MEN",
+   "SAME TIME",
+   "NOT SO",
+   "IT IS TIME",
+   "TOM IS IN",
+   "MISS TESS",
+   "MAKE IT SO",
+   "STORM AT SEA",
+   "MARK IT",
+   "TAKE A TRAIN",
+   "STOKERS ON STRIKE",
+   "MEET AT STATION",
+   "ROSE IS ON TRAIN",
+   "RAIN AT NOON",
+   "SEND MORE",
+   "DINNER AT NINE",
+   "ROAD IS OUT",
+   "STAND TO",
+   "MEN ARE TIRED",
+   "AUNT IS SOUND",
+   "UNDER RADIO",
+   "NEW ORDERS",
+   "GUNS IN TOWN",
+   "WE ARE GOING",
+   "GOOD WORK",
+   "WIND RISING",
+   "STORM WARNING",
+   "TWO WOUNDED",
+   "HAVE A HEART",
+   "HOW ARE THINGS",
+   "HOME SOON",
+   "HAVE ARRIVED",
+   "SEVEN SHOTS",
+   "THE TOWN IS OURS",
+   "HEAVY SNOW",
+   "MOVE NORTH",
+   "ALL IS WELL",
+   "FOG ALL DAY",
+   "FLARES SEEN",
+   "HOLD FIRE",
+   "FIVE MILES",
+   "LEFT FLANK",
+   "LIFE IS GOOD",
+   "COME BACK",
+   "CABLE RECEIVED",
+   "BRIDGE IS CLEAR",
+   "CALL ME",
+   "BLACK CLOUDS",
+   "BACK BY NOON",
+   "COAST IS CLEAR",
+   "PLANE DOWN",
+   "JUMP AT DAWN",
+   "PLAN B",
+   "PASSPORT LOST",
+   "JOIN US",
+   "PACK UP",
+   "SIX SHIPS",
+   "EXPECT DELAY",
+   "YES SIR",
+   "EXTRA SUPPLY",
+   "EVERYONE SAFE",
+   "STAY ALERT",
+   "QUICK MARCH",
+   "QUEEN IS SAFE",
+   "ZERO HOUR",
+   "QUIET NIGHT",
+   "SQUAD READY",
+   "FROZEN SOLID"
+  ],
+  "pt": [
+   "ANTA",
+   "NATA",
+   "ANTE",
+   "TENTA",
+   "ANTENA",
+   "MINA",
+   "MATE",
+   "TIME",
+   "MEIA",
+   "META",
+   "MENTE",
+   "MANTA",
+   "TINTA",
+   "MITO",
+   "NOITE",
+   "MONTE",
+   "SANTO",
+   "MASSA",
+   "ESTANTE",
+   "MISSA",
+   "ASSASSINO",
+   "TOSSE",
+   "MOSTO",
+   "SOS",
+   "MAR",
+   "TREM",
+   "TORRE",
+   "TERRA",
+   "ROTA",
+   "ROSTO",
+   "MORTE",
+   "SERRA",
+   "MESTRE",
+   "ARMAS",
+   "TIRO",
+   "MARINA",
+   "ARMA",
+   "RADIO",
+   "DUNA",
+   "MUNDO",
+   "DESTINO",
+   "ORDEM",
+   "DOURADO",
+   "UNIDADE",
+   "DOMINO",
+   "DEDO",
+   "RUMO",
+   "GUERRA",
+   "AGENTE",
+   "GRANADA",
+   "TIGRE",
+   "GUARDA",
+   "AGUA",
+   "SEGREDO",
+   "NAVIO",
+   "VENTO",
+   "HAVANA",
+   "HORA",
+   "VIGIA",
+   "VINHO",
+   "HINO",
+   "NEVE",
+   "NOVE",
+   "HOMEM",
+   "FAROL",
+   "FOGO",
+   "LUA",
+   "FILME",
+   "SINAL",
+   "LINHA",
+   "FLORESTA",
+   "ALMIRANTE",
+   "TELEGRAMA",
+   "FUGA",
+   "FERRO",
+   "SELO",
+   "BOMBA",
+   "CODIGO",
+   "CIFRA",
+   "BARCO",
+   "CABO",
+   "BALA",
+   "CAIS",
+   "CORREIO",
+   "SECRETO",
+   "ESCUDO",
+   "CASCO",
+   "CERCO",
+   "PILOTO",
+   "PORTO",
+   "PAPEL",
+   "PERIGO",
+   "JANELA",
+   "PIRATA",
+   "PATRULHA",
+   "OPERADOR",
+   "PASSAPORTE",
+   "JORNAL",
+   "HOJE",
+   "EIXO",
+   "TAXI",
+   "PEIXE",
+   "XERIFE",
+   "ROXO",
+   "EXATO",
+   "ZERO",
+   "ZEPELIM",
+   "QUARTEL",
+   "ZONA",
+   "AZUL",
+   "CRUZ",
+   "VOZ",
+   "PAZ",
+   "QUILHA",
+   "BUZINA",
+   "ZARPAR",
+   "AQUI",
+   "A ANTA",
+   "A NATA",
+   "TENTE",
+   "ATENTA",
+   "NETA",
+   "A NETA",
+   "NENE",
+   "TANTA",
+   "ANA TENTA",
+   "A ANTENA",
+   "TE AMEI",
+   "META MENTA",
+   "A MINA",
+   "TIA ANA",
+   "ANIMA",
+   "MANTA NA MATA",
+   "SAIMOS",
+   "ESTAMOS",
+   "NOSSA MAE",
+   "TOMATE",
+   "SEM SONO",
+   "OS TIMES",
+   "MAIS TINTA",
+   "ROTA NORTE",
+   "TREM ATRASA",
+   "MAR TORMENTOSO",
+   "TORRE A TORRE",
+   "O MESTRE",
+   "ADEUS",
+   "MUDAR ROTA",
+   "DUAS NOITES",
+   "UM MINUTO",
+   "DURMA AGORA",
+   "NADA A RELATAR",
+   "MANDE MAIS",
+   "GUARDA NOTURNA",
+   "GRANADAS",
+   "OUTRA GUERRA",
+   "NAVIO NOVO",
+   "VENHA AGORA",
+   "HORA DE IR",
+   "NEVE NA SERRA",
+   "HOMENS EM AVANTE",
+   "HOMENS A VISTA",
+   "FALHA",
+   "FOGO NA LINHA",
+   "FAROL DO NORTE",
+   "TUDO LIMPO",
+   "TUDO EM FILA",
+   "BARCO A VISTA",
+   "CODIGO NOVO",
+   "CABO CORTADO",
+   "COSTA LIVRE",
+   "PULE",
+   "JA ESTOU",
+   "PONTE MINADA",
+   "JANTAR AS NOVE",
+   "PAPEL PERDIDO",
+   "SEIS NAVIOS",
+   "EXPRESSO",
+   "SEXTA SEM FALTA",
+   "QUANDO",
+   "QUEM VEM",
+   "ZERO HORA",
+   "QUASE LA",
+   "ZARPAR AGORA"
+  ]
+ },
+ "chapters": {
+  "en": [
+   {
+    "title": "THE CARPATHIA",
+    "year": "1912",
+    "cover": "carpathia",
+    "beats": [
+     {
+      "mode": "encode",
+      "title": "THE FIRST WIRE",
+      "brief": [
+       "NIGHT OPERATOR, RMS CARPATHIA. A PASSENGER WIRES HOME."
+      ],
+      "win": "CAPE RACE ACKNOWLEDGES. A PENNY TIP.",
+      "scene": "sea",
+      "words": [
+       "TEA AT TEN"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "SHORE WIRES",
+      "brief": [
+       "CAPE RACE SENDS WIRES FOR THE PASSENGERS."
+      ],
+      "win": "THE STEWARD RUNS THEM TO THE CABINS.",
+      "scene": "sea",
+      "count": 3
+     },
+     {
+      "mode": "encode",
+      "title": "MORE WIRES",
+      "brief": [
+       "THE QUEUE AT YOUR DOOR GROWS."
+      ],
+      "win": "THE PURSER COUNTS THE PENNIES.",
+      "scene": "sea",
+      "count": 3
+     },
+     {
+      "mode": "decode",
+      "title": "THE NEWS",
+      "brief": [
+       "2300. THE NIGHTLY NEWS."
+      ],
+      "win": "THE CAPTAIN READS IT WITH HIS COCOA.",
+      "scene": "sea",
+      "count": 2
+     }
+    ]
+   },
+   {
+    "title": "THE TITANIC'S MAIDEN VOYAGE",
+    "year": "1912",
+    "cover": "maiden",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "A NEW SHIP",
+      "brief": [
+       "THE TITANIC IS ON THE AIR. HER PASSENGERS NEVER STOP."
+      ],
+      "win": "MILLIONAIRES, WIRING THEIR VALETS.",
+      "scene": "fog",
+      "count": 3
+     },
+     {
+      "mode": "encode",
+      "title": "PASS IT ON",
+      "brief": [
+       "SHE ASKS YOU TO RELAY THEM ASHORE."
+      ],
+      "win": "THE SHORE ACKNOWLEDGES. THE TITANIC NEVER SAYS THANKS.",
+      "scene": "fog",
+      "echo": true
+     },
+     {
+      "mode": "decode",
+      "title": "MISS MARSH",
+      "brief": [
+       "MISS EVELYN MARSH, NINETEEN, WIRES HER MOTHER."
+      ],
+      "win": "HER MOTHER WILL HAVE QUESTIONS.",
+      "scene": "fog",
+      "words": [
+       "I MET A MAN"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "LATE TRAFFIC",
+      "brief": [
+       "ICE WARNINGS ALL EVENING. THE TITANIC IGNORES THEM."
+      ],
+      "win": "SHE STEAMS ON INTO THE DARK.",
+      "scene": "ice",
+      "count": 2
+     }
+    ]
+   },
+   {
+    "title": "THE SINKING OF THE TITANIC",
+    "year": "1912",
+    "cover": "iceberg",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "DISTRESS",
+      "brief": [
+       "2335. ONE BOOT OFF. THE TITANIC CALLS."
+      ],
+      "win": "SHE HAS STRUCK ICE. YOU RUN TO THE BRIDGE.",
+      "scene": "ice",
+      "words": [
+       "SOS SOS"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "COMING",
+      "brief": [
+       "THE CAPTAIN TURNS THE SHIP. TELL THEM."
+      ],
+      "win": "'COME AS QUICK AS POSSIBLE, OLD MAN.'",
+      "scene": "ice",
+      "words": [
+       "ON IT",
+       "SOON"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "FILLING",
+      "brief": [
+       "FRAGMENTS THROUGH THE STATIC."
+      ],
+      "win": "THE LIFEBOATS ARE GONE.",
+      "scene": "ice",
+      "words": [
+       "NO SEATS",
+       "MEN IN SEA"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "FULL STEAM",
+      "brief": [
+       "FIFTY-EIGHT MILES OF ICE BETWEEN YOU."
+      ],
+      "win": "THE STOKERS SHOVEL LIKE MADMEN.",
+      "scene": "ice",
+      "words": [
+       "STEAM ON",
+       "IN TIME"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "THE LAST WORD",
+      "brief": [
+       "0127. HER POWER IS FAILING."
+      ],
+      "win": "THEN STATIC. ONLY STATIC.",
+      "scene": "ice",
+      "words": [
+       "SOS"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "THE RESCUE",
+    "year": "1912",
+    "cover": "rescue",
+    "beats": [
+     {
+      "mode": "encode",
+      "title": "THE LIST",
+      "brief": [
+       "DAWN. 705 SURVIVORS ABOARD. SEND THE NAMES."
+      ],
+      "win": "SOMEWHERE, FAMILIES STOP WAITING.",
+      "scene": "sea",
+      "words": [
+       "SIMON",
+       "ANNA",
+       "OTTO",
+       "TESS"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "FAMILIES",
+      "brief": [
+       "THE SHORE ASKS FOR THEIR OWN."
+      ],
+      "win": "TOM AND ANNA ARE ABOARD. AMOS IS NOT.",
+      "scene": "sea",
+      "words": [
+       "IS TOM ON",
+       "IS ANNA ON",
+       "IS AMOS ON"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "A PENCIL",
+      "brief": [
+       "MISS MARSH IS ALIVE. SHE TAPS ON YOUR DESK WITH A PENCIL."
+      ],
+      "win": "HE IS NOT ON THE LIST.",
+      "scene": "sea",
+      "words": [
+       "IS MATT ON"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "HOME",
+      "brief": [
+       "ONE WIRE FOR HER MOTHER."
+      ],
+      "win": "SENT. SHE CRIES AT LAST.",
+      "scene": "sea",
+      "words": [
+       "MAMA I MISS MATT"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "NAMES FIRST",
+      "brief": [
+       "THIRTY HOURS WITHOUT SLEEP. MORE WIRES."
+      ],
+      "win": "NEW YORK. YOU SLEEP FOR A DAY.",
+      "scene": "sea",
+      "count": 3
+     }
+    ]
+   },
+   {
+    "title": "THE SCARBOROUGH RAID",
+    "year": "1914",
+    "cover": "scarborough",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "INTERCEPT",
+      "brief": [
+       "WAR. THE NAVY WANTS YOUR EAR ON THE GERMAN FLEET."
+      ],
+      "win": "A DESPATCH RIDER TAKES THEM TO ROOM 40, LONDON.",
+      "scene": "wireless",
+      "groups": true,
+      "count": 4
+     },
+     {
+      "mode": "encode",
+      "title": "THE LANDLINE",
+      "brief": [
+       "LONDON WANTS THEM BY WIRE. NOW."
+      ],
+      "win": "ROOM 40 HAS A CAPTURED CODE BOOK. NO ONE TELLS YOU.",
+      "scene": "wireless",
+      "echo": true
+     },
+     {
+      "mode": "decode",
+      "title": "IN CLEAR",
+      "brief": [
+       "DECEMBER. A CARELESS GERMAN SENDS IN CLEAR."
+      ],
+      "win": "THE SHELLS FALL ON SCARBOROUGH.",
+      "scene": "harbour",
+      "words": [
+       "STRIKE AT NINE"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "REPORTS",
+      "brief": [
+       "LONDON WANTS EVERYTHING YOU HEAR."
+      ],
+      "win": "THE GERMAN SHIPS ESCAPE IN THE MIST.",
+      "scene": "harbour",
+      "count": 3
+     }
+    ]
+   },
+   {
+    "title": "THE SINKING OF THE LUSITANIA",
+    "year": "1915",
+    "cover": "lusitania",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "THE SWING",
+      "brief": [
+       "A U-BOAT OFF IRELAND. A LAZY SWING ON THE DAHS."
+      ],
+      "win": "YOU WILL KNOW THAT FIST ANYWHERE.",
+      "scene": "harbour",
+      "groups": true,
+      "count": 3
+     },
+     {
+      "mode": "decode",
+      "title": "ORDERS",
+      "brief": [
+       "HIS ORDERS COME IN CLEAR."
+      ],
+      "win": "THE LUSITANIA HAS SAILED. TWO THOUSAND ABOARD.",
+      "scene": "harbour",
+      "words": [
+       "SINK STEAMERS"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "WARNING",
+      "brief": [
+       "WARN THE ADMIRALTY."
+      ],
+      "win": "RECEIVED. FILED. NOTHING IS DONE.",
+      "scene": "harbour",
+      "words": [
+       "RAIDER ON ROUTE",
+       "TURN AROUND"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "KINSALE",
+      "brief": [
+       "7 MAY. 1410. OFF THE IRISH COAST."
+      ],
+      "win": "THE LUSITANIA. BIG LIST TO STARBOARD.",
+      "scene": "harbour",
+      "words": [
+       "SOS SOS SOS"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "ANY SHIP",
+      "brief": [
+       "CALL EVERY SHIP NEAR KINSALE."
+      ],
+      "win": "EIGHTEEN MINUTES. 1,198 DEAD. YOU WERE TOO FAR.",
+      "scene": "harbour",
+      "words": [
+       "SEND AID",
+       "SEND STEAMERS"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "THE ZEPPELIN RAIDS",
+    "year": "1916",
+    "cover": "zeppelin",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "BEARINGS",
+      "brief": [
+       "AIRSHIPS BOMB LONDON BY NIGHT. EVERY CALL GIVES THEM AWAY."
+      ],
+      "win": "THE DAHS SWING. THE U-BOAT MAN HAS WINGS NOW.",
+      "scene": "wireless",
+      "groups": true,
+      "count": 4
+     },
+     {
+      "mode": "encode",
+      "title": "NIGHT FIGHTERS",
+      "brief": [
+       "THE FIGHTERS NEED A HEADING."
+      ],
+      "win": "THE AIRSHIP BURNS OVER ESSEX.",
+      "scene": "air",
+      "words": [
+       "TURN EAST",
+       "STRIKE RAIDER"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "THE PIPES",
+      "brief": [
+       "ONE MAN WALKED OUT. IN HIS CELL, HE TAPS ON THE PIPES."
+      ],
+      "win": "HIS NAME IS BRANDT.",
+      "scene": "wireless",
+      "words": [
+       "I AM NOT DEAD",
+       "I MISS DRESDEN"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "TAP BACK",
+      "brief": [
+       "HE THINKS NO ONE CAN READ IT."
+      ],
+      "win": "HE STOPS. THEN HE LAUGHS.",
+      "scene": "wireless",
+      "words": [
+       "I READ IT"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "THE ZIMMERMANN TELEGRAM",
+    "year": "1917",
+    "cover": "telegram",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "THE GROUPS",
+      "brief": [
+       "BERLIN TO WASHINGTON, IN CODE. ROOM 40 HAS A COPY."
+      ],
+      "win": "ONE WRONG LETTER COSTS THE CODEBREAKERS A WEEK.",
+      "scene": "wireless",
+      "groups": true,
+      "count": 4
+     },
+     {
+      "mode": "encode",
+      "title": "TO LONDON",
+      "brief": [
+       "PASS THE GROUPS ON."
+      ],
+      "win": "SOMEONE OPENS A BOOK YOU WILL NEVER SEE.",
+      "scene": "wireless",
+      "echo": true
+     },
+     {
+      "mode": "decode",
+      "title": "WORDS",
+      "brief": [
+       "WORDS COME OUT OF THE CODE. GERMANY IS COURTING MEXICO."
+      ],
+      "win": "IF AMERICA SEES THIS, AMERICA COMES IN.",
+      "scene": "wireless",
+      "words": [
+       "MAKE WAR",
+       "GENEROUS AID"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "COVER STORY",
+      "brief": [
+       "NO ONE MAY KNOW IT CAME FROM ROOM 40."
+      ],
+      "win": "AMERICA DECLARES WAR. THE PAPERS PRAISE A CLEVER SPY.",
+      "scene": "rail",
+      "words": [
+       "OUR AGENT GOT IT"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "THE ARMISTICE",
+    "year": "1918",
+    "cover": "armistice",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "THE TOWER",
+      "brief": [
+       "NOVEMBER. THE EIFFEL TOWER SENDS TO THE WORLD."
+      ],
+      "win": "HOSTILITIES CEASE AT ELEVEN. YOU READ IT TWICE.",
+      "scene": "wireless",
+      "words": [
+       "ARMS DOWN",
+       "THE WAR IS OVER"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "CEASE FIRE",
+      "brief": [
+       "A DESTROYER IN THE CHANNEL HAS NOT HEARD."
+      ],
+      "win": "THE GUNS FALL SILENT AT ELEVEN.",
+      "scene": "harbour",
+      "words": [
+       "DO NOT SHOOT",
+       "GUNS DOWN"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "ANSWERS",
+      "brief": [
+       "SHIPS AND TRENCHES ANSWER, ONE BY ONE."
+      ],
+      "win": "BY NOON THE AIR IS FULL OF CHEERING.",
+      "scene": "wireless",
+      "count": 4
+     },
+     {
+      "mode": "decode",
+      "title": "A WIRE",
+      "brief": [
+       "FROM LONDON. MISS E. MARSH, OF THE WAR OFFICE."
+      ],
+      "win": "SHE REMEMBERS YOUR FIST.",
+      "scene": "rail",
+      "words": [
+       "HAVE TEA WITH ME"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "YOUR ANSWER",
+      "brief": [
+       "YOU ANSWER BY WIRE, OF COURSE."
+      ],
+      "win": "SHE WAITS AT THE STATION IN THE RAIN.",
+      "scene": "rail",
+      "words": [
+       "NAME THE HOUR"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "THE HINDENBURG DISASTER",
+    "year": "1937",
+    "cover": "hindenburg",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "OLD ENEMIES",
+      "brief": [
+       "PEACE. THE HINDENBURG IS INBOUND. HER OPERATOR SWINGS HIS DAHS."
+      ],
+      "win": "BRANDT. TWENTY YEARS. YOU LAUGH ALONE.",
+      "scene": "wireless",
+      "words": [
+       "GUTEN TAG",
+       "HOW GOES IT"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "WEATHER",
+      "brief": [
+       "HE WANTS THE WEATHER OVER NEW JERSEY."
+      ],
+      "win": "'DANKE. SEE YOU IN THE NEXT WAR.'",
+      "scene": "wireless",
+      "words": [
+       "THUNDER",
+       "STRONG WINDS"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "WAITING",
+      "brief": [
+       "THE AIRSHIP CIRCLES, WAITING OUT THE STORM."
+      ],
+      "win": "HE SENDS A STRING OF DITS. LAUGHTER.",
+      "scene": "wireless",
+      "words": [
+       "I HAVE A SON",
+       "HE IS NINE"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "THE FLASH",
+      "brief": [
+       "1925. A PRESS FLASH. THE SENDER IS SHAKING."
+      ],
+      "win": "THIRTY-SIX DEAD. HE LIVED. HANDS BURNED.",
+      "scene": "wireless",
+      "words": [
+       "SHE IS DOWN",
+       "RADIO MAN WOUNDED"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "PASS IT ON",
+      "brief": [
+       "THE WORLD WANTS IT. SEND IT ON."
+      ],
+      "win": "YOUR HANDS ARE SHAKING TOO.",
+      "scene": "wireless",
+      "echo": true
+     }
+    ]
+   },
+   {
+    "title": "THE SECOND WORLD WAR",
+    "year": "1939",
+    "cover": "war",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "THE HUT",
+      "brief": [
+       "WAR AGAIN. A HUT, FORTY RECEIVERS, GERMAN GROUPS ALL NIGHT."
+      ],
+      "win": "A MOTORCYCLE TAKES THE BASKET TO STATION X.",
+      "scene": "air",
+      "groups": true,
+      "count": 5
+     },
+     {
+      "mode": "decode",
+      "title": "A HABIT",
+      "brief": [
+       "ONE GERMAN STARTS EVERY MESSAGE THE SAME WAY."
+      ],
+      "win": "STATION X CALLS IT A CRIB. YOU CIRCLE IT IN RED.",
+      "scene": "air",
+      "words": [
+       "WETTER FOLGT"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "THE CRIB",
+      "brief": [
+       "FLAG IT TO STATION X."
+      ],
+      "win": "BY MIDNIGHT STATION X READS THE LUFTWAFFE.",
+      "scene": "wireless",
+      "echo": true
+     },
+     {
+      "mode": "decode",
+      "title": "MORE GROUPS",
+      "brief": [
+       "THE NIGHT IS LONG."
+      ],
+      "win": "YOUR HAND REMEMBERS THE WORK.",
+      "scene": "air",
+      "groups": true,
+      "count": 4
+     }
+    ]
+   },
+   {
+    "title": "THE EVACUATION OF DUNKIRK",
+    "year": "1940",
+    "cover": "dunkirk",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "THE BEACH",
+      "brief": [
+       "THE ARMY IS TRAPPED ON A BEACH. A DESTROYER REPORTS."
+      ],
+      "win": "THE LITTLE BOATS TURN TOWARD THEM.",
+      "scene": "sea",
+      "words": [
+       "MEN ON THE MOLE",
+       "MALO BEACH CROWDED"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "LITTLE BOATS",
+      "brief": [
+       "EVERY BOAT ON THE SOUTH COAST IS GOING."
+      ],
+      "win": "YACHTS, FERRIES, FISHING BOATS. HUNDREDS.",
+      "scene": "sea",
+      "words": [
+       "ALL BOATS TO MALO",
+       "COME IN CLOSE"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "DAWN RAID",
+      "brief": [
+       "STATION X READ IT: A RAID AT FIRST LIGHT."
+      ],
+      "win": "THE BOMBS FALL INTO EMPTY WATER.",
+      "scene": "air",
+      "words": [
+       "BOMBERS AT DAWN",
+       "SCATTER"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "WHERE TO",
+      "brief": [
+       "THE BOATS ASK WHERE TO GO."
+      ],
+      "win": "BOAT AFTER BOAT, ALL NIGHT.",
+      "scene": "sea",
+      "count": 3
+     },
+     {
+      "mode": "decode",
+      "title": "THE COUNT",
+      "brief": [
+       "4 JUNE. THE LAST SHIP REPORTS."
+      ],
+      "win": "338,000 MEN. THE PAPERS CALL IT A MIRACLE.",
+      "scene": "sea",
+      "words": [
+       "LAST BOAT HOME"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "THE SINKING OF THE BISMARCK",
+    "year": "1941",
+    "cover": "bismarck",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "THE LONG SIGNAL",
+      "brief": [
+       "THE BISMARCK HAS SUNK THE HOOD AND VANISHED."
+      ],
+      "win": "A LONG SIGNAL IS A BEARING. SHE RUNS FOR FRANCE.",
+      "scene": "harbour",
+      "groups": true,
+      "count": 4
+     },
+     {
+      "mode": "decode",
+      "title": "A FATHER",
+      "brief": [
+       "A LUFTWAFFE GENERAL ASKS WHERE SHE GOES. HIS SON IS ABOARD."
+      ],
+      "win": "A FATHER WORRIED FOR HIS SON. IT WILL KILL THE SON.",
+      "scene": "air",
+      "words": [
+       "MAKING FOR BREST"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "SWORDFISH",
+      "brief": [
+       "OLD BIPLANES ON THE ARK ROYAL WAIT FOR A HEADING."
+      ],
+      "win": "A TORPEDO JAMS HER RUDDER. SHE TURNS IN CIRCLES.",
+      "scene": "air",
+      "words": [
+       "COURSE SOUTH EAST",
+       "STRIKE AT DUSK"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "27 MAY",
+      "brief": [
+       "THE FLEET CLOSES IN."
+      ],
+      "win": "TWO THOUSAND MEN. ONE OF THEM A GENERAL'S SON.",
+      "scene": "harbour",
+      "words": [
+       "BISMARCK SINKING"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "THE NEWS",
+      "brief": [
+       "THE ADMIRALTY WANTS IT RELAYED."
+      ],
+      "win": "THE HOOD IS AVENGED, THE PAPERS SAY.",
+      "scene": "harbour",
+      "echo": true
+     }
+    ]
+   },
+   {
+    "title": "INTO OCCUPIED FRANCE",
+    "year": "1943",
+    "cover": "france",
+    "beats": [
+     {
+      "mode": "encode",
+      "title": "SECURITY CHECK",
+      "brief": [
+       "EVELYN MARSH RUNS AGENTS IN FRANCE. EACH HAS A SECRET MISTAKE."
+      ],
+      "win": "MARSH: 'NEVER SEND IT IF THEY HAVE YOU.'",
+      "scene": "wireless",
+      "words": [
+       "JUPITER"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "TRAINING",
+      "brief": [
+       "MARSH KEYS FASTER EVERY DAY."
+      ],
+      "win": "SHE NODS. ONCE.",
+      "scene": "wireless",
+      "count": 4
+     },
+     {
+      "mode": "decode",
+      "title": "THE FIELD",
+      "brief": [
+       "A MOONLESS NIGHT. A TORCH FLASHES FROM A FIELD."
+      ],
+      "win": "HANDS PULL YOU OUT OF THE WHEAT. FRANCE.",
+      "scene": "air",
+      "words": [
+       "JUMP"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "FIRST CONTACT",
+      "brief": [
+       "YOUR SET IS IN A SUITCASE IN A BARN. LONDON CALLS."
+      ],
+      "win": "MARSH IS ON THE KEY HERSELF.",
+      "scene": "wireless",
+      "words": [
+       "WELCOME PIANIST",
+       "TAKE CARE CORUJA"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "FIRST REPORT",
+      "brief": [
+       "UNDER FIVE MINUTES. ALWAYS."
+      ],
+      "win": "OFF THE AIR. FOUR MINUTES.",
+      "scene": "wireless",
+      "count": 3
+     }
+    ]
+   },
+   {
+    "title": "THE RADIO HUNTERS",
+    "year": "1944",
+    "cover": "hunters",
+    "beats": [
+     {
+      "mode": "encode",
+      "title": "FIVE MINUTES",
+      "brief": [
+       "GERMAN DIRECTION-FINDING VANS HUNT THE LANES."
+      ],
+      "win": "THE VAN DRIVES PAST THE GATE. AND PAST.",
+      "scene": "road",
+      "words": [
+       "SIX TRAINS DAILY",
+       "EXPRESS AT DAWN"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "A FIST YOU KNOW",
+      "brief": [
+       "ON YOUR FREQUENCY, A LAZY SWING ON THE DAHS."
+      ],
+      "win": "BRANDT. HE HUNTS FOR THEM NOW.",
+      "scene": "road",
+      "words": [
+       "HELLO CORUJA",
+       "I KNOW YOUR FIST"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "BLOWN",
+      "brief": [
+       "YOU MOVE THE SET IN A CART OF TURNIPS."
+      ],
+      "win": "MARSH: 'COME HOME.' YOU DO NOT ANSWER THAT PART.",
+      "scene": "road",
+      "words": [
+       "SCHEDULE BLOWN",
+       "MOVING"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "ORDERS",
+      "brief": [
+       "LONDON SENDS ORDERS."
+      ],
+      "win": "YOU BURN THE PAGE AND MOVE AGAIN.",
+      "scene": "road",
+      "groups": true,
+      "count": 3
+     },
+     {
+      "mode": "encode",
+      "title": "ANOTHER HOUSE",
+      "brief": [
+       "ANOTHER HOUSE. FIVE MINUTES."
+      ],
+      "win": "OFF THE AIR. THE VAN IS ONE VILLAGE AWAY.",
+      "scene": "road",
+      "count": 3
+     }
+    ]
+   },
+   {
+    "title": "D-DAY",
+    "year": "1944",
+    "cover": "dday",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "THE POEM",
+      "brief": [
+       "AFTER THE NEWS, THE BBC READS NONSENSE POEMS. ONE IS FOR YOU."
+      ],
+      "win": "THE INVASION IS COMING. TOMORROW.",
+      "scene": "wireless",
+      "words": [
+       "LES SANGLOTS LONGS",
+       "BLESSENT MON COEUR"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "THE ACTION WORD",
+      "brief": [
+       "LONDON CONFIRMS BY KEY."
+      ],
+      "win": "YOU CYCLE FARM TO FARM. BY MIDNIGHT THE RAILS ARE MINED.",
+      "scene": "wireless",
+      "words": [
+       "DICE ON THE CARPET"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "THE VIADUCT",
+      "brief": [
+       "THE MAQUIS WILL BLOW THE VIADUCT ON YOUR SIGNAL."
+      ],
+      "win": "THE VIADUCT FALLS INTO THE RIVER.",
+      "scene": "rail",
+      "words": [
+       "TRAIN APPROACHING",
+       "BLOW IT NOW"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "THE TANKS",
+      "brief": [
+       "6 JUNE. THE LANDINGS HAVE BEGUN. A PANZER DIVISION HEADS NORTH."
+      ],
+      "win": "EVERY DAY THEY ARE LATE IS A BEACH THAT HOLDS.",
+      "scene": "road",
+      "words": [
+       "SIXTY TANKS",
+       "MOVING NORTH BY NIGHT"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "TO LONDON",
+      "brief": [
+       "PASS IT ON."
+      ],
+      "win": "THE BOMBERS GO OUT AT DAWN.",
+      "scene": "road",
+      "echo": true
+     }
+    ]
+   },
+   {
+    "title": "THE LAST SIGNAL",
+    "year": "1944",
+    "cover": "last",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "ONE BRIDGE",
+      "brief": [
+       "9 JUNE. THE PANZERS WILL CROSS THE RIVER AT DAWN."
+      ],
+      "win": "ONLY YOU KNOW. BRANDT IS ONE VILLAGE AWAY.",
+      "scene": "road",
+      "words": [
+       "WHICH BRIDGE"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "THE BRIDGE",
+      "brief": [
+       "YOU BOLT THE MILL DOOR AND OPEN THE SUITCASE."
+      ],
+      "win": "LONDON ACKNOWLEDGES. HEADLAMPS ON THE RIVER ROAD.",
+      "scene": "road",
+      "words": [
+       "PANZERS AT DAWN",
+       "BRIDGE AT QUEZAC"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "THE HOUR",
+      "brief": [
+       "THE VAN STOPS OUTSIDE. BOOTS ON THE GRAVEL."
+      ],
+      "win": "THE DOOR SHAKES UNDER A RIFLE BUTT.",
+      "scene": "road",
+      "words": [
+       "CROSSING AT SIX",
+       "SEND BOMBERS QUICKLY"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "MARSH",
+      "brief": [
+       "MARSH IS ON THE KEY."
+      ],
+      "win": "THE DOOR IS GIVING.",
+      "scene": "road",
+      "words": [
+       "SEND YOUR CHECK",
+       "ARE YOU FREE"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "NO CHECK",
+      "brief": [
+       "YOU LEAVE OUT YOUR CHECK, SO SHE WILL KNOW."
+      ],
+      "win": "SENT. THE DOOR GIVES. YOU TAKE YOUR HAND OFF THE KEY.",
+      "scene": "road",
+      "words": [
+       "GOODBYE EVELYN"
+      ]
+     }
+    ]
+   }
+  ],
+  "pt": [
+   {
+    "title": "O CARPATHIA",
+    "year": "1912",
+    "cover": "carpathia",
+    "beats": [
+     {
+      "mode": "encode",
+      "title": "O PRIMEIRO TELEGRAMA",
+      "brief": [
+       "TELEGRAFISTA DA NOITE, RMS CARPATHIA. UM PASSAGEIRO ESCREVE PARA CASA."
+      ],
+      "win": "CAPE RACE CONFIRMA. UM CENTAVO DE GORJETA.",
+      "scene": "sea",
+      "count": 1
+     },
+     {
+      "mode": "decode",
+      "title": "TELEGRAMAS DA COSTA",
+      "brief": [
+       "CAPE RACE MANDA TELEGRAMAS PARA OS PASSAGEIROS."
+      ],
+      "win": "O CAMAREIRO LEVA TUDO ÀS CABINES.",
+      "scene": "sea",
+      "count": 3
+     },
+     {
+      "mode": "encode",
+      "title": "MAIS TELEGRAMAS",
+      "brief": [
+       "A FILA NA SUA PORTA CRESCE."
+      ],
+      "win": "O COMISSÁRIO CONTA OS CENTAVOS.",
+      "scene": "sea",
+      "count": 3
+     },
+     {
+      "mode": "decode",
+      "title": "AS NOTÍCIAS",
+      "brief": [
+       "23H. AS NOTÍCIAS DA NOITE."
+      ],
+      "win": "O CAPITÃO LÊ TUDO COM SEU CHOCOLATE.",
+      "scene": "sea",
+      "count": 2
+     }
+    ]
+   },
+   {
+    "title": "A VIAGEM INAUGURAL DO TITANIC",
+    "year": "1912",
+    "cover": "maiden",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "UM NAVIO NOVO",
+      "brief": [
+       "O TITANIC ESTÁ NO AR. OS PASSAGEIROS NÃO PARAM."
+      ],
+      "win": "MILIONÁRIOS TELEGRAFANDO AOS MORDOMOS.",
+      "scene": "fog",
+      "count": 3
+     },
+     {
+      "mode": "encode",
+      "title": "PASSE ADIANTE",
+      "brief": [
+       "ELE PEDE QUE VOCÊ RETRANSMITA PARA A COSTA."
+      ],
+      "win": "A COSTA CONFIRMA. O TITANIC NUNCA AGRADECE.",
+      "scene": "fog",
+      "echo": true
+     },
+     {
+      "mode": "decode",
+      "title": "A SRTA. MARSH",
+      "brief": [
+       "A SRTA. EVELYN MARSH, DEZENOVE ANOS, ESCREVE PARA A MÃE."
+      ],
+      "win": "A MÃE VAI TER PERGUNTAS.",
+      "scene": "fog",
+      "words": [
+       "MAE AMEI"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "TRÁFEGO TARDIO",
+      "brief": [
+       "AVISOS DE GELO A NOITE TODA. O TITANIC IGNORA."
+      ],
+      "win": "ELE SEGUE PARA O ESCURO.",
+      "scene": "ice",
+      "count": 2
+     }
+    ]
+   },
+   {
+    "title": "O NAUFRÁGIO DO TITANIC",
+    "year": "1912",
+    "cover": "iceberg",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "SOCORRO",
+      "brief": [
+       "23H35. UMA BOTA FORA. O TITANIC CHAMA."
+      ],
+      "win": "BATEU NO GELO. VOCÊ CORRE PARA A PONTE.",
+      "scene": "ice",
+      "words": [
+       "SOS SOS"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "A CAMINHO",
+      "brief": [
+       "O CAPITÃO VIRA O NAVIO. AVISE."
+      ],
+      "win": "'VENHAM O MAIS RÁPIDO POSSÍVEL.'",
+      "scene": "ice",
+      "words": [
+       "ESTAMOS",
+       "SAIMOS"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "ALAGANDO",
+      "brief": [
+       "PEDAÇOS NO MEIO DA ESTÁTICA."
+      ],
+      "win": "OS BOTES ACABARAM.",
+      "scene": "ice",
+      "words": [
+       "SEM ASSENTOS",
+       "OS MENINOS"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "A TODO VAPOR",
+      "brief": [
+       "CENTO E SETE QUILÔMETROS DE GELO ENTRE VOCÊS."
+      ],
+      "win": "OS FOGUISTAS PÁ ATRÁS DE PÁ.",
+      "scene": "ice",
+      "words": [
+       "NAO TEMAM",
+       "ESTAMOS AI"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "A ÚLTIMA PALAVRA",
+      "brief": [
+       "1H27. A ENERGIA DELE ESTÁ FALHANDO."
+      ],
+      "win": "DEPOIS, ESTÁTICA. SÓ ESTÁTICA.",
+      "scene": "ice",
+      "words": [
+       "SOS"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "O RESGATE",
+    "year": "1912",
+    "cover": "rescue",
+    "beats": [
+     {
+      "mode": "encode",
+      "title": "A LISTA",
+      "brief": [
+       "AMANHECER. 705 SOBREVIVENTES A BORDO. ENVIE OS NOMES."
+      ],
+      "win": "EM ALGUM LUGAR, FAMÍLIAS PARAM DE ESPERAR.",
+      "scene": "sea",
+      "words": [
+       "SIMONE",
+       "ANA",
+       "OTTO",
+       "TEO"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "FAMÍLIAS",
+      "brief": [
+       "A COSTA PERGUNTA PELOS SEUS."
+      ],
+      "win": "TOM E ANA ESTÃO A BORDO. AMOS NÃO.",
+      "scene": "sea",
+      "words": [
+       "TOM ESTA",
+       "ANA ESTA",
+       "AMOS ESTA"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "UM LÁPIS",
+      "brief": [
+       "A SRTA. MARSH ESTÁ VIVA. ELA BATE NA SUA MESA COM UM LÁPIS."
+      ],
+      "win": "ELE NÃO ESTÁ NA LISTA.",
+      "scene": "sea",
+      "words": [
+       "MATT ESTA"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "CASA",
+      "brief": [
+       "UM TELEGRAMA PARA A MÃE."
+      ],
+      "win": "ENVIADO. ELA ENFIM CHORA.",
+      "scene": "sea",
+      "words": [
+       "MAE TE AMO"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "NOMES PRIMEIRO",
+      "brief": [
+       "TRINTA HORAS SEM DORMIR. MAIS TELEGRAMAS."
+      ],
+      "win": "NOVA YORK. VOCÊ DORME UM DIA INTEIRO.",
+      "scene": "sea",
+      "count": 3
+     }
+    ]
+   },
+   {
+    "title": "O ATAQUE A SCARBOROUGH",
+    "year": "1914",
+    "cover": "scarborough",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "INTERCEPTAÇÃO",
+      "brief": [
+       "GUERRA. A MARINHA QUER SEU OUVIDO NA FROTA ALEMÃ."
+      ],
+      "win": "UM MOTOCICLISTA LEVA TUDO À SALA 40, LONDRES.",
+      "scene": "wireless",
+      "groups": true,
+      "count": 4
+     },
+     {
+      "mode": "encode",
+      "title": "A LINHA",
+      "brief": [
+       "LONDRES QUER TUDO PELO FIO. AGORA."
+      ],
+      "win": "A SALA 40 TEM UM LIVRO DE CÓDIGOS CAPTURADO. NINGUÉM TE CONTA.",
+      "scene": "wireless",
+      "echo": true
+     },
+     {
+      "mode": "decode",
+      "title": "EM CLARO",
+      "brief": [
+       "DEZEMBRO. UM ALEMÃO DESCUIDADO TRANSMITE EM CLARO."
+      ],
+      "win": "OS OBUSES CAEM SOBRE SCARBOROUGH.",
+      "scene": "harbour",
+      "words": [
+       "ATIRAR AS OITO"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "RELATÓRIOS",
+      "brief": [
+       "LONDRES QUER TUDO O QUE VOCÊ OUVE."
+      ],
+      "win": "OS NAVIOS ALEMÃES FOGEM NA NÉVOA.",
+      "scene": "harbour",
+      "count": 3
+     }
+    ]
+   },
+   {
+    "title": "O NAUFRÁGIO DO LUSITANIA",
+    "year": "1915",
+    "cover": "lusitania",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "O BALANÇO",
+      "brief": [
+       "UM SUBMARINO NA IRLANDA. UM BALANÇO PREGUIÇOSO NOS TRAÇOS."
+      ],
+      "win": "VOCÊ VAI RECONHECER ESSA MÃO EM QUALQUER LUGAR.",
+      "scene": "harbour",
+      "groups": true,
+      "count": 3
+     },
+     {
+      "mode": "decode",
+      "title": "ORDENS",
+      "brief": [
+       "AS ORDENS DELE VÊM EM CLARO."
+      ],
+      "win": "O LUSITANIA ZARPOU. DOIS MIL A BORDO.",
+      "scene": "harbour",
+      "words": [
+       "DESTRUIR TODOS"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "AVISO",
+      "brief": [
+       "AVISE O ALMIRANTADO."
+      ],
+      "win": "RECEBIDO. ARQUIVADO. NADA É FEITO.",
+      "scene": "harbour",
+      "words": [
+       "ATIRADOR NA ROTA",
+       "MUDAR ROTA"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "KINSALE",
+      "brief": [
+       "7 DE MAIO. 14H10. NA COSTA DA IRLANDA."
+      ],
+      "win": "O LUSITANIA. ADERNANDO MUITO.",
+      "scene": "harbour",
+      "words": [
+       "SOS SOS SOS"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "QUALQUER NAVIO",
+      "brief": [
+       "CHAME TODO NAVIO PERTO DE KINSALE."
+      ],
+      "win": "DEZOITO MINUTOS. 1.198 MORTOS. VOCÊ ESTAVA LONGE DEMAIS.",
+      "scene": "harbour",
+      "words": [
+       "SOS SOS",
+       "MANDEM NAUS"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "OS ATAQUES DOS ZEPELINS",
+    "year": "1916",
+    "cover": "zeppelin",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "RUMOS",
+      "brief": [
+       "DIRIGÍVEIS BOMBARDEIAM LONDRES À NOITE. CADA CHAMADA OS ENTREGA."
+      ],
+      "win": "OS TRAÇOS BALANÇAM. O HOMEM DO SUBMARINO AGORA VOA.",
+      "scene": "wireless",
+      "groups": true,
+      "count": 4
+     },
+     {
+      "mode": "encode",
+      "title": "CAÇAS NOTURNOS",
+      "brief": [
+       "OS CAÇAS PRECISAM DE UM RUMO."
+      ],
+      "win": "O DIRIGÍVEL QUEIMA SOBRE ESSEX.",
+      "scene": "air",
+      "words": [
+       "RUMO NORDESTE",
+       "ATIREM"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "OS CANOS",
+      "brief": [
+       "UM HOMEM SAIU VIVO. NA CELA, ELE BATE NOS CANOS."
+      ],
+      "win": "O NOME DELE É BRANDT.",
+      "scene": "wireless",
+      "words": [
+       "NAO MORRI",
+       "SAUDADE DE DRESDEN"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "RESPONDA",
+      "brief": [
+       "ELE ACHA QUE NINGUÉM ENTENDE."
+      ],
+      "win": "ELE PARA. DEPOIS RI.",
+      "scene": "wireless",
+      "words": [
+       "EU ENTENDO"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "O TELEGRAMA ZIMMERMANN",
+    "year": "1917",
+    "cover": "telegram",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "OS GRUPOS",
+      "brief": [
+       "BERLIM PARA WASHINGTON, EM CÓDIGO. A SALA 40 TEM UMA CÓPIA."
+      ],
+      "win": "UMA LETRA ERRADA CUSTA UMA SEMANA AOS DECIFRADORES.",
+      "scene": "wireless",
+      "groups": true,
+      "count": 4
+     },
+     {
+      "mode": "encode",
+      "title": "PARA LONDRES",
+      "brief": [
+       "PASSE OS GRUPOS ADIANTE."
+      ],
+      "win": "ALGUÉM ABRE UM LIVRO QUE VOCÊ NUNCA VAI VER.",
+      "scene": "wireless",
+      "echo": true
+     },
+     {
+      "mode": "decode",
+      "title": "PALAVRAS",
+      "brief": [
+       "PALAVRAS SAEM DO CÓDIGO. A ALEMANHA CORTEJA O MÉXICO."
+      ],
+      "win": "SE OS AMERICANOS VIREM ISSO, ENTRAM NA GUERRA.",
+      "scene": "wireless",
+      "words": [
+       "GUERRA",
+       "RETOMAR TERRAS"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "DISFARCE",
+      "brief": [
+       "NINGUÉM PODE SABER QUE VEIO DA SALA 40."
+      ],
+      "win": "OS EUA DECLARAM GUERRA. OS JORNAIS ELOGIAM UM ESPIÃO ESPERTO.",
+      "scene": "rail",
+      "words": [
+       "NOSSO AGENTE"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "O ARMISTÍCIO",
+    "year": "1918",
+    "cover": "armistice",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "A TORRE",
+      "brief": [
+       "NOVEMBRO. A TORRE EIFFEL TRANSMITE AO MUNDO."
+      ],
+      "win": "AS HOSTILIDADES CESSAM ÀS ONZE. VOCÊ LÊ DUAS VEZES.",
+      "scene": "wireless",
+      "words": [
+       "ARMAS GUARDADAS",
+       "A GUERRA TERMINOU"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "CESSAR FOGO",
+      "brief": [
+       "UM DESTRÓIER NO CANAL NÃO OUVIU."
+      ],
+      "win": "OS CANHÕES SILENCIAM ÀS ONZE.",
+      "scene": "harbour",
+      "words": [
+       "NAO ATIREM",
+       "GUARDEM AS ARMAS"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "RESPOSTAS",
+      "brief": [
+       "NAVIOS E TRINCHEIRAS RESPONDEM, UM A UM."
+      ],
+      "win": "AO MEIO-DIA O AR ESTÁ CHEIO DE VIVAS.",
+      "scene": "wireless",
+      "count": 4
+     },
+     {
+      "mode": "decode",
+      "title": "UM TELEGRAMA",
+      "brief": [
+       "DE LONDRES. SRTA. E. MARSH, DO MINISTÉRIO DA GUERRA."
+      ],
+      "win": "ELA LEMBRA DA SUA MÃO.",
+      "scene": "rail",
+      "words": [
+       "VENHA ME VER"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "SUA RESPOSTA",
+      "brief": [
+       "VOCÊ RESPONDE POR TELEGRAMA, É CLARO."
+      ],
+      "win": "ELA ESPERA NA ESTAÇÃO, NA CHUVA.",
+      "scene": "rail",
+      "words": [
+       "DIGA A HORA"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "O DESASTRE DO HINDENBURG",
+    "year": "1937",
+    "cover": "hindenburg",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "VELHOS INIMIGOS",
+      "brief": [
+       "PAZ. O HINDENBURG SE APROXIMA. O OPERADOR BALANÇA OS TRAÇOS."
+      ],
+      "win": "BRANDT. VINTE ANOS. VOCÊ RI SOZINHO.",
+      "scene": "wireless",
+      "words": [
+       "GUTEN TAG",
+       "E AI AMIGO"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "O TEMPO",
+      "brief": [
+       "ELE QUER O TEMPO EM NOVA JERSEY."
+      ],
+      "win": "'DANKE. ATÉ A PRÓXIMA GUERRA.'",
+      "scene": "wireless",
+      "words": [
+       "TROVOADA",
+       "MUITO VENTO"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "ESPERANDO",
+      "brief": [
+       "O DIRIGÍVEL CIRCULA, ESPERANDO A TEMPESTADE PASSAR."
+      ],
+      "win": "ELE MANDA UMA FILA DE PONTOS. RISADA.",
+      "scene": "wireless",
+      "words": [
+       "TENHO UM GAROTO",
+       "TEM NOVE ANOS"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "O FLASH",
+      "brief": [
+       "19H25. UM FLASH DA IMPRENSA. QUEM TRANSMITE ESTÁ TREMENDO."
+      ],
+      "win": "TRINTA E SEIS MORTOS. ELE VIVEU. MÃOS QUEIMADAS.",
+      "scene": "wireless",
+      "words": [
+       "ESTA ARDENDO",
+       "HOMEM DO RADIO VIVE"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "PASSE ADIANTE",
+      "brief": [
+       "O MUNDO QUER SABER. PASSE ADIANTE."
+      ],
+      "win": "SUAS MÃOS TAMBÉM TREMEM.",
+      "scene": "wireless",
+      "echo": true
+     }
+    ]
+   },
+   {
+    "title": "A SEGUNDA GUERRA MUNDIAL",
+    "year": "1939",
+    "cover": "war",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "A CABANA",
+      "brief": [
+       "GUERRA DE NOVO. UMA CABANA, QUARENTA RECEPTORES, GRUPOS ALEMÃES."
+      ],
+      "win": "UMA MOTO LEVA O CESTO À ESTAÇÃO X.",
+      "scene": "air",
+      "groups": true,
+      "count": 5
+     },
+     {
+      "mode": "decode",
+      "title": "UM HÁBITO",
+      "brief": [
+       "UM ALEMÃO COMEÇA TODA MENSAGEM DO MESMO JEITO."
+      ],
+      "win": "A ESTAÇÃO X CHAMA ISSO DE COLA. VOCÊ CIRCULA EM VERMELHO.",
+      "scene": "air",
+      "words": [
+       "WETTER FOLGT"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "A COLA",
+      "brief": [
+       "MANDE PARA A ESTAÇÃO X."
+      ],
+      "win": "À MEIA-NOITE A ESTAÇÃO X LÊ A LUFTWAFFE.",
+      "scene": "wireless",
+      "echo": true
+     },
+     {
+      "mode": "decode",
+      "title": "MAIS GRUPOS",
+      "brief": [
+       "A NOITE É LONGA."
+      ],
+      "win": "SUA MÃO LEMBRA DO TRABALHO.",
+      "scene": "air",
+      "groups": true,
+      "count": 4
+     }
+    ]
+   },
+   {
+    "title": "A EVACUAÇÃO DE DUNQUERQUE",
+    "year": "1940",
+    "cover": "dunkirk",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "A PRAIA",
+      "brief": [
+       "O EXÉRCITO ESTÁ PRESO NUMA PRAIA. UM DESTRÓIER INFORMA."
+      ],
+      "win": "OS BARQUINHOS VIRAM NA DIREÇÃO DELES.",
+      "scene": "sea",
+      "words": [
+       "HOMENS NO MOLHE",
+       "AREIA CHEIA"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "BARQUINHOS",
+      "brief": [
+       "TODO BARCO DA COSTA SUL ESTÁ INDO."
+      ],
+      "win": "IATES, BALSAS, PESQUEIROS. CENTENAS.",
+      "scene": "sea",
+      "words": [
+       "BARCOS RUMO A MALO",
+       "CHEGUEM NA AREIA"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "ATAQUE AO AMANHECER",
+      "brief": [
+       "A ESTAÇÃO X LEU: UM ATAQUE AO AMANHECER."
+      ],
+      "win": "AS BOMBAS CAEM NA ÁGUA VAZIA.",
+      "scene": "air",
+      "words": [
+       "BOMBAS NO RAIAR",
+       "AFASTEM"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "PARA ONDE",
+      "brief": [
+       "OS BARCOS PERGUNTAM PARA ONDE IR."
+      ],
+      "win": "BARCO ATRÁS DE BARCO, A NOITE TODA.",
+      "scene": "sea",
+      "count": 3
+     },
+     {
+      "mode": "decode",
+      "title": "A CONTAGEM",
+      "brief": [
+       "4 DE JUNHO. O ÚLTIMO NAVIO INFORMA."
+      ],
+      "win": "338 MIL HOMENS. OS JORNAIS FALAM EM MILAGRE.",
+      "scene": "sea",
+      "words": [
+       "ULTIMO BARCO"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "O NAUFRÁGIO DO BISMARCK",
+    "year": "1941",
+    "cover": "bismarck",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "O SINAL LONGO",
+      "brief": [
+       "O BISMARCK AFUNDOU O HOOD E SUMIU."
+      ],
+      "win": "UM SINAL LONGO É UM RUMO. ELE FOGE PARA A FRANÇA.",
+      "scene": "harbour",
+      "groups": true,
+      "count": 4
+     },
+     {
+      "mode": "decode",
+      "title": "UM PAI",
+      "brief": [
+       "UM GENERAL DA LUFTWAFFE PERGUNTA O DESTINO. O FILHO ESTÁ A BORDO."
+      ],
+      "win": "UM PAI PREOCUPADO COM O FILHO. ISSO VAI MATAR O FILHO.",
+      "scene": "air",
+      "words": [
+       "RUMO A BREST"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "SWORDFISH",
+      "brief": [
+       "BIPLANOS VELHOS NO ARK ROYAL ESPERAM UM RUMO."
+      ],
+      "win": "UM TORPEDO TRAVA O LEME. ELE SÓ ANDA EM CÍRCULOS.",
+      "scene": "air",
+      "words": [
+       "RUMO SUDESTE",
+       "ATACAR A NOITE"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "27 DE MAIO",
+      "brief": [
+       "A FROTA FECHA O CERCO."
+      ],
+      "win": "DOIS MIL HOMENS. UM DELES, FILHO DE UM GENERAL.",
+      "scene": "harbour",
+      "words": [
+       "BISMARCK AFUNDANDO"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "A NOTÍCIA",
+      "brief": [
+       "O ALMIRANTADO QUER QUE RETRANSMITA."
+      ],
+      "win": "O HOOD FOI VINGADO, DIZEM OS JORNAIS.",
+      "scene": "harbour",
+      "echo": true
+     }
+    ]
+   },
+   {
+    "title": "NA FRANÇA OCUPADA",
+    "year": "1943",
+    "cover": "france",
+    "beats": [
+     {
+      "mode": "encode",
+      "title": "VERIFICAÇÃO",
+      "brief": [
+       "EVELYN MARSH COMANDA AGENTES NA FRANÇA. CADA UM TEM UM ERRO SECRETO."
+      ],
+      "win": "MARSH: 'NUNCA MANDE SE TE PEGAREM.'",
+      "scene": "wireless",
+      "words": [
+       "JUPITER"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "TREINO",
+      "brief": [
+       "MARSH TRANSMITE MAIS RÁPIDO A CADA DIA."
+      ],
+      "win": "ELA ACENA. UMA VEZ.",
+      "scene": "wireless",
+      "count": 4
+     },
+     {
+      "mode": "decode",
+      "title": "O CAMPO",
+      "brief": [
+       "NOITE SEM LUA. UMA LANTERNA PISCA NUM CAMPO."
+      ],
+      "win": "MÃOS TE TIRAM DO TRIGAL. FRANÇA.",
+      "scene": "air",
+      "words": [
+       "PULE"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "PRIMEIRO CONTATO",
+      "brief": [
+       "SEU RÁDIO ESTÁ NUMA MALA NUM CELEIRO. LONDRES CHAMA."
+      ],
+      "win": "É A PRÓPRIA MARSH NA TECLA.",
+      "scene": "wireless",
+      "words": [
+       "BEM VINDO PIANISTA",
+       "CUIDADO CORUJA"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "PRIMEIRO RELATÓRIO",
+      "brief": [
+       "MENOS DE CINCO MINUTOS. SEMPRE."
+      ],
+      "win": "FORA DO AR. QUATRO MINUTOS.",
+      "scene": "wireless",
+      "count": 3
+     }
+    ]
+   },
+   {
+    "title": "OS CAÇADORES DE RÁDIO",
+    "year": "1944",
+    "cover": "hunters",
+    "beats": [
+     {
+      "mode": "encode",
+      "title": "CINCO MINUTOS",
+      "brief": [
+       "FURGÕES ALEMÃES DE RADIOGONIOMETRIA CAÇAM NAS ESTRADAS."
+      ],
+      "win": "O FURGÃO PASSA PELO PORTÃO. E SEGUE.",
+      "scene": "road",
+      "words": [
+       "SEIS TRENS",
+       "EXPRESSO NO RAIAR"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "UMA MÃO CONHECIDA",
+      "brief": [
+       "NA SUA FREQUÊNCIA, UM BALANÇO PREGUIÇOSO NOS TRAÇOS."
+      ],
+      "win": "BRANDT. AGORA ELE CAÇA PARA ELES.",
+      "scene": "road",
+      "words": [
+       "OLA CORUJA",
+       "CONHECO SUA MAO"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "DESCOBERTO",
+      "brief": [
+       "VOCÊ LEVA O RÁDIO NUMA CARROÇA DE NABOS."
+      ],
+      "win": "MARSH: 'VOLTE PARA CASA.' ESSA PARTE VOCÊ NÃO RESPONDE.",
+      "scene": "road",
+      "words": [
+       "HORARIO EXPOSTO",
+       "MUDANDO"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "ORDENS",
+      "brief": [
+       "LONDRES MANDA ORDENS."
+      ],
+      "win": "VOCÊ QUEIMA A PÁGINA E SE MUDA DE NOVO.",
+      "scene": "road",
+      "groups": true,
+      "count": 3
+     },
+     {
+      "mode": "encode",
+      "title": "OUTRA CASA",
+      "brief": [
+       "OUTRA CASA. CINCO MINUTOS."
+      ],
+      "win": "FORA DO AR. O FURGÃO ESTÁ A UMA ALDEIA.",
+      "scene": "road",
+      "count": 3
+     }
+    ]
+   },
+   {
+    "title": "O DIA D",
+    "year": "1944",
+    "cover": "dday",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "O POEMA",
+      "brief": [
+       "DEPOIS DAS NOTÍCIAS, A BBC LÊ POEMAS SEM SENTIDO. UM É PARA VOCÊ."
+      ],
+      "win": "A INVASÃO VEM AÍ. AMANHÃ.",
+      "scene": "wireless",
+      "words": [
+       "LES SANGLOTS LONGS",
+       "BLESSENT MON COEUR"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "A SENHA",
+      "brief": [
+       "LONDRES CONFIRMA PELA TECLA."
+      ],
+      "win": "VOCÊ PEDALA DE FAZENDA EM FAZENDA. À MEIA-NOITE OS TRILHOS ESTÃO MINADOS.",
+      "scene": "wireless",
+      "words": [
+       "DADOS NO TAPETE"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "O VIADUTO",
+      "brief": [
+       "O MAQUIS EXPLODE O VIADUTO AO SEU SINAL."
+      ],
+      "win": "O VIADUTO CAI NO RIO.",
+      "scene": "rail",
+      "words": [
+       "TREM CHEGANDO",
+       "EXPLODAM JA"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "OS TANQUES",
+      "brief": [
+       "6 DE JUNHO. O DESEMBARQUE COMEÇOU. UMA DIVISÃO PANZER VAI PARA O NORTE."
+      ],
+      "win": "CADA DIA DE ATRASO É UMA PRAIA QUE RESISTE.",
+      "scene": "road",
+      "words": [
+       "SESSENTA BLINDADOS",
+       "RUMO NORTE DE NOITE"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "PARA LONDRES",
+      "brief": [
+       "PASSE ADIANTE."
+      ],
+      "win": "OS BOMBARDEIROS SAEM AO AMANHECER.",
+      "scene": "road",
+      "echo": true
+     }
+    ]
+   },
+   {
+    "title": "O ÚLTIMO SINAL",
+    "year": "1944",
+    "cover": "last",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "UMA PONTE",
+      "brief": [
+       "9 DE JUNHO. OS PANZERS CRUZAM O RIO AO AMANHECER."
+      ],
+      "win": "SÓ VOCÊ SABE. BRANDT ESTÁ A UMA ALDEIA.",
+      "scene": "road",
+      "words": [
+       "QUAL PONTE"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "A PONTE",
+      "brief": [
+       "VOCÊ TRANCA O MOINHO E ABRE A MALA."
+      ],
+      "win": "LONDRES CONFIRMA. FARÓIS NA ESTRADA DO RIO.",
+      "scene": "road",
+      "words": [
+       "PANZERS NO RAIAR",
+       "PONTE DE QUEZAC"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "A HORA",
+      "brief": [
+       "O FURGÃO PARA LÁ FORA. BOTAS NO CASCALHO."
+      ],
+      "win": "A PORTA TREME SOB UMA CORONHA.",
+      "scene": "road",
+      "words": [
+       "TRAVESSIA AS SEIS",
+       "BOMBARDEIEM RAPIDO"
+      ]
+     },
+     {
+      "mode": "decode",
+      "title": "MARSH",
+      "brief": [
+       "MARSH ESTÁ NA TECLA."
+      ],
+      "win": "A PORTA ESTÁ CEDENDO.",
+      "scene": "road",
+      "words": [
+       "MANDE A VERIFICACAO",
+       "ESTA LIVRE"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "SEM VERIFICAÇÃO",
+      "brief": [
+       "VOCÊ OMITE A VERIFICAÇÃO, PARA QUE ELA SAIBA."
+      ],
+      "win": "ENVIADO. A PORTA CEDE. VOCÊ TIRA A MÃO DA TECLA.",
+      "scene": "road",
+      "words": [
+       "ADEUS EVELYN"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "ending": {
+  "en": [
+   "THE BRIDGE FALLS AT DAWN. THE PANZERS REACH NORMANDY TOO LATE.",
+   "IN LONDON, MARSH LOGS A LAST MESSAGE WITH NO SECURITY CHECK.",
+   "SHE KEYS ONE REPLY INTO THE SILENCE:  SK, CORUJA. END OF WORK."
+  ],
+  "pt": [
+   "A PONTE CAI AO AMANHECER. OS PANZERS CHEGAM TARDE À NORMANDIA.",
+   "EM LONDRES, MARSH REGISTRA UMA ÚLTIMA MENSAGEM SEM VERIFICAÇÃO.",
+   "ELA BATE UMA RESPOSTA NO SILÊNCIO:  SK, CORUJA. FIM DO SERVIÇO."
+  ]
+ },
+ "win_banners": {
+  "en": [
+   "RECEIVED",
+   "CONFIRMED",
+   "ACKNOWLEDGED"
+  ],
+  "pt": [
+   "RECEBIDO",
+   "CONFIRMADO",
+   "ENTENDIDO"
+  ]
+ },
+ "lose_banners": {
+  "en": [
+   "TOO LATE",
+   "NO REPLY",
+   "SIGNAL LOST"
+  ],
+  "pt": [
+   "TARDE DEMAIS",
+   "SEM RESPOSTA",
+   "SINAL PERDIDO"
+  ]
+ },
+ "ui": {
+  "en": {
+   "size": "MAKE THE TERMINAL AT LEAST 80x24",
+   "score": "SCORE {score:06d}",
+   "chapter_hud": "CHAPTER {n:02d}/{total}",
+   "best": "BEST {best:06d}",
+   "send": "SEND · ",
+   "receive": "RECEIVE · ",
+   "message": "MESSAGE {n}/{total}",
+   "hints_on": "HINTS ON  -{cost}",
+   "incorrect": "INCORRECT.  {ch} IS {pattern}",
+   "sent_need": "SENT {got} {sent}   NEED {need} {needed}",
+   "key": " KEY ",
+   "lamp": " LAMP ",
+   "title_big": "MORSE CODE",
+   "subtitle": "THE LISTENER  ·  1912 - 1944",
+   "tap_hold": "TAP SPACE = DIT {dot}        HOLD SPACE = DAH {dah}",
+   "menu_begin": "[ENTER] BEGIN",
+   "menu_continue": "[C] CONTINUE FROM CHAPTER {n}",
+   "menu_rest": "[F] PRACTICE   [L] LANGUAGE   [Q] QUIT",
+   "chapter_label": "CHAPTER {n}",
+   "first_letters": "YOUR FIRST LETTERS",
+   "new_letters": "NEW LETTERS",
+   "try_them": "TRY THEM ▸ ",
+   "enter_begin": "[ENTER] BEGIN",
+   "chapter_help": "TAP / HOLD SPACE TO PRACTISE   [TAB] HEAR THEM AGAIN",
+   "brief_line": "CHAPTER {n} · {title}",
+   "code_word": "CODE WORD:  {word}",
+   "ready": "[ENTER] READY",
+   "encode_help": "TAP SPACE = DIT •    HOLD SPACE = DAH ━    [TAB] HINT    [ESC] QUIT",
+   "decode_help": "TYPE THE LETTERS YOU HEAR    [TAB] REPEAT    [ESC] QUIT",
+   "time_bonus": "+{bonus} TIME BONUS",
+   "lives_left": "LIVES LEFT: {n}. TRY AGAIN.",
+   "no_lives": "NO LIVES LEFT.",
+   "continue": "[ENTER] CONTINUE",
+   "practice": "PRACTICE",
+   "free_help": "TAP = DIT  ·  HOLD = DAH  ·  [BKSP] ERASE  ·  [ESC] BACK",
+   "over_big": "SIGNAL LOST",
+   "over_line": "THE KEY HAS GONE SILENT.",
+   "final_score": "FINAL SCORE {score:06d}",
+   "new_best": "NEW BEST",
+   "over_continue": "CONTINUE FROM CHAPTER {n} ON THE TITLE SCREEN.",
+   "end_big": "END OF WORK",
+   "menu_line": "[W] TELEGRAPH LINE: KEY TO ANOTHER PLAYER",
+   "exchange": "TELEGRAPH EXCHANGE",
+   "choose_codename": "CHOOSE YOUR CODENAME",
+   "codename_hint": "THE PLAYERS ON THE LINE WITH YOU SEE IT",
+   "codename_help": "LETTERS AND DIGITS   [ENTER] OK   [ESC] BACK",
+   "codename_is": "CODENAME {name}",
+   "connecting": "CONNECTING TO THE EXCHANGE...",
+   "online": "ON THE EXCHANGE · WAITING FOR CALLS",
+   "offline": "NO EXCHANGE · TRYING AGAIN",
+   "dial_label": "DIAL A NUMBER",
+   "calling_label": "CALLING",
+   "switchboard_help": "TYPE A NUMBER   [ENTER] CALL   [TAB] CODENAME   [ESC] BACK",
+   "calling": "CALLING MORSE {n}...",
+   "calling_help": "[ESC] HANG UP",
+   "ringing": "MORSE {n} · {name} IS CALLING",
+   "ringing_help": "[ENTER] ANSWER   [ESC] DECLINE",
+   "no_answer": "NO ANSWER FROM MORSE {n}",
+   "no_answer_offline": "MORSE {n} IS NOT ON THE EXCHANGE",
+   "no_answer_busy": "MORSE {n} IS BUSY",
+   "no_answer_self": "THAT IS YOUR OWN LINE",
+   "line_closed": "THE OTHER END HUNG UP",
+   "line_down": "THE EXCHANGE DROPPED THE LINE",
+   "on_the_line": "ON THE LINE WITH MORSE {n} · {name}",
+   "you": "YOU",
+   "line_help": "TAP / HOLD SPACE TO KEY   [BKSP] CLEAR   [ESC] HANG UP",
+   "task_encode": "SEND THE MESSAGE.",
+   "task_decode": "COPY THE MESSAGE.",
+   "lose_line": "THE SIGNAL IS LOST. TRY AGAIN.",
+   "drill": "KEY EACH LETTER {n} TIMES",
+   "drill_done": "YOUR HAND HAS IT."
+  },
+  "pt": {
+   "size": "AUMENTE O TERMINAL PARA PELO MENOS 80x24",
+   "score": "PONTOS {score:06d}",
+   "chapter_hud": "CAPÍTULO {n:02d}/{total}",
+   "best": "RECORDE {best:06d}",
+   "send": "ENVIAR · ",
+   "receive": "RECEBER · ",
+   "message": "MENSAGEM {n}/{total}",
+   "hints_on": "DICAS LIGADAS  -{cost}",
+   "incorrect": "ERRADO.  {ch} É {pattern}",
+   "sent_need": "ENVIOU {got} {sent}   ERA {need} {needed}",
+   "key": " TECLA ",
+   "lamp": " LUZ ",
+   "title_big": "CÓDIGO MORSE",
+   "subtitle": "O OUVINTE  ·  1912 - 1944",
+   "tap_hold": "TOQUE O ESPAÇO = PONTO {dot}      SEGURE O ESPAÇO = TRAÇO {dah}",
+   "menu_begin": "[ENTER] COMEÇAR",
+   "menu_continue": "[C] CONTINUAR DO CAPÍTULO {n}",
+   "menu_rest": "[P] PRATICAR   [L] IDIOMA   [Q] SAIR",
+   "chapter_label": "CAPÍTULO {n}",
+   "first_letters": "SUAS PRIMEIRAS LETRAS",
+   "new_letters": "LETRAS NOVAS",
+   "try_them": "EXPERIMENTE ▸ ",
+   "enter_begin": "[ENTER] COMEÇAR",
+   "chapter_help": "TOQUE / SEGURE O ESPAÇO PARA PRATICAR   [TAB] OUVIR DE NOVO",
+   "brief_line": "CAPÍTULO {n} · {title}",
+   "code_word": "PALAVRA-CÓDIGO:  {word}",
+   "ready": "[ENTER] PRONTO",
+   "encode_help": "TOQUE = PONTO •    SEGURE = TRAÇO ━    [TAB] DICA    [ESC] SAIR",
+   "decode_help": "DIGITE AS LETRAS QUE OUVIR    [TAB] REPETIR    [ESC] SAIR",
+   "time_bonus": "+{bonus} BÔNUS DE TEMPO",
+   "lives_left": "VIDAS RESTANTES: {n}. TENTE DE NOVO.",
+   "no_lives": "SEM VIDAS.",
+   "continue": "[ENTER] CONTINUAR",
+   "practice": "PRÁTICA",
+   "free_help": "TOQUE = PONTO  ·  SEGURE = TRAÇO  ·  [BKSP] APAGAR  ·  [ESC] VOLTAR",
+   "over_big": "SINAL PERDIDO",
+   "over_line": "A TECLA SILENCIOU.",
+   "final_score": "PONTUAÇÃO FINAL {score:06d}",
+   "new_best": "NOVO RECORDE",
+   "over_continue": "CONTINUE DO CAPÍTULO {n} NA TELA INICIAL.",
+   "end_big": "FIM DA ESCUTA",
+   "menu_line": "[W] LINHA TELEGRÁFICA: TRANSMITA PARA OUTRO JOGADOR",
+   "exchange": "CENTRAL TELEGRÁFICA",
+   "choose_codename": "ESCOLHA SEU CODINOME",
+   "codename_hint": "QUEM ESTIVER NA LINHA COM VOCÊ VAI VÊ-LO",
+   "codename_help": "LETRAS E NÚMEROS   [ENTER] OK   [ESC] VOLTAR",
+   "codename_is": "CODINOME {name}",
+   "connecting": "CONECTANDO À CENTRAL...",
+   "online": "NA CENTRAL · AGUARDANDO CHAMADAS",
+   "offline": "SEM CENTRAL · TENTANDO DE NOVO",
+   "dial_label": "DISQUE UM NÚMERO",
+   "calling_label": "CHAMANDO",
+   "switchboard_help": "DIGITE UM NÚMERO   [ENTER] CHAMAR   [TAB] CODINOME   [ESC] VOLTAR",
+   "calling": "CHAMANDO MORSE {n}...",
+   "calling_help": "[ESC] DESLIGAR",
+   "ringing": "MORSE {n} · {name} ESTÁ CHAMANDO",
+   "ringing_help": "[ENTER] ATENDER   [ESC] RECUSAR",
+   "no_answer": "MORSE {n} NÃO ATENDEU",
+   "no_answer_offline": "MORSE {n} NÃO ESTÁ NA CENTRAL",
+   "no_answer_busy": "MORSE {n} ESTÁ OCUPADO",
+   "no_answer_self": "ESSA É A SUA PRÓPRIA LINHA",
+   "line_closed": "O OUTRO LADO DESLIGOU",
+   "line_down": "A CENTRAL DERRUBOU A LINHA",
+   "on_the_line": "NA LINHA COM MORSE {n} · {name}",
+   "you": "VOCÊ",
+   "line_help": "TOQUE / SEGURE O ESPAÇO   [BKSP] LIMPAR   [ESC] DESLIGAR",
+   "task_encode": "ENVIE A MENSAGEM.",
+   "task_decode": "COPIE A MENSAGEM.",
+   "lose_line": "O SINAL SE PERDEU. TENTE DE NOVO.",
+   "drill": "TRANSMITA CADA LETRA {n} VEZES",
+   "drill_done": "SUA MÃO JÁ SABE."
+  }
+ },
+ "sprites": {
+  "city": [
+   "......S.......",
+   ".....SSS......",
+   "..TT.SYS..AA..",
+   "..TT.SSS..AA..",
+   ".SYTTSYS.SAYS.",
+   ".SSTTSSS.SAAS.",
+   "SSYSSSYSSSSYSS",
+   "SSSSSSSSSSSSSS"
+  ],
+  "station": [
+   "......R.......",
+   "......S.......",
+   ".....S.S......",
+   "....S.S.S.....",
+   "..RRRRRRRRRR..",
+   ".AAAAAAAAAAAA.",
+   ".AYYAAAAAAYYA.",
+   ".AAAAAAAAAAAA."
+  ],
+  "airship": [
+   "R...SSSSSSSSSSSS....",
+   "RR.SWWWWWWWWWWWWSS..",
+   "RRSWWWWWWWWWWWWWWWS.",
+   "RR.SWWWWWWWWWWWWSS..",
+   "R...SSSSSSSSSSSS....",
+   "........DYD........."
+  ],
+  "biplane": [
+   "..AAAAAAAAA...",
+   "....D...D.....",
+   "R..RRRRRRRRRW.",
+   "RRRRRRRRRRRRW.",
+   "..AAAAAAAAA...",
+   "....D...D....."
+  ],
+  "train": [
+   ".............W..",
+   "..TTTT.......DD.",
+   "..TYYT.......DD.",
+   "TTTTTTTTTTTTTTTT",
+   "SSSSSSSSSSSSSSSR",
+   ".DD..DD..DD..DD."
+  ],
+  "liner": [
+   ".....K...K........",
+   ".....R...R........",
+   "...WWWWWWWWWWW....",
+   "SSSSYSSYSSYSSYSSSS",
+   ".SSSSSSSSSSSSSSSS.",
+   "..SSSSSSSSSSSSSS.."
+  ],
+  "submarine": [
+   "......SS........",
+   ".....SSSS.......",
+   "..DDDDDDDDDDDD..",
+   ".DDDDDDDDDDDDDD."
+  ],
+  "lighthouse": [
+   "..YYYY..",
+   "..DSSD..",
+   "...RR...",
+   "...WW...",
+   "...RR...",
+   "..WWWW..",
+   "..RRRR..",
+   ".SSSSSS."
+  ],
+  "car": [
+   "....TTTT....",
+   "..TTTTTTTT..",
+   ".TTTTTTTTTTY",
+   "TTTTTTTTTTTT",
+   ".DD......DD."
+  ],
+  "iceberg": [
+   ".....W......",
+   "....WWW.....",
+   "...WWTWW....",
+   "..WWWTWW.W..",
+   ".WWWTTWWWWW.",
+   ".WWTTTWWWWWW",
+   "WWWTTTTWWWWW",
+   "TTTTTTTTTTTT"
+  ],
+  "boat": [
+   "....W.....",
+   "....WW....",
+   "....WWW...",
+   "....W.....",
+   "AAAAAAAAAA",
+   ".AAAAAAAA."
+  ],
+  "cover_liner": [
+   ".....SDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDS.....",
+   ".....S......KKKK...KKKK...KKKK...KKKK.......S.....",
+   ".....S......AAAA...AAAA...AAAA...AAAA.......S.....",
+   ".....S......AAAA...AAAA...AAAA...AAAA.......S.....",
+   ".....S......AAAA...AAAA...AAAA...AAAA.......S.....",
+   ".....S...WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW...S.....",
+   ".....S.WWYWWYWWYWWYWWYWWYWWYWWYWWYWWYWWYWWW.S...MM",
+   ".....SWWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWYWS.MMMM",
+   "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+   "MMMYMMYMMYMMYMMYMMYMMYMMYMMYMMYMMYMMYMMYMMYMMYMMM.",
+   ".MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM..",
+   "..RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR...",
+   "....EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE....."
+  ],
+  "cover_steamer": [
+   "...SDDDDDDDDDDDKKKKDDDDDDDDDDDDS....",
+   "...S...........KKKK............S....",
+   "...S...........RRRR............S....",
+   "...S...........RRRR............S....",
+   "...S...........RRRR............S....",
+   "...S...........RRRR............S....",
+   "...S.....WWWWWWWWWWWWWWWWWWW...S....",
+   "...S...WYWYWYWYWYWYWYWYWYWYWYW.S.MMM",
+   "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+   "MMMYMMYMMYMMYMMYMMYMMYMMYMMYMMYMMMM.",
+   ".RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR..",
+   "...EEEEEEEEEEEEEEEEEEEEEEEEEEEEE...."
+  ],
+  "cover_iceberg": [
+   "..........W...............",
+   ".........WW...............",
+   ".........WWT..............",
+   "........WWWT.T............",
+   "........WWWTTT............",
+   ".......WWWWWTTT...........",
+   ".......WWWWWTTTT..........",
+   "......WWWWWWTTTT.T........",
+   "......WWWWWWTTTTTT........",
+   ".....WWWWWWWTTTTTTT.......",
+   "....WWWWWWWWWTTTTTT.......",
+   "....WWWWWWWWWTTTTTTT......",
+   "...WWWWWWWWWWWTTTTTTT.....",
+   "..WWWWWWWWWWWWTTTTTTTT....",
+   "..WWWWWWWWWWWWTTTTTTTTT...",
+   ".WWWWWWWWWWWWWTTTTTTTTTT..",
+   ".WWWWWWWWWWWWWTTTTTTTTTTT.",
+   "WWWWWWWWWWWWWWWTTTTTTTTTTT"
+  ],
+  "cover_lifeboat": [
+   ".......Y..",
+   "..K.K.KS..",
+   "WWWWWWWWWW",
+   ".WWWWWWWW."
+  ],
+  "cover_warship": [
+   "......................SSSSSS........................",
+   "........................SS..........................",
+   "........................SS.....KKKK.................",
+   "....................LLLLLLLLLLLSSSS.................",
+   "....................LKLKLKLKLKLSSSS.................",
+   "....................LLLLLLLLLLLSSSS.................",
+   "..DDDDSSSDDDDSSSSS..LLLLLLLLLLLSSSS.SSSSSDDSSSSSDDDD",
+   "......SSSSS..SSSSS..LLLLLLLLLLL.....SSSSS..SSSSLLLLL",
+   "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+   ".SSSYSSSSSYSSSSSYSSSSSYSSSSSYSSSSSYSSSSSYSSSSSYSSSS.",
+   "..SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS..",
+   "....DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD...."
+  ],
+  "cover_destroyer": [
+   ".........SS...........",
+   ".........SS.SS........",
+   "......SSSSSSSSSS......",
+   "DDDDDDDDDDDDDDDDDDDDDD",
+   "..DDDDDDDDDDDDDDDDDD.."
+  ],
+  "cover_airship": [
+   ".......................LDLLLLDLLLLDL..................",
+   "..SS..........DLLLLDLLLLDLLLLDLLLLDLLLLDLLLLD.........",
+   "..SSS....DLLLLDLLLLDLLLLDLLLLDLLLLDLLLLDLLLLDLLLLD....",
+   "..SSSS.LLDLLLLDLLLLDLLLLDLLLLDLLLLDLLLLDLLLLDLLLLDLL..",
+   "SSSSSSSSSDSSSSDSSSSDSSSSDSSSSDSSSSDSSSSDSSSSDSSSSDSSSS",
+   "SSSSSSSSSDSSSSDSSSSDSSSSDSSSSDSSSSDSSSSDSSSSDSSSSDSSSS",
+   "SSSSSSSSSDSSSSDSSSSDSSSSDSSSSDSSSSDSSSSDSSSSDSSSSDSSSS",
+   "..SSSS.SSDSSSSDSSSSDSSSSDSSSSDSSSSDSSSSDSSSSDSSSSDSS..",
+   "..SSS....MDDDDMDDDDMDDDDMDDDDMDDDDMDDDDMDDDDMDDDDM....",
+   "..SS..........MDDDDMDDDDMDDDDMDDDDMDDDDMDDDDM.........",
+   ".......................DMDDDDMDDDDMD....MMMMMM........",
+   "........................................MYYYYM........",
+   "......................................................"
+  ],
+  "cover_mast": [
+   "...SSS...",
+   "...SSS...",
+   "...S.S...",
+   "...DDD...",
+   "...S.S...",
+   "...S.S...",
+   "...DDD...",
+   "..S...S..",
+   "..S...S..",
+   "..DDDDD..",
+   "..S...S..",
+   "..S...S..",
+   "..DDDDD..",
+   "..S...S..",
+   ".S.....S.",
+   ".DDDDDDD.",
+   ".S.....S.",
+   ".S.....S.",
+   ".DDDDDDD.",
+   ".S.....S.",
+   ".S.....S.",
+   "DDDDDDDDD"
+  ],
+  "cover_biplane": [
+   "....AAAAAAAAAAA...",
+   "RR.....D..K.D....D",
+   "RRRRRRRRRRRRRRRRSD",
+   "RRRRRRRRRRRRRRRRSD",
+   "....AAAAAAAAAAA..D",
+   ".......K....K.....",
+   "......KKKKKKKK...."
+  ],
+  "cover_swordfish": [
+   "..DDDDDD..",
+   "M..M..M..D",
+   "MMMMMMMMMD",
+   "..DDDDDD.D",
+   "....K.K..."
+  ],
+  "cover_bomber": [
+   "DDD.......................",
+   "DDD.......................",
+   "DDDSSSSSSSSSSSSSSSSSSTT...",
+   "DSSSSSSSSSSSSSSSSSSSSSSSK.",
+   ".SSSSSSLLLLLLLLLLLLLSSSSKD",
+   "...DDDDDDDDMMMMDDDDDDD....",
+   "...........MMMMD..........",
+   ".........MMMMMMMMM........"
+  ],
+  "cover_lysander": [
+   "MM....SSSSSSSSSSSS....",
+   "MM.......D..TT.....D..",
+   "MMMMMMMMMMMMMMMMMMMDS.",
+   ".MMMMMMMMMMMMMMMMMMD..",
+   "..............K....D..",
+   "...............K......",
+   "................K.....",
+   "...............KKK...."
+  ],
+  "cover_parachute": [
+   "...WWWWW...",
+   ".WWWWWWWWW.",
+   "WWWWWWWWWWW",
+   "SLSLSLSLSLS",
+   ".D.......D.",
+   "..D.....D..",
+   "...D...D...",
+   "....D.D....",
+   ".....D.....",
+   ".....K.....",
+   "....KKK....",
+   "....KKK....",
+   "....K.K...."
+  ],
+  "cover_telegram": [
+   "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+   "WWSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSWW",
+   "WWKKKKKKKKKKKWWWWWWWWWKKKKKKKKKKWW",
+   "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+   "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+   "WWDDDDDWWDDDDWWDDDDWWDDDDWWDDDDWWW",
+   "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+   "WWDDDWWDDDDDWWDDDDDWWDDDDDWWDDDDWW",
+   "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+   "WWDDDDWWDDDWWDDDWWDDDWWDDDDWWDDDWW",
+   "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+   "WWDDDDWWDDDDWWDDDDDWWDDDDWWDDDDDWW",
+   "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+   "WWDDDDDWWDDDDDWWDDDDWWDRRRRRRRRDWW",
+   "WWWWWWWWWWWWWWWWWWWWWWWRWWWWWWRWWW",
+   "WWDDDWWDDDWWDDDWWDDDWWDRWRRRRWRDWW",
+   "WWWWWWWWWWWWWWWWWWWWWWWRWRRRRWRWWW",
+   "WWDDDDDWWDDDDDWWDDDWWDDRWRRRRWRDWW",
+   "WWWWWWWWWWWWWWWWWWWWWWWRWWWWWWRWWW",
+   "WWDDDWWDDDDDWWDDDDDWWDDRRRRRRRRWWW",
+   "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+   "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
+  ],
+  "cover_key": [
+   ".............KKK..",
+   "...Y.........KKK..",
+   "...A..........A...",
+   ".AAAAAAAAAAAAAAAA.",
+   "......AA...SS.....",
+   "......AA...SS.....",
+   "BBBBBBBBBBBBBBBBBB",
+   "BBBBBBBBBBBBBBBBBB"
+  ],
+  "cover_carriage": [
+   ".DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD.",
+   ".DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD.",
+   "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV",
+   "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV",
+   "VVVVYYYYVVYYYYVVYYYYVVYYYYVVYYYYVVYYYYVVVV",
+   "VVVVYYYYVVYYYYVVYYYYVVYYYYVVYYYYVVYYYYVVVV",
+   "VVVVYYYYVVYYYYVVYYYYVVYYYYVVYYYYVVYYYYVVVV",
+   "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV",
+   "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+   "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV",
+   "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV",
+   "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+   "...KSK..KSK....................KSK..KSK...",
+   "...KKK..KKK....................KKK..KKK..."
+  ],
+  "cover_fir": [
+   ".....V.....",
+   ".....V.....",
+   "....VVV....",
+   "...MMMMM...",
+   "...MMMMM...",
+   ".....V.....",
+   "...VVVVV...",
+   "..VVVVVVV..",
+   "..MMMMMMM..",
+   ".MMMMMMMMM.",
+   "...VVVVV...",
+   "..VVVVVVV..",
+   "VVVVVVVVVVV",
+   "MMMMMMMMMMM",
+   "MMMMMMMMMMM",
+   ".VVVVVVVVV.",
+   ".....B.....",
+   ".....B....."
+  ],
+  "cover_van": [
+   ".........SSSSS........",
+   ".........S...S........",
+   ".........SSSSS........",
+   "...........S..........",
+   ".MMMMMMMMMMMMMMM......",
+   ".MMMMMMMMMMMMMMMMTTTM.",
+   ".MMMMMMMMMMMMMMMMTTTM.",
+   ".MMMMMMMMMMMMMMMMMMMMY",
+   ".MMMMMMMMMMMMMMMMMMMMY",
+   "KKKKKKKKKKKKKKKKKKKKKK",
+   "...KKK..........KKK..."
+  ],
+  "cover_house": [
+   "..............BB....",
+   ".........EEE..BB....",
+   "........EEEEE.BB....",
+   ".......EEEEEEEBB....",
+   "......EEEEEEEEE.....",
+   ".....EEEEEEEEEEE....",
+   "EEEEEEEEEEEEEEEEEEEE",
+   ".SSSSSSSSSSSSSSSSSS.",
+   ".SSSSSSSSSSSSSSSSSS.",
+   ".SSSYYYSSSSSSMMMSSS.",
+   ".SSSYYYSSBBSSMMMSSS.",
+   ".SSSYYYSSBBSSMMMSSS.",
+   ".SSSSSSSSBBSSSSSSSS.",
+   ".SSSSSSSSBBSSSSSSSS.",
+   ".SSSSSSSSBBSSSSSSSS."
+  ],
+  "cover_mill": [
+   "..........EEEEEE............",
+   "........EEEEEEEEEE..........",
+   "......EEEEEEEEEEEEEE........",
+   "....EEEEEEEEEEEEEEEEEE......",
+   "..EEEEEEEEEEEEEEEEEEEEEE....",
+   ".EEEEEEEEEEEEEEEEEEEEEEEE...",
+   "..SSSSSSSSSSSSSSSSSSSSSS....",
+   "..SSSSSSSSSSSSSSSSSSSSSS....",
+   "..SSSSYYYSSSSSSSMMMSSSSS....",
+   "..SSSSYYYSSSSSSSMMMSSSSS....",
+   "..SSSSYYYSSSSSSSMMMSSSBBBBBB",
+   "..SSSSSSSSSSSSSSSSSSSBBSB..B",
+   "..SSSSSSSSSSSSSSSSSSBBSSB...",
+   "..SSSSSSSSSSSSSSSSSSBSSSB...",
+   "..SSSSSSSSSBBBBSSSSSBBBBBBBB",
+   "..SSSSSSSSSBBBBSSSSSBSSSB...",
+   "..SSSSSSSSSBBBBSSSSSBSSSB...",
+   "..SSSSSSSSSBBBBSSSSSBBSSB...",
+   "..SSSSSSSSSBBBBSSSSSSBBSB..B",
+   "..SSSSSSSSSBBBBSSSSSSSBBBBBB"
+  ],
+  "cover_landing": [
+   ".................VVV",
+   ".DDD.K.K.K.K.K.K.VVV",
+   ".DDDVVVVVVVVVVVVVVVV",
+   "VVVVVVVVVVVVVVVVVVVV",
+   ".MMMMMMMMMMMMMMMMMMM",
+   "..DDDDDDDDDDDDDDDDD."
+  ],
+  "cover_crowd": [
+   "D.D.D.D.D.D.D...D.D...D...D.D.",
+   "M.M.M.M.M.M.M...M.M...M...M.M.",
+   "M.M.M.M.M.M.M...M.M...M...M.M."
+  ],
+  "cover_torch": [
+   "Y"
+  ],
+  "cover_periscope": [
+   "DDD",
+   ".D.",
+   ".D.",
+   ".D."
+  ],
+  "cover_london": [
+   "............................................................M...................",
+   "...........................................................MMM..................",
+   "..............................M............................MMM..................",
+   "..............................M............................MMM................MM",
+   "..............................M.........................MMMMYMMM..............MM",
+   ".............MMMMMMMM.......MMMMM....MMMM...............MMMMMMMM......MMMMMMMMMM",
+   "........MMMMMMYMYMMMM......MMMMMMM...MYMM...............MMMMMMMM......MMMMMMMMMM",
+   "........MMMMMMMMMMMMM......MMMMMMM...MMMMMMMMMMM........MMMMMMMM......MMMMMMMMMM",
+   "MMMMMMMMMMMMMMYMYMMMM.....MMMMMMMMM..MYMMMMMMMYM........MMMMMMMM......MYMMMMMMMY",
+   "MMMMMMMMMYMYMMMMMMMMM.....MMMMMMMMM..MMMMMMMMMMM........MYMMMMMM......MMMMMMMMMM",
+   "MMMMMMMMMMMMMMMMYMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM........MMMMMMMMMMMMMMMYMMMMMMMM",
+   "MMMMMYMMMYMMMMMMMMMMMMYMMMMMMMMMMMMYMMMMMMMMMMMMMMMMMMMMMMMMMMMMMYMMMMMMMMMMMMMM",
+   "MMMMMMMMMMMMMMMMMMYMMMMMMMMMMMMMMMMMMMYMMMMMYMMMMMMMMYMMMMMMMMMMMMMMMMMYMMMMMMMY",
+   "MMMMMMMMMMMYMMMMMMMMMMMMMMMMMMMMMMMYMMMMMMMMMMMMMMMMMMMMMMMMMMMMMYMMMMMMMMMMMMMM",
+   "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMYMMMMYMYMMMMMMMMMMMMMMMMMMMYMMMMMMMM",
+   "MMMYMMMMMMMYMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMYMMMMMMMMMMMM",
+   "MMMMMMMMMMMMMMMMYMMMMMMMMMMMMMMMMMMMMMMMMMMMYMYMMMMYMYMMMMMMMMMMMMMMMMMMMMMYMMMY",
+   "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
+  ],
+  "cover_town": [
+   "............................................",
+   "............................................",
+   "............................................",
+   ".......MMMM.................................",
+   "MMMMMMMMMMM.................................",
+   "MMMYMMMMMMM.................................",
+   "MMMMMMMMMMM.............MMMM................",
+   "MYMMMMMMMMMMMMMM........MYMM................",
+   "MMMMMMMMMMMMYMYMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+   "MYMMMMMMMMMMMMMMMMMMMMMMMYMMMMMMMMMMYMMMMMMM",
+   "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+   "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
+  ],
+  "cover_headland": [
+   ".....D.D.D.D..............",
+   "....DDKKDDDD..............",
+   "....DDKKDDDD..............",
+   "VVVVDDDDDDDDVVV...........",
+   "VVVVVVVVVVVVVVVV..........",
+   "BBBBBBBBBBBBBBBVV.........",
+   "BBBBBBBBBBBBBBBBVV........",
+   "BBBBBBBBBBBBBBBBBVV.......",
+   "BBBBBBBBBBBBBBBBBBVV......",
+   "BBBBBBBBBBBBBBBBBBBVV.....",
+   "BBBBBBBBBBBBBBBBBBBBVV....",
+   "BBBBBBBBBBBBBBBBBBBBBVV...",
+   "BBBBBBBBBBBBBBBBBBBBBBVV..",
+   "BBBBBBBBBBBBBBBBBBBBBBBVV."
+  ]
+ },
+ "flyers": [
+  "airship",
+  "biplane"
+ ],
+ "scenes": {
+  "wireless": {
+   "mover": "airship",
+   "target": "station",
+   "sky": "NIGHT",
+   "ground": "EARTH"
+  },
+  "rail": {
+   "mover": "train",
+   "target": "city",
+   "sky": "NIGHT",
+   "ground": "EARTH"
+  },
+  "harbour": {
+   "mover": "submarine",
+   "target": "liner",
+   "sky": "NIGHT",
+   "ground": "SEA"
+  },
+  "fog": {
+   "mover": "liner",
+   "target": "lighthouse",
+   "sky": "FOG",
+   "ground": "SEA"
+  },
+  "sea": {
+   "mover": "liner",
+   "target": "lighthouse",
+   "sky": "NIGHT",
+   "ground": "SEA"
+  },
+  "ice": {
+   "mover": "liner",
+   "target": "iceberg",
+   "sky": "NIGHT",
+   "ground": "SEA"
+  },
+  "road": {
+   "mover": "car",
+   "target": "station",
+   "sky": "NIGHT",
+   "ground": "EARTH"
+  },
+  "air": {
+   "mover": "biplane",
+   "target": "station",
+   "sky": "NIGHT",
+   "ground": "EARTH"
+  }
+ },
+ "covers": {
+  "carpathia": {
+   "sky": [
+    "#05070f",
+    "#0e1630",
+    "#1c2a52"
+   ],
+   "ground": [
+    "#14304a",
+    "#081422"
+   ],
+   "horizon": 22,
+   "water": true,
+   "stars": true,
+   "moon": [
+    64,
+    6
+   ],
+   "layers": [
+    {
+     "sprite": "cover_steamer",
+     "x": 22,
+     "y": 13,
+     "smoke": [
+      [
+       16,
+       0
+      ]
+     ]
+    }
+   ]
+  },
+  "maiden": {
+   "sky": [
+    "#1a1636",
+    "#4a2c5a",
+    "#a8506a",
+    "#e08a5a"
+   ],
+   "ground": [
+    "#3a3a5a",
+    "#141a30"
+   ],
+   "horizon": 22,
+   "water": true,
+   "layers": [
+    {
+     "sprite": "cover_liner",
+     "x": 15,
+     "y": 12,
+     "smoke": [
+      [
+       13,
+       1
+      ],
+      [
+       20,
+       1
+      ],
+      [
+       27,
+       1
+      ]
+     ]
+    }
+   ]
+  },
+  "iceberg": {
+   "sky": [
+    "#05070f",
+    "#0e1630",
+    "#1c2a52"
+   ],
+   "ground": [
+    "#14304a",
+    "#081422"
+   ],
+   "horizon": 22,
+   "water": true,
+   "stars": true,
+   "layers": [
+    {
+     "sprite": "cover_iceberg",
+     "x": 2,
+     "y": 8,
+     "waterline": 23
+    },
+    {
+     "sprite": "cover_liner",
+     "x": 26,
+     "y": 9,
+     "tilt": 0.17,
+     "waterline": 22
+    },
+    {
+     "sprite": "cover_lifeboat",
+     "x": 30,
+     "y": 24
+    },
+    {
+     "sprite": "cover_lifeboat",
+     "x": 46,
+     "y": 27
+    }
+   ]
+  },
+  "rescue": {
+   "sky": [
+    "#2a3458",
+    "#7a6a86",
+    "#d89a7a"
+   ],
+   "ground": [
+    "#5a5a78",
+    "#1e2440"
+   ],
+   "horizon": 21,
+   "water": true,
+   "layers": [
+    {
+     "sprite": "cover_iceberg",
+     "x": 64,
+     "y": 7,
+     "waterline": 22
+    },
+    {
+     "sprite": "cover_steamer",
+     "x": 30,
+     "y": 11,
+     "smoke": [
+      [
+       16,
+       0
+      ]
+     ]
+    },
+    {
+     "sprite": "cover_lifeboat",
+     "x": 6,
+     "y": 23
+    },
+    {
+     "sprite": "cover_lifeboat",
+     "x": 16,
+     "y": 27
+    },
+    {
+     "sprite": "cover_lifeboat",
+     "x": 52,
+     "y": 25
+    }
+   ]
+  },
+  "scarborough": {
+   "sky": [
+    "#5a6a7e",
+    "#8a96a4",
+    "#aab2b8"
+   ],
+   "ground": [
+    "#3a4a5a",
+    "#1a2430"
+   ],
+   "horizon": 22,
+   "water": true,
+   "layers": [
+    {
+     "sprite": "cover_headland",
+     "x": 54,
+     "y": 8
+    },
+    {
+     "sprite": "cover_town",
+     "x": 36,
+     "y": 12,
+     "fire": [
+      0.2,
+      0.6
+     ]
+    },
+    {
+     "sprite": "cover_destroyer",
+     "x": 2,
+     "y": 18
+    },
+    {
+     "sprite": "cover_destroyer",
+     "x": 18,
+     "y": 19
+    },
+    {
+     "x": 23,
+     "y": 18,
+     "flash": true
+    },
+    {
+     "x": 7,
+     "y": 17,
+     "flash": true
+    }
+   ]
+  },
+  "lusitania": {
+   "sky": [
+    "#6a8aa8",
+    "#a8c0d0",
+    "#d0d8d8"
+   ],
+   "ground": [
+    "#2a5068",
+    "#0e2436"
+   ],
+   "horizon": 20,
+   "water": true,
+   "layers": [
+    {
+     "sprite": "cover_liner",
+     "x": 24,
+     "y": 9,
+     "tilt": 0.12,
+     "waterline": 20,
+     "fire": [
+      0.55,
+      0.75
+     ],
+     "smoke": [
+      [
+       13,
+       1
+      ],
+      [
+       20,
+       1
+      ],
+      [
+       27,
+       1
+      ],
+      [
+       34,
+       1
+      ]
+     ]
+    },
+    {
+     "sprite": "cover_periscope",
+     "x": 8,
+     "y": 18
+    }
+   ]
+  },
+  "zeppelin": {
+   "sky": [
+    "#0a0710",
+    "#2a1220",
+    "#5a2420"
+   ],
+   "ground": [
+    "#120c14",
+    "#05050a"
+   ],
+   "horizon": 28,
+   "stars": true,
+   "layers": [
+    {
+     "x": 14,
+     "y": 31,
+     "beam": 28
+    },
+    {
+     "x": 48,
+     "y": 31,
+     "beam": -12
+    },
+    {
+     "x": 70,
+     "y": 31,
+     "beam": -30
+    },
+    {
+     "sprite": "cover_airship",
+     "x": 4,
+     "y": 3
+    },
+    {
+     "sprite": "cover_biplane",
+     "x": 61,
+     "y": 6
+    },
+    {
+     "x": 10,
+     "y": 6,
+     "flash": true
+    },
+    {
+     "x": 66,
+     "y": 4,
+     "flash": true
+    },
+    {
+     "sprite": "cover_london",
+     "x": 0,
+     "y": 14
+    }
+   ]
+  },
+  "telegram": {
+   "sky": [
+    "#1a1210",
+    "#3a2418"
+   ],
+   "ground": [
+    "#5a3418",
+    "#2a160a"
+   ],
+   "horizon": 18,
+   "layers": [
+    {
+     "sprite": "cover_telegram",
+     "x": 14,
+     "y": 6
+    },
+    {
+     "sprite": "cover_key",
+     "x": 54,
+     "y": 20
+    }
+   ]
+  },
+  "armistice": {
+   "sky": [
+    "#2a3458",
+    "#7a6a86",
+    "#d89a7a"
+   ],
+   "ground": [
+    "#2a2a1e",
+    "#12120c"
+   ],
+   "horizon": 26,
+   "layers": [
+    {
+     "sprite": "cover_fir",
+     "x": 0,
+     "y": 9
+    },
+    {
+     "sprite": "cover_fir",
+     "x": 8,
+     "y": 6
+    },
+    {
+     "sprite": "cover_fir",
+     "x": 66,
+     "y": 7
+    },
+    {
+     "sprite": "cover_fir",
+     "x": 72,
+     "y": 10
+    },
+    {
+     "sprite": "cover_carriage",
+     "x": 20,
+     "y": 14
+    }
+   ]
+  },
+  "hindenburg": {
+   "sky": [
+    "#1a1636",
+    "#4a2c5a",
+    "#a8506a",
+    "#e08a5a"
+   ],
+   "ground": [
+    "#2a2a24",
+    "#12120e"
+   ],
+   "horizon": 27,
+   "layers": [
+    {
+     "sprite": "cover_mast",
+     "x": 68,
+     "y": 6
+    },
+    {
+     "sprite": "cover_airship",
+     "x": 8,
+     "y": 11,
+     "tilt": -0.15,
+     "fire": [
+      0,
+      0.55
+     ]
+    },
+    {
+     "sprite": "cover_crowd",
+     "x": 40,
+     "y": 28
+    }
+   ]
+  },
+  "war": {
+   "sky": [
+    "#05070f",
+    "#0e1630",
+    "#1c2a52"
+   ],
+   "ground": [
+    "#0c0c14",
+    "#05050a"
+   ],
+   "horizon": 28,
+   "stars": true,
+   "layers": [
+    {
+     "x": 20,
+     "y": 31,
+     "beam": 20
+    },
+    {
+     "x": 60,
+     "y": 31,
+     "beam": -18
+    },
+    {
+     "sprite": "cover_bomber",
+     "x": 10,
+     "y": 4
+    },
+    {
+     "sprite": "cover_bomber",
+     "x": 32,
+     "y": 9
+    },
+    {
+     "sprite": "cover_bomber",
+     "x": 52,
+     "y": 3
+    },
+    {
+     "x": 46,
+     "y": 15,
+     "flash": true
+    },
+    {
+     "x": 24,
+     "y": 13,
+     "flash": true
+    },
+    {
+     "sprite": "cover_london",
+     "x": 0,
+     "y": 14
+    }
+   ]
+  },
+  "dunkirk": {
+   "sky": [
+    "#6a7484",
+    "#9aa2aa"
+   ],
+   "ground": [
+    "#5a6878",
+    "#2a3644"
+   ],
+   "horizon": 19,
+   "water": true,
+   "layers": [
+    {
+     "sprite": "cover_town",
+     "x": 36,
+     "y": 7,
+     "fire": [
+      0.1,
+      0.5
+     ]
+    },
+    {
+     "sprite": "cover_destroyer",
+     "x": 8,
+     "y": 16
+    },
+    {
+     "sprite": "boat",
+     "x": 14,
+     "y": 22
+    },
+    {
+     "sprite": "boat",
+     "x": 30,
+     "y": 25
+    },
+    {
+     "sprite": "boat",
+     "x": 50,
+     "y": 23
+    },
+    {
+     "sprite": "boat",
+     "x": 64,
+     "y": 26
+    }
+   ]
+  },
+  "bismarck": {
+   "sky": [
+    "#141824",
+    "#3a3a4a",
+    "#6a5a5a"
+   ],
+   "ground": [
+    "#1e2a38",
+    "#0a1018"
+   ],
+   "horizon": 21,
+   "water": true,
+   "layers": [
+    {
+     "sprite": "cover_warship",
+     "x": 20,
+     "y": 11,
+     "fire": [
+      0.05,
+      0.25
+     ],
+     "tilt": 0.03
+    },
+    {
+     "x": 47,
+     "y": 16,
+     "flash": true
+    },
+    {
+     "x": 62,
+     "y": 16,
+     "flash": true
+    },
+    {
+     "sprite": "cover_swordfish",
+     "x": 6,
+     "y": 4
+    },
+    {
+     "sprite": "cover_swordfish",
+     "x": 14,
+     "y": 7
+    },
+    {
+     "sprite": "cover_swordfish",
+     "x": 4,
+     "y": 10
+    }
+   ]
+  },
+  "france": {
+   "sky": [
+    "#05070f",
+    "#0e1630",
+    "#1c2a52"
+   ],
+   "ground": [
+    "#141e18",
+    "#0a100c"
+   ],
+   "horizon": 24,
+   "stars": true,
+   "moon": [
+    12,
+    6
+   ],
+   "layers": [
+    {
+     "sprite": "cover_lysander",
+     "x": 46,
+     "y": 8
+    },
+    {
+     "sprite": "cover_parachute",
+     "x": 24,
+     "y": 6
+    },
+    {
+     "sprite": "cover_fir",
+     "x": 66,
+     "y": 12
+    },
+    {
+     "sprite": "cover_fir",
+     "x": 4,
+     "y": 13
+    },
+    {
+     "sprite": "cover_torch",
+     "x": 36,
+     "y": 27
+    }
+   ]
+  },
+  "hunters": {
+   "sky": [
+    "#05070f",
+    "#0e1630",
+    "#1c2a52"
+   ],
+   "ground": [
+    "#1a1a1e",
+    "#0a0a0e"
+   ],
+   "horizon": 25,
+   "stars": true,
+   "layers": [
+    {
+     "sprite": "cover_house",
+     "x": 6,
+     "y": 11
+    },
+    {
+     "sprite": "cover_house",
+     "x": 56,
+     "y": 11
+    },
+    {
+     "sprite": "cover_van",
+     "x": 30,
+     "y": 18
+    }
+   ]
+  },
+  "dday": {
+   "sky": [
+    "#5a6a7e",
+    "#8a96a4",
+    "#aab2b8"
+   ],
+   "ground": [
+    "#4a5a68",
+    "#24303c"
+   ],
+   "horizon": 17,
+   "water": true,
+   "layers": [
+    {
+     "sprite": "cover_warship",
+     "x": 2,
+     "y": 8
+    },
+    {
+     "x": 50,
+     "y": 12,
+     "flash": true
+    },
+    {
+     "sprite": "cover_destroyer",
+     "x": 60,
+     "y": 13
+    },
+    {
+     "sprite": "cover_bomber",
+     "x": 54,
+     "y": 2
+    },
+    {
+     "sprite": "cover_landing",
+     "x": 10,
+     "y": 20
+    },
+    {
+     "sprite": "cover_landing",
+     "x": 36,
+     "y": 23
+    },
+    {
+     "sprite": "cover_landing",
+     "x": 58,
+     "y": 21
+    }
+   ]
+  },
+  "last": {
+   "sky": [
+    "#05070f",
+    "#0e1630",
+    "#1c2a52"
+   ],
+   "ground": [
+    "#121a24",
+    "#060a10"
+   ],
+   "horizon": 26,
+   "stars": true,
+   "moon": [
+    70,
+    5
+   ],
+   "layers": [
+    {
+     "sprite": "cover_fir",
+     "x": 2,
+     "y": 10
+    },
+    {
+     "sprite": "cover_mill",
+     "x": 14,
+     "y": 8
+    },
+    {
+     "sprite": "cover_van",
+     "x": 50,
+     "y": 17
+    }
+   ]
+  }
+ }
+}

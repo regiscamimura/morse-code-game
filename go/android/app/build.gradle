@@ -1,0 +1,33 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.regiscamimura.morse'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.regiscamimura.morse'
+        minSdk 23
+        targetSdk 35
+        versionCode 1
+        versionName '0.1.0'
+    }
+
+    // compress the Go library inside the APK (13 MB -> ~4 MB); it's unpacked once on install
+    packaging {
+        jniLibs {
+            useLegacyPackaging true
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    // built from ../mobile by build.sh (ebitenmobile bind)
+    implementation files('libs/morse.aar')
+}

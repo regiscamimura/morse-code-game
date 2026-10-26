@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
-"""TERMINAL CARTRIDGES - pick a cartridge: MORSE CODE (The Listener, 1912-1944) or VIM (Sublevel 7, 1999).
+"""TERMINAL CARTRIDGES - insert the cartridge: VIM (Sublevel 7, 1999). MORSE CODE now lives in go/.
 
-Left/right (or h/l) chooses, Enter or space inserts the cartridge, q quits.
+Enter or space inserts the cartridge, q quits.
 Each game's own quit (Esc or q on its title screen) ejects back here.
 """
 import argparse
 import os
 
 from engine import (Audio, Canvas, Eject, add_arguments, big_center, noise, notes, open_terminal, run,
-                    slide, sprite, square)
+                    slide, sprite)
 import engine
-import morse
 import vim
 
 # Atari 2600 NTSC-ish palette
@@ -23,22 +22,16 @@ RAINBOW = [RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, PURPLE]
 PALETTE = {'K': (16, 16, 16), 'W': WHITE, 'S': GREY, 'R': RED, 'O': ORANGE, 'Y': YELLOW, 'G': GREEN,
        'C': CYAN, 'B': BLUE, 'P': PINK, 'N': (110, 62, 24), 'A': BRASS}
 
-TELEGRAPH_KEY = ['..Y..............Y..', '...Y....KKKK....Y...', '........KKKK........',
-                 '.........SS.........', '..AAAAAAAAAAAAAAA...', '.........SS....SS...',
-                 '........SSSS...SS...', '..NNNNNNNNNNNNNNNN..', '..NNNNNNNNNNNNNNNN..',
-                 '....................']
 TERMINAL = ['..SSSSSSSSSSSSSSSS..', '..SKKKKKKKKKKKKKKS..', '..SKGGGG.PPPKKKKKS..',
             '..SKKKCCCCCC.YYYKS..', '..SKGGG.WKKKKKKKKS..', '..SKKKKKKKKKKKKKKS..',
             '..SSSSSSSSSSSSSSSS..', '.......SSSSSS.......', '.....SSSSSSSSSS.....',
             '....................']
 
 CARTRIDGES = [
-    dict(title='MORSE CODE', subtitle='THE LISTENER', stripes=[ORANGE, RED, BRASS], art=TELEGRAPH_KEY,
-         start=lambda args, audio, releases: morse.MorseGame(args, audio, releases)),
     dict(title='VIM', subtitle='SUBLEVEL 7', stripes=[GREEN, CYAN, PINK], art=TERMINAL,
          start=lambda args, audio, releases: vim.VimGame(args, audio, releases)),
 ]
-CART_W, CART_H, CART_X = 26, 15, (8, 46)
+CART_W, CART_H, CART_X = 26, 15, (27,)
 INSERT_SECONDS, POWER_ON_SECONDS = .7, 1.2
 
 
@@ -101,12 +94,7 @@ class Launcher:
             return
         if self.inserted_at is not None:
             return
-        if k in ('LEFT', 'h', 'a', '1') or k in ('RIGHT', 'l', 'd', '2'):
-            choice = 0 if k in ('LEFT', 'h', 'a', '1') else 1
-            if choice != self.choice:
-                self.choice = choice
-                self.audio.play(square(660, .03, .08))
-        elif k in ('\n', '\r', ' '):
+        if k in ('\n', '\r', ' '):
             self.inserted_at = now
             self.audio.play(slide(300, 80, .35, .15))
             self.audio.play(noise(.12, .2, 8))
@@ -151,18 +139,16 @@ class Launcher:
             draw_cartridge(c, CART_X[i], y, cart, selected and not inserting)
         draw_console(c)
         if int(now * 1.5) % 2 or inserting:
-            c.center(23, '◀ ▶ CHOOSE     ENTER INSERT     Q QUIT', GREY)
+            c.center(23, 'ENTER INSERT     Q QUIT', GREY)
         return c
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     add_arguments(ap)
-    morse.add_morse_arguments(ap)
     args = ap.parse_args()
     if args.selftest:
         engine.selftest()
-        morse.selftest()
         vim.selftest()
         return print('selftest ok')
     audio = Audio(args.volume)

@@ -1,0 +1,13 @@
+// The MORSE telephone exchange. `npm run deploy` publishes it at exchange.regiscamimura.com
+// (regiscamimura.com's DNS is on this Cloudflare account); `npm run dev` runs it locally on
+// http://localhost:8787.
+{
+  "name": "morse-exchange",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-01",
+  "durable_objects": {
+    "bindings": [{ "name": "EXCHANGE", "class_name": "Exchange" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Exchange"] }],
+  "routes": [{ "pattern": "exchange.regiscamimura.com", "custom_domain": true }]
+}
