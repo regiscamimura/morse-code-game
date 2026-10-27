@@ -58,11 +58,24 @@ KEY  • ━            = A   ▮▮▮▯▯
  └ lights up while the key is down
 ```
 
+- **Volumes:** the chapters are grouped into six stories: Titanic (4
+  chapters), Lusitania (2), Room 40 (3), Hindenburg (1), Station X (3) and
+  Coruja (4). A volume opens with the history you need ("1914. EUROPE GOES TO
+  WAR...") and closes with what came of it ("THE LUSITANIA TOOK 1,198 LIVES.
+  128 WERE AMERICAN."). Chapters are numbered within their volume:
+  `VOLUME 2 · CHAPTER 1`.
 - **Chapters:** each is a historical event. It opens on a cover: a pixel-art
   picture of the event (the Titanic going down by the bow, the Hindenburg in
-  flames over the mast), its year and its name. Only the flames, smoke,
-  searchlights and sea move. Then about ten messages in four or five beats,
-  each beat one line of story.
+  flames over the mast), its year, its name, and where and when it happens
+  (`LONDON · THE FIRST WORLD WAR`). Only the flames, smoke,
+  searchlights and sea move. Then about ten messages in four or five beats.
+- **Beats:** each beat is a step of the story. The briefing says who is
+  sending and why it matters. The message carries the plot. Winning says what
+  your message made happen; losing says what happens without it, before you
+  try again:
+
+      SOS SOS          win:  SHE HAS STRUCK A BERG AND IS SINKING. YOU RUN TO THE BRIDGE IN ONE BOOT.
+                       lose: YOU SHUT DOWN AND SLEEP, LIKE THE CALIFORNIAN. NO ONE GOES TO THE TITANIC.
 - **Messages:** short sentences (`TEA AT TEN`, `SOS SOS`, `THE WAR IS OVER`),
   cipher groups (`TNEAT`), or what the beat before received, passed on. A beat
   may hold several; they follow one another without a screen between. The

@@ -34,8 +34,20 @@ type Beat struct {
 type Chapter struct {
 	Title string `json:"title"`
 	Year  string `json:"year"`
+	Place string `json:"place"` // where it happens: "LONDON"
+	Era   string `json:"era"`   // the times around it: "THE FIRST WORLD WAR"
 	Cover string `json:"cover"` // a key of Content.Covers
 	Beats []Beat `json:"beats"`
+}
+
+// Volume is a run of chapters telling one story: the Titanic, the Lusitania. It opens on its
+// Prologue, the history the player needs, and closes on its Epilogue, what came of it.
+type Volume struct {
+	Title    string   `json:"title"`
+	Years    string   `json:"years"`
+	Chapters int      `json:"chapters"` // how many chapters, following the previous volume's
+	Prologue []string `json:"prologue"`
+	Epilogue []string `json:"epilogue"` // "" for the last volume, which closes on the game's ending
 }
 
 // Scene: the mover creeping toward the target is the mission timer. Sky and ground name palette colours.
@@ -65,6 +77,7 @@ type Content struct {
 	Levels      []string                     `json:"levels"`
 	Pace        Pace                         `json:"pace"`
 	Words       map[string][]string          `json:"words"`
+	Volumes     map[string][]Volume          `json:"volumes"`
 	Chapters    map[string][]Chapter         `json:"chapters"`
 	Ending      map[string][]string          `json:"ending"`
 	WinBanners  map[string][]string          `json:"win_banners"`

@@ -24,7 +24,7 @@ func DefaultConfig() Config {
 }
 
 // continueHolds is how long a screen stays before ENTER moves on from it, seconds.
-var continueHolds = map[string]float64{"cover": 1, "win": 1, "lose": 1, "game_over": 1.5, "ending": 1.5}
+var continueHolds = map[string]float64{"volume": 1, "cover": 1, "win": 1, "lose": 1, "game_over": 1.5, "ending": 1.5}
 
 // drillTimes is how often each new letter must be keyed before a chapter's messages begin.
 const drillTimes = 3
@@ -53,6 +53,9 @@ type Game struct {
 	lang         string
 	hi           int
 	savedChapter int
+	// volumeClosing: the volume screen shows the epilogue of the volume just finished, rather
+	// than the prologue of the one the chapter opens
+	volumeClosing bool
 
 	score, lives, combo, chapter, beatNo int
 	newHi                                bool
@@ -129,10 +132,51 @@ func (g *Game) chapters() []Chapter { return content.Chapters[g.lang] }
 
 func (g *Game) currentChapter() Chapter { return g.chapters()[g.chapter-1] }
 
+func (g *Game) volumes() []Volume { return content.Volumes[g.lang] }
+
+// volumeOf is the volume holding a chapter, numbered from 1, and the chapter's number in it.
+//
+//	volumeOf(5) == 2, 1 when the first volume has four chapters
+func (g *Game) volumeOf(chapter int) (volume, nth int) {
+	for i, v := range g.volumes() {
+		if chapter <= v.Chapters {
+			return i + 1, chapter
+		}
+		chapter -= v.Chapters
+	}
+	return len(g.volumes()), chapter
+}
+
+// chapterNumbers fills a label's {v}, {n} and {total}: the chapter's volume, its number in
+// that volume and the volume's chapter count.
+func (g *Game) chapterNumbers(chapter int) map[string]any {
+	v, n := g.volumeOf(chapter)
+	return map[string]any{"v": v, "n": n, "total": g.volumes()[v-1].Chapters}
+}
+
+// chapterLine is the chapter's number in its volume and its title: "CHAPTER 2 · THE RESCUE".
+func (g *Game) chapterLine() string {
+	values := g.chapterNumbers(g.chapter)
+	values["title"] = g.currentChapter().Title
+	return g.text("brief_line", values)
+}
+
+// shownVolume is what the volume screen shows: the volume's number, title, a line under it
+// (its years, or that this is what came after) and the lines typed out below.
+func (g *Game) shownVolume() (n int, title, subtitle string, lines []string) {
+	n, _ = g.volumeOf(g.chapter)
+	if g.volumeClosing {
+		v := g.volumes()[n-2]
+		return n - 1, v.Title, g.text("volume_after", nil), v.Epilogue
+	}
+	v := g.volumes()[n-1]
+	return n, v.Title, v.Years, v.Prologue
+}
+
 // WaitsForEnter is true on the screens that only wait for ENTER, which a tap on the phone's
 // game also gives.
 func (g *Game) WaitsForEnter() bool {
-	return slices.Contains([]string{"cover", "brief", "win", "lose", "game_over", "ending"}, g.state)
+	return slices.Contains([]string{"volume", "cover", "brief", "win", "lose", "game_over", "ending"}, g.state)
 }
 
 // readyToContinue: the screen has stayed its continueHolds, so ENTER moves on and says so.
@@ -189,6 +233,11 @@ func (g *Game) openChapter(now float64) {
 	g.beatNo, g.msgsDone, g.freeText = 0, 0, ""
 	g.newLetters = FocusLetters(g.chapter)
 	g.drill = make([]int, len(g.newLetters))
+	if _, nth := g.volumeOf(g.chapter); nth == 1 {
+		g.volumeClosing = false
+		g.setState("volume", now)
+		return
+	}
 	g.setState("cover", now)
 }
 
@@ -409,6 +458,13 @@ func (g *Game) afterResult(now float64) {
 	g.msgsDone++
 	if g.beatNo >= len(g.currentChapter().Beats) {
 		g.chapter++
+		if _, nth := g.volumeOf(g.chapter); nth == 1 && g.chapter <= len(g.chapters()) {
+			g.savedChapter = max(g.savedChapter, g.chapter) // leaving on the epilogue still keeps the chapter won
+			g.storeProgress()
+			g.volumeClosing = true
+			g.setState("volume", now)
+			return
+		}
 		g.openChapter(now)
 		return
 	}
@@ -483,7 +539,7 @@ func (g *Game) Key(k string, now float64) {
 		return
 	}
 	enter := k == KeyEnter || k == "\r"
-	if enter && (s == "brief" || s == "ending") && !g.typedAll {
+	if enter && (s == "brief" || s == "ending" || s == "volume") && !g.typedAll {
 		g.stateStart -= 100 // skip the typing-out
 		return
 	}
@@ -516,6 +572,12 @@ func (g *Game) Key(k string, now float64) {
 			return
 		}
 		g.playSelect()
+	case "volume":
+		if enter && g.readyToContinue(now) && g.volumeClosing {
+			g.openChapter(now)
+		} else if enter && g.readyToContinue(now) {
+			g.setState("cover", now)
+		}
 	case "cover":
 		if enter && g.readyToContinue(now) {
 			g.leaveCover(now)

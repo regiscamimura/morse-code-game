@@ -102,8 +102,8 @@ func TestContent(t *testing.T) {
 		lines = append(lines, content.Ending[lang]...)
 		for n, ch := range chapters {
 			n++
-			lines = append(lines, ch.Title)
-			if len(ch.Beats) == 0 || BigTextWidth(ch.Year) > 80 {
+			lines = append(lines, ch.Title, ch.Place+" · "+ch.Era)
+			if ch.Place == "" || ch.Era == "" || len(ch.Beats) == 0 || BigTextWidth(ch.Year) > 80 {
 				t.Errorf("%s chapter %d: %d beats, year %q", lang, n, len(ch.Beats), ch.Year)
 			}
 			if _, ok := content.Covers[ch.Cover]; !ok {
@@ -131,8 +131,24 @@ func TestContent(t *testing.T) {
 				for _, line := range b.Brief {
 					lines = append(lines, format(line, long))
 				}
-				lines = append(lines, b.Title, b.Task, format(b.Win, long), format(b.Lose, long))
+				lines = append(lines, b.Title, b.Task)
+				if len(b.Brief) > 3 || len(wrap(format(b.Win, long), 78)) > 2 || len(wrap(format(b.Lose, long), 78)) > 2 {
+					t.Errorf("%s chapter %d: beat %d's briefing passes 3 lines, or its win or loss 2", lang, n, i+1)
+				}
 			}
+		}
+		chaptersInVolumes := 0
+		for i, v := range content.Volumes[lang] {
+			chaptersInVolumes += v.Chapters
+			last := i == len(content.Volumes[lang])-1
+			if v.Chapters != content.Volumes["en"][i].Chapters || len(paragraphs(v.Prologue, 76)) > 10 ||
+				len(paragraphs(v.Epilogue, 76)) > 10 || (len(v.Epilogue) == 0) != last {
+				t.Errorf("%s volume %d: chapters differ from English, a prologue or epilogue passes 10 lines, or the epilogue is missing", lang, i+1)
+			}
+			lines = append(lines, v.Title, v.Years)
+		}
+		if chaptersInVolumes != len(chapters) {
+			t.Errorf("%s: volumes hold %d chapters of %d", lang, chaptersInVolumes, len(chapters))
 		}
 		for _, banner := range append(content.WinBanners[lang], content.LoseBanners[lang]...) {
 			if BigTextWidth(banner) > 80 {
@@ -217,8 +233,13 @@ func TestPlaythrough(t *testing.T) {
 		t.Fatalf("after language: %s", g.State())
 	}
 	step(KeyEnter) // begin
-	if g.State() != "cover" {
+	if g.State() != "volume" {
 		t.Fatalf("after begin: %s", g.State())
+	}
+	step(KeyEnter) // finish typing the prologue
+	step(KeyEnter) // the volume
+	if g.State() != "cover" {
+		t.Fatalf("after the volume: %s", g.State())
 	}
 	step(KeyEnter) // the cover
 	step(KeyEnter) // too soon: the drill isn't done
@@ -277,7 +298,7 @@ func TestEveryScreenDraws(t *testing.T) {
 				g.startBeat(1)
 				g.startPlay(2)
 				g.line.remote = NewKeyer(DefaultConfig())
-				for _, state := range []string{"cover", "chapter", "brief", "play", "win", "lose", "free", "game_over", "ending", "lang", "title",
+				for _, state := range []string{"volume", "cover", "chapter", "brief", "play", "win", "lose", "free", "game_over", "ending", "lang", "title",
 					"codename", "switchboard", "calling", "ringing", "line"} {
 					g.state = state
 					g.progressEnd, g.banner = .5, "OK"

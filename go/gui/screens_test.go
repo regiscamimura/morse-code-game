@@ -229,6 +229,11 @@ func (d *screenDriver) script() {
 	d.expectState("title")
 	d.screenshot("2-title")
 	d.typeKey(morse.KeyEnter)
+	d.expectState("volume")
+	d.typeKey(morse.KeyEnter) // skip the typing-out
+	d.then(70, func() {})     // past the volume's hold, so ENTER moves on
+	d.screenshot("3-volume")
+	d.typeKey(morse.KeyEnter)
 	d.expectState("cover")
 	d.then(70, func() {}) // past the cover's hold, so ENTER moves on
 	d.screenshot("3a-cover")

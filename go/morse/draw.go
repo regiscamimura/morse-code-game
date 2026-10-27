@@ -59,6 +59,8 @@ func (g *Game) Draw(width, height int, now float64) *Canvas {
 		g.drawLine(c, now)
 	case "title":
 		g.drawTitle(c, now)
+	case "volume":
+		g.drawVolume(c, now)
 	case "cover":
 		g.drawChapterCover(c, now)
 	case "chapter":
@@ -126,7 +128,7 @@ func (g *Game) drawKey(c *Canvas, x, y int, now float64) {
 func (g *Game) drawHud(c *Canvas) {
 	c.Band(0, 1, Band)
 	c.Put(1, 0, g.text("score", map[string]any{"score": g.score}), Amber)
-	c.Put(22, 0, g.text("chapter_hud", map[string]any{"n": g.chapter, "total": len(g.chapters())}), Amber)
+	c.Put(22, 0, g.text("chapter_hud", g.chapterNumbers(g.chapter)), Amber)
 	c.Put(44, 0, strings.Repeat("♥ ", g.lives), Alert)
 	best := g.text("best", map[string]any{"best": max(g.hi, g.score)})
 	c.Put(79-runeLen(best), 0, best, Dim)
@@ -254,7 +256,7 @@ func (g *Game) drawTitle(c *Canvas, now float64) {
 	c.Center(20, g.text("tap_hold", map[string]any{"dot": Dot, "dah": Dah}), Paper)
 	menu := g.text("menu_begin", nil)
 	if g.savedChapter > 1 {
-		menu += "   " + g.text("menu_continue", map[string]any{"n": g.savedChapter})
+		menu += "   " + g.text("menu_continue", g.chapterNumbers(g.savedChapter))
 	}
 	c.Center(22, menu, Amber)
 	c.Center(23, g.text("menu_rest", nil), Amber)
@@ -266,6 +268,30 @@ func (g *Game) drawTitle(c *Canvas, now float64) {
 	}
 }
 
+// drawVolume: the volume's number big and its title, then its prologue typed out; or, as it
+// closes, its epilogue.
+func (g *Game) drawVolume(c *Canvas, now float64) {
+	n, title, subtitle, lines := g.shownVolume()
+	BigCenter(c, 3, g.text("volume_label", map[string]any{"v": n}), Amber)
+	c.Center(8, title, Paper)
+	c.Center(9, subtitle, Dim)
+	if g.drawTypedLines(c, 12, paragraphs(lines, 76), now, Paper) && g.readyToContinue(now) && blinkOn(now) {
+		c.Center(23, g.text("continue", nil), Amber)
+	}
+}
+
+// paragraphs wraps each line to width, with a blank line between them.
+func paragraphs(lines []string, width int) []string {
+	var out []string
+	for i, line := range lines {
+		if i > 0 {
+			out = append(out, "")
+		}
+		out = append(out, wrap(line, width)...)
+	}
+	return out
+}
+
 // coverYearRow is where a chapter cover's year starts, under the picture and the chapter's number.
 const coverYearRow = coverHeight/2 + 1
 
@@ -273,9 +299,10 @@ const coverYearRow = coverHeight/2 + 1
 func (g *Game) drawChapterCover(c *Canvas, now float64) {
 	chapter := g.currentChapter()
 	drawChapterCoverArt(c, content.Covers[chapter.Cover], now)
-	c.Center(coverHeight/2, g.text("chapter_label", map[string]any{"n": g.chapter}), Dim)
+	c.Center(coverHeight/2, g.text("chapter_label", g.chapterNumbers(g.chapter)), Dim)
 	BigCenter(c, coverYearRow, chapter.Year, Amber)
 	c.Center(coverYearRow+4, chapter.Title, Paper)
+	c.Center(coverYearRow+5, chapter.Place+" · "+chapter.Era, Teal)
 	if g.readyToContinue(now) && blinkOn(now) {
 		c.Center(23, g.text("continue", nil), Amber)
 	}
@@ -284,7 +311,7 @@ func (g *Game) drawChapterCover(c *Canvas, now float64) {
 // drawChapter: the chapter's new letters, each to be keyed drillTimes before the messages begin.
 func (g *Game) drawChapter(c *Canvas, now float64) {
 	g.drawHud(c)
-	c.Center(2, g.text("brief_line", map[string]any{"n": g.chapter, "title": g.currentChapter().Title}), Dim)
+	c.Center(2, g.chapterLine(), Dim)
 	c.Center(5, g.lettersLabel(), Teal)
 	columnWidth := 76 / len(g.newLetters)
 	last := lastLetter(g.freeText)
@@ -330,7 +357,7 @@ func (g *Game) lettersLabel() string {
 
 func (g *Game) drawBrief(c *Canvas, now float64) {
 	g.drawHud(c)
-	g.drawHeader(c, g.text("brief_line", map[string]any{"n": g.chapter, "title": g.currentChapter().Title}))
+	g.drawHeader(c, g.chapterLine())
 	g.drawScene(c, now, g.beat.Scene, g.sceneProgress(0), nil)
 	var lines []string
 	for _, line := range g.beat.Brief {
@@ -478,8 +505,12 @@ func (g *Game) drawResult(c *Canvas, now float64, won bool) {
 	}
 	BigCenter(c, 14, g.banner, bannerColor)
 	c.Center(19, g.wordInCode(), Teal)
-	c.Center(20, verdict, Paper)
-	c.Center(21, outcome, outcomeColor)
+	y := 20
+	for _, line := range wrap(verdict, 78) { // the story's line may take two rows
+		c.Center(y, line, Paper)
+		y++
+	}
+	c.Center(y, outcome, outcomeColor)
 	if g.readyToContinue(now) && blinkOn(now) {
 		c.Center(23, g.text("continue", nil), Amber)
 	}
@@ -544,7 +575,7 @@ func (g *Game) drawGameOver(c *Canvas, now float64) {
 	if g.newHi {
 		c.Center(15, g.text("new_best", nil), Paper)
 	}
-	c.Center(17, g.text("over_continue", map[string]any{"n": g.chapter}), Dim)
+	c.Center(17, g.text("over_continue", g.chapterNumbers(g.chapter)), Dim)
 	if g.readyToContinue(now) && blinkOn(now) {
 		c.Center(21, "[ENTER]", Paper)
 	}

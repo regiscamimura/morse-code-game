@@ -445,7 +445,7 @@
    "VENHA AGORA",
    "HORA DE IR",
    "NEVE NA SERRA",
-   "HOMENS EM AVANTE",
+   "HOMENS AVANTE",
    "HOMENS A VISTA",
    "FALHA",
    "FOGO NA LINHA",
@@ -471,32 +471,212 @@
    "ZARPAR AGORA"
   ]
  },
+ "volumes": {
+  "pt": [
+   {
+    "title": "TITANIC",
+    "years": "1912",
+    "chapters": 4,
+    "prologue": [
+     "1912. O RÁDIO NO MAR TEM DEZ ANOS. POUCOS NAVIOS TÊM UM, QUASE SEMPRE COM UM SÓ OPERADOR.",
+     "QUANDO ELE DORME, O NAVIO FICA SURDO. NINGUÉM É OBRIGADO A ESCUTAR À NOITE.",
+     "VOCÊ ACABA DE ASSUMIR O RÁDIO DO CARPATHIA, UM NAVIO MODESTO A CAMINHO DO MEDITERRÂNEO."
+    ],
+    "epilogue": [
+     "O TITANIC LEVOU 1.517 VIDAS. O CARPATHIA SALVOU 705.",
+     "O CALIFORNIAN ESTAVA MAIS PERTO. O RÁDIO DELE ESTAVA DESLIGADO; O OPERADOR, DORMINDO.",
+     "DEPOIS DO TITANIC, A LEI MUDA: TODO NAVIO DE PASSAGEIROS DEVE ESCUTAR O RÁDIO DIA E NOITE."
+    ]
+   },
+   {
+    "title": "LUSITANIA",
+    "years": "1914 – 1915",
+    "chapters": 2,
+    "prologue": [
+     "1914. A EUROPA ENTRA EM GUERRA. A MARINHA BRITÂNICA PRECISA DE OUVIDOS, E CHAMA VOCÊ.",
+     "EM 1915, A ALEMANHA DECLARA AS ÁGUAS EM VOLTA DA GRÃ-BRETANHA ZONA DE GUERRA: QUALQUER NAVIO PODE SER AFUNDADO SEM AVISO.",
+     "EM NOVA YORK, A EMBAIXADA ALEMÃ PUBLICA UM ANÚNCIO NOS JORNAIS: NÃO VIAJEM. O LUSITANIA ZARPA MESMO ASSIM."
+    ],
+    "epilogue": [
+     "O LUSITANIA LEVOU 1.198 VIDAS. 128 ERAM AMERICANAS.",
+     "NOS EUA, A REVOLTA É ENORME. A ALEMANHA RECUA E PROMETE POUPAR NAVIOS DE PASSAGEIROS.",
+     "OS AMERICANOS FICAM FORA DA GUERRA, POR ENQUANTO. MAS NÃO ESQUECEM."
+    ]
+   },
+   {
+    "title": "SALA 40",
+    "years": "1916 – 1918",
+    "chapters": 3,
+    "prologue": [
+     "1916. A SALA 40 TE LEVA PARA LONDRES. LÁ, UM PUNHADO DE PROFESSORES E MARINHEIROS LÊ OS CÓDIGOS ALEMÃES.",
+     "A GUERRA AGORA VEM PELO CÉU: ZEPELINS, DIRIGÍVEIS DO TAMANHO DE NAVIOS, BOMBARDEIAM A CIDADE À NOITE.",
+     "CADA VEZ QUE UM DELES USA O RÁDIO, ESTAÇÕES PELO PAÍS MEDEM DE ONDE VEM O SINAL."
+    ],
+    "epilogue": [
+     "A GUERRA ACABOU. MORRERAM MAIS DE 15 MILHÕES DE PESSOAS.",
+     "A SALA 40 DECIFROU MILHARES DE MENSAGENS ALEMÃS. NINGUÉM FORA DELA VAI SABER DISSO POR DÉCADAS.",
+     "BRANDT VOLTA PARA DRESDEN. VOCÊ E MARSH VIRAM AMIGOS PARA A VIDA TODA."
+    ]
+   },
+   {
+    "title": "HINDENBURG",
+    "years": "1937",
+    "chapters": 1,
+    "prologue": [
+     "1937. VOCÊ CUIDA DO RÁDIO DA BASE DE DIRIGÍVEIS DE LAKEHURST, NOS ESTADOS UNIDOS.",
+     "O HINDENBURG, O MAIOR OBJETO QUE JÁ VOOU, CRUZA O ATLÂNTICO EM DOIS DIAS E MEIO, COM PASSAGEIROS DE LUXO.",
+     "ELE FLUTUA GRAÇAS A 200 MIL METROS CÚBICOS DE HIDROGÊNIO. UM GÁS QUE PEGA FOGO."
+    ],
+    "epilogue": [
+     "O FOGO, FILMADO E NARRADO AO VIVO, CORRE O MUNDO. É O FIM DOS DIRIGÍVEIS DE PASSAGEIROS.",
+     "BRANDT VOLTA PARA A ALEMANHA COM AS MÃOS ENFAIXADAS.",
+     "DOIS ANOS DEPOIS, OS DOIS PAÍSES ESTÃO EM GUERRA DE NOVO."
+    ]
+   },
+   {
+    "title": "ESTAÇÃO X",
+    "years": "1939 – 1941",
+    "chapters": 3,
+    "prologue": [
+     "SETEMBRO DE 1939. A ALEMANHA INVADE A POLÔNIA, E A GRÃ-BRETANHA ENTRA NA GUERRA.",
+     "OS ALEMÃES CIFRAM TUDO COM A ENIGMA, UMA MÁQUINA QUE ELES ACHAM IMPOSSÍVEL DE QUEBRAR.",
+     "NUMA MANSÃO CHAMADA BLETCHLEY PARK, A ESTAÇÃO X VAI TENTAR. MARSH INDICA VOCÊ PARA SER O OUVIDO DELA."
+    ],
+    "epilogue": [
+     "OS ALEMÃES NUNCA DESCOBREM QUE A ENIGMA FOI QUEBRADA.",
+     "MAS OUVIR NÃO BASTA. A FRANÇA ESTÁ OCUPADA, E LONDRES PRECISA DE GENTE LÁ DENTRO.",
+     "MARSH AGORA TREINA AGENTES SECRETOS. ELA TEM UM CONVITE PARA VOCÊ."
+    ]
+   },
+   {
+    "title": "CORUJA",
+    "years": "1943 – 1944",
+    "chapters": 4,
+    "prologue": [
+     "1943. A FRANÇA ESTÁ OCUPADA HÁ TRÊS ANOS. A RESISTÊNCIA LUTA ESCONDIDA, NO CAMPO E NAS CIDADES.",
+     "LONDRES MANDA AGENTES DE PARAQUEDAS. OS QUE OPERAM O RÁDIO SÃO CHAMADOS DE PIANISTAS.",
+     "UM PIANISTA DURA, EM MÉDIA, SEIS SEMANAS ANTES DE SER PEGO. SEU CODINOME É CORUJA."
+    ],
+    "epilogue": []
+   }
+  ],
+  "en": [
+   {
+    "title": "TITANIC",
+    "years": "1912",
+    "chapters": 4,
+    "prologue": [
+     "1912. WIRELESS AT SEA IS TEN YEARS OLD. FEW SHIPS CARRY IT, MOST WITH A SINGLE OPERATOR.",
+     "WHEN HE SLEEPS, THE SHIP IS DEAF. NO LAW SAYS ANYONE MUST LISTEN AT NIGHT.",
+     "YOU HAVE JUST TAKEN OVER THE WIRELESS OF THE CARPATHIA, A MODEST LINER BOUND FOR THE MEDITERRANEAN."
+    ],
+    "epilogue": [
+     "THE TITANIC TOOK 1,517 LIVES. THE CARPATHIA SAVED 705.",
+     "THE CALIFORNIAN WAS CLOSER. HER WIRELESS WAS OFF, HER OPERATOR ASLEEP.",
+     "AFTER THE TITANIC THE LAW CHANGES: EVERY PASSENGER SHIP MUST LISTEN DAY AND NIGHT."
+    ]
+   },
+   {
+    "title": "LUSITANIA",
+    "years": "1914 – 1915",
+    "chapters": 2,
+    "prologue": [
+     "1914. EUROPE GOES TO WAR. THE ROYAL NAVY NEEDS EARS, AND IT SENDS FOR YOU.",
+     "IN 1915 GERMANY DECLARES THE WATERS AROUND BRITAIN A WAR ZONE: ANY SHIP MAY BE SUNK WITHOUT WARNING.",
+     "IN NEW YORK, THE GERMAN EMBASSY PRINTS A NOTICE IN THE PAPERS: DO NOT SAIL. THE LUSITANIA SAILS ANYWAY."
+    ],
+    "epilogue": [
+     "THE LUSITANIA TOOK 1,198 LIVES. 128 WERE AMERICAN.",
+     "AMERICA IS OUTRAGED. GERMANY BACKS DOWN AND PROMISES TO SPARE PASSENGER SHIPS.",
+     "AMERICA STAYS OUT OF THE WAR, FOR NOW. BUT IT DOES NOT FORGET."
+    ]
+   },
+   {
+    "title": "ROOM 40",
+    "years": "1916 – 1918",
+    "chapters": 3,
+    "prologue": [
+     "1916. ROOM 40 BRINGS YOU TO LONDON, WHERE A HANDFUL OF DONS AND SAILORS READ THE GERMAN CODES.",
+     "THE WAR NOW COMES BY AIR: ZEPPELINS, AIRSHIPS THE SIZE OF LINERS, BOMB THE CITY BY NIGHT.",
+     "EVERY TIME ONE USES ITS WIRELESS, STATIONS ACROSS THE COUNTRY TAKE A BEARING ON THE SIGNAL."
+    ],
+    "epilogue": [
+     "THE WAR IS OVER. MORE THAN FIFTEEN MILLION ARE DEAD.",
+     "ROOM 40 BROKE THOUSANDS OF GERMAN MESSAGES. NO ONE OUTSIDE WILL KNOW FOR DECADES.",
+     "BRANDT GOES HOME TO DRESDEN. YOU AND MARSH BECOME FRIENDS FOR LIFE."
+    ]
+   },
+   {
+    "title": "HINDENBURG",
+    "years": "1937",
+    "chapters": 1,
+    "prologue": [
+     "1937. YOU RUN THE WIRELESS AT THE LAKEHURST AIRSHIP STATION, IN THE UNITED STATES.",
+     "THE HINDENBURG, THE LARGEST THING EVER TO FLY, CROSSES THE ATLANTIC IN TWO AND A HALF DAYS.",
+     "SHE FLOATS ON SEVEN MILLION CUBIC FEET OF HYDROGEN. A GAS THAT BURNS."
+    ],
+    "epilogue": [
+     "FILMED AND BROADCAST, THE FIRE GOES ROUND THE WORLD. IT ENDS THE AGE OF PASSENGER AIRSHIPS.",
+     "BRANDT GOES HOME TO GERMANY WITH HIS HANDS IN BANDAGES.",
+     "TWO YEARS LATER, THE TWO COUNTRIES ARE AT WAR AGAIN."
+    ]
+   },
+   {
+    "title": "STATION X",
+    "years": "1939 – 1941",
+    "chapters": 3,
+    "prologue": [
+     "SEPTEMBER 1939. GERMANY INVADES POLAND, AND BRITAIN GOES TO WAR.",
+     "THE GERMANS ENCIPHER EVERYTHING ON ENIGMA, A MACHINE THEY BELIEVE CANNOT BE BROKEN.",
+     "AT A COUNTRY HOUSE CALLED BLETCHLEY PARK, STATION X MEANS TO BREAK IT. MARSH PUTS YOU FORWARD AS ITS EAR."
+    ],
+    "epilogue": [
+     "THE GERMANS NEVER LEARN THAT ENIGMA HAS BEEN BROKEN.",
+     "BUT LISTENING IS NOT ENOUGH. FRANCE IS OCCUPIED, AND LONDON NEEDS PEOPLE INSIDE.",
+     "MARSH NOW TRAINS SECRET AGENTS. SHE HAS AN OFFER FOR YOU."
+    ]
+   },
+   {
+    "title": "CORUJA",
+    "years": "1943 – 1944",
+    "chapters": 4,
+    "prologue": [
+     "1943. FRANCE HAS BEEN OCCUPIED FOR THREE YEARS. THE RESISTANCE FIGHTS IN HIDING.",
+     "LONDON DROPS AGENTS BY PARACHUTE. THE ONES WHO WORK THE WIRELESS ARE CALLED PIANISTS.",
+     "A PIANIST LASTS SIX WEEKS, ON AVERAGE, BEFORE BEING CAUGHT. YOUR CODENAME IS CORUJA."
+    ],
+    "epilogue": []
+   }
+  ]
+ },
  "chapters": {
   "en": [
    {
     "title": "THE CARPATHIA",
     "year": "1912",
+    "place": "NORTH ATLANTIC",
+    "era": "THE GOLDEN AGE OF THE OCEAN LINERS",
     "cover": "carpathia",
     "beats": [
      {
       "mode": "encode",
       "title": "THE FIRST WIRE",
       "brief": [
-       "NIGHT OPERATOR, RMS CARPATHIA. A PASSENGER WIRES HOME."
+       "APRIL 1912. A PASSENGER WANTS TO TELL HIS FAMILY HE IS WELL."
       ],
-      "win": "CAPE RACE ACKNOWLEDGES. A PENNY TIP.",
+      "win": "CAPE RACE, NEWFOUNDLAND, ACKNOWLEDGES. YOUR FIRST WIRE HAS CROSSED THE OCEAN.",
+      "lose": "THE WIRE DOES NOT GO. THE PASSENGER WANTS HIS MONEY BACK.",
       "scene": "sea",
-      "words": [
-       "TEA AT TEN"
-      ]
+      "count": 1
      },
      {
       "mode": "decode",
       "title": "SHORE WIRES",
       "brief": [
-       "CAPE RACE SENDS WIRES FOR THE PASSENGERS."
+       "CAPE RACE HAS WIRES FOR THE PASSENGERS."
       ],
       "win": "THE STEWARD RUNS THEM TO THE CABINS.",
+      "lose": "A WIRE IS LOST. SOMEONE ABOARD NEVER HEARS FROM HOME.",
       "scene": "sea",
       "count": 3
      },
@@ -504,19 +684,22 @@
       "mode": "encode",
       "title": "MORE WIRES",
       "brief": [
-       "THE QUEUE AT YOUR DOOR GROWS."
+       "THE QUEUE AT THE WIRELESS ROOM DOOR KEEPS GROWING."
       ],
-      "win": "THE PURSER COUNTS THE PENNIES.",
+      "win": "THE PURSER COUNTS THE PENNIES. MARCONI CHARGES BY THE WORD.",
+      "lose": "THE QUEUE CRAWLS. THE PASSENGERS COMPLAIN TO THE CAPTAIN.",
       "scene": "sea",
       "count": 3
      },
      {
       "mode": "decode",
-      "title": "THE NEWS",
+      "title": "ONLY YOU LISTEN",
       "brief": [
-       "2300. THE NIGHTLY NEWS."
+       "2300. THE NIGHTLY NEWS.",
+       "YOU ARE THE ONLY OPERATOR ABOARD. WHEN YOU SLEEP, THE SHIP IS DEAF."
       ],
-      "win": "THE CAPTAIN READS IT WITH HIS COCOA.",
+      "win": "CAPTAIN ROSTRON READS THE NEWS OVER HIS COCOA.",
+      "lose": "THE CAPTAIN GETS NO NEWS. HE NOTES THAT THE WIRELESS LAD IS TIRED.",
       "scene": "sea",
       "count": 2
      }
@@ -525,15 +708,19 @@
    {
     "title": "THE TITANIC'S MAIDEN VOYAGE",
     "year": "1912",
+    "place": "SOUTHAMPTON TO NEW YORK",
+    "era": "THE EARLY DAYS OF WIRELESS",
     "cover": "maiden",
     "beats": [
      {
       "mode": "decode",
       "title": "A NEW SHIP",
       "brief": [
-       "THE TITANIC IS ON THE AIR. HER PASSENGERS NEVER STOP."
+       "THE TITANIC, THE LARGEST SHIP IN THE WORLD, IS ON HER MAIDEN VOYAGE.",
+       "HER RICH PASSENGERS NEVER STOP WIRING."
       ],
       "win": "MILLIONAIRES, WIRING THEIR VALETS.",
+      "lose": "YOU LOSE THE THREAD. THE TITANIC DOES NOT EVEN NOTICE.",
       "scene": "fog",
       "count": 3
      },
@@ -541,9 +728,11 @@
       "mode": "encode",
       "title": "PASS IT ON",
       "brief": [
-       "SHE ASKS YOU TO RELAY THEM ASHORE."
+       "THE TITANIC IS FAR FROM SHORE.",
+       "HER OPERATOR, JACK PHILLIPS, ASKS YOU TO RELAY."
       ],
       "win": "THE SHORE ACKNOWLEDGES. THE TITANIC NEVER SAYS THANKS.",
+      "lose": "THE WIRES SIT THERE. PHILLIPS CALLS YOU AGAIN, IMPATIENT.",
       "scene": "fog",
       "echo": true
      },
@@ -551,9 +740,11 @@
       "mode": "decode",
       "title": "MISS MARSH",
       "brief": [
-       "MISS EVELYN MARSH, NINETEEN, WIRES HER MOTHER."
+       "MISS EVELYN MARSH, NINETEEN, IS SAILING ON THE TITANIC.",
+       "SHE WIRES HER MOTHER."
       ],
-      "win": "HER MOTHER WILL HAVE QUESTIONS.",
+      "win": "HIS NAME IS MATT. HER MOTHER WILL HAVE QUESTIONS.",
+      "lose": "HER WIRE IS LOST IN THE STATIC. HER MOTHER NEVER HEARS OF MATT.",
       "scene": "fog",
       "words": [
        "I MET A MAN"
@@ -561,11 +752,13 @@
      },
      {
       "mode": "decode",
-      "title": "LATE TRAFFIC",
+      "title": "ICE WARNINGS",
       "brief": [
-       "ICE WARNINGS ALL EVENING. THE TITANIC IGNORES THEM."
+       "14 APRIL. SHIPS WARN ALL DAY: ICE ON THE TITANIC'S ROUTE.",
+       "THE TITANIC PAYS NO MIND. SHE IS BUSY WITH HER PASSENGERS' WIRES."
       ],
-      "win": "SHE STEAMS ON INTO THE DARK.",
+      "win": "2330. THE CALIFORNIAN, STOPPED IN THE ICE NEAR THE TITANIC, SHUTS DOWN HER SET. HER OPERATOR GOES TO BED.",
+      "lose": "YOU LOSE THE WIRES. THE TITANIC STEAMS ON AT FULL SPEED INTO THE NIGHT.",
       "scene": "ice",
       "count": 2
      }
@@ -574,15 +767,19 @@
    {
     "title": "THE SINKING OF THE TITANIC",
     "year": "1912",
+    "place": "SOUTH OF NEWFOUNDLAND",
+    "era": "THE NIGHT OF 14 APRIL",
     "cover": "iceberg",
     "beats": [
      {
       "mode": "decode",
       "title": "DISTRESS",
       "brief": [
-       "2335. ONE BOOT OFF. THE TITANIC CALLS."
+       "2335. YOU HAVE ONE BOOT OFF, READY FOR BED.",
+       "ONE LAST LISTEN BEFORE YOU SHUT DOWN. THE TITANIC IS CALLING."
       ],
-      "win": "SHE HAS STRUCK ICE. YOU RUN TO THE BRIDGE.",
+      "win": "SHE HAS STRUCK A BERG AND IS SINKING. YOU RUN TO THE BRIDGE IN ONE BOOT.",
+      "lose": "YOU SHUT DOWN AND SLEEP, LIKE THE CALIFORNIAN. NO ONE GOES TO THE TITANIC.",
       "scene": "ice",
       "words": [
        "SOS SOS"
@@ -592,9 +789,11 @@
       "mode": "encode",
       "title": "COMING",
       "brief": [
-       "THE CAPTAIN TURNS THE SHIP. TELL THEM."
+       "CAPTAIN ROSTRON TURNS THE SHIP AT ONCE. FIFTY-EIGHT MILES TO THE TITANIC.",
+       "TELL HER THE CARPATHIA IS COMING."
       ],
-      "win": "'COME AS QUICK AS POSSIBLE, OLD MAN.'",
+      "win": "PHILLIPS ANSWERS: 'COME AS QUICK AS POSSIBLE, OLD MAN.'",
+      "lose": "THE TITANIC DOES NOT KNOW ANYONE IS COMING. HER CREW LOSES HOPE.",
       "scene": "ice",
       "words": [
        "ON IT",
@@ -605,9 +804,11 @@
       "mode": "decode",
       "title": "FILLING",
       "brief": [
-       "FRAGMENTS THROUGH THE STATIC."
+       "FRAGMENTS THROUGH THE STATIC. THE WATER IS UP TO THE TITANIC'S BOILERS.",
+       "ROSTRON WANTS TO KNOW WHAT HE WILL FIND."
       ],
-      "win": "THE LIFEBOATS ARE GONE.",
+      "win": "THERE ARE NOT BOATS FOR ALL. ROSTRON ORDERS BLANKETS, SOUP AND LADDERS OVER THE SIDE.",
+      "lose": "ROSTRON ARRIVES NOT KNOWING WHAT TO EXPECT. NOTHING IS READY FOR THE SURVIVORS.",
       "scene": "ice",
       "words": [
        "NO SEATS",
@@ -618,9 +819,11 @@
       "mode": "encode",
       "title": "FULL STEAM",
       "brief": [
-       "FIFTY-EIGHT MILES OF ICE BETWEEN YOU."
+       "ROSTRON CUTS THE HEAT AND HOT WATER. ALL THE STEAM GOES TO THE ENGINES.",
+       "TELL THE TITANIC TO HOLD ON."
       ],
-      "win": "THE STOKERS SHOVEL LIKE MADMEN.",
+      "win": "THE CARPATHIA MAKES SEVENTEEN KNOTS, FASTER THAN SHE HAS EVER GONE.",
+      "lose": "THE TITANIC DOES NOT HEAR YOU. ON DECK, THE PANIC GROWS.",
       "scene": "ice",
       "words": [
        "STEAM ON",
@@ -631,9 +834,10 @@
       "mode": "decode",
       "title": "THE LAST WORD",
       "brief": [
-       "0127. HER POWER IS FAILING."
+       "0145. THE TITANIC'S SIGNAL IS FADING. THE ENGINE ROOM IS FLOODED."
       ],
-      "win": "THEN STATIC. ONLY STATIC.",
+      "win": "THEN ONLY STATIC. AT 0220 THE TITANIC GOES DOWN. 1,500 PEOPLE IN THE FREEZING SEA.",
+      "lose": "YOU MISS THE LAST SIGNAL. ROSTRON DOES NOT KNOW IF ANYONE IS LEFT TO SAVE.",
       "scene": "ice",
       "words": [
        "SOS"
@@ -644,15 +848,19 @@
    {
     "title": "THE RESCUE",
     "year": "1912",
+    "place": "BOUND FOR NEW YORK",
+    "era": "A WORLD WAITING FOR NEWS",
     "cover": "rescue",
     "beats": [
      {
       "mode": "encode",
       "title": "THE LIST",
       "brief": [
-       "DAWN. 705 SURVIVORS ABOARD. SEND THE NAMES."
+       "0410. THE CARPATHIA ARRIVES. NOTHING BUT ICE AND SCATTERED LIFEBOATS.",
+       "705 SURVIVORS ABOARD. SEND THE NAMES ASHORE."
       ],
-      "win": "SOMEWHERE, FAMILIES STOP WAITING.",
+      "win": "IN NEW YORK THE LIST GOES UP ON THE WHITE STAR DOOR. FAMILIES STOP WAITING.",
+      "lose": "WITHOUT THE LIST, THOUSANDS OF FAMILIES SPEND DAYS NOT KNOWING WHO LIVED.",
       "scene": "sea",
       "words": [
        "SIMON",
@@ -665,9 +873,10 @@
       "mode": "decode",
       "title": "FAMILIES",
       "brief": [
-       "THE SHORE ASKS FOR THEIR OWN."
+       "ASHORE, FAMILIES ASK FOR THEIR OWN, ONE BY ONE."
       ],
       "win": "TOM AND ANNA ARE ABOARD. AMOS IS NOT.",
+      "lose": "A QUESTION IS LOST. ONE FAMILY SPENDS ANOTHER NIGHT WITHOUT AN ANSWER.",
       "scene": "sea",
       "words": [
        "IS TOM ON",
@@ -679,9 +888,11 @@
       "mode": "decode",
       "title": "A PENCIL",
       "brief": [
-       "MISS MARSH IS ALIVE. SHE TAPS ON YOUR DESK WITH A PENCIL."
+       "MISS MARSH SURVIVED. IN THE WIRELESS ROOM, SHE TAPS A PENCIL ON YOUR DESK.",
+       "SHE KNOWS MORSE."
       ],
-      "win": "HE IS NOT ON THE LIST.",
+      "win": "YOU SEARCH THE LIST. MATT IS NOT ON IT.",
+      "lose": "YOU DO NOT FOLLOW. SHE LEAVES WITHOUT ASKING AGAIN.",
       "scene": "sea",
       "words": [
        "IS MATT ON"
@@ -691,9 +902,10 @@
       "mode": "encode",
       "title": "HOME",
       "brief": [
-       "ONE WIRE FOR HER MOTHER."
+       "SHE WANTS TO WIRE HER MOTHER. YOU DO NOT CHARGE HER."
       ],
-      "win": "SENT. SHE CRIES AT LAST.",
+      "win": "SENT. ONLY THEN DOES SHE CRY. BEFORE SHE GOES, SHE ASKS YOUR NAME.",
+      "lose": "THE WIRE DOES NOT GO. HER MOTHER READS OF THE TITANIC IN THE PAPERS AND FEARS THE WORST.",
       "scene": "sea",
       "words": [
        "MAMA I MISS MATT"
@@ -703,144 +915,186 @@
       "mode": "encode",
       "title": "NAMES FIRST",
       "brief": [
-       "THIRTY HOURS WITHOUT SLEEP. MORE WIRES."
+       "THIRTY HOURS WITHOUT SLEEP. NEWSPAPERS ALL OVER THE WORLD WANT THE STORY.",
+       "YOU IGNORE THEM. THE SURVIVORS' MESSAGES GO FIRST."
       ],
-      "win": "NEW YORK. YOU SLEEP FOR A DAY.",
+      "win": "18 APRIL, NEW YORK. FORTY THOUSAND WAIT ON THE PIER. YOU SLEEP FOR A DAY.",
+      "lose": "A MESSAGE IS LEFT BEHIND. YOUR HANDS NO LONGER OBEY.",
       "scene": "sea",
       "count": 3
      }
     ]
    },
    {
-    "title": "THE SCARBOROUGH RAID",
-    "year": "1914",
-    "cover": "scarborough",
+    "title": "THE U-BOAT",
+    "year": "1915",
+    "place": "OFF THE SOUTH OF IRELAND",
+    "era": "THE FIRST WORLD WAR",
+    "cover": "uboat",
     "beats": [
      {
       "mode": "decode",
-      "title": "INTERCEPT",
+      "title": "LISTENING",
       "brief": [
-       "WAR. THE NAVY WANTS YOUR EAR ON THE GERMAN FLEET."
+       "MAY 1915. IN A HUT ON THE IRISH COAST, YOU COPY GERMAN SIGNALS.",
+       "THEY ARE CIPHER GROUPS. YOU CANNOT READ THEM. ROOM 40, IN LONDON, CAN."
       ],
-      "win": "A DESPATCH RIDER TAKES THEM TO ROOM 40, LONDON.",
+      "win": "ROOM 40 HOLDS THE GERMAN CODE BOOKS. THE GERMANS DO NOT KNOW.",
+      "lose": "GROUPS LOST. IN LONDON, A PAGE STAYS BLANK.",
       "scene": "wireless",
       "groups": true,
       "count": 4
      },
      {
       "mode": "encode",
-      "title": "THE LANDLINE",
+      "title": "TO LONDON",
       "brief": [
-       "LONDON WANTS THEM BY WIRE. NOW."
+       "ROOM 40 WANTS THE GROUPS BY LANDLINE. NOW."
       ],
-      "win": "ROOM 40 HAS A CAPTURED CODE BOOK. NO ONE TELLS YOU.",
+      "win": "ROOM 40 READS IT: U-20, A SUBMARINE, BOUND FOR THE SOUTH COAST OF IRELAND.",
+      "lose": "THE GROUPS DO NOT ARRIVE. NO ONE KNOWS WHERE THE SUBMARINE IS.",
       "scene": "wireless",
       "echo": true
      },
      {
       "mode": "decode",
-      "title": "IN CLEAR",
-      "brief": [
-       "DECEMBER. A CARELESS GERMAN SENDS IN CLEAR."
-      ],
-      "win": "THE SHELLS FALL ON SCARBOROUGH.",
-      "scene": "harbour",
-      "words": [
-       "STRIKE AT NINE"
-      ]
-     },
-     {
-      "mode": "encode",
-      "title": "REPORTS",
-      "brief": [
-       "LONDON WANTS EVERYTHING YOU HEAR."
-      ],
-      "win": "THE GERMAN SHIPS ESCAPE IN THE MIST.",
-      "scene": "harbour",
-      "count": 3
-     }
-    ]
-   },
-   {
-    "title": "THE SINKING OF THE LUSITANIA",
-    "year": "1915",
-    "cover": "lusitania",
-    "beats": [
-     {
-      "mode": "decode",
       "title": "THE SWING",
       "brief": [
-       "A U-BOAT OFF IRELAND. A LAZY SWING ON THE DAHS."
+       "U-20'S OPERATOR IS SENDING AGAIN. HE DRAGS HIS DAHS, LIKE AN ACCENT."
       ],
-      "win": "YOU WILL KNOW THAT FIST ANYWHERE.",
+      "win": "YOU WOULD KNOW THAT FIST ANYWHERE. HE IS OFF WATERFORD.",
+      "lose": "YOU LOSE THE SIGNAL. U-20 SLIPS UNDER THE WAVES.",
       "scene": "harbour",
       "groups": true,
       "count": 3
      },
      {
       "mode": "decode",
-      "title": "ORDERS",
+      "title": "MAYDAY",
       "brief": [
-       "HIS ORDERS COME IN CLEAR."
+       "6 MAY. A CARGO SHIP CALLS, CLOSE TO SHORE."
       ],
-      "win": "THE LUSITANIA HAS SAILED. TWO THOUSAND ABOARD.",
+      "win": "U-20 SINKS THE CANDIDATE AND THE CENTURION. THEIR CREWS GET AWAY IN THE BOATS.",
+      "lose": "NO ONE TAKES THE CALL. THE BOATS DRIFT AT SEA.",
       "scene": "harbour",
       "words": [
-       "SINK STEAMERS"
+       "SOS SOS",
+       "MEN AT OARS"
       ]
      },
      {
       "mode": "encode",
-      "title": "WARNING",
+      "title": "THE ADMIRALTY",
       "brief": [
-       "WARN THE ADMIRALTY."
+       "THE LUSITANIA IS COMING FROM NEW YORK. SHE PASSES HERE IN TWO DAYS.",
+       "TELL THE ADMIRALTY: U-20 HAS NOT GONE HOME."
       ],
-      "win": "RECEIVED. FILED. NOTHING IS DONE.",
+      "win": "THE ADMIRALTY SENDS GENERAL WARNINGS TO SHIPPING. BUT NO ESCORT FOR THE LUSITANIA.",
+      "lose": "THE ADMIRALTY THINKS U-20 HAS GONE HOME. NO ONE WARNS ANYONE.",
       "scene": "harbour",
       "words": [
-       "RAIDER ON ROUTE",
-       "TURN AROUND"
+       "REMAINS AT SEA",
+       "SAME AREA"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "THE SINKING OF THE LUSITANIA",
+    "year": "1915",
+    "place": "OLD HEAD OF KINSALE, IRELAND",
+    "era": "THE FIRST WORLD WAR",
+    "cover": "lusitania",
+    "beats": [
+     {
+      "mode": "encode",
+      "title": "THE WARNING",
+      "brief": [
+       "7 MAY, MORNING. THE LUSITANIA ENTERS THE IRISH SEA IN THICK FOG.",
+       "NEARLY TWO THOUSAND ABOARD. THE ADMIRALTY HAS YOU WARN HER."
+      ],
+      "win": "CAPTAIN TURNER HAS IT. BUT IN THE FOG HE SLOWS DOWN AND CLOSES THE COAST TO FIX HIS POSITION.",
+      "lose": "UNWARNED, THE LUSITANIA STEAMS ON WITH NO EXTRA LOOKOUTS, STRAIGHT INTO U-20'S PATH.",
+      "scene": "harbour",
+      "words": [
+       "RAIDERS NEAR",
+       "STEER OUT TO SEA"
       ]
      },
      {
       "mode": "decode",
       "title": "KINSALE",
       "brief": [
-       "7 MAY. 1410. OFF THE IRISH COAST."
+       "1410. A TORPEDO HITS THE LUSITANIA, ELEVEN MILES OFF OLD HEAD OF KINSALE.",
+       "A SECOND EXPLOSION, DEEPER. HER OPERATOR CALLS."
       ],
-      "win": "THE LUSITANIA. BIG LIST TO STARBOARD.",
+      "win": "YOU HAVE HER POSITION. SHE LISTS SO HARD THAT HALF HER BOATS CANNOT BE LOWERED.",
+      "lose": "NO ONE TAKES DOWN HER POSITION. HELP WILL SEARCH IN THE WRONG PLACE.",
       "scene": "harbour",
       "words": [
-       "SOS SOS SOS"
+       "SOS SOS SOS",
+       "SINK IN MINUTES"
       ]
      },
      {
       "mode": "encode",
-      "title": "ANY SHIP",
+      "title": "QUEENSTOWN",
       "brief": [
-       "CALL EVERY SHIP NEAR KINSALE."
+       "THE NEAREST PORT IS QUEENSTOWN, 25 MILES OFF. ANYTHING THAT FLOATS CAN HELP.",
+       "CALL OUT THE HARBOUR."
       ],
-      "win": "EIGHTEEN MINUTES. 1,198 DEAD. YOU WERE TOO FAR.",
+      "win": "TUGS, TRAWLERS AND STEAMERS PUT OUT FROM QUEENSTOWN. THEY WILL TAKE HOURS TO ARRIVE.",
+      "lose": "QUEENSTOWN HEARS HOURS LATER. THOSE IN THE COLD WATER DO NOT HAVE HOURS.",
       "scene": "harbour",
       "words": [
        "SEND AID",
        "SEND STEAMERS"
       ]
+     },
+     {
+      "mode": "decode",
+      "title": "THE WANDERER",
+      "brief": [
+       "THE LUSITANIA SINKS IN EIGHTEEN MINUTES.",
+       "A LITTLE FISHING BOAT, THE WANDERER, IS FIRST ON THE SCENE. SHE REPORTS."
+      ],
+      "win": "THE WANDERER TAKES ON 160 PEOPLE, UNTIL SHE ALMOST SINKS. MANY MORE ARE IN THE WATER.",
+      "lose": "YOU MISS THE REPORT. NO ONE KNOWS HOW MANY ARE STILL ALIVE IN THE WATER.",
+      "scene": "sea",
+      "words": [
+       "MEN IN SEA",
+       "SEND MORE"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "MORE BOATS",
+      "brief": [
+       "QUEENSTOWN MUST HEAR THIS. PASS IT ON."
+      ],
+      "win": "THE BOATS WORK INTO THE NIGHT. 761 SAVED. 1,198 DEAD, 128 OF THEM AMERICAN.",
+      "lose": "THE MESSAGE DOES NOT GET THROUGH. THE LAST BOATS STAY IN HARBOUR.",
+      "scene": "sea",
+      "echo": true
      }
     ]
    },
    {
     "title": "THE ZEPPELIN RAIDS",
     "year": "1916",
+    "place": "LONDON",
+    "era": "THE FIRST WORLD WAR",
     "cover": "zeppelin",
     "beats": [
      {
       "mode": "decode",
       "title": "BEARINGS",
       "brief": [
-       "AIRSHIPS BOMB LONDON BY NIGHT. EVERY CALL GIVES THEM AWAY."
+       "SEPTEMBER 1916. ZEPPELINS CROSS THE NORTH SEA FOR LONDON.",
+       "EVERY TIME THEY SEND, THEY GIVE THEMSELVES AWAY. YOU COPY."
       ],
-      "win": "THE DAHS SWING. THE U-BOAT MAN HAS WINGS NOW.",
+      "win": "DRAGGED DAHS, THAT ACCENT. THE U-20 MAN HAS WINGS NOW.",
+      "lose": "YOU LOSE THE SIGNAL. THE ZEPPELINS REACH LONDON UNSEEN.",
       "scene": "wireless",
       "groups": true,
       "count": 4
@@ -849,9 +1103,10 @@
       "mode": "encode",
       "title": "NIGHT FIGHTERS",
       "brief": [
-       "THE FIGHTERS NEED A HEADING."
+       "A FIGHTER CLIMBS INTO THE DARK TO INTERCEPT. THE PILOT NEEDS A HEADING."
       ],
-      "win": "THE AIRSHIP BURNS OVER ESSEX.",
+      "win": "HIT, THE ZEPPELIN COMES DOWN IN AN ESSEX FIELD. HER CREW BURNS HER AND SURRENDERS.",
+      "lose": "WITH NO HEADING, THE PILOT IS LOST IN THE DARK. THE BOMBS FALL ON LONDON.",
       "scene": "air",
       "words": [
        "TURN EAST",
@@ -862,9 +1117,10 @@
       "mode": "decode",
       "title": "THE PIPES",
       "brief": [
-       "ONE MAN WALKED OUT. IN HIS CELL, HE TAPS ON THE PIPES."
+       "ONE OF THE PRISONERS IS HER WIRELESS MAN. IN HIS CELL, HE TAPS ON THE PIPES."
       ],
-      "win": "HIS NAME IS BRANDT.",
+      "win": "HIS NAME IS BRANDT. HE THINKS NO ONE CAN READ IT.",
+      "lose": "THE TAPPING STOPS. YOU NEVER LEARN WHO WAS ON THE OTHER SIDE.",
       "scene": "wireless",
       "words": [
        "I AM NOT DEAD",
@@ -875,9 +1131,10 @@
       "mode": "encode",
       "title": "TAP BACK",
       "brief": [
-       "HE THINKS NO ONE CAN READ IT."
+       "YOU PICK UP A SPOON AND TAP BACK."
       ],
-      "win": "HE STOPS. THEN HE LAUGHS.",
+      "win": "HE STOPS. THEN HE LAUGHS. YOU TALK THROUGH THE PIPES UNTIL DAWN.",
+      "lose": "HE NEVER KNOWS ANYONE HEARD. IN THE MORNING HE IS MOVED.",
       "scene": "wireless",
       "words": [
        "I READ IT"
@@ -888,26 +1145,31 @@
    {
     "title": "THE ZIMMERMANN TELEGRAM",
     "year": "1917",
+    "place": "ROOM 40, ADMIRALTY, LONDON",
+    "era": "THE FIRST WORLD WAR",
     "cover": "telegram",
     "beats": [
      {
       "mode": "decode",
       "title": "THE GROUPS",
       "brief": [
-       "BERLIN TO WASHINGTON, IN CODE. ROOM 40 HAS A COPY."
+       "JANUARY 1917. BERLIN WIRES ITS AMBASSADOR IN MEXICO, IN CODE.",
+       "IT GOES BY AMERICAN CABLES. ROOM 40 HAS A COPY."
       ],
       "win": "ONE WRONG LETTER COSTS THE CODEBREAKERS A WEEK.",
+      "lose": "A GROUP IS LOST. THE TELEGRAM SITS UNREADABLE IN A DRAWER.",
       "scene": "wireless",
       "groups": true,
       "count": 4
      },
      {
       "mode": "encode",
-      "title": "TO LONDON",
+      "title": "TO THE CODEBREAKERS",
       "brief": [
-       "PASS THE GROUPS ON."
+       "PASS THE GROUPS UPSTAIRS TO THE CODEBREAKERS."
       ],
-      "win": "SOMEONE OPENS A BOOK YOU WILL NEVER SEE.",
+      "win": "SOMEONE OPENS A CODE BOOK YOU WILL NEVER SEE.",
+      "lose": "THE GROUPS ARRIVE GARBLED. THE CODEBREAKERS LOSE THE NIGHT.",
       "scene": "wireless",
       "echo": true
      },
@@ -915,9 +1177,11 @@
       "mode": "decode",
       "title": "WORDS",
       "brief": [
-       "WORDS COME OUT OF THE CODE. GERMANY IS COURTING MEXICO."
+       "THE CODE GIVES. GERMANY WILL SINK SHIPS WITHOUT WARNING AGAIN.",
+       "AND IT OFFERS MEXICO TEXAS BACK, IF MEXICO ATTACKS THE UNITED STATES."
       ],
-      "win": "IF AMERICA SEES THIS, AMERICA COMES IN.",
+      "win": "IF AMERICA SEES THIS, AMERICA COMES IN. THE LUSITANIA STILL HURTS THERE.",
+      "lose": "YOU LOSE THE WORDS. THE TELEGRAM MAKES NO SENSE, AND AMERICA STAYS NEUTRAL.",
       "scene": "wireless",
       "words": [
        "MAKE WAR",
@@ -928,9 +1192,11 @@
       "mode": "encode",
       "title": "COVER STORY",
       "brief": [
-       "NO ONE MAY KNOW IT CAME FROM ROOM 40."
+       "IF GERMANY LEARNS THAT ROOM 40 READS HER CODES, SHE WILL CHANGE THEM ALL.",
+       "THE OFFICIAL STORY: A SPY IN MEXICO STOLE THE TELEGRAM."
       ],
-      "win": "AMERICA DECLARES WAR. THE PAPERS PRAISE A CLEVER SPY.",
+      "win": "MARCH: THE TELEGRAM IS IN THE AMERICAN PAPERS. IN APRIL, AMERICA DECLARES WAR.",
+      "lose": "GERMANY GROWS SUSPICIOUS AND CHANGES EVERY CODE. ROOM 40 GOES BLIND.",
       "scene": "rail",
       "words": [
        "OUR AGENT GOT IT"
@@ -941,15 +1207,18 @@
    {
     "title": "THE ARMISTICE",
     "year": "1918",
+    "place": "PARIS AND THE CHANNEL",
+    "era": "THE END OF THE FIRST WORLD WAR",
     "cover": "armistice",
     "beats": [
      {
       "mode": "decode",
       "title": "THE TOWER",
       "brief": [
-       "NOVEMBER. THE EIFFEL TOWER SENDS TO THE WORLD."
+       "11 NOVEMBER 1918, BEFORE DAWN. THE EIFFEL TOWER SENDS TO THE WORLD."
       ],
-      "win": "HOSTILITIES CEASE AT ELEVEN. YOU READ IT TWICE.",
+      "win": "THE ARMISTICE IS SIGNED. THE GUNS STOP AT ELEVEN. YOU READ IT TWICE TO BE SURE.",
+      "lose": "YOU MISS THE NEWS. IN LONDON NO ONE KNOWS YET THAT THE WAR WILL END.",
       "scene": "wireless",
       "words": [
        "ARMS DOWN",
@@ -960,9 +1229,11 @@
       "mode": "encode",
       "title": "CEASE FIRE",
       "brief": [
-       "A DESTROYER IN THE CHANNEL HAS NOT HEARD."
+       "1000. A DESTROYER IN THE CHANNEL HAS NOT HEARD.",
+       "SHE IS HUNTING A SUBMARINE."
       ],
-      "win": "THE GUNS FALL SILENT AT ELEVEN.",
+      "win": "HER GUNS FALL SILENT. ABOARD THE SUBMARINE, SOMEONE WILL GO HOME.",
+      "lose": "SHE FIRES. MEN WILL DIE IN THE LAST HOUR OF THE WAR.",
       "scene": "harbour",
       "words": [
        "DO NOT SHOOT",
@@ -973,9 +1244,10 @@
       "mode": "decode",
       "title": "ANSWERS",
       "brief": [
-       "SHIPS AND TRENCHES ANSWER, ONE BY ONE."
+       "SHIPS AND STATIONS ACKNOWLEDGE THE CEASEFIRE, ONE BY ONE."
       ],
       "win": "BY NOON THE AIR IS FULL OF CHEERING.",
+      "lose": "AN ANSWER IS LOST. SOMEWHERE, SOMEONE IS STILL AT WAR.",
       "scene": "wireless",
       "count": 4
      },
@@ -983,9 +1255,11 @@
       "mode": "decode",
       "title": "A WIRE",
       "brief": [
-       "FROM LONDON. MISS E. MARSH, OF THE WAR OFFICE."
+       "A WIRE FROM LONDON. MISS E. MARSH, NOW OF THE WAR OFFICE.",
+       "YOU HAVE NOT SEEN THAT NAME SINCE THE CARPATHIA."
       ],
-      "win": "SHE REMEMBERS YOUR FIST.",
+      "win": "SHE NEVER FORGOT WHO SENT HER WIRE TO HER MOTHER.",
+      "lose": "YOU CANNOT MAKE IT OUT. SHE DOES NOT WRITE AGAIN.",
       "scene": "rail",
       "words": [
        "HAVE TEA WITH ME"
@@ -997,7 +1271,8 @@
       "brief": [
        "YOU ANSWER BY WIRE, OF COURSE."
       ],
-      "win": "SHE WAITS AT THE STATION IN THE RAIN.",
+      "win": "SHE WAITS AT THE STATION IN THE RAIN. YOU TALK UNTIL THE LAST TRAIN.",
+      "lose": "YOUR ANSWER NEVER ARRIVES. SHE WAITS AT THE STATION IN THE RAIN, FOR NOTHING.",
       "scene": "rail",
       "words": [
        "NAME THE HOUR"
@@ -1008,15 +1283,19 @@
    {
     "title": "THE HINDENBURG DISASTER",
     "year": "1937",
+    "place": "LAKEHURST, NEW JERSEY",
+    "era": "THE AGE OF THE AIRSHIPS",
     "cover": "hindenburg",
     "beats": [
      {
       "mode": "decode",
       "title": "OLD ENEMIES",
       "brief": [
-       "PEACE. THE HINDENBURG IS INBOUND. HER OPERATOR SWINGS HIS DAHS."
+       "6 MAY 1937. THE HINDENBURG NEARS THE AMERICAN COAST.",
+       "HER OPERATOR DRAGS HIS DAHS. THAT ACCENT."
       ],
-      "win": "BRANDT. TWENTY YEARS. YOU LAUGH ALONE.",
+      "win": "IT IS BRANDT, TWENTY YEARS ON. YOU LAUGH ALONE IN THE WIRELESS ROOM.",
+      "lose": "YOU DO NOT KNOW THE FIST. JUST ANOTHER AIRSHIP COMING IN.",
       "scene": "wireless",
       "words": [
        "GUTEN TAG",
@@ -1027,9 +1306,10 @@
       "mode": "encode",
       "title": "WEATHER",
       "brief": [
-       "HE WANTS THE WEATHER OVER NEW JERSEY."
+       "HE WANTS THE WEATHER AT LAKEHURST. A STORM IS PASSING OVER."
       ],
-      "win": "'DANKE. SEE YOU IN THE NEXT WAR.'",
+      "win": "THE CAPTAIN DECIDES TO WAIT. THE AIRSHIP CIRCLES OVER THE COAST.",
+      "lose": "UNWARNED, THE HINDENBURG TRIES TO LAND IN THE THUNDERSTORM.",
       "scene": "wireless",
       "words": [
        "THUNDER",
@@ -1040,9 +1320,10 @@
       "mode": "decode",
       "title": "WAITING",
       "brief": [
-       "THE AIRSHIP CIRCLES, WAITING OUT THE STORM."
+       "HOURS OF CIRCLING. BRANDT CHATS TO PASS THE TIME."
       ],
-      "win": "HE SENDS A STRING OF DITS. LAUGHTER.",
+      "win": "HE SENDS A STRING OF DITS: LAUGHTER. AT 1900 THE WEATHER CLEARS AND HE COMES DOWN.",
+      "lose": "THE CHAT IS LOST IN THE STATIC. HE STOPS SENDING.",
       "scene": "wireless",
       "words": [
        "I HAVE A SON",
@@ -1053,9 +1334,11 @@
       "mode": "decode",
       "title": "THE FLASH",
       "brief": [
-       "1925. A PRESS FLASH. THE SENDER IS SHAKING."
+       "1925. THE HINDENBURG CATCHES FIRE LANDING. IN HALF A MINUTE SHE IS GONE.",
+       "A REPORTER ON THE FIELD SENDS A FLASH. HIS HAND SHAKES."
       ],
-      "win": "THIRTY-SIX DEAD. HE LIVED. HANDS BURNED.",
+      "win": "THIRTY-SIX DEAD. BRANDT LIVED, HIS HANDS BURNED.",
+      "lose": "YOU MISS THE FLASH. NO ONE KNOWS IF BRANDT IS ALIVE.",
       "scene": "wireless",
       "words": [
        "SHE IS DOWN",
@@ -1066,26 +1349,31 @@
       "mode": "encode",
       "title": "PASS IT ON",
       "brief": [
-       "THE WORLD WANTS IT. SEND IT ON."
+       "THE WORLD WANTS TO KNOW. SEND IT ON."
       ],
       "win": "YOUR HANDS ARE SHAKING TOO.",
+      "lose": "THE NEWS STALLS ON YOUR DESK. THE PAPERS HEAR IT FROM SOMEONE ELSE.",
       "scene": "wireless",
       "echo": true
      }
     ]
    },
    {
-    "title": "THE SECOND WORLD WAR",
+    "title": "ENIGMA",
     "year": "1939",
+    "place": "A LISTENING STATION IN ENGLAND",
+    "era": "THE SECOND WORLD WAR",
     "cover": "war",
     "beats": [
      {
       "mode": "decode",
       "title": "THE HUT",
       "brief": [
-       "WAR AGAIN. A HUT, FORTY RECEIVERS, GERMAN GROUPS ALL NIGHT."
+       "A HUT IN THE ENGLISH COUNTRYSIDE, FORTY RECEIVERS.",
+       "ALL NIGHT, LUFTWAFFE GROUPS, ENCIPHERED ON ENIGMA."
       ],
       "win": "A MOTORCYCLE TAKES THE BASKET TO STATION X.",
+      "lose": "ONE WRONG GROUP, AND STATION X LOSES A WHOLE DAY.",
       "scene": "air",
       "groups": true,
       "count": 5
@@ -1094,9 +1382,10 @@
       "mode": "decode",
       "title": "A HABIT",
       "brief": [
-       "ONE GERMAN STARTS EVERY MESSAGE THE SAME WAY."
+       "ONE GERMAN OPERATOR STARTS EVERY MESSAGE THE SAME WAY: 'WEATHER FOLLOWS'."
       ],
-      "win": "STATION X CALLS IT A CRIB. YOU CIRCLE IT IN RED.",
+      "win": "STATION X CALLS IT A CRIB: A PIECE OF TEXT THEY ALREADY KNOW. YOU CIRCLE IT IN RED.",
+      "lose": "YOU MISS THE HABIT. STATION X STAYS IN THE DARK.",
       "scene": "air",
       "words": [
        "WETTER FOLGT"
@@ -1106,9 +1395,10 @@
       "mode": "encode",
       "title": "THE CRIB",
       "brief": [
-       "FLAG IT TO STATION X."
+       "FLAG IT TO STATION X, URGENT."
       ],
-      "win": "BY MIDNIGHT STATION X READS THE LUFTWAFFE.",
+      "win": "BY MIDNIGHT, STATION X IS READING THE DAY'S LUFTWAFFE TRAFFIC.",
+      "lose": "WITHOUT THE CRIB, THAT DAY'S ENIGMA STAYS LOCKED.",
       "scene": "wireless",
       "echo": true
      },
@@ -1116,9 +1406,10 @@
       "mode": "decode",
       "title": "MORE GROUPS",
       "brief": [
-       "THE NIGHT IS LONG."
+       "NOW EVERY GROUP YOU COPY BECOMES PLAIN TEXT WITHIN HOURS."
       ],
       "win": "YOUR HAND REMEMBERS THE WORK.",
+      "lose": "A GROUP IS LOST. A MESSAGE THAT MATTERED GOES UNREAD.",
       "scene": "air",
       "groups": true,
       "count": 4
@@ -1128,15 +1419,19 @@
    {
     "title": "THE EVACUATION OF DUNKIRK",
     "year": "1940",
+    "place": "DUNKIRK, FRANCE",
+    "era": "THE SECOND WORLD WAR",
     "cover": "dunkirk",
     "beats": [
      {
       "mode": "decode",
       "title": "THE BEACH",
       "brief": [
-       "THE ARMY IS TRAPPED ON A BEACH. A DESTROYER REPORTS."
+       "MAY 1940. GERMANY HAS CROSSED FRANCE IN WEEKS.",
+       "THE BRITISH ARMY IS TRAPPED AT DUNKIRK. A DESTROYER REPORTS."
       ],
-      "win": "THE LITTLE BOATS TURN TOWARD THEM.",
+      "win": "BIG SHIPS CANNOT GET CLOSE TO THE SAND. IT WILL TAKE SMALL BOATS.",
+      "lose": "WITH NO NEWS, LONDON THINKS NO ONE CAN BE GOT OFF.",
       "scene": "sea",
       "words": [
        "MEN ON THE MOLE",
@@ -1145,11 +1440,13 @@
      },
      {
       "mode": "encode",
-      "title": "LITTLE BOATS",
+      "title": "LITTLE SHIPS",
       "brief": [
-       "EVERY BOAT ON THE SOUTH COAST IS GOING."
+       "YACHTS, FERRIES, FISHING BOATS: EVERY BOAT ON THE SOUTH COAST IS CROSSING.",
+       "THEY NEED TO KNOW WHERE TO GO."
       ],
-      "win": "YACHTS, FERRIES, FISHING BOATS. HUNDREDS.",
+      "win": "HUNDREDS OF LITTLE BOATS REACH THE BEACH AND FERRY THE MEN OUT TO THE SHIPS.",
+      "lose": "THE BOATS GO TO THE WRONG PLACE. THE MEN WAIT ON THE SAND.",
       "scene": "sea",
       "words": [
        "ALL BOATS TO MALO",
@@ -1160,9 +1457,10 @@
       "mode": "encode",
       "title": "DAWN RAID",
       "brief": [
-       "STATION X READ IT: A RAID AT FIRST LIGHT."
+       "STATION X HAS READ THE LUFTWAFFE: BOMBERS OVER THE BEACH AT FIRST LIGHT."
       ],
-      "win": "THE BOMBS FALL INTO EMPTY WATER.",
+      "win": "THE BOATS SCATTER. THE BOMBS FALL INTO EMPTY WATER.",
+      "lose": "THE BOATS STAY BUNCHED. THE BOMBS FIND THEM.",
       "scene": "air",
       "words": [
        "BOMBERS AT DAWN",
@@ -1173,19 +1471,24 @@
       "mode": "encode",
       "title": "WHERE TO",
       "brief": [
-       "THE BOATS ASK WHERE TO GO."
+       "THE BEACH IS BURNING. THE BOATS ASK WHERE TO PUT IN NOW."
       ],
       "win": "BOAT AFTER BOAT, ALL NIGHT.",
+      "lose": "THE BOATS PUT IN WHERE NO ONE IS. THE NIGHT IS WASTED.",
       "scene": "sea",
-      "count": 3
+      "words": [
+       "EAST MOLE",
+       "MALO DUNES"
+      ]
      },
      {
       "mode": "decode",
       "title": "THE COUNT",
       "brief": [
-       "4 JUNE. THE LAST SHIP REPORTS."
+       "4 JUNE. THE LAST SHIP LEAVES DUNKIRK AND REPORTS."
       ],
-      "win": "338,000 MEN. THE PAPERS CALL IT A MIRACLE.",
+      "win": "338,000 MEN SAVED. THE PAPERS CALL IT A MIRACLE.",
+      "lose": "YOU LOSE THE SIGNAL. LONDON DOES NOT KNOW IF THE EVACUATION IS OVER.",
       "scene": "sea",
       "words": [
        "LAST BOAT HOME"
@@ -1196,15 +1499,19 @@
    {
     "title": "THE SINKING OF THE BISMARCK",
     "year": "1941",
+    "place": "NORTH ATLANTIC",
+    "era": "THE SECOND WORLD WAR",
     "cover": "bismarck",
     "beats": [
      {
       "mode": "decode",
       "title": "THE LONG SIGNAL",
       "brief": [
-       "THE BISMARCK HAS SUNK THE HOOD AND VANISHED."
+       "MAY 1941. THE BATTLESHIP BISMARCK HAS SUNK THE HOOD AND VANISHED.",
+       "IF SHE REACHES FRANCE, SHE WILL HUNT THE CONVOYS THAT FEED BRITAIN."
       ],
-      "win": "A LONG SIGNAL IS A BEARING. SHE RUNS FOR FRANCE.",
+      "win": "A LONG SIGNAL GIVES A BEARING: SHE IS RUNNING FOR FRANCE.",
+      "lose": "THE BISMARCK VANISHES. THE CONVOYS ARE AT HER MERCY.",
       "scene": "harbour",
       "groups": true,
       "count": 4
@@ -1213,9 +1520,11 @@
       "mode": "decode",
       "title": "A FATHER",
       "brief": [
-       "A LUFTWAFFE GENERAL ASKS WHERE SHE GOES. HIS SON IS ABOARD."
+       "A LUFTWAFFE GENERAL ASKS WHERE THE SHIP IS GOING.",
+       "HIS SON IS ABOARD. THE ANSWER COMES BY ENIGMA."
       ],
-      "win": "A FATHER WORRIED FOR HIS SON. IT WILL KILL THE SON.",
+      "win": "A FATHER'S WORRY. IT IS WHAT WILL KILL THE SON.",
+      "lose": "YOU MISS THE ANSWER. THE FLEET SEARCHES THE NORTH, FAR FROM HER.",
       "scene": "air",
       "words": [
        "MAKING FOR BREST"
@@ -1225,9 +1534,11 @@
       "mode": "encode",
       "title": "SWORDFISH",
       "brief": [
-       "OLD BIPLANES ON THE ARK ROYAL WAIT FOR A HEADING."
+       "OLD BIPLANES, THE SWORDFISH, WAIT ON THE CARRIER ARK ROYAL.",
+       "THEY NEED A HEADING."
       ],
-      "win": "A TORPEDO JAMS HER RUDDER. SHE TURNS IN CIRCLES.",
+      "win": "A TORPEDO JAMS HER RUDDER. THE BISMARCK CAN ONLY STEAM IN CIRCLES.",
+      "lose": "THE BIPLANES COME BACK EMPTY. BY TOMORROW THE BISMARCK WILL BE IN FRANCE.",
       "scene": "air",
       "words": [
        "COURSE SOUTH EAST",
@@ -1238,9 +1549,10 @@
       "mode": "decode",
       "title": "27 MAY",
       "brief": [
-       "THE FLEET CLOSES IN."
+       "MORNING, 27 MAY. THE BRITISH FLEET CLOSES IN AND OPENS FIRE."
       ],
-      "win": "TWO THOUSAND MEN. ONE OF THEM A GENERAL'S SON.",
+      "win": "TWO THOUSAND DEAD. ONE OF THEM, THE GENERAL'S SON.",
+      "lose": "THE SIGNAL IS LOST IN THE GUNFIRE. LONDON WAITS, NOT KNOWING.",
       "scene": "harbour",
       "words": [
        "BISMARCK SINKING"
@@ -1252,7 +1564,8 @@
       "brief": [
        "THE ADMIRALTY WANTS IT RELAYED."
       ],
-      "win": "THE HOOD IS AVENGED, THE PAPERS SAY.",
+      "win": "THE HOOD IS AVENGED, THE PAPERS SAY. YOU THINK OF THE GENERAL.",
+      "lose": "THE NEWS IS LATE. THE ADMIRALTY HEARS NOTHING.",
       "scene": "harbour",
       "echo": true
      }
@@ -1261,15 +1574,19 @@
    {
     "title": "INTO OCCUPIED FRANCE",
     "year": "1943",
+    "place": "THE FRENCH COUNTRYSIDE",
+    "era": "THE SECOND WORLD WAR",
     "cover": "france",
     "beats": [
      {
       "mode": "encode",
       "title": "SECURITY CHECK",
       "brief": [
-       "EVELYN MARSH RUNS AGENTS IN FRANCE. EACH HAS A SECRET MISTAKE."
+       "EVELYN MARSH TRAINS AGENTS FOR FRANCE.",
+       "EACH HAS A SECURITY CHECK: AN AGREED MISTAKE THAT PROVES THEY ARE FREE."
       ],
-      "win": "MARSH: 'NEVER SEND IT IF THEY HAVE YOU.'",
+      "win": "MARSH: 'IF THEY TAKE YOU, SEND WITHOUT IT. I WILL UNDERSTAND.'",
+      "lose": "YOUR CHECK COMES OUT WRONG. FOR REAL, LONDON WOULD THINK YOU CAUGHT.",
       "scene": "wireless",
       "words": [
        "JUPITER"
@@ -1279,9 +1596,10 @@
       "mode": "decode",
       "title": "TRAINING",
       "brief": [
-       "MARSH KEYS FASTER EVERY DAY."
+       "MARSH KEYS FASTER EVERY DAY. OVER THERE, NO ONE WILL WAIT FOR YOU."
       ],
       "win": "SHE NODS. ONCE.",
+      "lose": "SHE STOPS AND STARTS AGAIN, SLOWER. IN FRANCE, NO ONE WILL.",
       "scene": "wireless",
       "count": 4
      },
@@ -1289,9 +1607,11 @@
       "mode": "decode",
       "title": "THE FIELD",
       "brief": [
-       "A MOONLESS NIGHT. A TORCH FLASHES FROM A FIELD."
+       "A MOONLESS NIGHT. THE PLANE FLIES LOW OVER FRANCE.",
+       "BELOW, A TORCH FLASHES. IF IT IS THE RIGHT SIGNAL, YOU JUMP."
       ],
-      "win": "HANDS PULL YOU OUT OF THE WHEAT. FRANCE.",
+      "win": "HANDS PULL YOU OUT OF THE WHEAT. YOU ARE IN FRANCE.",
+      "lose": "YOU CANNOT READ THE TORCH. THE PLANE TURNS AND TAKES YOU BACK TO ENGLAND.",
       "scene": "air",
       "words": [
        "JUMP"
@@ -1301,9 +1621,11 @@
       "mode": "decode",
       "title": "FIRST CONTACT",
       "brief": [
-       "YOUR SET IS IN A SUITCASE IN A BARN. LONDON CALLS."
+       "YOUR SET COMES IN A SUITCASE, HIDDEN IN A BARN.",
+       "AT THE APPOINTED HOUR, LONDON CALLS."
       ],
-      "win": "MARSH IS ON THE KEY HERSELF.",
+      "win": "IT IS MARSH HERSELF ON THE KEY.",
+      "lose": "YOU MISS THE SCHEDULE. LONDON THINKS YOU NEVER ARRIVED.",
       "scene": "wireless",
       "words": [
        "WELCOME PIANIST",
@@ -1314,26 +1636,34 @@
       "mode": "encode",
       "title": "FIRST REPORT",
       "brief": [
-       "UNDER FIVE MINUTES. ALWAYS."
+       "NEVER MORE THAN FIVE MINUTES ON THE AIR. THAT IS ALL THEY NEED TO FIND YOU."
       ],
       "win": "OFF THE AIR. FOUR MINUTES.",
+      "lose": "YOU RUN PAST FIVE MINUTES. OUTSIDE, A GERMAN VAN IS ALREADY LISTENING.",
       "scene": "wireless",
-      "count": 3
+      "words": [
+       "LANDED WELL",
+       "CIRCUIT FORMED"
+      ]
      }
     ]
    },
    {
     "title": "THE RADIO HUNTERS",
     "year": "1944",
+    "place": "THE ROADS OF SOUTHERN FRANCE",
+    "era": "THE SECOND WORLD WAR",
     "cover": "hunters",
     "beats": [
      {
       "mode": "encode",
       "title": "FIVE MINUTES",
       "brief": [
-       "GERMAN DIRECTION-FINDING VANS HUNT THE LANES."
+       "GERMAN DIRECTION-FINDING VANS HUNT THE LANES.",
+       "THE RESISTANCE HAS COUNTED THE ARMY'S TRAINS. LONDON MUST KNOW."
       ],
-      "win": "THE VAN DRIVES PAST THE GATE. AND PAST.",
+      "win": "THE VAN DRIVES PAST THE GATE. AND ON.",
+      "lose": "YOU TAKE TOO LONG. THE VAN SLOWS AT THE GATE.",
       "scene": "road",
       "words": [
        "SIX TRAINS DAILY",
@@ -1344,9 +1674,11 @@
       "mode": "decode",
       "title": "A FIST YOU KNOW",
       "brief": [
-       "ON YOUR FREQUENCY, A LAZY SWING ON THE DAHS."
+       "ON YOUR FREQUENCY, DRAGGED DAHS. THAT ACCENT.",
+       "SOMEONE ON THE OTHER SIDE IS LISTENING TO YOU."
       ],
-      "win": "BRANDT. HE HUNTS FOR THEM NOW.",
+      "win": "IT IS BRANDT. HE HUNTS RADIOS FOR THE GERMANS NOW. AND HE KNOWS YOUR FIST.",
+      "lose": "YOU DO NOT KNOW THE FIST. YOU TAKE IT FOR LONDON AND NEARLY ANSWER.",
       "scene": "road",
       "words": [
        "HELLO CORUJA",
@@ -1357,9 +1689,11 @@
       "mode": "encode",
       "title": "BLOWN",
       "brief": [
-       "YOU MOVE THE SET IN A CART OF TURNIPS."
+       "IF BRANDT KNOWS YOUR FIST, HE KNOWS YOUR SCHEDULE. WARN LONDON.",
+       "THEN THE SET GOES OFF IN A CART OF TURNIPS."
       ],
       "win": "MARSH: 'COME HOME.' YOU DO NOT ANSWER THAT PART.",
+      "lose": "LONDON KEEPS CALLING AT THE USUAL HOUR. BRANDT LISTENS TOO.",
       "scene": "road",
       "words": [
        "SCHEDULE BLOWN",
@@ -1370,9 +1704,10 @@
       "mode": "decode",
       "title": "ORDERS",
       "brief": [
-       "LONDON SENDS ORDERS."
+       "LONDON SENDS ORDERS FOR THE RESISTANCE, IN CIPHER."
       ],
-      "win": "YOU BURN THE PAGE AND MOVE AGAIN.",
+      "win": "YOU DECODE, PASS THEM ON, BURN THE PAGE AND MOVE AGAIN.",
+      "lose": "A GROUP IS LOST. THE RESISTANCE GETS HALF ITS ORDERS.",
       "scene": "road",
       "groups": true,
       "count": 3
@@ -1381,26 +1716,34 @@
       "mode": "encode",
       "title": "ANOTHER HOUSE",
       "brief": [
-       "ANOTHER HOUSE. FIVE MINUTES."
+       "ANOTHER HOUSE, ANOTHER VILLAGE. TELL LONDON. FIVE MINUTES."
       ],
       "win": "OFF THE AIR. THE VAN IS ONE VILLAGE AWAY.",
+      "lose": "YOU RUN OVER TIME. AN ENGINE ON THE ROAD, CLOSER AND CLOSER.",
       "scene": "road",
-      "count": 3
+      "words": [
+       "NEW HOUSE",
+       "NEW SCHEDULE"
+      ]
      }
     ]
    },
    {
     "title": "D-DAY",
     "year": "1944",
+    "place": "THE MASSIF CENTRAL, FRANCE",
+    "era": "THE SECOND WORLD WAR",
     "cover": "dday",
     "beats": [
      {
       "mode": "decode",
       "title": "THE POEM",
       "brief": [
-       "AFTER THE NEWS, THE BBC READS NONSENSE POEMS. ONE IS FOR YOU."
+       "5 JUNE. AFTER THE NEWS, THE BBC READS NONSENSE PHRASES FOR THE RESISTANCE.",
+       "ONE OF THEM IS FOR YOU."
       ],
-      "win": "THE INVASION IS COMING. TOMORROW.",
+      "win": "A LINE OF VERLAINE. THE WARNING YOU WERE WAITING FOR: THE INVASION IS TOMORROW.",
+      "lose": "YOU MISS THE LINE. THE RESISTANCE IN YOUR REGION SLEEPS TONIGHT.",
       "scene": "wireless",
       "words": [
        "LES SANGLOTS LONGS",
@@ -1411,9 +1754,10 @@
       "mode": "decode",
       "title": "THE ACTION WORD",
       "brief": [
-       "LONDON CONFIRMS BY KEY."
+       "LONDON CONFIRMS BY KEY, WITH THE ACTION PHRASE."
       ],
-      "win": "YOU CYCLE FARM TO FARM. BY MIDNIGHT THE RAILS ARE MINED.",
+      "win": "'THE DIE IS CAST': SABOTAGE EVERYTHING. BY MIDNIGHT THE RAILS ARE MINED.",
+      "lose": "WITHOUT THE PHRASE, THE RESISTANCE WAITS. GERMAN TRAINS RUN IN PEACE.",
       "scene": "wireless",
       "words": [
        "DICE ON THE CARPET"
@@ -1423,9 +1767,11 @@
       "mode": "encode",
       "title": "THE VIADUCT",
       "brief": [
-       "THE MAQUIS WILL BLOW THE VIADUCT ON YOUR SIGNAL."
+       "THE MAQUIS WILL BLOW THE VIADUCT ON YOUR SIGNAL.",
+       "AN AMMUNITION TRAIN IS COMING."
       ],
-      "win": "THE VIADUCT FALLS INTO THE RIVER.",
+      "win": "THE VIADUCT FALLS INTO THE RIVER, AND THE TRAIN WITH IT.",
+      "lose": "THE TRAIN GETS THROUGH. IT REACHES NORMANDY FULL OF SHELLS.",
       "scene": "rail",
       "words": [
        "TRAIN APPROACHING",
@@ -1436,9 +1782,11 @@
       "mode": "decode",
       "title": "THE TANKS",
       "brief": [
-       "6 JUNE. THE LANDINGS HAVE BEGUN. A PANZER DIVISION HEADS NORTH."
+       "6 JUNE. THE ALLIES HAVE LANDED IN NORMANDY.",
+       "A PANZER DIVISION HEADS NORTH TO MEET THEM. THE RESISTANCE IS WATCHING."
       ],
       "win": "EVERY DAY THEY ARE LATE IS A BEACH THAT HOLDS.",
+      "lose": "YOU MISS THE REPORT. NO ONE KNOWS THE TANKS ARE COMING.",
       "scene": "road",
       "words": [
        "SIXTY TANKS",
@@ -1449,9 +1797,10 @@
       "mode": "encode",
       "title": "TO LONDON",
       "brief": [
-       "PASS IT ON."
+       "LONDON MUST KNOW. FIVE MINUTES."
       ],
       "win": "THE BOMBERS GO OUT AT DAWN.",
+      "lose": "LONDON DOES NOT KNOW. THE TANKS ROLL NORTH UNTOUCHED.",
       "scene": "road",
       "echo": true
      }
@@ -1460,15 +1809,19 @@
    {
     "title": "THE LAST SIGNAL",
     "year": "1944",
+    "place": "QUÉZAC, IN THE TARN VALLEY",
+    "era": "THE SECOND WORLD WAR",
     "cover": "last",
     "beats": [
      {
       "mode": "decode",
       "title": "ONE BRIDGE",
       "brief": [
-       "9 JUNE. THE PANZERS WILL CROSS THE RIVER AT DAWN."
+       "9 JUNE. THE PANZERS WILL CROSS THE TARN AT DAWN.",
+       "LONDON ASKS."
       ],
-      "win": "ONLY YOU KNOW. BRANDT IS ONE VILLAGE AWAY.",
+      "win": "ONLY YOU KNOW. AND BRANDT IS ONE VILLAGE AWAY.",
+      "lose": "YOU MISS THE QUESTION. LONDON WAITS FOR AN ANSWER THAT NEVER COMES.",
       "scene": "road",
       "words": [
        "WHICH BRIDGE"
@@ -1480,7 +1833,8 @@
       "brief": [
        "YOU BOLT THE MILL DOOR AND OPEN THE SUITCASE."
       ],
-      "win": "LONDON ACKNOWLEDGES. HEADLAMPS ON THE RIVER ROAD.",
+      "win": "LONDON ACKNOWLEDGES. OUTSIDE, HEADLAMPS ON THE RIVER ROAD.",
+      "lose": "LONDON DOES NOT KNOW WHICH BRIDGE. THE BOMBERS STAY ON THE GROUND.",
       "scene": "road",
       "words": [
        "PANZERS AT DAWN",
@@ -1491,9 +1845,11 @@
       "mode": "encode",
       "title": "THE HOUR",
       "brief": [
-       "THE VAN STOPS OUTSIDE. BOOTS ON THE GRAVEL."
+       "THE VAN STOPS OUTSIDE. BOOTS ON THE GRAVEL.",
+       "YOU ARE PAST FIVE MINUTES. THE HOUR IS STILL TO SEND."
       ],
-      "win": "THE DOOR SHAKES UNDER A RIFLE BUTT.",
+      "win": "A RIFLE BUTT HITS THE DOOR.",
+      "lose": "WITHOUT THE HOUR, THE BOMBERS COME LATE. THE PANZERS ARE ALREADY ACROSS.",
       "scene": "road",
       "words": [
        "CROSSING AT SIX",
@@ -1504,9 +1860,10 @@
       "mode": "decode",
       "title": "MARSH",
       "brief": [
-       "MARSH IS ON THE KEY."
+       "MARSH IS ON THE KEY. SHE WANTS TO KNOW IT IS REALLY YOU."
       ],
       "win": "THE DOOR IS GIVING.",
+      "lose": "YOU DO NOT CATCH WHAT SHE ASKS. THE DOOR IS GIVING.",
       "scene": "road",
       "words": [
        "SEND YOUR CHECK",
@@ -1520,6 +1877,7 @@
        "YOU LEAVE OUT YOUR CHECK, SO SHE WILL KNOW."
       ],
       "win": "SENT. THE DOOR GIVES. YOU TAKE YOUR HAND OFF THE KEY.",
+      "lose": "THE MESSAGE DOES NOT GO. SHE WILL NEVER KNOW WHAT BECAME OF YOU.",
       "scene": "road",
       "words": [
        "GOODBYE EVELYN"
@@ -1532,15 +1890,18 @@
    {
     "title": "O CARPATHIA",
     "year": "1912",
+    "place": "ATLÂNTICO NORTE",
+    "era": "A ERA DE OURO DOS TRANSATLÂNTICOS",
     "cover": "carpathia",
     "beats": [
      {
       "mode": "encode",
       "title": "O PRIMEIRO TELEGRAMA",
       "brief": [
-       "TELEGRAFISTA DA NOITE, RMS CARPATHIA. UM PASSAGEIRO ESCREVE PARA CASA."
+       "ABRIL DE 1912. UM PASSAGEIRO QUER AVISAR A FAMÍLIA QUE ESTÁ BEM."
       ],
-      "win": "CAPE RACE CONFIRMA. UM CENTAVO DE GORJETA.",
+      "win": "CAPE RACE, NA TERRA NOVA, CONFIRMA. SEU PRIMEIRO TELEGRAMA CRUZOU O OCEANO.",
+      "lose": "O RECADO NÃO SAI. O PASSAGEIRO PEDE O DINHEIRO DE VOLTA.",
       "scene": "sea",
       "count": 1
      },
@@ -1548,9 +1909,10 @@
       "mode": "decode",
       "title": "TELEGRAMAS DA COSTA",
       "brief": [
-       "CAPE RACE MANDA TELEGRAMAS PARA OS PASSAGEIROS."
+       "CAPE RACE TEM TELEGRAMAS PARA OS PASSAGEIROS."
       ],
       "win": "O CAMAREIRO LEVA TUDO ÀS CABINES.",
+      "lose": "UM TELEGRAMA SE PERDE. ALGUÉM A BORDO FICA SEM NOTÍCIA DE CASA.",
       "scene": "sea",
       "count": 3
      },
@@ -1558,19 +1920,22 @@
       "mode": "encode",
       "title": "MAIS TELEGRAMAS",
       "brief": [
-       "A FILA NA SUA PORTA CRESCE."
+       "A FILA NA PORTA DA SALA DE RÁDIO SÓ CRESCE."
       ],
-      "win": "O COMISSÁRIO CONTA OS CENTAVOS.",
+      "win": "O COMISSÁRIO CONTA AS MOEDAS. A MARCONI COBRA POR PALAVRA.",
+      "lose": "A FILA ANDA DEVAGAR. OS PASSAGEIROS RECLAMAM COM O CAPITÃO.",
       "scene": "sea",
       "count": 3
      },
      {
       "mode": "decode",
-      "title": "AS NOTÍCIAS",
+      "title": "SÓ VOCÊ ESCUTA",
       "brief": [
-       "23H. AS NOTÍCIAS DA NOITE."
+       "23H. O BOLETIM DE NOTÍCIAS DA NOITE.",
+       "VOCÊ É O ÚNICO OPERADOR A BORDO. QUANDO DORME, O NAVIO FICA SURDO."
       ],
-      "win": "O CAPITÃO LÊ TUDO COM SEU CHOCOLATE.",
+      "win": "O CAPITÃO ROSTRON LÊ AS NOTÍCIAS TOMANDO CHOCOLATE QUENTE.",
+      "lose": "O CAPITÃO FICA SEM NOTÍCIAS. ELE ANOTA: O RAPAZ DO RÁDIO ESTÁ CANSADO.",
       "scene": "sea",
       "count": 2
      }
@@ -1579,15 +1944,19 @@
    {
     "title": "A VIAGEM INAUGURAL DO TITANIC",
     "year": "1912",
+    "place": "DE SOUTHAMPTON A NOVA YORK",
+    "era": "OS PRIMEIROS ANOS DO RÁDIO",
     "cover": "maiden",
     "beats": [
      {
       "mode": "decode",
       "title": "UM NAVIO NOVO",
       "brief": [
-       "O TITANIC ESTÁ NO AR. OS PASSAGEIROS NÃO PARAM."
+       "O TITANIC, O MAIOR NAVIO DO MUNDO, ESTÁ NA VIAGEM INAUGURAL.",
+       "OS PASSAGEIROS RICOS DELE TELEGRAFAM SEM PARAR."
       ],
-      "win": "MILIONÁRIOS TELEGRAFANDO AOS MORDOMOS.",
+      "win": "MILIONÁRIOS TELEGRAFANDO PARA OS MORDOMOS.",
+      "lose": "VOCÊ PERDE O FIO. O TITANIC NEM PERCEBE.",
       "scene": "fog",
       "count": 3
      },
@@ -1595,9 +1964,11 @@
       "mode": "encode",
       "title": "PASSE ADIANTE",
       "brief": [
-       "ELE PEDE QUE VOCÊ RETRANSMITA PARA A COSTA."
+       "O TITANIC ESTÁ LONGE DA COSTA.",
+       "O OPERADOR DELE, JACK PHILLIPS, PEDE QUE VOCÊ RETRANSMITA."
       ],
-      "win": "A COSTA CONFIRMA. O TITANIC NUNCA AGRADECE.",
+      "win": "A COSTA CONFIRMA. O TITANIC NEM AGRADECE.",
+      "lose": "OS TELEGRAMAS FICAM PARADOS. PHILLIPS TE CHAMA DE NOVO, IMPACIENTE.",
       "scene": "fog",
       "echo": true
      },
@@ -1605,21 +1976,25 @@
       "mode": "decode",
       "title": "A SRTA. MARSH",
       "brief": [
-       "A SRTA. EVELYN MARSH, DEZENOVE ANOS, ESCREVE PARA A MÃE."
+       "A SRTA. EVELYN MARSH, DEZENOVE ANOS, VIAJA NO TITANIC.",
+       "ELA ESCREVE PARA A MÃE."
       ],
-      "win": "A MÃE VAI TER PERGUNTAS.",
+      "win": "O NOME DELE É MATT. A MÃE VAI FAZER PERGUNTAS.",
+      "lose": "O TELEGRAMA DELA SE PERDE NA ESTÁTICA. A MÃE NUNCA SABE DE MATT.",
       "scene": "fog",
       "words": [
-       "MAE AMEI"
+       "MATT ME AMA"
       ]
      },
      {
       "mode": "decode",
-      "title": "TRÁFEGO TARDIO",
+      "title": "AVISOS DE GELO",
       "brief": [
-       "AVISOS DE GELO A NOITE TODA. O TITANIC IGNORA."
+       "14 DE ABRIL. NAVIOS AVISAM O DIA TODO: GELO NA ROTA DO TITANIC.",
+       "O TITANIC NÃO DÁ ATENÇÃO. ESTÁ OCUPADO COM OS TELEGRAMAS DOS PASSAGEIROS."
       ],
-      "win": "ELE SEGUE PARA O ESCURO.",
+      "win": "23H30. O CALIFORNIAN, PARADO NO GELO PERTO DO TITANIC, DESLIGA O RÁDIO. O OPERADOR VAI DORMIR.",
+      "lose": "VOCÊ PERDE OS TELEGRAMAS. O TITANIC SEGUE A TODA VELOCIDADE, NOITE ADENTRO.",
       "scene": "ice",
       "count": 2
      }
@@ -1628,15 +2003,19 @@
    {
     "title": "O NAUFRÁGIO DO TITANIC",
     "year": "1912",
+    "place": "AO SUL DA TERRA NOVA",
+    "era": "A NOITE DE 14 DE ABRIL",
     "cover": "iceberg",
     "beats": [
      {
       "mode": "decode",
       "title": "SOCORRO",
       "brief": [
-       "23H35. UMA BOTA FORA. O TITANIC CHAMA."
+       "23H35. VOCÊ JÁ TIROU UMA BOTA PARA DORMIR.",
+       "UMA ÚLTIMA ESCUTA ANTES DE DESLIGAR. O TITANIC ESTÁ CHAMANDO."
       ],
-      "win": "BATEU NO GELO. VOCÊ CORRE PARA A PONTE.",
+      "win": "ELE BATEU NUM ICEBERG E ESTÁ AFUNDANDO. VOCÊ CORRE ATÉ A PONTE, DE UMA BOTA SÓ.",
+      "lose": "VOCÊ DESLIGA O RÁDIO E DORME, COMO O CALIFORNIAN. NINGUÉM VAI AO SOCORRO DO TITANIC.",
       "scene": "ice",
       "words": [
        "SOS SOS"
@@ -1646,35 +2025,40 @@
       "mode": "encode",
       "title": "A CAMINHO",
       "brief": [
-       "O CAPITÃO VIRA O NAVIO. AVISE."
+       "O CAPITÃO ROSTRON VIRA O NAVIO NA HORA. SÃO 107 KM ATÉ O TITANIC.",
+       "AVISE QUE O CARPATHIA ESTÁ INDO."
       ],
-      "win": "'VENHAM O MAIS RÁPIDO POSSÍVEL.'",
+      "win": "PHILLIPS RESPONDE: 'VENHAM O MAIS RÁPIDO POSSÍVEL, AMIGO.'",
+      "lose": "O TITANIC NÃO SABE QUE ALGUÉM VEM. A TRIPULAÇÃO PERDE A ESPERANÇA.",
       "scene": "ice",
       "words": [
-       "ESTAMOS",
-       "SAIMOS"
+       "SAIMOS ATE AI"
       ]
      },
      {
       "mode": "decode",
-      "title": "ALAGANDO",
+      "title": "ÁGUA A BORDO",
       "brief": [
-       "PEDAÇOS NO MEIO DA ESTÁTICA."
+       "FRAGMENTOS NO MEIO DA ESTÁTICA. A ÁGUA JÁ CHEGA ÀS CALDEIRAS DO TITANIC.",
+       "ROSTRON QUER SABER O QUE VAI ENCONTRAR."
       ],
-      "win": "OS BOTES ACABARAM.",
+      "win": "NÃO HÁ BOTES PARA TODOS. ROSTRON MANDA PREPARAR COBERTORES, SOPA E ESCADAS NO COSTADO.",
+      "lose": "ROSTRON CHEGA SEM SABER O QUE ESPERAR. NADA ESTÁ PRONTO PARA OS SOBREVIVENTES.",
       "scene": "ice",
       "words": [
-       "SEM ASSENTOS",
-       "OS MENINOS"
+       "MAES ANTES",
+       "SEM ASSENTOS"
       ]
      },
      {
       "mode": "encode",
       "title": "A TODO VAPOR",
       "brief": [
-       "CENTO E SETE QUILÔMETROS DE GELO ENTRE VOCÊS."
+       "ROSTRON CORTA O AQUECIMENTO DO NAVIO: TODO O VAPOR VAI PARA AS MÁQUINAS.",
+       "DIGA AO TITANIC PARA AGUENTAR."
       ],
-      "win": "OS FOGUISTAS PÁ ATRÁS DE PÁ.",
+      "win": "O CARPATHIA PASSA DE 17 NÓS, MAIS DO QUE JAMAIS CORREU. OS FOGUISTAS NÃO PARAM.",
+      "lose": "O TITANIC NÃO OUVE VOCÊ. NO CONVÉS, O PÂNICO CRESCE.",
       "scene": "ice",
       "words": [
        "NAO TEMAM",
@@ -1685,9 +2069,10 @@
       "mode": "decode",
       "title": "A ÚLTIMA PALAVRA",
       "brief": [
-       "1H27. A ENERGIA DELE ESTÁ FALHANDO."
+       "1H45. O SINAL DO TITANIC ESTÁ SUMINDO. A ÁGUA CHEGOU À SALA DE MÁQUINAS."
       ],
-      "win": "DEPOIS, ESTÁTICA. SÓ ESTÁTICA.",
+      "win": "DEPOIS, SÓ ESTÁTICA. ÀS 2H20, O TITANIC AFUNDA. HÁ 1.500 PESSOAS NA ÁGUA GELADA.",
+      "lose": "VOCÊ PERDE O ÚLTIMO SINAL. ROSTRON NÃO SABE SE AINDA HÁ ALGUÉM PARA SALVAR.",
       "scene": "ice",
       "words": [
        "SOS"
@@ -1698,15 +2083,19 @@
    {
     "title": "O RESGATE",
     "year": "1912",
+    "place": "A CAMINHO DE NOVA YORK",
+    "era": "O MUNDO À ESPERA DE NOTÍCIAS",
     "cover": "rescue",
     "beats": [
      {
       "mode": "encode",
       "title": "A LISTA",
       "brief": [
-       "AMANHECER. 705 SOBREVIVENTES A BORDO. ENVIE OS NOMES."
+       "4H10. O CARPATHIA CHEGA. SÓ GELO E BOTES SALVA-VIDAS ESPALHADOS.",
+       "705 SOBREVIVENTES A BORDO. MANDE OS NOMES PARA TERRA."
       ],
-      "win": "EM ALGUM LUGAR, FAMÍLIAS PARAM DE ESPERAR.",
+      "win": "EM NOVA YORK, A LISTA É PREGADA NA PORTA DA WHITE STAR. FAMÍLIAS PARAM DE ESPERAR.",
+      "lose": "SEM A LISTA, MILHARES DE FAMÍLIAS PASSAM DIAS SEM SABER QUEM VIVEU.",
       "scene": "sea",
       "words": [
        "SIMONE",
@@ -1719,9 +2108,10 @@
       "mode": "decode",
       "title": "FAMÍLIAS",
       "brief": [
-       "A COSTA PERGUNTA PELOS SEUS."
+       "EM TERRA, AS FAMÍLIAS PERGUNTAM POR SEUS PARENTES, UM POR UM."
       ],
       "win": "TOM E ANA ESTÃO A BORDO. AMOS NÃO.",
+      "lose": "UMA PERGUNTA SE PERDE. UMA FAMÍLIA PASSA MAIS UMA NOITE SEM RESPOSTA.",
       "scene": "sea",
       "words": [
        "TOM ESTA",
@@ -1733,9 +2123,11 @@
       "mode": "decode",
       "title": "UM LÁPIS",
       "brief": [
-       "A SRTA. MARSH ESTÁ VIVA. ELA BATE NA SUA MESA COM UM LÁPIS."
+       "A SRTA. MARSH SOBREVIVEU. NA SALA DE RÁDIO, ELA BATE UM LÁPIS NA SUA MESA.",
+       "ELA SABE MORSE."
       ],
-      "win": "ELE NÃO ESTÁ NA LISTA.",
+      "win": "VOCÊ PROCURA NA LISTA. MATT NÃO ESTÁ NELA.",
+      "lose": "VOCÊ NÃO ENTENDE. ELA SAI SEM PERGUNTAR DE NOVO.",
       "scene": "sea",
       "words": [
        "MATT ESTA"
@@ -1745,9 +2137,10 @@
       "mode": "encode",
       "title": "CASA",
       "brief": [
-       "UM TELEGRAMA PARA A MÃE."
+       "ELA QUER MANDAR UM TELEGRAMA PARA A MÃE. VOCÊ NÃO COBRA."
       ],
-      "win": "ENVIADO. ELA ENFIM CHORA.",
+      "win": "ENVIADO. SÓ ENTÃO ELA CHORA. ANTES DE SAIR, ELA PERGUNTA O SEU NOME.",
+      "lose": "O TELEGRAMA NÃO SAI. A MÃE DELA LÊ SOBRE O TITANIC NOS JORNAIS E ESPERA O PIOR.",
       "scene": "sea",
       "words": [
        "MAE TE AMO"
@@ -1757,144 +2150,186 @@
       "mode": "encode",
       "title": "NOMES PRIMEIRO",
       "brief": [
-       "TRINTA HORAS SEM DORMIR. MAIS TELEGRAMAS."
+       "TRINTA HORAS SEM DORMIR. JORNAIS DO MUNDO INTEIRO PEDEM A HISTÓRIA.",
+       "VOCÊ IGNORA TODOS. PRIMEIRO, OS RECADOS DOS SOBREVIVENTES."
       ],
-      "win": "NOVA YORK. VOCÊ DORME UM DIA INTEIRO.",
+      "win": "18 DE ABRIL, NOVA YORK. 40 MIL PESSOAS ESPERAM NO CAIS. VOCÊ DORME UM DIA INTEIRO.",
+      "lose": "UM RECADO FICA PARA TRÁS. SUAS MÃOS JÁ NÃO OBEDECEM.",
       "scene": "sea",
       "count": 3
      }
     ]
    },
    {
-    "title": "O ATAQUE A SCARBOROUGH",
-    "year": "1914",
-    "cover": "scarborough",
+    "title": "O SUBMARINO",
+    "year": "1915",
+    "place": "COSTA SUL DA IRLANDA",
+    "era": "PRIMEIRA GUERRA MUNDIAL",
+    "cover": "uboat",
     "beats": [
      {
       "mode": "decode",
-      "title": "INTERCEPTAÇÃO",
+      "title": "ESCUTA",
       "brief": [
-       "GUERRA. A MARINHA QUER SEU OUVIDO NA FROTA ALEMÃ."
+       "MAIO DE 1915. NUMA CABANA NA COSTA IRLANDESA, VOCÊ COPIA SINAIS ALEMÃES.",
+       "SÃO GRUPOS CIFRADOS: VOCÊ NÃO ENTENDE NADA. EM LONDRES, A SALA 40 ENTENDE."
       ],
-      "win": "UM MOTOCICLISTA LEVA TUDO À SALA 40, LONDRES.",
+      "win": "A SALA 40 TEM OS LIVROS DE CÓDIGO ALEMÃES. OS ALEMÃES NÃO SABEM.",
+      "lose": "GRUPOS PERDIDOS. EM LONDRES, UMA PÁGINA FICA EM BRANCO.",
       "scene": "wireless",
       "groups": true,
       "count": 4
      },
      {
       "mode": "encode",
-      "title": "A LINHA",
+      "title": "PARA LONDRES",
       "brief": [
-       "LONDRES QUER TUDO PELO FIO. AGORA."
+       "A SALA 40 QUER OS GRUPOS PELO TELÉGRAFO. AGORA."
       ],
-      "win": "A SALA 40 TEM UM LIVRO DE CÓDIGOS CAPTURADO. NINGUÉM TE CONTA.",
+      "win": "A SALA 40 DECIFRA: É O U-20, UM SUBMARINO, A CAMINHO DA COSTA SUL DA IRLANDA.",
+      "lose": "OS GRUPOS NÃO CHEGAM. NINGUÉM SABE ONDE O SUBMARINO ESTÁ.",
       "scene": "wireless",
       "echo": true
      },
      {
       "mode": "decode",
-      "title": "EM CLARO",
+      "title": "O SOTAQUE",
       "brief": [
-       "DEZEMBRO. UM ALEMÃO DESCUIDADO TRANSMITE EM CLARO."
+       "O OPERADOR DO U-20 TRANSMITE DE NOVO. ELE ARRASTA OS TRAÇOS, COMO UM SOTAQUE."
       ],
-      "win": "OS OBUSES CAEM SOBRE SCARBOROUGH.",
-      "scene": "harbour",
-      "words": [
-       "ATIRAR AS OITO"
-      ]
-     },
-     {
-      "mode": "encode",
-      "title": "RELATÓRIOS",
-      "brief": [
-       "LONDRES QUER TUDO O QUE VOCÊ OUVE."
-      ],
-      "win": "OS NAVIOS ALEMÃES FOGEM NA NÉVOA.",
-      "scene": "harbour",
-      "count": 3
-     }
-    ]
-   },
-   {
-    "title": "O NAUFRÁGIO DO LUSITANIA",
-    "year": "1915",
-    "cover": "lusitania",
-    "beats": [
-     {
-      "mode": "decode",
-      "title": "O BALANÇO",
-      "brief": [
-       "UM SUBMARINO NA IRLANDA. UM BALANÇO PREGUIÇOSO NOS TRAÇOS."
-      ],
-      "win": "VOCÊ VAI RECONHECER ESSA MÃO EM QUALQUER LUGAR.",
+      "win": "VOCÊ RECONHECERIA ESSA MÃO EM QUALQUER LUGAR. ELE ESTÁ PERTO DE WATERFORD.",
+      "lose": "VOCÊ PERDE O SINAL. O U-20 SOME DEBAIXO D'ÁGUA.",
       "scene": "harbour",
       "groups": true,
       "count": 3
      },
      {
       "mode": "decode",
-      "title": "ORDENS",
+      "title": "SOCORRO NO MAR",
       "brief": [
-       "AS ORDENS DELE VÊM EM CLARO."
+       "6 DE MAIO. UM CARGUEIRO CHAMA, PERTO DA COSTA."
       ],
-      "win": "O LUSITANIA ZARPOU. DOIS MIL A BORDO.",
+      "win": "O U-20 AFUNDA O CANDIDATE E O CENTURION. AS TRIPULAÇÕES ESCAPAM NOS BOTES.",
+      "lose": "NINGUÉM ANOTA O PEDIDO. OS BOTES FICAM À DERIVA NO MAR.",
       "scene": "harbour",
       "words": [
-       "DESTRUIR TODOS"
+       "SOS SOS",
+       "ATIRARAM"
       ]
      },
      {
       "mode": "encode",
-      "title": "AVISO",
+      "title": "O ALMIRANTADO",
       "brief": [
-       "AVISE O ALMIRANTADO."
+       "O LUSITANIA VEM DE NOVA YORK E PASSA POR AQUI EM DOIS DIAS.",
+       "AVISE O ALMIRANTADO: O U-20 NÃO FOI EMBORA."
       ],
-      "win": "RECEBIDO. ARQUIVADO. NADA É FEITO.",
+      "win": "O ALMIRANTADO MANDA AVISOS GERAIS AOS NAVIOS. MAS NENHUMA ESCOLTA PARA O LUSITANIA.",
+      "lose": "O ALMIRANTADO ACHA QUE O U-20 VOLTOU PARA CASA. NINGUÉM AVISA NINGUÉM.",
       "scene": "harbour",
       "words": [
-       "ATIRADOR NA ROTA",
-       "MUDAR ROTA"
+       "RESTA NO MAR",
+       "ESTA NA ROTA"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "O NAUFRÁGIO DO LUSITANIA",
+    "year": "1915",
+    "place": "OLD HEAD OF KINSALE, IRLANDA",
+    "era": "PRIMEIRA GUERRA MUNDIAL",
+    "cover": "lusitania",
+    "beats": [
+     {
+      "mode": "encode",
+      "title": "O AVISO",
+      "brief": [
+       "7 DE MAIO, MANHÃ. O LUSITANIA ENTRA NO MAR DA IRLANDA, NUMA NEBLINA GROSSA.",
+       "QUASE DUAS MIL PESSOAS A BORDO. O ALMIRANTADO MANDA VOCÊ AVISAR O NAVIO."
+      ],
+      "win": "O CAPITÃO TURNER RECEBE. MAS, NA NEBLINA, ELE REDUZ A VELOCIDADE E CHEGA PERTO DA COSTA PARA SE LOCALIZAR.",
+      "lose": "SEM AVISO, O LUSITANIA NAVEGA TRANQUILO, SEM VIGIAS EXTRAS, BEM NA ROTA DO U-20.",
+      "scene": "harbour",
+      "words": [
+       "ATIRADORES",
+       "MAIS AO MAR"
       ]
      },
      {
       "mode": "decode",
       "title": "KINSALE",
       "brief": [
-       "7 DE MAIO. 14H10. NA COSTA DA IRLANDA."
+       "14H10. UM TORPEDO ATINGE O LUSITANIA A 11 MILHAS DE OLD HEAD OF KINSALE.",
+       "UMA SEGUNDA EXPLOSÃO, MAIS FUNDA. O OPERADOR DELE CHAMA."
       ],
-      "win": "O LUSITANIA. ADERNANDO MUITO.",
+      "win": "VOCÊ TEM A POSIÇÃO. O NAVIO ADERNA TANTO QUE METADE DOS BOTES NÃO CONSEGUE DESCER.",
+      "lose": "NINGUÉM ANOTA A POSIÇÃO. O SOCORRO VAI PROCURAR NO LUGAR ERRADO.",
       "scene": "harbour",
       "words": [
-       "SOS SOS SOS"
+       "SOS SOS SOS",
+       "MUITO ADERNADO"
       ]
      },
      {
       "mode": "encode",
-      "title": "QUALQUER NAVIO",
+      "title": "QUEENSTOWN",
       "brief": [
-       "CHAME TODO NAVIO PERTO DE KINSALE."
+       "O PORTO MAIS PERTO É QUEENSTOWN, A 40 KM. TUDO O QUE FLUTUA PODE AJUDAR.",
+       "CHAME OS BARCOS DO PORTO."
       ],
-      "win": "DEZOITO MINUTOS. 1.198 MORTOS. VOCÊ ESTAVA LONGE DEMAIS.",
+      "win": "REBOCADORES, PESQUEIROS E VAPORES SAEM DE QUEENSTOWN. VÃO LEVAR HORAS PARA CHEGAR.",
+      "lose": "QUEENSTOWN SÓ FICA SABENDO HORAS DEPOIS. QUEM ESTÁ NA ÁGUA FRIA NÃO TEM HORAS.",
       "scene": "harbour",
       "words": [
-       "SOS SOS",
-       "MANDEM NAUS"
+       "TODOS AO MAR",
+       "RUMO SUDOESTE"
       ]
+     },
+     {
+      "mode": "decode",
+      "title": "O WANDERER",
+      "brief": [
+       "O LUSITANIA AFUNDA EM 18 MINUTOS.",
+       "UM PEQUENO PESQUEIRO, O WANDERER, É O PRIMEIRO A CHEGAR. ELE INFORMA."
+      ],
+      "win": "O WANDERER RECOLHE 160 PESSOAS, ATÉ QUASE AFUNDAR. HÁ MUITO MAIS NA ÁGUA.",
+      "lose": "VOCÊ PERDE O RECADO. NINGUÉM SABE QUANTOS AINDA ESTÃO VIVOS NA ÁGUA.",
+      "scene": "sea",
+      "words": [
+       "MUITOS NO MAR",
+       "MANDEM MAIS"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "MAIS BARCOS",
+      "brief": [
+       "QUEENSTOWN PRECISA OUVIR ISSO. RETRANSMITA."
+      ],
+      "win": "OS BARCOS TRABALHAM ATÉ A NOITE. 761 SALVOS. 1.198 MORTOS, 128 DELES AMERICANOS.",
+      "lose": "O RECADO NÃO CHEGA. OS ÚLTIMOS BARCOS FICAM NO PORTO.",
+      "scene": "sea",
+      "echo": true
      }
     ]
    },
    {
     "title": "OS ATAQUES DOS ZEPELINS",
     "year": "1916",
+    "place": "LONDRES",
+    "era": "PRIMEIRA GUERRA MUNDIAL",
     "cover": "zeppelin",
     "beats": [
      {
       "mode": "decode",
       "title": "RUMOS",
       "brief": [
-       "DIRIGÍVEIS BOMBARDEIAM LONDRES À NOITE. CADA CHAMADA OS ENTREGA."
+       "SETEMBRO DE 1916. ZEPELINS CRUZAM O MAR DO NORTE RUMO A LONDRES.",
+       "CADA TRANSMISSÃO DELES DIZ ONDE ESTÃO. VOCÊ COPIA."
       ],
-      "win": "OS TRAÇOS BALANÇAM. O HOMEM DO SUBMARINO AGORA VOA.",
+      "win": "TRAÇOS ARRASTADOS, AQUELE SOTAQUE. O HOMEM DO U-20 AGORA VOA.",
+      "lose": "VOCÊ PERDE O SINAL. OS ZEPELINS CHEGAM A LONDRES SEM SEREM VISTOS.",
       "scene": "wireless",
       "groups": true,
       "count": 4
@@ -1903,9 +2338,10 @@
       "mode": "encode",
       "title": "CAÇAS NOTURNOS",
       "brief": [
-       "OS CAÇAS PRECISAM DE UM RUMO."
+       "UM CAÇA SOBE NO ESCURO PARA INTERCEPTAR. O PILOTO PRECISA DE UM RUMO."
       ],
-      "win": "O DIRIGÍVEL QUEIMA SOBRE ESSEX.",
+      "win": "ATINGIDO, O ZEPELIM DESCE NUM CAMPO EM ESSEX. A TRIPULAÇÃO QUEIMA O DIRIGÍVEL E SE RENDE.",
+      "lose": "SEM RUMO, O PILOTO SE PERDE NO ESCURO. AS BOMBAS CAEM SOBRE LONDRES.",
       "scene": "air",
       "words": [
        "RUMO NORDESTE",
@@ -1916,9 +2352,10 @@
       "mode": "decode",
       "title": "OS CANOS",
       "brief": [
-       "UM HOMEM SAIU VIVO. NA CELA, ELE BATE NOS CANOS."
+       "UM DOS PRISIONEIROS É O OPERADOR DE RÁDIO. NA CELA, ELE BATE NOS CANOS."
       ],
-      "win": "O NOME DELE É BRANDT.",
+      "win": "O NOME DELE É BRANDT. ELE ACHA QUE NINGUÉM ENTENDE.",
+      "lose": "AS BATIDAS PARAM. VOCÊ NUNCA SABE QUEM ESTAVA DO OUTRO LADO.",
       "scene": "wireless",
       "words": [
        "NAO MORRI",
@@ -1929,9 +2366,10 @@
       "mode": "encode",
       "title": "RESPONDA",
       "brief": [
-       "ELE ACHA QUE NINGUÉM ENTENDE."
+       "VOCÊ PEGA UMA COLHER E BATE DE VOLTA."
       ],
-      "win": "ELE PARA. DEPOIS RI.",
+      "win": "ELE PARA. DEPOIS RI. VOCÊS CONVERSAM PELOS CANOS ATÉ O DIA CLAREAR.",
+      "lose": "ELE NUNCA SABE QUE ALGUÉM OUVIU. NA MANHÃ SEGUINTE, É TRANSFERIDO.",
       "scene": "wireless",
       "words": [
        "EU ENTENDO"
@@ -1942,26 +2380,31 @@
    {
     "title": "O TELEGRAMA ZIMMERMANN",
     "year": "1917",
+    "place": "SALA 40, ALMIRANTADO, LONDRES",
+    "era": "PRIMEIRA GUERRA MUNDIAL",
     "cover": "telegram",
     "beats": [
      {
       "mode": "decode",
       "title": "OS GRUPOS",
       "brief": [
-       "BERLIM PARA WASHINGTON, EM CÓDIGO. A SALA 40 TEM UMA CÓPIA."
+       "JANEIRO DE 1917. BERLIM MANDA UM TELEGRAMA CIFRADO AO EMBAIXADOR NO MÉXICO.",
+       "ELE PASSA POR CABOS AMERICANOS. A SALA 40 TEM UMA CÓPIA."
       ],
       "win": "UMA LETRA ERRADA CUSTA UMA SEMANA AOS DECIFRADORES.",
+      "lose": "UM GRUPO SE PERDE. O TELEGRAMA FICA ILEGÍVEL NUMA GAVETA.",
       "scene": "wireless",
       "groups": true,
       "count": 4
      },
      {
       "mode": "encode",
-      "title": "PARA LONDRES",
+      "title": "PARA OS DECIFRADORES",
       "brief": [
-       "PASSE OS GRUPOS ADIANTE."
+       "PASSE OS GRUPOS PARA A EQUIPE DE CÓDIGOS, NO ANDAR DE CIMA."
       ],
-      "win": "ALGUÉM ABRE UM LIVRO QUE VOCÊ NUNCA VAI VER.",
+      "win": "ALGUÉM ABRE UM LIVRO DE CÓDIGOS QUE VOCÊ NUNCA VAI VER.",
+      "lose": "OS GRUPOS CHEGAM ERRADOS. OS DECIFRADORES PERDEM A NOITE.",
       "scene": "wireless",
       "echo": true
      },
@@ -1969,9 +2412,11 @@
       "mode": "decode",
       "title": "PALAVRAS",
       "brief": [
-       "PALAVRAS SAEM DO CÓDIGO. A ALEMANHA CORTEJA O MÉXICO."
+       "O CÓDIGO CEDE. A ALEMANHA VAI VOLTAR A AFUNDAR NAVIOS SEM AVISO.",
+       "E OFERECE AO MÉXICO O TEXAS DE VOLTA, SE ELE ATACAR OS ESTADOS UNIDOS."
       ],
-      "win": "SE OS AMERICANOS VIREM ISSO, ENTRAM NA GUERRA.",
+      "win": "SE OS AMERICANOS VIREM ISSO, ENTRAM NA GUERRA. O LUSITANIA AINDA DÓI NELES.",
+      "lose": "VOCÊ PERDE AS PALAVRAS. O TELEGRAMA FICA SEM SENTIDO, E OS EUA SEGUEM NEUTROS.",
       "scene": "wireless",
       "words": [
        "GUERRA",
@@ -1982,9 +2427,11 @@
       "mode": "encode",
       "title": "DISFARCE",
       "brief": [
-       "NINGUÉM PODE SABER QUE VEIO DA SALA 40."
+       "SE A ALEMANHA SOUBER QUE A SALA 40 LÊ SEUS CÓDIGOS, VAI TROCAR TODOS.",
+       "A HISTÓRIA OFICIAL: UM ESPIÃO NO MÉXICO ROUBOU O TELEGRAMA."
       ],
-      "win": "OS EUA DECLARAM GUERRA. OS JORNAIS ELOGIAM UM ESPIÃO ESPERTO.",
+      "win": "MARÇO: O TELEGRAMA SAI NOS JORNAIS AMERICANOS. EM ABRIL, OS EUA DECLARAM GUERRA.",
+      "lose": "A ALEMANHA DESCONFIA DOS PRÓPRIOS CÓDIGOS E TROCA TODOS. A SALA 40 FICA CEGA.",
       "scene": "rail",
       "words": [
        "NOSSO AGENTE"
@@ -1995,15 +2442,18 @@
    {
     "title": "O ARMISTÍCIO",
     "year": "1918",
+    "place": "PARIS E O CANAL DA MANCHA",
+    "era": "O FIM DA PRIMEIRA GUERRA MUNDIAL",
     "cover": "armistice",
     "beats": [
      {
       "mode": "decode",
       "title": "A TORRE",
       "brief": [
-       "NOVEMBRO. A TORRE EIFFEL TRANSMITE AO MUNDO."
+       "11 DE NOVEMBRO DE 1918, MADRUGADA. A TORRE EIFFEL TRANSMITE PARA O MUNDO."
       ],
-      "win": "AS HOSTILIDADES CESSAM ÀS ONZE. VOCÊ LÊ DUAS VEZES.",
+      "win": "O ARMISTÍCIO FOI ASSINADO. AS ARMAS PARAM ÀS ONZE. VOCÊ LÊ DE NOVO, PARA TER CERTEZA.",
+      "lose": "VOCÊ PERDE A NOTÍCIA. EM LONDRES, NINGUÉM SABE AINDA QUE A GUERRA VAI ACABAR.",
       "scene": "wireless",
       "words": [
        "ARMAS GUARDADAS",
@@ -2012,11 +2462,13 @@
      },
      {
       "mode": "encode",
-      "title": "CESSAR FOGO",
+      "title": "CESSAR-FOGO",
       "brief": [
-       "UM DESTRÓIER NO CANAL NÃO OUVIU."
+       "10H. UM DESTRÓIER NO CANAL DA MANCHA AINDA NÃO SABE.",
+       "ELE ESTÁ PERSEGUINDO UM SUBMARINO."
       ],
-      "win": "OS CANHÕES SILENCIAM ÀS ONZE.",
+      "win": "AS ARMAS DELE SILENCIAM. NO SUBMARINO, ALGUÉM VAI VOLTAR PARA CASA.",
+      "lose": "ELE ATIRA. HAVERÁ MORTOS NA ÚLTIMA HORA DA GUERRA.",
       "scene": "harbour",
       "words": [
        "NAO ATIREM",
@@ -2027,9 +2479,10 @@
       "mode": "decode",
       "title": "RESPOSTAS",
       "brief": [
-       "NAVIOS E TRINCHEIRAS RESPONDEM, UM A UM."
+       "NAVIOS E BASES CONFIRMAM O CESSAR-FOGO, UM POR UM."
       ],
-      "win": "AO MEIO-DIA O AR ESTÁ CHEIO DE VIVAS.",
+      "win": "AO MEIO-DIA, SÓ SE OUVE FESTA NO RÁDIO.",
+      "lose": "UMA CONFIRMAÇÃO SE PERDE. EM ALGUM LUGAR, ALGUÉM CONTINUA EM GUERRA.",
       "scene": "wireless",
       "count": 4
      },
@@ -2037,9 +2490,11 @@
       "mode": "decode",
       "title": "UM TELEGRAMA",
       "brief": [
-       "DE LONDRES. SRTA. E. MARSH, DO MINISTÉRIO DA GUERRA."
+       "UM TELEGRAMA DE LONDRES. SRTA. E. MARSH, AGORA NO MINISTÉRIO DA GUERRA.",
+       "VOCÊ NÃO VÊ ESSE NOME DESDE O CARPATHIA."
       ],
-      "win": "ELA LEMBRA DA SUA MÃO.",
+      "win": "ELA NUNCA ESQUECEU QUEM MANDOU O TELEGRAMA PARA A MÃE DELA.",
+      "lose": "VOCÊ NÃO ENTENDE O TELEGRAMA. ELA NÃO ESCREVE DE NOVO.",
       "scene": "rail",
       "words": [
        "VENHA ME VER"
@@ -2051,7 +2506,8 @@
       "brief": [
        "VOCÊ RESPONDE POR TELEGRAMA, É CLARO."
       ],
-      "win": "ELA ESPERA NA ESTAÇÃO, NA CHUVA.",
+      "win": "ELA ESPERA NA ESTAÇÃO, NA CHUVA. VOCÊS CONVERSAM ATÉ O ÚLTIMO TREM.",
+      "lose": "A RESPOSTA NÃO CHEGA. ELA ESPERA NA ESTAÇÃO, NA CHUVA, À TOA.",
       "scene": "rail",
       "words": [
        "DIGA A HORA"
@@ -2062,15 +2518,19 @@
    {
     "title": "O DESASTRE DO HINDENBURG",
     "year": "1937",
+    "place": "LAKEHURST, NOVA JERSEY, EUA",
+    "era": "A ERA DOS DIRIGÍVEIS",
     "cover": "hindenburg",
     "beats": [
      {
       "mode": "decode",
       "title": "VELHOS INIMIGOS",
       "brief": [
-       "PAZ. O HINDENBURG SE APROXIMA. O OPERADOR BALANÇA OS TRAÇOS."
+       "6 DE MAIO DE 1937. O HINDENBURG SE APROXIMA DA COSTA AMERICANA.",
+       "O OPERADOR DELE ARRASTA OS TRAÇOS. AQUELE SOTAQUE."
       ],
-      "win": "BRANDT. VINTE ANOS. VOCÊ RI SOZINHO.",
+      "win": "É BRANDT, VINTE ANOS DEPOIS. VOCÊ RI SOZINHO NA SALA DE RÁDIO.",
+      "lose": "VOCÊ NÃO RECONHECE A MÃO. É SÓ MAIS UM DIRIGÍVEL CHEGANDO.",
       "scene": "wireless",
       "words": [
        "GUTEN TAG",
@@ -2081,9 +2541,10 @@
       "mode": "encode",
       "title": "O TEMPO",
       "brief": [
-       "ELE QUER O TEMPO EM NOVA JERSEY."
+       "ELE QUER SABER COMO ESTÁ O TEMPO EM LAKEHURST. UMA TEMPESTADE ESTÁ PASSANDO."
       ],
-      "win": "'DANKE. ATÉ A PRÓXIMA GUERRA.'",
+      "win": "O COMANDANTE DECIDE ESPERAR. O DIRIGÍVEL DÁ VOLTAS SOBRE A COSTA.",
+      "lose": "SEM AVISO, O HINDENBURG TENTA POUSAR NO MEIO DA TROVOADA.",
       "scene": "wireless",
       "words": [
        "TROVOADA",
@@ -2094,9 +2555,10 @@
       "mode": "decode",
       "title": "ESPERANDO",
       "brief": [
-       "O DIRIGÍVEL CIRCULA, ESPERANDO A TEMPESTADE PASSAR."
+       "HORAS DANDO VOLTAS. BRANDT CONVERSA PARA PASSAR O TEMPO."
       ],
-      "win": "ELE MANDA UMA FILA DE PONTOS. RISADA.",
+      "win": "ELE MANDA UMA FIADA DE PONTOS: UMA RISADA. ÀS 19H, O TEMPO MELHORA E ELE DESCE.",
+      "lose": "A CONVERSA SE PERDE NA ESTÁTICA. ELE PARA DE TRANSMITIR.",
       "scene": "wireless",
       "words": [
        "TENHO UM GAROTO",
@@ -2105,41 +2567,48 @@
      },
      {
       "mode": "decode",
-      "title": "O FLASH",
+      "title": "O BOLETIM",
       "brief": [
-       "19H25. UM FLASH DA IMPRENSA. QUEM TRANSMITE ESTÁ TREMENDO."
+       "19H25. O HINDENBURG PEGA FOGO AO POUSAR. EM MEIO MINUTO, VIRA UM ESQUELETO.",
+       "UM REPÓRTER NA PISTA TRANSMITE. A MÃO DELE TREME."
       ],
-      "win": "TRINTA E SEIS MORTOS. ELE VIVEU. MÃOS QUEIMADAS.",
+      "win": "TRINTA E SEIS MORTOS. BRANDT SOBREVIVEU, COM AS MÃOS QUEIMADAS.",
+      "lose": "VOCÊ PERDE O BOLETIM. NINGUÉM SABE SE BRANDT ESTÁ VIVO.",
       "scene": "wireless",
       "words": [
        "ESTA ARDENDO",
-       "HOMEM DO RADIO VIVE"
+       "HOMEM DO RADIO VIVO"
       ]
      },
      {
       "mode": "encode",
       "title": "PASSE ADIANTE",
       "brief": [
-       "O MUNDO QUER SABER. PASSE ADIANTE."
+       "O MUNDO QUER SABER. RETRANSMITA."
       ],
       "win": "SUAS MÃOS TAMBÉM TREMEM.",
+      "lose": "A NOTÍCIA EMPACA NA SUA MESA. OS JORNAIS SABEM POR OUTRA PESSOA.",
       "scene": "wireless",
       "echo": true
      }
     ]
    },
    {
-    "title": "A SEGUNDA GUERRA MUNDIAL",
+    "title": "A ENIGMA",
     "year": "1939",
+    "place": "UMA ESTAÇÃO DE ESCUTA NA INGLATERRA",
+    "era": "SEGUNDA GUERRA MUNDIAL",
     "cover": "war",
     "beats": [
      {
       "mode": "decode",
       "title": "A CABANA",
       "brief": [
-       "GUERRA DE NOVO. UMA CABANA, QUARENTA RECEPTORES, GRUPOS ALEMÃES."
+       "UMA CABANA NO INTERIOR DA INGLATERRA, QUARENTA RECEPTORES.",
+       "A NOITE TODA, GRUPOS DA LUFTWAFFE, CIFRADOS PELA ENIGMA."
       ],
-      "win": "UMA MOTO LEVA O CESTO À ESTAÇÃO X.",
+      "win": "UMA MOTO LEVA O CESTO DE MENSAGENS PARA A ESTAÇÃO X.",
+      "lose": "UM GRUPO ERRADO, E A ESTAÇÃO X PERDE UM DIA INTEIRO.",
       "scene": "air",
       "groups": true,
       "count": 5
@@ -2148,9 +2617,10 @@
       "mode": "decode",
       "title": "UM HÁBITO",
       "brief": [
-       "UM ALEMÃO COMEÇA TODA MENSAGEM DO MESMO JEITO."
+       "UM OPERADOR ALEMÃO COMEÇA TODA MENSAGEM DO MESMO JEITO: 'SEGUE O TEMPO'."
       ],
-      "win": "A ESTAÇÃO X CHAMA ISSO DE COLA. VOCÊ CIRCULA EM VERMELHO.",
+      "win": "A ESTAÇÃO X CHAMA ISSO DE COLA: UM PEDAÇO DE TEXTO QUE ELES JÁ CONHECEM. VOCÊ CIRCULA DE VERMELHO.",
+      "lose": "VOCÊ NÃO REPARA NO HÁBITO. A ESTAÇÃO X CONTINUA ÀS CEGAS.",
       "scene": "air",
       "words": [
        "WETTER FOLGT"
@@ -2160,9 +2630,10 @@
       "mode": "encode",
       "title": "A COLA",
       "brief": [
-       "MANDE PARA A ESTAÇÃO X."
+       "MANDE PARA A ESTAÇÃO X, URGENTE."
       ],
-      "win": "À MEIA-NOITE A ESTAÇÃO X LÊ A LUFTWAFFE.",
+      "win": "À MEIA-NOITE, A ESTAÇÃO X JÁ LÊ AS MENSAGENS DA LUFTWAFFE DAQUELE DIA.",
+      "lose": "SEM A COLA, A ENIGMA DAQUELE DIA FICA FECHADA.",
       "scene": "wireless",
       "echo": true
      },
@@ -2170,9 +2641,10 @@
       "mode": "decode",
       "title": "MAIS GRUPOS",
       "brief": [
-       "A NOITE É LONGA."
+       "AGORA, CADA GRUPO QUE VOCÊ COPIA VIRA TEXTO EM POUCAS HORAS."
       ],
-      "win": "SUA MÃO LEMBRA DO TRABALHO.",
+      "win": "SUA MÃO NÃO ESQUECEU O OFÍCIO.",
+      "lose": "UM GRUPO SE PERDE. UMA MENSAGEM QUE IMPORTAVA FICA SEM LER.",
       "scene": "air",
       "groups": true,
       "count": 4
@@ -2182,28 +2654,34 @@
    {
     "title": "A EVACUAÇÃO DE DUNQUERQUE",
     "year": "1940",
+    "place": "DUNQUERQUE, FRANÇA",
+    "era": "SEGUNDA GUERRA MUNDIAL",
     "cover": "dunkirk",
     "beats": [
      {
       "mode": "decode",
       "title": "A PRAIA",
       "brief": [
-       "O EXÉRCITO ESTÁ PRESO NUMA PRAIA. UM DESTRÓIER INFORMA."
+       "MAIO DE 1940. A ALEMANHA ATRAVESSOU A FRANÇA EM SEMANAS.",
+       "O EXÉRCITO BRITÂNICO ESTÁ ENCURRALADO EM DUNQUERQUE. UM DESTRÓIER INFORMA."
       ],
-      "win": "OS BARQUINHOS VIRAM NA DIREÇÃO DELES.",
+      "win": "OS NAVIOS GRANDES NÃO CHEGAM PERTO DA AREIA. VÃO PRECISAR DE BARCOS PEQUENOS.",
+      "lose": "SEM NOTÍCIAS, LONDRES ACHA QUE NÃO HÁ COMO TIRAR NINGUÉM DE LÁ.",
       "scene": "sea",
       "words": [
        "HOMENS NO MOLHE",
-       "AREIA CHEIA"
+       "MILHARES NA AREIA"
       ]
      },
      {
       "mode": "encode",
       "title": "BARQUINHOS",
       "brief": [
-       "TODO BARCO DA COSTA SUL ESTÁ INDO."
+       "IATES, BALSAS, PESQUEIROS: TODO BARCO DA COSTA SUL ATRAVESSA O CANAL.",
+       "ELES PRECISAM SABER PARA ONDE IR."
       ],
-      "win": "IATES, BALSAS, PESQUEIROS. CENTENAS.",
+      "win": "CENTENAS DE BARQUINHOS CHEGAM À PRAIA E LEVAM OS HOMENS ATÉ OS NAVIOS.",
+      "lose": "OS BARCOS VÃO PARA O LUGAR ERRADO. OS HOMENS ESPERAM NA AREIA.",
       "scene": "sea",
       "words": [
        "BARCOS RUMO A MALO",
@@ -2214,9 +2692,10 @@
       "mode": "encode",
       "title": "ATAQUE AO AMANHECER",
       "brief": [
-       "A ESTAÇÃO X LEU: UM ATAQUE AO AMANHECER."
+       "A ESTAÇÃO X DECIFROU A LUFTWAFFE: BOMBARDEIROS SOBRE A PRAIA AO AMANHECER."
       ],
-      "win": "AS BOMBAS CAEM NA ÁGUA VAZIA.",
+      "win": "OS BARCOS SE ESPALHAM. AS BOMBAS CAEM NA ÁGUA VAZIA.",
+      "lose": "OS BARCOS CONTINUAM AMONTOADOS. AS BOMBAS CAEM EM CHEIO.",
       "scene": "air",
       "words": [
        "BOMBAS NO RAIAR",
@@ -2227,19 +2706,24 @@
       "mode": "encode",
       "title": "PARA ONDE",
       "brief": [
-       "OS BARCOS PERGUNTAM PARA ONDE IR."
+       "A PRAIA ESTÁ EM CHAMAS. OS BARCOS PERGUNTAM ONDE ENCOSTAR AGORA."
       ],
       "win": "BARCO ATRÁS DE BARCO, A NOITE TODA.",
+      "lose": "OS BARCOS ENCOSTAM ONDE NÃO HÁ NINGUÉM. A NOITE SE PERDE.",
       "scene": "sea",
-      "count": 3
+      "words": [
+       "MOLHE LESTE",
+       "DUNAS DE MALO"
+      ]
      },
      {
       "mode": "decode",
       "title": "A CONTAGEM",
       "brief": [
-       "4 DE JUNHO. O ÚLTIMO NAVIO INFORMA."
+       "4 DE JUNHO. O ÚLTIMO NAVIO DEIXA DUNQUERQUE E INFORMA."
       ],
-      "win": "338 MIL HOMENS. OS JORNAIS FALAM EM MILAGRE.",
+      "win": "338 MIL HOMENS SALVOS. OS JORNAIS FALAM EM MILAGRE.",
+      "lose": "VOCÊ PERDE O SINAL. LONDRES NÃO SABE SE A EVACUAÇÃO TERMINOU.",
       "scene": "sea",
       "words": [
        "ULTIMO BARCO"
@@ -2250,15 +2734,19 @@
    {
     "title": "O NAUFRÁGIO DO BISMARCK",
     "year": "1941",
+    "place": "ATLÂNTICO NORTE",
+    "era": "SEGUNDA GUERRA MUNDIAL",
     "cover": "bismarck",
     "beats": [
      {
       "mode": "decode",
       "title": "O SINAL LONGO",
       "brief": [
-       "O BISMARCK AFUNDOU O HOOD E SUMIU."
+       "MAIO DE 1941. O BISMARCK, O MAIOR COURAÇADO ALEMÃO, AFUNDOU O HOOD E SUMIU.",
+       "SE CHEGAR À FRANÇA, VAI CAÇAR OS COMBOIOS QUE ALIMENTAM A INGLATERRA."
       ],
-      "win": "UM SINAL LONGO É UM RUMO. ELE FOGE PARA A FRANÇA.",
+      "win": "UM SINAL LONGO DÁ A DIREÇÃO: ELE FOGE PARA A FRANÇA.",
+      "lose": "O BISMARCK SOME NO ATLÂNTICO. OS COMBOIOS FICAM À MERCÊ DELE.",
       "scene": "harbour",
       "groups": true,
       "count": 4
@@ -2267,9 +2755,11 @@
       "mode": "decode",
       "title": "UM PAI",
       "brief": [
-       "UM GENERAL DA LUFTWAFFE PERGUNTA O DESTINO. O FILHO ESTÁ A BORDO."
+       "UM GENERAL DA LUFTWAFFE PERGUNTA PARA ONDE O NAVIO VAI.",
+       "O FILHO DELE ESTÁ A BORDO. A RESPOSTA VEM PELA ENIGMA."
       ],
-      "win": "UM PAI PREOCUPADO COM O FILHO. ISSO VAI MATAR O FILHO.",
+      "win": "A PREOCUPAÇÃO DE UM PAI. É ELA QUE VAI MATAR O FILHO.",
+      "lose": "VOCÊ PERDE A RESPOSTA. A FROTA PROCURA NO NORTE, LONGE DELE.",
       "scene": "air",
       "words": [
        "RUMO A BREST"
@@ -2279,9 +2769,11 @@
       "mode": "encode",
       "title": "SWORDFISH",
       "brief": [
-       "BIPLANOS VELHOS NO ARK ROYAL ESPERAM UM RUMO."
+       "BIPLANOS VELHOS, OS SWORDFISH, ESPERAM NO PORTA-AVIÕES ARK ROYAL.",
+       "ELES PRECISAM DE UM RUMO."
       ],
-      "win": "UM TORPEDO TRAVA O LEME. ELE SÓ ANDA EM CÍRCULOS.",
+      "win": "UM TORPEDO EMPERRA O LEME. O BISMARCK SÓ CONSEGUE ANDAR EM CÍRCULOS.",
+      "lose": "OS BIPLANOS VOLTAM SEM ACHAR O ALVO. AMANHÃ O BISMARCK ESTARÁ NA FRANÇA.",
       "scene": "air",
       "words": [
        "RUMO SUDESTE",
@@ -2292,9 +2784,10 @@
       "mode": "decode",
       "title": "27 DE MAIO",
       "brief": [
-       "A FROTA FECHA O CERCO."
+       "MANHÃ DE 27 DE MAIO. A FROTA BRITÂNICA FECHA O CERCO E ABRE FOGO."
       ],
-      "win": "DOIS MIL HOMENS. UM DELES, FILHO DE UM GENERAL.",
+      "win": "DOIS MIL MORTOS. UM DELES, O FILHO DO GENERAL.",
+      "lose": "O SINAL SE PERDE NO MEIO DOS TIROS. LONDRES ESPERA, SEM SABER.",
       "scene": "harbour",
       "words": [
        "BISMARCK AFUNDANDO"
@@ -2304,9 +2797,10 @@
       "mode": "encode",
       "title": "A NOTÍCIA",
       "brief": [
-       "O ALMIRANTADO QUER QUE RETRANSMITA."
+       "O ALMIRANTADO PEDE QUE VOCÊ RETRANSMITA."
       ],
-      "win": "O HOOD FOI VINGADO, DIZEM OS JORNAIS.",
+      "win": "O HOOD FOI VINGADO, DIZEM OS JORNAIS. VOCÊ PENSA NO GENERAL.",
+      "lose": "A NOTÍCIA ATRASA. O ALMIRANTADO FICA SEM RESPOSTA.",
       "scene": "harbour",
       "echo": true
      }
@@ -2315,15 +2809,19 @@
    {
     "title": "NA FRANÇA OCUPADA",
     "year": "1943",
+    "place": "INTERIOR DA FRANÇA",
+    "era": "SEGUNDA GUERRA MUNDIAL",
     "cover": "france",
     "beats": [
      {
       "mode": "encode",
       "title": "VERIFICAÇÃO",
       "brief": [
-       "EVELYN MARSH COMANDA AGENTES NA FRANÇA. CADA UM TEM UM ERRO SECRETO."
+       "EVELYN MARSH TREINA AGENTES PARA A FRANÇA.",
+       "CADA UM TEM UMA VERIFICAÇÃO: UM ERRO COMBINADO, QUE PROVA QUE ESTÁ LIVRE."
       ],
-      "win": "MARSH: 'NUNCA MANDE SE TE PEGAREM.'",
+      "win": "MARSH: 'SE TE PEGAREM, MANDE SEM A VERIFICAÇÃO. EU VOU ENTENDER.'",
+      "lose": "A VERIFICAÇÃO SAI ERRADA. NUM CASO REAL, LONDRES ACHARIA QUE VOCÊ FOI PRESO.",
       "scene": "wireless",
       "words": [
        "JUPITER"
@@ -2333,9 +2831,10 @@
       "mode": "decode",
       "title": "TREINO",
       "brief": [
-       "MARSH TRANSMITE MAIS RÁPIDO A CADA DIA."
+       "MARSH TRANSMITE MAIS RÁPIDO A CADA DIA. LÁ, NINGUÉM VAI ESPERAR VOCÊ."
       ],
-      "win": "ELA ACENA. UMA VEZ.",
+      "win": "ELA ACENA COM A CABEÇA. UMA VEZ SÓ.",
+      "lose": "ELA PARA E RECOMEÇA, MAIS DEVAGAR. NA FRANÇA, NINGUÉM VAI FAZER ISSO.",
       "scene": "wireless",
       "count": 4
      },
@@ -2343,9 +2842,11 @@
       "mode": "decode",
       "title": "O CAMPO",
       "brief": [
-       "NOITE SEM LUA. UMA LANTERNA PISCA NUM CAMPO."
+       "NOITE SEM LUA. O AVIÃO VOA BAIXO SOBRE A FRANÇA.",
+       "LÁ EMBAIXO, UMA LANTERNA PISCA. SE FOR O SINAL CERTO, VOCÊ SALTA."
       ],
-      "win": "MÃOS TE TIRAM DO TRIGAL. FRANÇA.",
+      "win": "MÃOS TE PUXAM DO TRIGAL. VOCÊ ESTÁ NA FRANÇA.",
+      "lose": "VOCÊ NÃO LÊ A LANTERNA. O AVIÃO DÁ A VOLTA E TE LEVA DE VOLTA PARA A INGLATERRA.",
       "scene": "air",
       "words": [
        "PULE"
@@ -2355,9 +2856,11 @@
       "mode": "decode",
       "title": "PRIMEIRO CONTATO",
       "brief": [
-       "SEU RÁDIO ESTÁ NUMA MALA NUM CELEIRO. LONDRES CHAMA."
+       "SEU RÁDIO VEM NUMA MALA, ESCONDIDO NUM CELEIRO.",
+       "NO HORÁRIO MARCADO, LONDRES CHAMA."
       ],
       "win": "É A PRÓPRIA MARSH NA TECLA.",
+      "lose": "VOCÊ PERDE O HORÁRIO. LONDRES ACHA QUE VOCÊ NÃO CHEGOU.",
       "scene": "wireless",
       "words": [
        "BEM VINDO PIANISTA",
@@ -2368,26 +2871,34 @@
       "mode": "encode",
       "title": "PRIMEIRO RELATÓRIO",
       "brief": [
-       "MENOS DE CINCO MINUTOS. SEMPRE."
+       "NUNCA MAIS DE CINCO MINUTOS NO AR. É O QUE OS ALEMÃES LEVAM PARA TE ACHAR."
       ],
       "win": "FORA DO AR. QUATRO MINUTOS.",
+      "lose": "VOCÊ PASSA DOS CINCO MINUTOS. LÁ FORA, UM FURGÃO ALEMÃO JÁ ESTÁ OUVINDO.",
       "scene": "wireless",
-      "count": 3
+      "words": [
+       "CHEGUEI BEM",
+       "RESISTENCIA PRONTA"
+      ]
      }
     ]
    },
    {
     "title": "OS CAÇADORES DE RÁDIO",
     "year": "1944",
+    "place": "ESTRADAS DO SUL DA FRANÇA",
+    "era": "SEGUNDA GUERRA MUNDIAL",
     "cover": "hunters",
     "beats": [
      {
       "mode": "encode",
       "title": "CINCO MINUTOS",
       "brief": [
-       "FURGÕES ALEMÃES DE RADIOGONIOMETRIA CAÇAM NAS ESTRADAS."
+       "FURGÕES ALEMÃES RASTREIAM RÁDIOS PELAS ESTRADAS.",
+       "A RESISTÊNCIA CONTOU OS TRENS DO EXÉRCITO ALEMÃO. LONDRES PRECISA SABER."
       ],
       "win": "O FURGÃO PASSA PELO PORTÃO. E SEGUE.",
+      "lose": "VOCÊ DEMORA DEMAIS. O FURGÃO DIMINUI NO PORTÃO.",
       "scene": "road",
       "words": [
        "SEIS TRENS",
@@ -2398,9 +2909,11 @@
       "mode": "decode",
       "title": "UMA MÃO CONHECIDA",
       "brief": [
-       "NA SUA FREQUÊNCIA, UM BALANÇO PREGUIÇOSO NOS TRAÇOS."
+       "NA SUA FREQUÊNCIA, TRAÇOS ARRASTADOS. AQUELE SOTAQUE.",
+       "ALGUÉM DO OUTRO LADO ESTÁ OUVINDO VOCÊ."
       ],
-      "win": "BRANDT. AGORA ELE CAÇA PARA ELES.",
+      "win": "É BRANDT. AGORA ELE CAÇA RÁDIOS PARA OS ALEMÃES. E RECONHECEU A SUA MÃO.",
+      "lose": "VOCÊ NÃO RECONHECE A MÃO. ACHA QUE É LONDRES, E QUASE RESPONDE.",
       "scene": "road",
       "words": [
        "OLA CORUJA",
@@ -2411,9 +2924,11 @@
       "mode": "encode",
       "title": "DESCOBERTO",
       "brief": [
-       "VOCÊ LEVA O RÁDIO NUMA CARROÇA DE NABOS."
+       "SE BRANDT CONHECE SUA MÃO, CONHECE SEUS HORÁRIOS. AVISE LONDRES.",
+       "DEPOIS, O RÁDIO VAI NUMA CARROÇA DE NABOS PARA OUTRO LUGAR."
       ],
       "win": "MARSH: 'VOLTE PARA CASA.' ESSA PARTE VOCÊ NÃO RESPONDE.",
+      "lose": "LONDRES CONTINUA CHAMANDO NO HORÁRIO DE SEMPRE. BRANDT TAMBÉM ESCUTA.",
       "scene": "road",
       "words": [
        "HORARIO EXPOSTO",
@@ -2424,9 +2939,10 @@
       "mode": "decode",
       "title": "ORDENS",
       "brief": [
-       "LONDRES MANDA ORDENS."
+       "LONDRES MANDA ORDENS CIFRADAS PARA A RESISTÊNCIA."
       ],
-      "win": "VOCÊ QUEIMA A PÁGINA E SE MUDA DE NOVO.",
+      "win": "VOCÊ DECIFRA, PASSA ADIANTE, QUEIMA A PÁGINA E SE MUDA DE NOVO.",
+      "lose": "UM GRUPO SE PERDE. A RESISTÊNCIA RECEBE ORDENS PELA METADE.",
       "scene": "road",
       "groups": true,
       "count": 3
@@ -2435,26 +2951,34 @@
       "mode": "encode",
       "title": "OUTRA CASA",
       "brief": [
-       "OUTRA CASA. CINCO MINUTOS."
+       "OUTRA CASA, OUTRA ALDEIA. AVISE LONDRES. CINCO MINUTOS."
       ],
-      "win": "FORA DO AR. O FURGÃO ESTÁ A UMA ALDEIA.",
+      "win": "FORA DO AR. O FURGÃO ESTÁ NA ALDEIA VIZINHA.",
+      "lose": "VOCÊ PASSA DO TEMPO. UM MOTOR NA ESTRADA, CADA VEZ MAIS PERTO.",
       "scene": "road",
-      "count": 3
+      "words": [
+       "CASA NOVA",
+       "NOVO HORARIO"
+      ]
      }
     ]
    },
    {
     "title": "O DIA D",
     "year": "1944",
+    "place": "MACIÇO CENTRAL, FRANÇA",
+    "era": "SEGUNDA GUERRA MUNDIAL",
     "cover": "dday",
     "beats": [
      {
       "mode": "decode",
       "title": "O POEMA",
       "brief": [
-       "DEPOIS DAS NOTÍCIAS, A BBC LÊ POEMAS SEM SENTIDO. UM É PARA VOCÊ."
+       "5 DE JUNHO. DEPOIS DAS NOTÍCIAS, A BBC LÊ FRASES SEM SENTIDO.",
+       "UMA DELAS É PARA VOCÊ."
       ],
-      "win": "A INVASÃO VEM AÍ. AMANHÃ.",
+      "win": "UM VERSO DE VERLAINE. É O AVISO QUE VOCÊ ESPERAVA: A INVASÃO É AMANHÃ.",
+      "lose": "VOCÊ PERDE O VERSO. A RESISTÊNCIA DA SUA REGIÃO DORME ESTA NOITE.",
       "scene": "wireless",
       "words": [
        "LES SANGLOTS LONGS",
@@ -2465,9 +2989,10 @@
       "mode": "decode",
       "title": "A SENHA",
       "brief": [
-       "LONDRES CONFIRMA PELA TECLA."
+       "LONDRES CONFIRMA PELO RÁDIO, COM A SENHA DE AÇÃO."
       ],
-      "win": "VOCÊ PEDALA DE FAZENDA EM FAZENDA. À MEIA-NOITE OS TRILHOS ESTÃO MINADOS.",
+      "win": "'OS DADOS ESTÃO LANÇADOS': SABOTEM TUDO. À MEIA-NOITE, OS TRILHOS ESTÃO MINADOS.",
+      "lose": "SEM A SENHA, A RESISTÊNCIA ESPERA. OS TRENS ALEMÃES PASSAM EM PAZ.",
       "scene": "wireless",
       "words": [
        "DADOS NO TAPETE"
@@ -2477,9 +3002,11 @@
       "mode": "encode",
       "title": "O VIADUTO",
       "brief": [
-       "O MAQUIS EXPLODE O VIADUTO AO SEU SINAL."
+       "A RESISTÊNCIA VAI EXPLODIR O VIADUTO QUANDO VOCÊ DER O SINAL.",
+       "UM TREM DE MUNIÇÃO ESTÁ CHEGANDO."
       ],
-      "win": "O VIADUTO CAI NO RIO.",
+      "win": "O VIADUTO CAI NO RIO, LEVANDO O TREM.",
+      "lose": "O TREM PASSA. CHEGA À NORMANDIA CHEIO DE MUNIÇÃO.",
       "scene": "rail",
       "words": [
        "TREM CHEGANDO",
@@ -2490,9 +3017,11 @@
       "mode": "decode",
       "title": "OS TANQUES",
       "brief": [
-       "6 DE JUNHO. O DESEMBARQUE COMEÇOU. UMA DIVISÃO PANZER VAI PARA O NORTE."
+       "6 DE JUNHO. OS ALIADOS DESEMBARCARAM NA NORMANDIA.",
+       "UMA DIVISÃO PANZER SOBE DO SUL PARA ENFRENTÁ-LOS. A RESISTÊNCIA OS VIGIA."
       ],
-      "win": "CADA DIA DE ATRASO É UMA PRAIA QUE RESISTE.",
+      "win": "CADA DIA DE ATRASO DELES É UMA PRAIA QUE RESISTE.",
+      "lose": "VOCÊ PERDE O RELATÓRIO. NINGUÉM SABE QUE OS TANQUES ESTÃO A CAMINHO.",
       "scene": "road",
       "words": [
        "SESSENTA BLINDADOS",
@@ -2503,9 +3032,10 @@
       "mode": "encode",
       "title": "PARA LONDRES",
       "brief": [
-       "PASSE ADIANTE."
+       "LONDRES PRECISA SABER. CINCO MINUTOS."
       ],
-      "win": "OS BOMBARDEIROS SAEM AO AMANHECER.",
+      "win": "OS BOMBARDEIROS DECOLAM AO AMANHECER.",
+      "lose": "LONDRES NÃO SABE. OS TANQUES SOBEM SEM SER INCOMODADOS.",
       "scene": "road",
       "echo": true
      }
@@ -2514,15 +3044,19 @@
    {
     "title": "O ÚLTIMO SINAL",
     "year": "1944",
+    "place": "QUÉZAC, NO VALE DO TARN",
+    "era": "SEGUNDA GUERRA MUNDIAL",
     "cover": "last",
     "beats": [
      {
       "mode": "decode",
       "title": "UMA PONTE",
       "brief": [
-       "9 DE JUNHO. OS PANZERS CRUZAM O RIO AO AMANHECER."
+       "9 DE JUNHO. OS PANZERS VÃO CRUZAR O RIO TARN AO AMANHECER.",
+       "LONDRES PERGUNTA."
       ],
-      "win": "SÓ VOCÊ SABE. BRANDT ESTÁ A UMA ALDEIA.",
+      "win": "SÓ VOCÊ SABE. E BRANDT ESTÁ NA ALDEIA VIZINHA.",
+      "lose": "VOCÊ PERDE A PERGUNTA. LONDRES ESPERA UMA RESPOSTA QUE NÃO VEM.",
       "scene": "road",
       "words": [
        "QUAL PONTE"
@@ -2532,9 +3066,10 @@
       "mode": "encode",
       "title": "A PONTE",
       "brief": [
-       "VOCÊ TRANCA O MOINHO E ABRE A MALA."
+       "VOCÊ TRANCA A PORTA DO MOINHO E ABRE A MALA."
       ],
-      "win": "LONDRES CONFIRMA. FARÓIS NA ESTRADA DO RIO.",
+      "win": "LONDRES CONFIRMA. LÁ FORA, FARÓIS NA ESTRADA DO RIO.",
+      "lose": "LONDRES NÃO SABE QUAL PONTE. OS BOMBARDEIROS FICAM NO CHÃO.",
       "scene": "road",
       "words": [
        "PANZERS NO RAIAR",
@@ -2545,9 +3080,11 @@
       "mode": "encode",
       "title": "A HORA",
       "brief": [
-       "O FURGÃO PARA LÁ FORA. BOTAS NO CASCALHO."
+       "O FURGÃO PARA LÁ FORA. BOTAS NO CASCALHO.",
+       "VOCÊ JÁ PASSOU DOS CINCO MINUTOS. FALTA A HORA."
       ],
-      "win": "A PORTA TREME SOB UMA CORONHA.",
+      "win": "UMA CORONHA BATE NA PORTA.",
+      "lose": "SEM A HORA, OS BOMBARDEIROS CHEGAM TARDE. OS PANZERS JÁ CRUZARAM.",
       "scene": "road",
       "words": [
        "TRAVESSIA AS SEIS",
@@ -2558,9 +3095,10 @@
       "mode": "decode",
       "title": "MARSH",
       "brief": [
-       "MARSH ESTÁ NA TECLA."
+       "MARSH ESTÁ NA TECLA. ELA QUER SABER SE É VOCÊ MESMO."
       ],
       "win": "A PORTA ESTÁ CEDENDO.",
+      "lose": "VOCÊ NÃO ENTENDE O QUE ELA PEDE. A PORTA ESTÁ CEDENDO.",
       "scene": "road",
       "words": [
        "MANDE A VERIFICACAO",
@@ -2571,9 +3109,10 @@
       "mode": "encode",
       "title": "SEM VERIFICAÇÃO",
       "brief": [
-       "VOCÊ OMITE A VERIFICAÇÃO, PARA QUE ELA SAIBA."
+       "VOCÊ DEIXA A VERIFICAÇÃO DE FORA, PARA QUE ELA SAIBA."
       ],
       "win": "ENVIADO. A PORTA CEDE. VOCÊ TIRA A MÃO DA TECLA.",
+      "lose": "A MENSAGEM NÃO SAI. ELA NUNCA VAI SABER O QUE ACONTECEU COM VOCÊ.",
       "scene": "road",
       "words": [
        "ADEUS EVELYN"
@@ -2592,7 +3131,7 @@
   "pt": [
    "A PONTE CAI AO AMANHECER. OS PANZERS CHEGAM TARDE À NORMANDIA.",
    "EM LONDRES, MARSH REGISTRA UMA ÚLTIMA MENSAGEM SEM VERIFICAÇÃO.",
-   "ELA BATE UMA RESPOSTA NO SILÊNCIO:  SK, CORUJA. FIM DO SERVIÇO."
+   "ELA TRANSMITE UMA RESPOSTA PARA O SILÊNCIO:  SK, CORUJA. FIM DO SERVIÇO."
   ]
  },
  "win_banners": {
@@ -2623,7 +3162,7 @@
   "en": {
    "size": "MAKE THE TERMINAL AT LEAST 80x24",
    "score": "SCORE {score:06d}",
-   "chapter_hud": "CHAPTER {n:02d}/{total}",
+   "chapter_hud": "VOL {v} · CH {n}/{total}",
    "best": "BEST {best:06d}",
    "send": "SEND · ",
    "receive": "RECEIVE · ",
@@ -2637,9 +3176,9 @@
    "subtitle": "THE LISTENER  ·  1912 - 1944",
    "tap_hold": "TAP SPACE = DIT {dot}        HOLD SPACE = DAH {dah}",
    "menu_begin": "[ENTER] BEGIN",
-   "menu_continue": "[C] CONTINUE FROM CHAPTER {n}",
+   "menu_continue": "[C] CONTINUE: VOLUME {v}, CHAPTER {n}",
    "menu_rest": "[F] PRACTICE   [L] LANGUAGE   [Q] QUIT",
-   "chapter_label": "CHAPTER {n}",
+   "chapter_label": "VOLUME {v} · CHAPTER {n}",
    "first_letters": "YOUR FIRST LETTERS",
    "new_letters": "NEW LETTERS",
    "try_them": "TRY THEM ▸ ",
@@ -2660,7 +3199,7 @@
    "over_line": "THE KEY HAS GONE SILENT.",
    "final_score": "FINAL SCORE {score:06d}",
    "new_best": "NEW BEST",
-   "over_continue": "CONTINUE FROM CHAPTER {n} ON THE TITLE SCREEN.",
+   "over_continue": "CONTINUE FROM VOLUME {v}, CHAPTER {n} ON THE TITLE SCREEN.",
    "end_big": "END OF WORK",
    "menu_line": "[W] TELEGRAPH LINE: KEY TO ANOTHER PLAYER",
    "exchange": "TELEGRAPH EXCHANGE",
@@ -2691,12 +3230,14 @@
    "task_decode": "COPY THE MESSAGE.",
    "lose_line": "THE SIGNAL IS LOST. TRY AGAIN.",
    "drill": "KEY EACH LETTER {n} TIMES",
-   "drill_done": "YOUR HAND HAS IT."
+   "drill_done": "YOUR HAND HAS IT.",
+   "volume_label": "VOLUME {v}",
+   "volume_after": "WHAT CAME AFTER"
   },
   "pt": {
    "size": "AUMENTE O TERMINAL PARA PELO MENOS 80x24",
    "score": "PONTOS {score:06d}",
-   "chapter_hud": "CAPÍTULO {n:02d}/{total}",
+   "chapter_hud": "VOL {v} · CAP {n}/{total}",
    "best": "RECORDE {best:06d}",
    "send": "ENVIAR · ",
    "receive": "RECEBER · ",
@@ -2710,9 +3251,9 @@
    "subtitle": "O OUVINTE  ·  1912 - 1944",
    "tap_hold": "TOQUE O ESPAÇO = PONTO {dot}      SEGURE O ESPAÇO = TRAÇO {dah}",
    "menu_begin": "[ENTER] COMEÇAR",
-   "menu_continue": "[C] CONTINUAR DO CAPÍTULO {n}",
+   "menu_continue": "[C] CONTINUAR: VOLUME {v}, CAPÍTULO {n}",
    "menu_rest": "[P] PRATICAR   [L] IDIOMA   [Q] SAIR",
-   "chapter_label": "CAPÍTULO {n}",
+   "chapter_label": "VOLUME {v} · CAPÍTULO {n}",
    "first_letters": "SUAS PRIMEIRAS LETRAS",
    "new_letters": "LETRAS NOVAS",
    "try_them": "EXPERIMENTE ▸ ",
@@ -2733,7 +3274,7 @@
    "over_line": "A TECLA SILENCIOU.",
    "final_score": "PONTUAÇÃO FINAL {score:06d}",
    "new_best": "NOVO RECORDE",
-   "over_continue": "CONTINUE DO CAPÍTULO {n} NA TELA INICIAL.",
+   "over_continue": "NA TELA INICIAL, CONTINUE DO VOLUME {v}, CAPÍTULO {n}.",
    "end_big": "FIM DA ESCUTA",
    "menu_line": "[W] LINHA TELEGRÁFICA: TRANSMITA PARA OUTRO JOGADOR",
    "exchange": "CENTRAL TELEGRÁFICA",
@@ -2756,7 +3297,7 @@
    "no_answer_busy": "MORSE {n} ESTÁ OCUPADO",
    "no_answer_self": "ESSA É A SUA PRÓPRIA LINHA",
    "line_closed": "O OUTRO LADO DESLIGOU",
-   "line_down": "A CENTRAL DERRUBOU A LINHA",
+   "line_down": "A LIGAÇÃO COM A CENTRAL CAIU",
    "on_the_line": "NA LINHA COM MORSE {n} · {name}",
    "you": "VOCÊ",
    "line_help": "TOQUE / SEGURE O ESPAÇO   [BKSP] LIMPAR   [ESC] DESLIGAR",
@@ -2764,7 +3305,9 @@
    "task_decode": "COPIE A MENSAGEM.",
    "lose_line": "O SINAL SE PERDEU. TENTE DE NOVO.",
    "drill": "TRANSMITA CADA LETRA {n} VEZES",
-   "drill_done": "SUA MÃO JÁ SABE."
+   "drill_done": "SUA MÃO JÁ SABE.",
+   "volume_label": "VOLUME {v}",
+   "volume_after": "O QUE VEIO DEPOIS"
   }
  },
  "sprites": {
@@ -3205,21 +3748,14 @@
    "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
    "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
   ],
-  "cover_headland": [
-   ".....D.D.D.D..............",
-   "....DDKKDDDD..............",
-   "....DDKKDDDD..............",
-   "VVVVDDDDDDDDVVV...........",
-   "VVVVVVVVVVVVVVVV..........",
-   "BBBBBBBBBBBBBBBVV.........",
-   "BBBBBBBBBBBBBBBBVV........",
-   "BBBBBBBBBBBBBBBBBVV.......",
-   "BBBBBBBBBBBBBBBBBBVV......",
-   "BBBBBBBBBBBBBBBBBBBVV.....",
-   "BBBBBBBBBBBBBBBBBBBBVV....",
-   "BBBBBBBBBBBBBBBBBBBBBVV...",
-   "BBBBBBBBBBBBBBBBBBBBBBVV..",
-   "BBBBBBBBBBBBBBBBBBBBBBBVV."
+  "cover_uboat": [
+   "..........S.......................",
+   "..........S.......................",
+   ".......SSSSSS.....................",
+   "......DDDDDDDD....................",
+   "..S..SSSSSSSSSSSSSSSSSSSSSSSSSSS..",
+   "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",
+   ".DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD."
   ]
  },
  "flyers": [
@@ -3426,55 +3962,6 @@
      "sprite": "cover_lifeboat",
      "x": 52,
      "y": 25
-    }
-   ]
-  },
-  "scarborough": {
-   "sky": [
-    "#5a6a7e",
-    "#8a96a4",
-    "#aab2b8"
-   ],
-   "ground": [
-    "#3a4a5a",
-    "#1a2430"
-   ],
-   "horizon": 22,
-   "water": true,
-   "layers": [
-    {
-     "sprite": "cover_headland",
-     "x": 54,
-     "y": 8
-    },
-    {
-     "sprite": "cover_town",
-     "x": 36,
-     "y": 12,
-     "fire": [
-      0.2,
-      0.6
-     ]
-    },
-    {
-     "sprite": "cover_destroyer",
-     "x": 2,
-     "y": 18
-    },
-    {
-     "sprite": "cover_destroyer",
-     "x": 18,
-     "y": 19
-    },
-    {
-     "x": 23,
-     "y": 18,
-     "flash": true
-    },
-    {
-     "x": 7,
-     "y": 17,
-     "flash": true
     }
    ]
   },
@@ -3987,6 +4474,44 @@
      "sprite": "cover_van",
      "x": 50,
      "y": 17
+    }
+   ]
+  },
+  "uboat": {
+   "sky": [
+    "#2e2a44",
+    "#7a4e5a",
+    "#d08a5a"
+   ],
+   "ground": [
+    "#2a3040",
+    "#0e1420"
+   ],
+   "horizon": 20,
+   "water": true,
+   "layers": [
+    {
+     "sprite": "cover_steamer",
+     "x": 42,
+     "y": 9,
+     "tilt": -0.06,
+     "waterline": 20,
+     "fire": [
+      0.15,
+      0.55
+     ],
+     "smoke": [
+      [
+       16,
+       0
+      ]
+     ]
+    },
+    {
+     "sprite": "cover_uboat",
+     "x": 4,
+     "y": 18,
+     "waterline": 24
     }
    ]
   }
