@@ -30,7 +30,7 @@ func TestScreens(t *testing.T) {
 			t.Fatal("SCREENSHOT_SIZE is WIDTHxHEIGHT: ", err)
 		}
 	}
-	d := &screenDriver{t: t, app: New("", 0, false, nil), size: size, dir: dir}
+	d := &screenDriver{t: t, app: New("", 0, false, nil, nil), size: size, dir: dir}
 	d.script()
 	ebiten.SetWindowSize(size.X/3, size.Y/3)
 	if err := ebiten.RunGame(d); err != nil && err != ebiten.Termination {
@@ -57,7 +57,7 @@ func TestLineScreens(t *testing.T) {
 		}
 	}
 	wire := &scriptedWire{}
-	d := &screenDriver{t: t, app: New(t.TempDir()+"/save.json", 0, false, wire), size: size, dir: dir}
+	d := &screenDriver{t: t, app: New(t.TempDir()+"/save.json", 0, false, wire, nil), size: size, dir: dir}
 	d.app.onCover = false
 	d.typeKey(morse.KeyEnter)
 	d.tap("w")

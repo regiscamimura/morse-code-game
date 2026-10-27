@@ -16,7 +16,29 @@ import (
 var (
 	mu      sync.Mutex
 	dataDir string
+	opener  URLOpener
 )
+
+// URLOpener opens a web page in the phone's browser; MainActivity is one.
+type URLOpener interface {
+	OpenURL(url string)
+}
+
+// SetURLOpener tells the game how to open a web page, for the privacy policy.
+func SetURLOpener(o URLOpener) {
+	mu.Lock()
+	opener = o
+	mu.Unlock()
+}
+
+func openURL(url string) {
+	mu.Lock()
+	o := opener
+	mu.Unlock()
+	if o != nil {
+		o.OpenURL(url)
+	}
+}
 
 // SetDataDir tells the game where to keep its save file.
 func SetDataDir(dir string) {
@@ -37,7 +59,7 @@ func (d *deferredGame) started() *gui.App {
 			savePath = filepath.Join(dataDir, "morse.json")
 		}
 		mu.Unlock()
-		d.app = gui.New(savePath, .5, false, exchange.New(exchange.Address()))
+		d.app = gui.New(savePath, .5, false, exchange.New(exchange.Address()), openURL)
 	}
 	return d.app
 }

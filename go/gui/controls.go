@@ -45,6 +45,7 @@ var (
 	resume         = action{"CONTINUE", "CONTINUAR", "c"}
 	practice       = action{"PRACTICE", "PRATICAR", "p"}
 	language       = action{"LANGUAGE", "IDIOMA", "l"}
+	privacy        = action{"PRIVACY", "PRIVACIDADE", "v"}
 	hint           = action{"HINT", "DICA", morse.KeyTab}
 	repeat         = action{"REPEAT", "REPETIR", morse.KeyTab}
 	hearNew        = action{"HEAR AGAIN", "OUVIR DE NOVO", morse.KeyTab}
@@ -68,7 +69,7 @@ func (a *App) screenActions() []action {
 	g := a.game
 	switch g.State() {
 	case "lang":
-		return []action{english, portuguese, confirm}
+		return []action{english, portuguese, privacy, confirm}
 	case "title":
 		actions := []action{begin, practice, language}
 		if g.SavedChapter() > 1 {

@@ -101,6 +101,19 @@ func pixelNoise(x, y, tick int) float64 {
 	return float64((h^h>>16)&0xffff) / 65536
 }
 
+// DrawCoverArt paints content.json's cover called name, as a chapter opens on it.
+func DrawCoverArt(c *Canvas, name string, now float64) {
+	drawChapterCoverArt(c, content.Covers[name], now)
+}
+
+// DrawCoverArtPlainSky paints the cover called name under a one-colour sky with no stars:
+// the app icon, where a gradient and stars would only blur at launcher size.
+func DrawCoverArtPlainSky(c *Canvas, name string, sky Color) {
+	art := content.Covers[name]
+	art.Sky, art.Stars = coverColors{sky}, false
+	drawChapterCoverArt(c, art, 0)
+}
+
 // drawChapterCoverArt paints the chapter's cover over the canvas's rows 0 to coverHeight/2.
 func drawChapterCoverArt(c *Canvas, art CoverArt, now float64) {
 	var px coverPixels

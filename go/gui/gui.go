@@ -50,9 +50,9 @@ type App struct {
 // New starts the game. savePath "" plays without saving; desktop plays from the keyboard
 // alone and lets the game close the window, else it's a phone with on-screen controls. wire
 // is the telephone exchange for the telegraph line; nil plays alone.
-func New(savePath string, volume float64, desktop bool, wire morse.Wire) *App {
+func New(savePath string, volume float64, desktop bool, wire morse.Wire, openURL func(string)) *App {
 	cfg := morse.DefaultConfig()
-	cfg.SavePath, cfg.Wire = savePath, wire
+	cfg.SavePath, cfg.Wire, cfg.OpenURL = savePath, wire, openURL
 	mixer := morse.NewMixer(volume)
 	a := &App{mixer: mixer, start: time.Now(), desktop: desktop, onCover: !desktop, insertedAt: -1, keyPointer: noPointer, buttonPointer: noPointer}
 	a.game = morse.NewGame(cfg, mixer, 0)

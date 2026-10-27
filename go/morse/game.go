@@ -15,9 +15,13 @@ type Config struct {
 	LetterGap      float64 // silence that ends a letter, seconds
 	RepeatDelay    float64
 	RepeatInterval float64
-	SavePath       string // "" plays without saving
-	Wire           Wire   // the telephone exchange, for the telegraph line; nil plays alone
+	SavePath       string           // "" plays without saving
+	Wire           Wire             // the telephone exchange, for the telegraph line; nil plays alone
+	OpenURL        func(url string) // opens a web page in a browser; nil where the front end can't
 }
+
+// PrivacyURL is the privacy policy Google Play requires a link to from inside the game.
+const PrivacyURL = "https://regiscamimura.com/sos-morse/privacy"
 
 func DefaultConfig() Config {
 	return Config{Releases: true, DahTime: .2, LetterGap: .3, RepeatDelay: .5, RepeatInterval: .033}
@@ -547,6 +551,9 @@ func (g *Game) Key(k string, now float64) {
 	case "lang":
 		if k == "1" || k == "2" {
 			g.lang = Langs[k[0]-'1']
+		} else if strings.ToLower(k) == "v" && g.cfg.OpenURL != nil {
+			g.cfg.OpenURL(PrivacyURL)
+			g.playSelect()
 		} else if enter {
 			g.storeProgress()
 			g.toTitle(now)

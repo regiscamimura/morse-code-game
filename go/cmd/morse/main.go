@@ -17,11 +17,11 @@ func main() {
 	volume := flag.Float64("volume", .4, "0 (mute) to 1")
 	fullscreen := flag.Bool("fullscreen", false, "start full screen")
 	flag.Parse()
-	ebiten.SetWindowTitle("Morse Code - The Listener")
+	ebiten.SetWindowTitle("SOS Morse - Hold the Line")
 	ebiten.SetWindowSize(1280, 768) // 80x24 cells twice as tall as wide
 	ebiten.SetWindowResizingMode(ebiten.WindowResizingModeEnabled)
 	ebiten.SetFullscreen(*fullscreen)
-	if err := ebiten.RunGame(gui.New(morse.DefaultSavePath(), *volume, true, exchange.New(exchange.Address()))); err != nil {
+	if err := ebiten.RunGame(gui.New(morse.DefaultSavePath(), *volume, true, exchange.New(exchange.Address()), nil)); err != nil {
 		log.Fatal(err)
 	}
 }

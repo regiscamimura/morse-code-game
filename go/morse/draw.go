@@ -609,7 +609,7 @@ func (g *Game) languageOption(i int) (string, Color) {
 
 func (g *Game) drawLang(c *Canvas, now float64) {
 	g.drawScene(c, now, "airship", math.Mod(now/120, 1), nil)
-	BigCenter(c, 14, "MORSE", Amber)
+	BigCenter(c, 14, "SOS MORSE", Amber)
 	for i := range languageNames {
 		option, color := g.languageOption(i)
 		c.Center(19+i, option, color)
@@ -617,4 +617,5 @@ func (g *Game) drawLang(c *Canvas, now float64) {
 	if blinkOn(now) {
 		c.Center(22, "[ENTER] OK", Amber)
 	}
+	c.Center(23, "[V] "+g.text("privacy", nil)+"  ·  "+strings.TrimPrefix(PrivacyURL, "https://"), Dim)
 }

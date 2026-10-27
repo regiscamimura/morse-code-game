@@ -25,6 +25,9 @@ func (g *Game) DrawPhone(columns int, now float64) []*Canvas {
 		}
 		p.blank()
 		p.center(showIf(blinkOn(now), "[ENTER] OK"), Amber)
+		p.blank()
+		p.center(g.text("privacy", nil), Dim)
+		p.center(strings.TrimPrefix(PrivacyURL, "https://"), Dim)
 	case "title":
 		p.center(showIf(g.hi > 0, g.text("best", map[string]any{"best": g.hi})), Faint)
 		p.picture(picture, 3, 18)
@@ -171,8 +174,11 @@ func (g *Game) DrawPhone(columns int, now float64) []*Canvas {
 // drawPhoneHud: score, chapter and lives on one row.
 func (g *Game) drawPhoneHud(p *page) {
 	c, y := p.row(Band)
-	c.Put(1, y, g.text("score", map[string]any{"score": g.score}), Amber)
-	c.Center(y, g.text("chapter_hud", g.chapterNumbers(g.chapter)), Amber)
+	score := g.text("score", map[string]any{"score": g.score})
+	c.Put(1, y, score, Amber)
+	// centred, unless the row is too narrow: then two spaces after the score
+	chapter := g.text("chapter_hud", g.chapterNumbers(g.chapter))
+	c.Put(max((c.W-2*c.OX)/2-runeLen(chapter)/2, 1+runeLen(score)+2), y, chapter, Amber)
 	hearts := strings.TrimSpace(strings.Repeat("♥ ", g.lives))
 	c.Put(c.W-1-runeLen(hearts), y, hearts, Alert)
 }

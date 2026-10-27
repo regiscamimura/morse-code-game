@@ -2,7 +2,7 @@ package morse
 
 import "strings"
 
-// The cover is the MORSE CODE cartridge from the terminal version's picker (play.py), in its
+// The cover is the SOS MORSE cartridge from the terminal version's picker (play.py), in its
 // Atari 2600 colours, standing above the console's slot.
 
 var (
@@ -53,10 +53,10 @@ func DrawCartridge(c *Canvas, x, y int) {
 		c.PutOn(labelX, y+row, strings.Repeat(" ", width), coverWhite, cartLabel)
 	}
 	first, second, third := labelStripes[0], labelStripes[1], labelStripes[2]
-	c.PutOn(labelX, y+4, centerIn("MORSE CODE", width), coverBlack, first)
+	c.PutOn(labelX, y+4, centerIn("SOS MORSE", width), coverBlack, first)
 	c.PutOn(labelX, y+5, strings.Repeat("▀", width), second, third)
 	Sprite(c, x+3, y+6, telegraphKeyArt, cartridgePalette, false, nil)
-	c.PutOn(labelX, y+11, centerIn("THE LISTENER", width), coverGrey, cartLabel)
+	c.PutOn(labelX, y+11, centerIn("HOLD THE LINE", width), coverGrey, cartLabel)
 	c.PutOn(labelX, y+12, strings.Repeat("▀", width), third, second)
 }
 
@@ -80,7 +80,7 @@ func DrawCover(width, height int, now, inserted float64) *Canvas {
 			c.Put(i*12-2, y, strings.Repeat("▀", 12), color)
 		}
 	}
-	BigCenter(c, 1, "MORSE CODE", coverYellow)
+	BigCenter(c, 1, "SOS MORSE", coverYellow)
 	y := 5
 	if inserted >= 0 {
 		y += int(min(1, inserted/InsertSeconds) * 13)

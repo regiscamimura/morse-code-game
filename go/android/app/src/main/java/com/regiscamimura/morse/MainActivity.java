@@ -1,6 +1,9 @@
 package com.regiscamimura.morse;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +15,7 @@ import android.view.WindowManager;
 
 import com.regiscamimura.morse.mobile.EbitenView;
 import com.regiscamimura.morse.mobile.Mobile;
+import com.regiscamimura.morse.mobile.URLOpener;
 
 public class MainActivity extends Activity {
     private GameView view;
@@ -20,6 +24,12 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Mobile.setDataDir(getFilesDir().getAbsolutePath());
+        Mobile.setURLOpener(new URLOpener() {
+            @Override
+            public void openURL(String url) {
+                runOnUiThread(() -> openInBrowser(url));
+            }
+        });
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         view = new GameView(this);
         setContentView(view);
@@ -33,6 +43,15 @@ public class MainActivity extends Activity {
         }
     }
 
+
+    /** Opens url in the phone's browser; without one, the game's screen still shows the address. */
+    private void openInBrowser(String url) {
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+        } catch (ActivityNotFoundException e) {
+            Log.w("morse", "no browser for " + url);
+        }
+    }
 
     /** Full screen: the navigation bar would cover the game's bottom row. Swiping brings it back. */
     @SuppressWarnings("deprecation")
