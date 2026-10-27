@@ -250,7 +250,7 @@ func (g *Game) drawScene(c *Canvas, now float64, key string, p float64, ended *s
 }
 
 func (g *Game) drawTitle(c *Canvas, now float64) {
-	g.drawScene(c, now, "wireless", math.Mod(now/120, 1), nil)
+	g.drawScene(c, now, "airship", math.Mod(now/120, 1), nil)
 	BigCenter(c, 14, g.text("title_big", nil), Amber)
 	c.Center(19, g.text("subtitle", nil), Teal)
 	c.Center(20, g.text("tap_hold", map[string]any{"dot": Dot, "dah": Dah}), Paper)
@@ -582,7 +582,7 @@ func (g *Game) drawGameOver(c *Canvas, now float64) {
 }
 
 func (g *Game) drawEnding(c *Canvas, now float64) {
-	g.drawScene(c, now, "wireless", 1, &sceneEnding{won: true, t: 9})
+	g.drawScene(c, now, "airship", 1, &sceneEnding{won: true, t: 9})
 	BigCenter(c, 14, g.text("end_big", nil), Amber)
 	if g.drawTypedLines(c, 19, content.Ending[g.lang], now, Dim) {
 		c.Center(23, g.finalScoreLine(), Amber)
@@ -608,7 +608,7 @@ func (g *Game) languageOption(i int) (string, Color) {
 }
 
 func (g *Game) drawLang(c *Canvas, now float64) {
-	g.drawScene(c, now, "wireless", math.Mod(now/120, 1), nil)
+	g.drawScene(c, now, "airship", math.Mod(now/120, 1), nil)
 	BigCenter(c, 14, "MORSE", Amber)
 	for i := range languageNames {
 		option, color := g.languageOption(i)

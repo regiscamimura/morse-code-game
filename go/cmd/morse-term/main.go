@@ -42,6 +42,7 @@ func main() {
 	cfg.Releases = t.ReportsRelease()
 	cfg.SavePath = morse.DefaultSavePath()
 	cfg.Wire = exchange.New(exchange.Address())
+	mixer.Play(morse.Warble(), morse.FX, true)
 	play(morse.NewGame(cfg, mixer, 0), t)
 }
 

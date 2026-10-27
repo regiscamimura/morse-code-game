@@ -59,9 +59,24 @@ func Noise(dur, vol float64, hold int) Sound {
 
 // Chime is a square tone that rings out, fading away over dur seconds.
 func Chime(freq, dur, vol float64) Sound {
-	s := Square(freq, dur, vol)
+	return fadeOut(Square(freq, dur, vol), 4)
+}
+
+// Warble is the "bliu-bliu-bliu" of the game switching on: three quick rising sweeps, each a
+// little higher than the last.
+func Warble() Sound {
+	var s Sound
+	for i := range 3 {
+		rise := float64(i) * 150
+		s = Concat(s, fadeOut(Slide(500+rise, 1500+rise, .11, .07), 2), Rest(.07))
+	}
+	return s
+}
+
+// fadeOut makes s die away exponentially; a higher steepness fades it sooner.
+func fadeOut(s Sound, steepness float64) Sound {
 	for i := range s {
-		s[i] *= float32(math.Exp(-4 * float64(i) / float64(len(s))))
+		s[i] *= float32(math.Exp(-steepness * float64(i) / float64(len(s))))
 	}
 	return s
 }

@@ -57,6 +57,9 @@ func New(savePath string, volume float64, desktop bool, wire morse.Wire) *App {
 	a := &App{mixer: mixer, start: time.Now(), desktop: desktop, onCover: !desktop, insertedAt: -1, keyPointer: noPointer, buttonPointer: noPointer}
 	a.game = morse.NewGame(cfg, mixer, 0)
 	a.startSound()
+	if desktop {
+		mixer.Play(morse.Warble(), morse.FX, true)
+	}
 	return a
 }
 
@@ -124,6 +127,7 @@ func (a *App) insertCartridgeOnTap(now float64) {
 	}
 	if now-a.insertedAt > morse.CoverSeconds {
 		a.onCover = false
+		a.mixer.Play(morse.Warble(), morse.FX, true)
 	}
 }
 

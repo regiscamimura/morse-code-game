@@ -941,7 +941,7 @@
       ],
       "win": "ROOM 40 HOLDS THE GERMAN CODE BOOKS. THE GERMANS DO NOT KNOW.",
       "lose": "GROUPS LOST. IN LONDON, A PAGE STAYS BLANK.",
-      "scene": "wireless",
+      "scene": "harbour",
       "groups": true,
       "count": 4
      },
@@ -953,7 +953,7 @@
       ],
       "win": "ROOM 40 READS IT: U-20, A SUBMARINE, BOUND FOR THE SOUTH COAST OF IRELAND.",
       "lose": "THE GROUPS DO NOT ARRIVE. NO ONE KNOWS WHERE THE SUBMARINE IS.",
-      "scene": "wireless",
+      "scene": "harbour",
       "echo": true
      },
      {
@@ -1060,7 +1060,7 @@
       ],
       "win": "THE WANDERER TAKES ON 160 PEOPLE, UNTIL SHE ALMOST SINKS. MANY MORE ARE IN THE WATER.",
       "lose": "YOU MISS THE REPORT. NO ONE KNOWS HOW MANY ARE STILL ALIVE IN THE WATER.",
-      "scene": "sea",
+      "scene": "boats",
       "words": [
        "MEN IN SEA",
        "SEND MORE"
@@ -1074,7 +1074,7 @@
       ],
       "win": "THE BOATS WORK INTO THE NIGHT. 761 SAVED. 1,198 DEAD, 128 OF THEM AMERICAN.",
       "lose": "THE MESSAGE DOES NOT GET THROUGH. THE LAST BOATS STAY IN HARBOUR.",
-      "scene": "sea",
+      "scene": "boats",
       "echo": true
      }
     ]
@@ -1095,7 +1095,7 @@
       ],
       "win": "DRAGGED DAHS, THAT ACCENT. THE U-20 MAN HAS WINGS NOW.",
       "lose": "YOU LOSE THE SIGNAL. THE ZEPPELINS REACH LONDON UNSEEN.",
-      "scene": "wireless",
+      "scene": "airship",
       "groups": true,
       "count": 4
      },
@@ -1121,7 +1121,7 @@
       ],
       "win": "HIS NAME IS BRANDT. HE THINKS NO ONE CAN READ IT.",
       "lose": "THE TAPPING STOPS. YOU NEVER LEARN WHO WAS ON THE OTHER SIDE.",
-      "scene": "wireless",
+      "scene": "airship",
       "words": [
        "I AM NOT DEAD",
        "I MISS DRESDEN"
@@ -1135,7 +1135,7 @@
       ],
       "win": "HE STOPS. THEN HE LAUGHS. YOU TALK THROUGH THE PIPES UNTIL DAWN.",
       "lose": "HE NEVER KNOWS ANYONE HEARD. IN THE MORNING HE IS MOVED.",
-      "scene": "wireless",
+      "scene": "airship",
       "words": [
        "I READ IT"
       ]
@@ -1158,7 +1158,7 @@
       ],
       "win": "ONE WRONG LETTER COSTS THE CODEBREAKERS A WEEK.",
       "lose": "A GROUP IS LOST. THE TELEGRAM SITS UNREADABLE IN A DRAWER.",
-      "scene": "wireless",
+      "scene": "airship",
       "groups": true,
       "count": 4
      },
@@ -1170,7 +1170,7 @@
       ],
       "win": "SOMEONE OPENS A CODE BOOK YOU WILL NEVER SEE.",
       "lose": "THE GROUPS ARRIVE GARBLED. THE CODEBREAKERS LOSE THE NIGHT.",
-      "scene": "wireless",
+      "scene": "airship",
       "echo": true
      },
      {
@@ -1182,7 +1182,7 @@
       ],
       "win": "IF AMERICA SEES THIS, AMERICA COMES IN. THE LUSITANIA STILL HURTS THERE.",
       "lose": "YOU LOSE THE WORDS. THE TELEGRAM MAKES NO SENSE, AND AMERICA STAYS NEUTRAL.",
-      "scene": "wireless",
+      "scene": "airship",
       "words": [
        "MAKE WAR",
        "GENEROUS AID"
@@ -1219,7 +1219,7 @@
       ],
       "win": "THE ARMISTICE IS SIGNED. THE GUNS STOP AT ELEVEN. YOU READ IT TWICE TO BE SURE.",
       "lose": "YOU MISS THE NEWS. IN LONDON NO ONE KNOWS YET THAT THE WAR WILL END.",
-      "scene": "wireless",
+      "scene": "airship",
       "words": [
        "ARMS DOWN",
        "THE WAR IS OVER"
@@ -1248,7 +1248,7 @@
       ],
       "win": "BY NOON THE AIR IS FULL OF CHEERING.",
       "lose": "AN ANSWER IS LOST. SOMEWHERE, SOMEONE IS STILL AT WAR.",
-      "scene": "wireless",
+      "scene": "airship",
       "count": 4
      },
      {
@@ -1296,7 +1296,7 @@
       ],
       "win": "IT IS BRANDT, TWENTY YEARS ON. YOU LAUGH ALONE IN THE WIRELESS ROOM.",
       "lose": "YOU DO NOT KNOW THE FIST. JUST ANOTHER AIRSHIP COMING IN.",
-      "scene": "wireless",
+      "scene": "airship",
       "words": [
        "GUTEN TAG",
        "HOW GOES IT"
@@ -1310,7 +1310,7 @@
       ],
       "win": "THE CAPTAIN DECIDES TO WAIT. THE AIRSHIP CIRCLES OVER THE COAST.",
       "lose": "UNWARNED, THE HINDENBURG TRIES TO LAND IN THE THUNDERSTORM.",
-      "scene": "wireless",
+      "scene": "airship",
       "words": [
        "THUNDER",
        "STRONG WINDS"
@@ -1324,7 +1324,7 @@
       ],
       "win": "HE SENDS A STRING OF DITS: LAUGHTER. AT 1900 THE WEATHER CLEARS AND HE COMES DOWN.",
       "lose": "THE CHAT IS LOST IN THE STATIC. HE STOPS SENDING.",
-      "scene": "wireless",
+      "scene": "airship",
       "words": [
        "I HAVE A SON",
        "HE IS NINE"
@@ -1339,7 +1339,7 @@
       ],
       "win": "THIRTY-SIX DEAD. BRANDT LIVED, HIS HANDS BURNED.",
       "lose": "YOU MISS THE FLASH. NO ONE KNOWS IF BRANDT IS ALIVE.",
-      "scene": "wireless",
+      "scene": "airship",
       "words": [
        "SHE IS DOWN",
        "RADIO MAN WOUNDED"
@@ -1353,7 +1353,7 @@
       ],
       "win": "YOUR HANDS ARE SHAKING TOO.",
       "lose": "THE NEWS STALLS ON YOUR DESK. THE PAPERS HEAR IT FROM SOMEONE ELSE.",
-      "scene": "wireless",
+      "scene": "airship",
       "echo": true
      }
     ]
@@ -1399,7 +1399,7 @@
       ],
       "win": "BY MIDNIGHT, STATION X IS READING THE DAY'S LUFTWAFFE TRAFFIC.",
       "lose": "WITHOUT THE CRIB, THAT DAY'S ENIGMA STAYS LOCKED.",
-      "scene": "wireless",
+      "scene": "air",
       "echo": true
      },
      {
@@ -1447,7 +1447,7 @@
       ],
       "win": "HUNDREDS OF LITTLE BOATS REACH THE BEACH AND FERRY THE MEN OUT TO THE SHIPS.",
       "lose": "THE BOATS GO TO THE WRONG PLACE. THE MEN WAIT ON THE SAND.",
-      "scene": "sea",
+      "scene": "boats",
       "words": [
        "ALL BOATS TO MALO",
        "COME IN CLOSE"
@@ -1475,7 +1475,7 @@
       ],
       "win": "BOAT AFTER BOAT, ALL NIGHT.",
       "lose": "THE BOATS PUT IN WHERE NO ONE IS. THE NIGHT IS WASTED.",
-      "scene": "sea",
+      "scene": "boats",
       "words": [
        "EAST MOLE",
        "MALO DUNES"
@@ -1587,7 +1587,7 @@
       ],
       "win": "MARSH: 'IF THEY TAKE YOU, SEND WITHOUT IT. I WILL UNDERSTAND.'",
       "lose": "YOUR CHECK COMES OUT WRONG. FOR REAL, LONDON WOULD THINK YOU CAUGHT.",
-      "scene": "wireless",
+      "scene": "air",
       "words": [
        "JUPITER"
       ]
@@ -1600,7 +1600,7 @@
       ],
       "win": "SHE NODS. ONCE.",
       "lose": "SHE STOPS AND STARTS AGAIN, SLOWER. IN FRANCE, NO ONE WILL.",
-      "scene": "wireless",
+      "scene": "air",
       "count": 4
      },
      {
@@ -1626,7 +1626,7 @@
       ],
       "win": "IT IS MARSH HERSELF ON THE KEY.",
       "lose": "YOU MISS THE SCHEDULE. LONDON THINKS YOU NEVER ARRIVED.",
-      "scene": "wireless",
+      "scene": "road",
       "words": [
        "WELCOME PIANIST",
        "TAKE CARE CORUJA"
@@ -1640,7 +1640,7 @@
       ],
       "win": "OFF THE AIR. FOUR MINUTES.",
       "lose": "YOU RUN PAST FIVE MINUTES. OUTSIDE, A GERMAN VAN IS ALREADY LISTENING.",
-      "scene": "wireless",
+      "scene": "road",
       "words": [
        "LANDED WELL",
        "CIRCUIT FORMED"
@@ -1744,7 +1744,7 @@
       ],
       "win": "A LINE OF VERLAINE. THE WARNING YOU WERE WAITING FOR: THE INVASION IS TOMORROW.",
       "lose": "YOU MISS THE LINE. THE RESISTANCE IN YOUR REGION SLEEPS TONIGHT.",
-      "scene": "wireless",
+      "scene": "road",
       "words": [
        "LES SANGLOTS LONGS",
        "BLESSENT MON COEUR"
@@ -1758,7 +1758,7 @@
       ],
       "win": "'THE DIE IS CAST': SABOTAGE EVERYTHING. BY MIDNIGHT THE RAILS ARE MINED.",
       "lose": "WITHOUT THE PHRASE, THE RESISTANCE WAITS. GERMAN TRAINS RUN IN PEACE.",
-      "scene": "wireless",
+      "scene": "road",
       "words": [
        "DICE ON THE CARPET"
       ]
@@ -2176,7 +2176,7 @@
       ],
       "win": "A SALA 40 TEM OS LIVROS DE CÓDIGO ALEMÃES. OS ALEMÃES NÃO SABEM.",
       "lose": "GRUPOS PERDIDOS. EM LONDRES, UMA PÁGINA FICA EM BRANCO.",
-      "scene": "wireless",
+      "scene": "harbour",
       "groups": true,
       "count": 4
      },
@@ -2188,7 +2188,7 @@
       ],
       "win": "A SALA 40 DECIFRA: É O U-20, UM SUBMARINO, A CAMINHO DA COSTA SUL DA IRLANDA.",
       "lose": "OS GRUPOS NÃO CHEGAM. NINGUÉM SABE ONDE O SUBMARINO ESTÁ.",
-      "scene": "wireless",
+      "scene": "harbour",
       "echo": true
      },
      {
@@ -2295,7 +2295,7 @@
       ],
       "win": "O WANDERER RECOLHE 160 PESSOAS, ATÉ QUASE AFUNDAR. HÁ MUITO MAIS NA ÁGUA.",
       "lose": "VOCÊ PERDE O RECADO. NINGUÉM SABE QUANTOS AINDA ESTÃO VIVOS NA ÁGUA.",
-      "scene": "sea",
+      "scene": "boats",
       "words": [
        "MUITOS NO MAR",
        "MANDEM MAIS"
@@ -2309,7 +2309,7 @@
       ],
       "win": "OS BARCOS TRABALHAM ATÉ A NOITE. 761 SALVOS. 1.198 MORTOS, 128 DELES AMERICANOS.",
       "lose": "O RECADO NÃO CHEGA. OS ÚLTIMOS BARCOS FICAM NO PORTO.",
-      "scene": "sea",
+      "scene": "boats",
       "echo": true
      }
     ]
@@ -2330,7 +2330,7 @@
       ],
       "win": "TRAÇOS ARRASTADOS, AQUELE SOTAQUE. O HOMEM DO U-20 AGORA VOA.",
       "lose": "VOCÊ PERDE O SINAL. OS ZEPELINS CHEGAM A LONDRES SEM SEREM VISTOS.",
-      "scene": "wireless",
+      "scene": "airship",
       "groups": true,
       "count": 4
      },
@@ -2356,7 +2356,7 @@
       ],
       "win": "O NOME DELE É BRANDT. ELE ACHA QUE NINGUÉM ENTENDE.",
       "lose": "AS BATIDAS PARAM. VOCÊ NUNCA SABE QUEM ESTAVA DO OUTRO LADO.",
-      "scene": "wireless",
+      "scene": "airship",
       "words": [
        "NAO MORRI",
        "SAUDADE DE DRESDEN"
@@ -2370,7 +2370,7 @@
       ],
       "win": "ELE PARA. DEPOIS RI. VOCÊS CONVERSAM PELOS CANOS ATÉ O DIA CLAREAR.",
       "lose": "ELE NUNCA SABE QUE ALGUÉM OUVIU. NA MANHÃ SEGUINTE, É TRANSFERIDO.",
-      "scene": "wireless",
+      "scene": "airship",
       "words": [
        "EU ENTENDO"
       ]
@@ -2393,7 +2393,7 @@
       ],
       "win": "UMA LETRA ERRADA CUSTA UMA SEMANA AOS DECIFRADORES.",
       "lose": "UM GRUPO SE PERDE. O TELEGRAMA FICA ILEGÍVEL NUMA GAVETA.",
-      "scene": "wireless",
+      "scene": "airship",
       "groups": true,
       "count": 4
      },
@@ -2405,7 +2405,7 @@
       ],
       "win": "ALGUÉM ABRE UM LIVRO DE CÓDIGOS QUE VOCÊ NUNCA VAI VER.",
       "lose": "OS GRUPOS CHEGAM ERRADOS. OS DECIFRADORES PERDEM A NOITE.",
-      "scene": "wireless",
+      "scene": "airship",
       "echo": true
      },
      {
@@ -2417,7 +2417,7 @@
       ],
       "win": "SE OS AMERICANOS VIREM ISSO, ENTRAM NA GUERRA. O LUSITANIA AINDA DÓI NELES.",
       "lose": "VOCÊ PERDE AS PALAVRAS. O TELEGRAMA FICA SEM SENTIDO, E OS EUA SEGUEM NEUTROS.",
-      "scene": "wireless",
+      "scene": "airship",
       "words": [
        "GUERRA",
        "RETOMAR TERRAS"
@@ -2454,7 +2454,7 @@
       ],
       "win": "O ARMISTÍCIO FOI ASSINADO. AS ARMAS PARAM ÀS ONZE. VOCÊ LÊ DE NOVO, PARA TER CERTEZA.",
       "lose": "VOCÊ PERDE A NOTÍCIA. EM LONDRES, NINGUÉM SABE AINDA QUE A GUERRA VAI ACABAR.",
-      "scene": "wireless",
+      "scene": "airship",
       "words": [
        "ARMAS GUARDADAS",
        "A GUERRA TERMINOU"
@@ -2483,7 +2483,7 @@
       ],
       "win": "AO MEIO-DIA, SÓ SE OUVE FESTA NO RÁDIO.",
       "lose": "UMA CONFIRMAÇÃO SE PERDE. EM ALGUM LUGAR, ALGUÉM CONTINUA EM GUERRA.",
-      "scene": "wireless",
+      "scene": "airship",
       "count": 4
      },
      {
@@ -2531,7 +2531,7 @@
       ],
       "win": "É BRANDT, VINTE ANOS DEPOIS. VOCÊ RI SOZINHO NA SALA DE RÁDIO.",
       "lose": "VOCÊ NÃO RECONHECE A MÃO. É SÓ MAIS UM DIRIGÍVEL CHEGANDO.",
-      "scene": "wireless",
+      "scene": "airship",
       "words": [
        "GUTEN TAG",
        "E AI AMIGO"
@@ -2545,7 +2545,7 @@
       ],
       "win": "O COMANDANTE DECIDE ESPERAR. O DIRIGÍVEL DÁ VOLTAS SOBRE A COSTA.",
       "lose": "SEM AVISO, O HINDENBURG TENTA POUSAR NO MEIO DA TROVOADA.",
-      "scene": "wireless",
+      "scene": "airship",
       "words": [
        "TROVOADA",
        "MUITO VENTO"
@@ -2559,7 +2559,7 @@
       ],
       "win": "ELE MANDA UMA FIADA DE PONTOS: UMA RISADA. ÀS 19H, O TEMPO MELHORA E ELE DESCE.",
       "lose": "A CONVERSA SE PERDE NA ESTÁTICA. ELE PARA DE TRANSMITIR.",
-      "scene": "wireless",
+      "scene": "airship",
       "words": [
        "TENHO UM GAROTO",
        "TEM NOVE ANOS"
@@ -2574,7 +2574,7 @@
       ],
       "win": "TRINTA E SEIS MORTOS. BRANDT SOBREVIVEU, COM AS MÃOS QUEIMADAS.",
       "lose": "VOCÊ PERDE O BOLETIM. NINGUÉM SABE SE BRANDT ESTÁ VIVO.",
-      "scene": "wireless",
+      "scene": "airship",
       "words": [
        "ESTA ARDENDO",
        "HOMEM DO RADIO VIVO"
@@ -2588,7 +2588,7 @@
       ],
       "win": "SUAS MÃOS TAMBÉM TREMEM.",
       "lose": "A NOTÍCIA EMPACA NA SUA MESA. OS JORNAIS SABEM POR OUTRA PESSOA.",
-      "scene": "wireless",
+      "scene": "airship",
       "echo": true
      }
     ]
@@ -2634,7 +2634,7 @@
       ],
       "win": "À MEIA-NOITE, A ESTAÇÃO X JÁ LÊ AS MENSAGENS DA LUFTWAFFE DAQUELE DIA.",
       "lose": "SEM A COLA, A ENIGMA DAQUELE DIA FICA FECHADA.",
-      "scene": "wireless",
+      "scene": "air",
       "echo": true
      },
      {
@@ -2682,7 +2682,7 @@
       ],
       "win": "CENTENAS DE BARQUINHOS CHEGAM À PRAIA E LEVAM OS HOMENS ATÉ OS NAVIOS.",
       "lose": "OS BARCOS VÃO PARA O LUGAR ERRADO. OS HOMENS ESPERAM NA AREIA.",
-      "scene": "sea",
+      "scene": "boats",
       "words": [
        "BARCOS RUMO A MALO",
        "CHEGUEM NA AREIA"
@@ -2710,7 +2710,7 @@
       ],
       "win": "BARCO ATRÁS DE BARCO, A NOITE TODA.",
       "lose": "OS BARCOS ENCOSTAM ONDE NÃO HÁ NINGUÉM. A NOITE SE PERDE.",
-      "scene": "sea",
+      "scene": "boats",
       "words": [
        "MOLHE LESTE",
        "DUNAS DE MALO"
@@ -2822,7 +2822,7 @@
       ],
       "win": "MARSH: 'SE TE PEGAREM, MANDE SEM A VERIFICAÇÃO. EU VOU ENTENDER.'",
       "lose": "A VERIFICAÇÃO SAI ERRADA. NUM CASO REAL, LONDRES ACHARIA QUE VOCÊ FOI PRESO.",
-      "scene": "wireless",
+      "scene": "air",
       "words": [
        "JUPITER"
       ]
@@ -2835,7 +2835,7 @@
       ],
       "win": "ELA ACENA COM A CABEÇA. UMA VEZ SÓ.",
       "lose": "ELA PARA E RECOMEÇA, MAIS DEVAGAR. NA FRANÇA, NINGUÉM VAI FAZER ISSO.",
-      "scene": "wireless",
+      "scene": "air",
       "count": 4
      },
      {
@@ -2861,7 +2861,7 @@
       ],
       "win": "É A PRÓPRIA MARSH NA TECLA.",
       "lose": "VOCÊ PERDE O HORÁRIO. LONDRES ACHA QUE VOCÊ NÃO CHEGOU.",
-      "scene": "wireless",
+      "scene": "road",
       "words": [
        "BEM VINDO PIANISTA",
        "CUIDADO CORUJA"
@@ -2875,7 +2875,7 @@
       ],
       "win": "FORA DO AR. QUATRO MINUTOS.",
       "lose": "VOCÊ PASSA DOS CINCO MINUTOS. LÁ FORA, UM FURGÃO ALEMÃO JÁ ESTÁ OUVINDO.",
-      "scene": "wireless",
+      "scene": "road",
       "words": [
        "CHEGUEI BEM",
        "RESISTENCIA PRONTA"
@@ -2979,7 +2979,7 @@
       ],
       "win": "UM VERSO DE VERLAINE. É O AVISO QUE VOCÊ ESPERAVA: A INVASÃO É AMANHÃ.",
       "lose": "VOCÊ PERDE O VERSO. A RESISTÊNCIA DA SUA REGIÃO DORME ESTA NOITE.",
-      "scene": "wireless",
+      "scene": "road",
       "words": [
        "LES SANGLOTS LONGS",
        "BLESSENT MON COEUR"
@@ -2993,7 +2993,7 @@
       ],
       "win": "'OS DADOS ESTÃO LANÇADOS': SABOTEM TUDO. À MEIA-NOITE, OS TRILHOS ESTÃO MINADOS.",
       "lose": "SEM A SENHA, A RESISTÊNCIA ESPERA. OS TRENS ALEMÃES PASSAM EM PAZ.",
-      "scene": "wireless",
+      "scene": "road",
       "words": [
        "DADOS NO TAPETE"
       ]
@@ -3763,12 +3763,6 @@
   "biplane"
  ],
  "scenes": {
-  "wireless": {
-   "mover": "airship",
-   "target": "station",
-   "sky": "NIGHT",
-   "ground": "EARTH"
-  },
   "rail": {
    "mover": "train",
    "target": "city",
@@ -3810,6 +3804,18 @@
    "target": "station",
    "sky": "NIGHT",
    "ground": "EARTH"
+  },
+  "airship": {
+   "mover": "airship",
+   "target": "station",
+   "sky": "NIGHT",
+   "ground": "EARTH"
+  },
+  "boats": {
+   "mover": "boat",
+   "target": "lighthouse",
+   "sky": "NIGHT",
+   "ground": "SEA"
   }
  },
  "covers": {
