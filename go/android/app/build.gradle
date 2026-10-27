@@ -2,16 +2,38 @@ plugins {
     id 'com.android.application'
 }
 
+// release signing: keystore.properties (storeFile, storePassword, keyAlias, keyPassword), kept out of git
+def keystoreFile = rootProject.file('keystore.properties')
+def keystore = new Properties()
+if (keystoreFile.exists()) keystoreFile.withInputStream { keystore.load(it) }
+
 android {
     namespace 'com.regiscamimura.morse'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId 'com.regiscamimura.morse'
         minSdk 23
-        targetSdk 35
+        targetSdk 36
         versionCode 1
         versionName '0.1.0'
+    }
+
+    signingConfigs {
+        release {
+            if (keystoreFile.exists()) {
+                storeFile file(keystore.storeFile)
+                storePassword keystore.storePassword
+                keyAlias keystore.keyAlias
+                keyPassword keystore.keyPassword
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
     }
 
     // compress the Go library inside the APK (13 MB -> ~4 MB); it's unpacked once on install

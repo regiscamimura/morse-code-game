@@ -3,7 +3,7 @@
     <!-- the telegraph line calls other players through the exchange -->
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:label="Morse Code"
+        android:label="SOS Morse"
         android:icon="@mipmap/ic_launcher"
         android:allowBackup="true">
         <!-- upright: the game on top, its keyboard or telegraph key below -->

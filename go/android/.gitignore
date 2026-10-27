@@ -3,3 +3,5 @@ build/
 app/build/
 app/libs/
 local.properties
+keystore.properties
+*.jks
