@@ -1107,7 +1107,7 @@
       ],
       "win": "HIT, THE ZEPPELIN COMES DOWN IN AN ESSEX FIELD. HER CREW BURNS HER AND SURRENDERS.",
       "lose": "WITH NO HEADING, THE PILOT IS LOST IN THE DARK. THE BOMBS FALL ON LONDON.",
-      "scene": "air",
+      "scene": "biplane",
       "words": [
        "TURN EAST",
        "STRIKE RAIDER"
@@ -1374,7 +1374,7 @@
       ],
       "win": "A MOTORCYCLE TAKES THE BASKET TO STATION X.",
       "lose": "ONE WRONG GROUP, AND STATION X LOSES A WHOLE DAY.",
-      "scene": "air",
+      "scene": "monoplane",
       "groups": true,
       "count": 5
      },
@@ -1386,7 +1386,7 @@
       ],
       "win": "STATION X CALLS IT A CRIB: A PIECE OF TEXT THEY ALREADY KNOW. YOU CIRCLE IT IN RED.",
       "lose": "YOU MISS THE HABIT. STATION X STAYS IN THE DARK.",
-      "scene": "air",
+      "scene": "monoplane",
       "words": [
        "WETTER FOLGT"
       ]
@@ -1399,7 +1399,7 @@
       ],
       "win": "BY MIDNIGHT, STATION X IS READING THE DAY'S LUFTWAFFE TRAFFIC.",
       "lose": "WITHOUT THE CRIB, THAT DAY'S ENIGMA STAYS LOCKED.",
-      "scene": "air",
+      "scene": "monoplane",
       "echo": true
      },
      {
@@ -1410,7 +1410,7 @@
       ],
       "win": "YOUR HAND REMEMBERS THE WORK.",
       "lose": "A GROUP IS LOST. A MESSAGE THAT MATTERED GOES UNREAD.",
-      "scene": "air",
+      "scene": "monoplane",
       "groups": true,
       "count": 4
      }
@@ -1461,7 +1461,7 @@
       ],
       "win": "THE BOATS SCATTER. THE BOMBS FALL INTO EMPTY WATER.",
       "lose": "THE BOATS STAY BUNCHED. THE BOMBS FIND THEM.",
-      "scene": "air",
+      "scene": "monoplane",
       "words": [
        "BOMBERS AT DAWN",
        "SCATTER"
@@ -1525,7 +1525,7 @@
       ],
       "win": "A FATHER'S WORRY. IT IS WHAT WILL KILL THE SON.",
       "lose": "YOU MISS THE ANSWER. THE FLEET SEARCHES THE NORTH, FAR FROM HER.",
-      "scene": "air",
+      "scene": "monoplane",
       "words": [
        "MAKING FOR BREST"
       ]
@@ -1539,7 +1539,7 @@
       ],
       "win": "A TORPEDO JAMS HER RUDDER. THE BISMARCK CAN ONLY STEAM IN CIRCLES.",
       "lose": "THE BIPLANES COME BACK EMPTY. BY TOMORROW THE BISMARCK WILL BE IN FRANCE.",
-      "scene": "air",
+      "scene": "biplane",
       "words": [
        "COURSE SOUTH EAST",
        "STRIKE AT DUSK"
@@ -1587,7 +1587,7 @@
       ],
       "win": "MARSH: 'IF THEY TAKE YOU, SEND WITHOUT IT. I WILL UNDERSTAND.'",
       "lose": "YOUR CHECK COMES OUT WRONG. FOR REAL, LONDON WOULD THINK YOU CAUGHT.",
-      "scene": "air",
+      "scene": "monoplane",
       "words": [
        "JUPITER"
       ]
@@ -1600,7 +1600,7 @@
       ],
       "win": "SHE NODS. ONCE.",
       "lose": "SHE STOPS AND STARTS AGAIN, SLOWER. IN FRANCE, NO ONE WILL.",
-      "scene": "air",
+      "scene": "monoplane",
       "count": 4
      },
      {
@@ -1612,7 +1612,7 @@
       ],
       "win": "HANDS PULL YOU OUT OF THE WHEAT. YOU ARE IN FRANCE.",
       "lose": "YOU CANNOT READ THE TORCH. THE PLANE TURNS AND TAKES YOU BACK TO ENGLAND.",
-      "scene": "air",
+      "scene": "monoplane",
       "words": [
        "JUMP"
       ]
@@ -2342,7 +2342,7 @@
       ],
       "win": "ATINGIDO, O ZEPELIM DESCE NUM CAMPO EM ESSEX. A TRIPULAÇÃO QUEIMA O DIRIGÍVEL E SE RENDE.",
       "lose": "SEM RUMO, O PILOTO SE PERDE NO ESCURO. AS BOMBAS CAEM SOBRE LONDRES.",
-      "scene": "air",
+      "scene": "biplane",
       "words": [
        "RUMO NORDESTE",
        "ATIREM"
@@ -2609,7 +2609,7 @@
       ],
       "win": "UMA MOTO LEVA O CESTO DE MENSAGENS PARA A ESTAÇÃO X.",
       "lose": "UM GRUPO ERRADO, E A ESTAÇÃO X PERDE UM DIA INTEIRO.",
-      "scene": "air",
+      "scene": "monoplane",
       "groups": true,
       "count": 5
      },
@@ -2621,7 +2621,7 @@
       ],
       "win": "A ESTAÇÃO X CHAMA ISSO DE COLA: UM PEDAÇO DE TEXTO QUE ELES JÁ CONHECEM. VOCÊ CIRCULA DE VERMELHO.",
       "lose": "VOCÊ NÃO REPARA NO HÁBITO. A ESTAÇÃO X CONTINUA ÀS CEGAS.",
-      "scene": "air",
+      "scene": "monoplane",
       "words": [
        "WETTER FOLGT"
       ]
@@ -2634,7 +2634,7 @@
       ],
       "win": "À MEIA-NOITE, A ESTAÇÃO X JÁ LÊ AS MENSAGENS DA LUFTWAFFE DAQUELE DIA.",
       "lose": "SEM A COLA, A ENIGMA DAQUELE DIA FICA FECHADA.",
-      "scene": "air",
+      "scene": "monoplane",
       "echo": true
      },
      {
@@ -2645,7 +2645,7 @@
       ],
       "win": "SUA MÃO NÃO ESQUECEU O OFÍCIO.",
       "lose": "UM GRUPO SE PERDE. UMA MENSAGEM QUE IMPORTAVA FICA SEM LER.",
-      "scene": "air",
+      "scene": "monoplane",
       "groups": true,
       "count": 4
      }
@@ -2696,7 +2696,7 @@
       ],
       "win": "OS BARCOS SE ESPALHAM. AS BOMBAS CAEM NA ÁGUA VAZIA.",
       "lose": "OS BARCOS CONTINUAM AMONTOADOS. AS BOMBAS CAEM EM CHEIO.",
-      "scene": "air",
+      "scene": "monoplane",
       "words": [
        "BOMBAS NO RAIAR",
        "AFASTEM"
@@ -2760,7 +2760,7 @@
       ],
       "win": "A PREOCUPAÇÃO DE UM PAI. É ELA QUE VAI MATAR O FILHO.",
       "lose": "VOCÊ PERDE A RESPOSTA. A FROTA PROCURA NO NORTE, LONGE DELE.",
-      "scene": "air",
+      "scene": "monoplane",
       "words": [
        "RUMO A BREST"
       ]
@@ -2774,7 +2774,7 @@
       ],
       "win": "UM TORPEDO EMPERRA O LEME. O BISMARCK SÓ CONSEGUE ANDAR EM CÍRCULOS.",
       "lose": "OS BIPLANOS VOLTAM SEM ACHAR O ALVO. AMANHÃ O BISMARCK ESTARÁ NA FRANÇA.",
-      "scene": "air",
+      "scene": "biplane",
       "words": [
        "RUMO SUDESTE",
        "ATACAR A NOITE"
@@ -2822,7 +2822,7 @@
       ],
       "win": "MARSH: 'SE TE PEGAREM, MANDE SEM A VERIFICAÇÃO. EU VOU ENTENDER.'",
       "lose": "A VERIFICAÇÃO SAI ERRADA. NUM CASO REAL, LONDRES ACHARIA QUE VOCÊ FOI PRESO.",
-      "scene": "air",
+      "scene": "monoplane",
       "words": [
        "JUPITER"
       ]
@@ -2835,7 +2835,7 @@
       ],
       "win": "ELA ACENA COM A CABEÇA. UMA VEZ SÓ.",
       "lose": "ELA PARA E RECOMEÇA, MAIS DEVAGAR. NA FRANÇA, NINGUÉM VAI FAZER ISSO.",
-      "scene": "air",
+      "scene": "monoplane",
       "count": 4
      },
      {
@@ -2847,7 +2847,7 @@
       ],
       "win": "MÃOS TE PUXAM DO TRIGAL. VOCÊ ESTÁ NA FRANÇA.",
       "lose": "VOCÊ NÃO LÊ A LANTERNA. O AVIÃO DÁ A VOLTA E TE LEVA DE VOLTA PARA A INGLATERRA.",
-      "scene": "air",
+      "scene": "monoplane",
       "words": [
        "PULE"
       ]
@@ -3347,6 +3347,14 @@
    "..AAAAAAAAA...",
    "....D...D....."
   ],
+  "monoplane": [
+   "L.............",
+   "LL......TT...W",
+   "LLLLLLLLLLLLLW",
+   ".LLLLLLLLLLLLW",
+   "....SSSSSS...W",
+   ".............."
+  ],
   "train": [
    ".............W..",
    "..TTTT.......DD.",
@@ -3760,7 +3768,8 @@
  },
  "flyers": [
   "airship",
-  "biplane"
+  "biplane",
+  "monoplane"
  ],
  "scenes": {
   "rail": {
@@ -3799,8 +3808,14 @@
    "sky": "NIGHT",
    "ground": "EARTH"
   },
-  "air": {
+  "biplane": {
    "mover": "biplane",
+   "target": "station",
+   "sky": "NIGHT",
+   "ground": "EARTH"
+  },
+  "monoplane": {
+   "mover": "monoplane",
    "target": "station",
    "sky": "NIGHT",
    "ground": "EARTH"
