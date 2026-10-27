@@ -106,12 +106,25 @@ func DrawCoverArt(c *Canvas, name string, now float64) {
 	drawChapterCoverArt(c, content.Covers[name], now)
 }
 
-// DrawCoverArtPlainSky paints the cover called name under a one-colour sky with no stars:
-// the app icon, where a gradient and stars would only blur at launcher size.
-func DrawCoverArtPlainSky(c *Canvas, name string, sky Color) {
-	art := content.Covers[name]
-	art.Sky, art.Stars = coverColors{sky}, false
-	drawChapterCoverArt(c, art, 0)
+// SpritePixel is content.json's sprite called name at column x, row y, in the game's
+// palette; ok is false where the sprite is see-through or (x, y) is outside it. The app icon
+// draws the Titanic from it.
+func SpritePixel(name string, x, y int) (color Color, ok bool) {
+	rows := content.Sprites[name]
+	if y < 0 || y >= len(rows) || x < 0 || x >= len(rows[y]) || rows[y][x] == '.' {
+		return Color{}, false
+	}
+	color, ok = spritePalette[rows[y][x]]
+	return color, ok
+}
+
+// SpriteSize is the width and height of content.json's sprite called name.
+func SpriteSize(name string) (width, height int) {
+	rows := content.Sprites[name]
+	if len(rows) == 0 {
+		return 0, 0
+	}
+	return len(rows[0]), len(rows)
 }
 
 // drawChapterCoverArt paints the chapter's cover over the canvas's rows 0 to coverHeight/2.
