@@ -59,6 +59,8 @@ func (g *Game) Draw(width, height int, now float64) *Canvas {
 		g.drawLine(c, now)
 	case "title":
 		g.drawTitle(c, now)
+	case "select":
+		g.drawChapterList(c)
 	case "volume":
 		g.drawVolume(c, now)
 	case "cover":
@@ -249,10 +251,32 @@ func (g *Game) drawScene(c *Canvas, now float64, key string, p float64, ended *s
 	}
 }
 
+// chapterListLine is a chapter's line on the chapter list: "[A] 1912  THE CARPATHIA".
+func (g *Game) chapterListLine(n int) string {
+	ch := g.chapters()[n-1]
+	return fmt.Sprintf("[%s] %s  %s", chapterKey(n), ch.Year, ch.Title)
+}
+
+// drawChapterList: the secret list of every chapter, one row each, a letter or tap to play it.
+func (g *Game) drawChapterList(c *Canvas) {
+	c.Band(0, 1, Band)
+	c.Put(1, 0, g.text("select_title", nil), Amber)
+	for n := range g.chapters() {
+		v, _ := g.volumeOf(n + 1)
+		color := Paper
+		if v%2 == 0 {
+			color = Teal
+		}
+		c.PutTap(4, 3+n, g.chapterListLine(n+1), strings.ToLower(chapterKey(n+1)), color)
+	}
+	c.Center(23, g.text("select_back", nil), Faint)
+}
+
 func (g *Game) drawTitle(c *Canvas, now float64) {
 	g.drawScene(c, now, "airship", math.Mod(now/120, 1), nil)
-	BigCenter(c, 14, g.text("title_big", nil), Amber)
-	c.Center(19, g.text("subtitle", nil), Teal)
+	BigCenter(c, 13, g.text("title_big", nil), Amber)
+	c.Center(18, g.text("subtitle", nil), Teal)
+	c.Center(19, g.text("years", nil), Teal)
 	c.Center(20, g.text("tap_hold", map[string]any{"dot": Dot, "dah": Dah}), Paper)
 	menu := g.text("menu_begin", nil)
 	if g.savedChapter > 1 {
@@ -373,9 +397,24 @@ func (g *Game) drawBrief(c *Canvas, now float64) {
 	}
 }
 
+// speedButtons are ▶ ▶▶ ▶▶▶ from x on row y, the chosen one lit; they're this wide.
+const speedButtonsWidth = 13
+
+func (g *Game) drawSpeedButtons(c *Canvas, x, y int) {
+	for step, label := range []string{" ▶ ", " ▶▶ ", " ▶▶▶ "} {
+		color := Faint
+		if step == g.speed {
+			color = Amber
+		}
+		c.PutTap(x, y, label, speedKeys[step], color)
+		x += runeLen(label) + 1
+	}
+}
+
 func (g *Game) drawPlay(c *Canvas, now float64) {
 	g.drawHud(c)
 	g.drawHeader(c, g.task())
+	g.drawSpeedButtons(c, 79-speedButtonsWidth, 2)
 	g.drawScene(c, now, g.beat.Scene, g.sceneProgress(g.progress(now)), nil)
 	left := max(0, g.timeEnd-now)
 	frac := left / g.timeTotal

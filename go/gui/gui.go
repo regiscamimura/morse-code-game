@@ -38,6 +38,7 @@ type App struct {
 	keyPointer    int             // the touch or mouse holding the telegraph key
 	buttonPointer int             // the touch or mouse holding down a keyboard key or button
 	heldButton    image.Rectangle // that key, drawn pressed in
+	enterKeying   bool            // a phone's ENTER is down as the telegraph key
 	controls      []control
 	strips        []strip       // what the screen shows, top to bottom
 	gameBottom    int           // where the game's strips end and the controls begin
@@ -103,8 +104,8 @@ func (a *App) Update() error {
 	a.layoutScreen(now)
 	if !a.desktop {
 		a.controls = a.layoutControls()
-		a.readPointers(now)
 	}
+	a.readPointers(now)
 	a.game.Tick(now)
 	if a.game.Quit {
 		a.game.Quit = false
@@ -201,7 +202,21 @@ func (a *App) readKeyboard(now float64) {
 	if inpututil.IsKeyJustReleased(ebiten.KeySpace) {
 		a.game.SpaceUp(now)
 	}
+	// On a phone's keyboard ENTER is the telegraph key while keying: the KEYone's space bar,
+	// which is also its fingerprint sensor, lags. The on-screen ENTER button still moves on.
+	enter := inpututil.IsKeyJustPressed(ebiten.KeyEnter) || inpututil.IsKeyJustPressed(ebiten.KeyNumpadEnter)
+	if !a.desktop && enter && a.game.Keying() {
+		a.enterKeying = true
+		a.game.SpaceDown(now)
+	}
+	if a.enterKeying && !ebiten.IsKeyPressed(ebiten.KeyEnter) && !ebiten.IsKeyPressed(ebiten.KeyNumpadEnter) {
+		a.enterKeying = false
+		a.game.SpaceUp(now)
+	}
 	for key, name := range namedKeys {
+		if a.enterKeying && (key == ebiten.KeyEnter || key == ebiten.KeyNumpadEnter) {
+			continue
+		}
 		if inpututil.IsKeyJustPressed(key) {
 			a.game.Key(name, now)
 		}
@@ -265,10 +280,38 @@ func (a *App) press(p pointerEvent, now float64) {
 		}
 		return
 	}
+	// the lower half of the title screen is a silent telegraph key, for the secret SOS
+	if a.game.State() == "title" && at.Y > a.height/2 && a.keyPointer == noPointer {
+		a.keyPointer = p.id
+		a.game.SpaceDown(now)
+		return
+	}
+	if key := a.tappedKey(at); key != "" {
+		a.game.Key(key, now)
+		return
+	}
 	// a tap on the game itself moves on from screens that only wait for ENTER
 	if a.game.WaitsForEnter() {
 		a.game.Key(morse.KeyEnter, now)
 	}
+}
+
+// tappedKey is the key sent by what the game drew under at, such as the ▶ buttons, or "".
+func (a *App) tappedKey(at image.Point) string {
+	for _, s := range a.strips {
+		if !at.In(s.rect) {
+			continue
+		}
+		// the cell size and centring cellPainter.draw uses
+		c := s.canvas
+		cw := math.Min(float64(s.rect.Dx())/float64(c.W), float64(s.rect.Dy())/float64(2*c.H))
+		ox := (float64(s.rect.Dx()) - cw*float64(c.W)) / 2
+		oy := (float64(s.rect.Dy()) - 2*cw*float64(c.H)) / 2
+		x := int(math.Floor((float64(at.X-s.rect.Min.X) - ox) / cw))
+		y := int(math.Floor((float64(at.Y-s.rect.Min.Y) - oy) / (2 * cw)))
+		return c.KeyAt(x, y)
+	}
+	return ""
 }
 
 func (a *App) Draw(screen *ebiten.Image) {

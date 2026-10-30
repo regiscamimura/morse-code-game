@@ -61,8 +61,11 @@ type Scene struct {
 // Pace sets how difficulty grows. Each pair is the value at the first chapter and at the
 // last, with a straight line between.
 type Pace struct {
-	WPM         [2]float64 `json:"wpm"`          // speed of received words
-	Spacing     [2]float64 `json:"spacing"`      // extra space between their letters (Farnsworth factor)
+	// WPM is the speed of received letters, and LetterGap the silence between them in
+	// seconds: the first value on a volume's first receiving beat, the last on its final one.
+	// Each volume starts slow again.
+	WPM         [2]float64 `json:"wpm"`
+	LetterGap   [2]float64 `json:"letter_gap"`
 	ReceiveTime [2]float64 `json:"receive_time"` // seconds allowed per letter to receive
 	SendTime    [2]float64 `json:"send_time"`    // seconds allowed per letter to send
 	// A letter is shown on the receiving tape for TapeChapters chapters after it's learned,

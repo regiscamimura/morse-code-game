@@ -20,12 +20,12 @@
  ],
  "pace": {
   "wpm": [
-   11,
-   16
+   8,
+   12
   ],
-  "spacing": [
-   3.4,
-   1.8
+  "letter_gap": [
+   2,
+   0.8
   ],
   "receive_time": [
    6.5,
@@ -692,14 +692,14 @@
       "count": 3
      },
      {
-      "mode": "decode",
+      "mode": "encode",
       "title": "ONLY YOU LISTEN",
       "brief": [
-       "2300. THE NIGHTLY NEWS.",
+       "2300. THE CAPTAIN'S NIGHT REPORT GOES TO CAPE RACE.",
        "YOU ARE THE ONLY OPERATOR ABOARD. WHEN YOU SLEEP, THE SHIP IS DEAF."
       ],
-      "win": "CAPTAIN ROSTRON READS THE NEWS OVER HIS COCOA.",
-      "lose": "THE CAPTAIN GETS NO NEWS. HE NOTES THAT THE WIRELESS LAD IS TIRED.",
+      "win": "CAPE RACE ACKNOWLEDGES. CAPTAIN ROSTRON DRINKS HIS COCOA AND GOES TO BED.",
+      "lose": "THE REPORT DOES NOT GO. THE CAPTAIN NOTES THAT THE WIRELESS LAD IS TIRED.",
       "scene": "sea",
       "count": 2
      }
@@ -737,28 +737,28 @@
       "echo": true
      },
      {
-      "mode": "decode",
+      "mode": "encode",
       "title": "MISS MARSH",
       "brief": [
        "MISS EVELYN MARSH, NINETEEN, IS SAILING ON THE TITANIC.",
-       "SHE WIRES HER MOTHER."
+       "SHE HANDS YOU A WIRE FOR HER MOTHER."
       ],
       "win": "HIS NAME IS MATT. HER MOTHER WILL HAVE QUESTIONS.",
-      "lose": "HER WIRE IS LOST IN THE STATIC. HER MOTHER NEVER HEARS OF MATT.",
+      "lose": "YOU FUMBLE HER WIRE. HER MOTHER NEVER HEARS OF MATT.",
       "scene": "fog",
       "words": [
        "I MET A MAN"
       ]
      },
      {
-      "mode": "decode",
+      "mode": "encode",
       "title": "ICE WARNINGS",
       "brief": [
-       "14 APRIL. SHIPS WARN ALL DAY: ICE ON THE TITANIC'S ROUTE.",
+       "14 APRIL. ICE ON THE TITANIC'S ROUTE. SHIPS HAVE WARNED HER ALL DAY; YOU WARN HER TOO.",
        "THE TITANIC PAYS NO MIND. SHE IS BUSY WITH HER PASSENGERS' WIRES."
       ],
       "win": "2330. THE CALIFORNIAN, STOPPED IN THE ICE NEAR THE TITANIC, SHUTS DOWN HER SET. HER OPERATOR GOES TO BED.",
-      "lose": "YOU LOSE THE WIRES. THE TITANIC STEAMS ON AT FULL SPEED INTO THE NIGHT.",
+      "lose": "YOUR WARNINGS NEVER GET THROUGH. THE TITANIC STEAMS ON AT FULL SPEED INTO THE NIGHT.",
       "scene": "ice",
       "count": 2
      }
@@ -875,13 +875,28 @@
       "brief": [
        "ASHORE, FAMILIES ASK FOR THEIR OWN, ONE BY ONE."
       ],
-      "win": "TOM AND ANNA ARE ABOARD. AMOS IS NOT.",
+      "win": "THE QUESTIONS PILE UP ON YOUR DESK.",
       "lose": "A QUESTION IS LOST. ONE FAMILY SPENDS ANOTHER NIGHT WITHOUT AN ANSWER.",
       "scene": "sea",
       "words": [
        "IS TOM ON",
        "IS ANNA ON",
        "IS AMOS ON"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "ANSWERS",
+      "brief": [
+       "YOU CHECK THE LIST AND ANSWER, ONE BY ONE."
+      ],
+      "win": "TWO FAMILIES CELEBRATE. ONE WILL GRIEVE.",
+      "lose": "AN ANSWER IS LOST. ONE FAMILY SPENDS ANOTHER NIGHT NOT KNOWING.",
+      "scene": "sea",
+      "words": [
+       "TOM IS ON",
+       "ANNA IS ON",
+       "AMOS NOT ON"
       ]
      },
      {
@@ -967,6 +982,17 @@
       "scene": "harbour",
       "groups": true,
       "count": 3
+     },
+     {
+      "mode": "encode",
+      "title": "WARNING",
+      "brief": [
+       "U-20 IS OFF WATERFORD. WARN EVERY SHIP ON THE COAST."
+      ],
+      "win": "THE COASTERS HEAR YOU. SOME MAKE FOR PORT.",
+      "lose": "NO ONE IS WARNED. THE COAST SLEEPS.",
+      "scene": "harbour",
+      "count": 2
      },
      {
       "mode": "decode",
@@ -1241,13 +1267,13 @@
       ]
      },
      {
-      "mode": "decode",
+      "mode": "encode",
       "title": "ANSWERS",
       "brief": [
-       "SHIPS AND STATIONS ACKNOWLEDGE THE CEASEFIRE, ONE BY ONE."
+       "YOU PASS THE CEASEFIRE TO SHIPS AND STATIONS, ONE BY ONE."
       ],
       "win": "BY NOON THE AIR IS FULL OF CHEERING.",
-      "lose": "AN ANSWER IS LOST. SOMEWHERE, SOMEONE IS STILL AT WAR.",
+      "lose": "A SHIP NEVER GETS THE NEWS. SOMEWHERE, SOMEONE IS STILL AT WAR.",
       "scene": "airship",
       "count": 4
      },
@@ -1322,12 +1348,26 @@
       "brief": [
        "HOURS OF CIRCLING. BRANDT CHATS TO PASS THE TIME."
       ],
-      "win": "HE SENDS A STRING OF DITS: LAUGHTER. AT 1900 THE WEATHER CLEARS AND HE COMES DOWN.",
+      "win": "A SON, NINE YEARS OLD. YOU CAN HEAR HIM SMILING.",
       "lose": "THE CHAT IS LOST IN THE STATIC. HE STOPS SENDING.",
       "scene": "airship",
       "words": [
        "I HAVE A SON",
        "HE IS NINE"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "YOUR TURN",
+      "brief": [
+       "HE ASKS ABOUT YOURS."
+      ],
+      "win": "HE SENDS A STRING OF DITS: LAUGHTER. AT 1900 THE WEATHER CLEARS AND HE COMES DOWN.",
+      "lose": "YOUR ANSWER IS LOST IN THE STATIC. HE STOPS SENDING.",
+      "scene": "airship",
+      "words": [
+       "I HAVE TWINS",
+       "SEVEN NOW"
       ]
      },
      {
@@ -1379,6 +1419,17 @@
       "count": 5
      },
      {
+      "mode": "encode",
+      "title": "BY LINE",
+      "brief": [
+       "THE URGENT GROUPS CANNOT WAIT FOR THE MOTORCYCLE. SEND THEM BY LINE."
+      ],
+      "win": "STATION X HAS THEM BEFORE DAWN.",
+      "lose": "THE GROUPS WAIT FOR THE MOTORCYCLE. A DAY IS LOST.",
+      "scene": "monoplane",
+      "echo": true
+     },
+     {
       "mode": "decode",
       "title": "A HABIT",
       "brief": [
@@ -1408,11 +1459,22 @@
       "brief": [
        "NOW EVERY GROUP YOU COPY BECOMES PLAIN TEXT WITHIN HOURS."
       ],
-      "win": "YOUR HAND REMEMBERS THE WORK.",
+      "win": "THE NIGHT'S TRAFFIC IS COPIED.",
       "lose": "A GROUP IS LOST. A MESSAGE THAT MATTERED GOES UNREAD.",
       "scene": "monoplane",
       "groups": true,
       "count": 4
+     },
+     {
+      "mode": "encode",
+      "title": "DOWN THE LINE",
+      "brief": [
+       "EVERY GROUP GOES DOWN THE LINE TO STATION X."
+      ],
+      "win": "YOUR HAND REMEMBERS THE WORK.",
+      "lose": "THE LINE GOES QUIET. A MESSAGE THAT MATTERED GOES UNREAD.",
+      "scene": "monoplane",
+      "echo": true
      }
     ]
    },
@@ -1487,12 +1549,23 @@
       "brief": [
        "4 JUNE. THE LAST SHIP LEAVES DUNKIRK AND REPORTS."
       ],
-      "win": "338,000 MEN SAVED. THE PAPERS CALL IT A MIRACLE.",
+      "win": "THE LAST SHIP IS OUT.",
       "lose": "YOU LOSE THE SIGNAL. LONDON DOES NOT KNOW IF THE EVACUATION IS OVER.",
       "scene": "sea",
       "words": [
        "LAST BOAT HOME"
       ]
+     },
+     {
+      "mode": "encode",
+      "title": "THE NEWS",
+      "brief": [
+       "THE WAR OFFICE WANTS IT. PASS IT ON."
+      ],
+      "win": "338,000 MEN SAVED. THE PAPERS CALL IT A MIRACLE.",
+      "lose": "THE NEWS SITS ON YOUR DESK. LONDON DOES NOT KNOW IF THE EVACUATION IS OVER.",
+      "scene": "sea",
+      "echo": true
      }
     ]
    },
@@ -1510,11 +1583,22 @@
        "MAY 1941. THE BATTLESHIP BISMARCK HAS SUNK THE HOOD AND VANISHED.",
        "IF SHE REACHES FRANCE, SHE WILL HUNT THE CONVOYS THAT FEED BRITAIN."
       ],
-      "win": "A LONG SIGNAL GIVES A BEARING: SHE IS RUNNING FOR FRANCE.",
+      "win": "A LONG SIGNAL. SOMEONE ABOARD IS TALKING TOO MUCH.",
       "lose": "THE BISMARCK VANISHES. THE CONVOYS ARE AT HER MERCY.",
       "scene": "harbour",
       "groups": true,
       "count": 4
+     },
+     {
+      "mode": "encode",
+      "title": "THE BEARING",
+      "brief": [
+       "SEND THE GROUPS TO THE ADMIRALTY. THE DIRECTION FINDERS HEARD HER TOO."
+      ],
+      "win": "A BEARING: SHE IS RUNNING FOR FRANCE.",
+      "lose": "THE ADMIRALTY PLOTS HER WRONG. THE FLEET STEAMS NORTH.",
+      "scene": "harbour",
+      "echo": true
      },
      {
       "mode": "decode",
@@ -1593,13 +1677,13 @@
       ]
      },
      {
-      "mode": "decode",
+      "mode": "encode",
       "title": "TRAINING",
       "brief": [
-       "MARSH KEYS FASTER EVERY DAY. OVER THERE, NO ONE WILL WAIT FOR YOU."
+       "MARSH MAKES YOU KEY FASTER EVERY DAY. OVER THERE, NO ONE WILL WAIT FOR YOU."
       ],
       "win": "SHE NODS. ONCE.",
-      "lose": "SHE STOPS AND STARTS AGAIN, SLOWER. IN FRANCE, NO ONE WILL.",
+      "lose": "YOU STUMBLE AND START AGAIN, SLOWER. IN FRANCE, NO ONE WILL WAIT.",
       "scene": "monoplane",
       "count": 4
      },
@@ -1615,6 +1699,19 @@
       "scene": "monoplane",
       "words": [
        "JUMP"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "THE TORCH",
+      "brief": [
+       "IN THE WHEAT, YOU FLASH YOUR TORCH AT THE PLANE: ALL WELL."
+      ],
+      "win": "THE PLANE DIPS ITS WINGS AND TURNS FOR ENGLAND.",
+      "lose": "THE PILOT CIRCLES, UNSURE. THE ENGINE WAKES THE VILLAGE.",
+      "scene": "monoplane",
+      "words": [
+       "OK"
       ]
      },
      {
@@ -1748,6 +1845,20 @@
       "words": [
        "LES SANGLOTS LONGS",
        "BLESSENT MON COEUR"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "HEARD",
+      "brief": [
+       "TELL LONDON YOUR CIRCUIT HAS HEARD. FIVE MINUTES, NO MORE."
+      ],
+      "win": "LONDON ACKNOWLEDGES. NOW YOU WAIT FOR THE ACTION PHRASE.",
+      "lose": "LONDON DOES NOT KNOW YOU HEARD. YOU WAIT, UNSURE.",
+      "scene": "road",
+      "words": [
+       "MESSAGE HEARD",
+       "WE ARE READY"
       ]
      },
      {
@@ -1928,14 +2039,14 @@
       "count": 3
      },
      {
-      "mode": "decode",
+      "mode": "encode",
       "title": "SÓ VOCÊ ESCUTA",
       "brief": [
-       "23H. O BOLETIM DE NOTÍCIAS DA NOITE.",
+       "23H. O RELATÓRIO NOTURNO DO CAPITÃO VAI PARA CAPE RACE.",
        "VOCÊ É O ÚNICO OPERADOR A BORDO. QUANDO DORME, O NAVIO FICA SURDO."
       ],
-      "win": "O CAPITÃO ROSTRON LÊ AS NOTÍCIAS TOMANDO CHOCOLATE QUENTE.",
-      "lose": "O CAPITÃO FICA SEM NOTÍCIAS. ELE ANOTA: O RAPAZ DO RÁDIO ESTÁ CANSADO.",
+      "win": "CAPE RACE CONFIRMA. O CAPITÃO ROSTRON TOMA SEU CHOCOLATE QUENTE E VAI DORMIR.",
+      "lose": "O RELATÓRIO NÃO SAI. O CAPITÃO ANOTA: O RAPAZ DO RÁDIO ESTÁ CANSADO.",
       "scene": "sea",
       "count": 2
      }
@@ -1973,28 +2084,28 @@
       "echo": true
      },
      {
-      "mode": "decode",
+      "mode": "encode",
       "title": "A SRTA. MARSH",
       "brief": [
        "A SRTA. EVELYN MARSH, DEZENOVE ANOS, VIAJA NO TITANIC.",
-       "ELA ESCREVE PARA A MÃE."
+       "ELA TE ENTREGA UM TELEGRAMA PARA A MÃE."
       ],
       "win": "O NOME DELE É MATT. A MÃE VAI FAZER PERGUNTAS.",
-      "lose": "O TELEGRAMA DELA SE PERDE NA ESTÁTICA. A MÃE NUNCA SABE DE MATT.",
+      "lose": "VOCÊ ERRA O TELEGRAMA DELA. A MÃE NUNCA SABE DE MATT.",
       "scene": "fog",
       "words": [
        "MATT ME AMA"
       ]
      },
      {
-      "mode": "decode",
+      "mode": "encode",
       "title": "AVISOS DE GELO",
       "brief": [
-       "14 DE ABRIL. NAVIOS AVISAM O DIA TODO: GELO NA ROTA DO TITANIC.",
+       "14 DE ABRIL. GELO NA ROTA DO TITANIC. NAVIOS AVISAM O DIA TODO; VOCÊ AVISA TAMBÉM.",
        "O TITANIC NÃO DÁ ATENÇÃO. ESTÁ OCUPADO COM OS TELEGRAMAS DOS PASSAGEIROS."
       ],
       "win": "23H30. O CALIFORNIAN, PARADO NO GELO PERTO DO TITANIC, DESLIGA O RÁDIO. O OPERADOR VAI DORMIR.",
-      "lose": "VOCÊ PERDE OS TELEGRAMAS. O TITANIC SEGUE A TODA VELOCIDADE, NOITE ADENTRO.",
+      "lose": "SEUS AVISOS NÃO CHEGAM. O TITANIC SEGUE A TODA VELOCIDADE, NOITE ADENTRO.",
       "scene": "ice",
       "count": 2
      }
@@ -2110,13 +2221,28 @@
       "brief": [
        "EM TERRA, AS FAMÍLIAS PERGUNTAM POR SEUS PARENTES, UM POR UM."
       ],
-      "win": "TOM E ANA ESTÃO A BORDO. AMOS NÃO.",
+      "win": "AS PERGUNTAS SE ACUMULAM NA SUA MESA.",
       "lose": "UMA PERGUNTA SE PERDE. UMA FAMÍLIA PASSA MAIS UMA NOITE SEM RESPOSTA.",
       "scene": "sea",
       "words": [
        "TOM ESTA",
        "ANA ESTA",
        "AMOS ESTA"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "RESPOSTAS",
+      "brief": [
+       "VOCÊ CONFERE A LISTA E RESPONDE, UM POR UM."
+      ],
+      "win": "DUAS FAMÍLIAS COMEMORAM. UMA VAI CHORAR.",
+      "lose": "UMA RESPOSTA SE PERDE. UMA FAMÍLIA PASSA MAIS UMA NOITE SEM SABER.",
+      "scene": "sea",
+      "words": [
+       "TOM SIM",
+       "ANA SIM",
+       "AMOS NAO"
       ]
      },
      {
@@ -2202,6 +2328,17 @@
       "scene": "harbour",
       "groups": true,
       "count": 3
+     },
+     {
+      "mode": "encode",
+      "title": "AVISO",
+      "brief": [
+       "O U-20 ESTÁ PERTO DE WATERFORD. AVISE TODOS OS NAVIOS DA COSTA."
+      ],
+      "win": "OS NAVIOS DA COSTA TE OUVEM. ALGUNS VOLTAM PARA O PORTO.",
+      "lose": "NINGUÉM É AVISADO. A COSTA DORME.",
+      "scene": "harbour",
+      "count": 2
      },
      {
       "mode": "decode",
@@ -2476,13 +2613,13 @@
       ]
      },
      {
-      "mode": "decode",
+      "mode": "encode",
       "title": "RESPOSTAS",
       "brief": [
-       "NAVIOS E BASES CONFIRMAM O CESSAR-FOGO, UM POR UM."
+       "VOCÊ PASSA O CESSAR-FOGO A NAVIOS E BASES, UM POR UM."
       ],
       "win": "AO MEIO-DIA, SÓ SE OUVE FESTA NO RÁDIO.",
-      "lose": "UMA CONFIRMAÇÃO SE PERDE. EM ALGUM LUGAR, ALGUÉM CONTINUA EM GUERRA.",
+      "lose": "UM NAVIO NUNCA RECEBE A NOTÍCIA. EM ALGUM LUGAR, ALGUÉM CONTINUA EM GUERRA.",
       "scene": "airship",
       "count": 4
      },
@@ -2557,12 +2694,26 @@
       "brief": [
        "HORAS DANDO VOLTAS. BRANDT CONVERSA PARA PASSAR O TEMPO."
       ],
-      "win": "ELE MANDA UMA FIADA DE PONTOS: UMA RISADA. ÀS 19H, O TEMPO MELHORA E ELE DESCE.",
+      "win": "UM GAROTO DE NOVE ANOS. DÁ PARA OUVIR O SORRISO DELE.",
       "lose": "A CONVERSA SE PERDE NA ESTÁTICA. ELE PARA DE TRANSMITIR.",
       "scene": "airship",
       "words": [
        "TENHO UM GAROTO",
        "TEM NOVE ANOS"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "SUA VEZ",
+      "brief": [
+       "ELE PERGUNTA PELOS SEUS."
+      ],
+      "win": "ELE MANDA UMA FIADA DE PONTOS: UMA RISADA. ÀS 19H, O TEMPO MELHORA E ELE DESCE.",
+      "lose": "SUA RESPOSTA SE PERDE NA ESTÁTICA. ELE PARA DE TRANSMITIR.",
+      "scene": "airship",
+      "words": [
+       "TENHO GEMEOS",
+       "TEM SETE ANOS"
       ]
      },
      {
@@ -2614,6 +2765,17 @@
       "count": 5
      },
      {
+      "mode": "encode",
+      "title": "PELA LINHA",
+      "brief": [
+       "OS GRUPOS URGENTES NÃO PODEM ESPERAR A MOTO. MANDE PELA LINHA."
+      ],
+      "win": "A ESTAÇÃO X OS RECEBE ANTES DO AMANHECER.",
+      "lose": "OS GRUPOS ESPERAM A MOTO. UM DIA SE PERDE.",
+      "scene": "monoplane",
+      "echo": true
+     },
+     {
       "mode": "decode",
       "title": "UM HÁBITO",
       "brief": [
@@ -2643,11 +2805,22 @@
       "brief": [
        "AGORA, CADA GRUPO QUE VOCÊ COPIA VIRA TEXTO EM POUCAS HORAS."
       ],
-      "win": "SUA MÃO NÃO ESQUECEU O OFÍCIO.",
+      "win": "O TRÁFEGO DA NOITE ESTÁ COPIADO.",
       "lose": "UM GRUPO SE PERDE. UMA MENSAGEM QUE IMPORTAVA FICA SEM LER.",
       "scene": "monoplane",
       "groups": true,
       "count": 4
+     },
+     {
+      "mode": "encode",
+      "title": "PELA LINHA",
+      "brief": [
+       "CADA GRUPO SEGUE PELA LINHA PARA A ESTAÇÃO X."
+      ],
+      "win": "SUA MÃO NÃO ESQUECEU O OFÍCIO.",
+      "lose": "A LINHA SILENCIA. UMA MENSAGEM QUE IMPORTAVA FICA SEM LER.",
+      "scene": "monoplane",
+      "echo": true
      }
     ]
    },
@@ -2722,12 +2895,23 @@
       "brief": [
        "4 DE JUNHO. O ÚLTIMO NAVIO DEIXA DUNQUERQUE E INFORMA."
       ],
-      "win": "338 MIL HOMENS SALVOS. OS JORNAIS FALAM EM MILAGRE.",
+      "win": "O ÚLTIMO NAVIO SAIU.",
       "lose": "VOCÊ PERDE O SINAL. LONDRES NÃO SABE SE A EVACUAÇÃO TERMINOU.",
       "scene": "sea",
       "words": [
        "ULTIMO BARCO"
       ]
+     },
+     {
+      "mode": "encode",
+      "title": "A NOTÍCIA",
+      "brief": [
+       "O MINISTÉRIO DA GUERRA QUER SABER. PASSE ADIANTE."
+      ],
+      "win": "338 MIL HOMENS SALVOS. OS JORNAIS FALAM EM MILAGRE.",
+      "lose": "A NOTÍCIA FICA NA SUA MESA. LONDRES NÃO SABE SE A EVACUAÇÃO TERMINOU.",
+      "scene": "sea",
+      "echo": true
      }
     ]
    },
@@ -2745,11 +2929,22 @@
        "MAIO DE 1941. O BISMARCK, O MAIOR COURAÇADO ALEMÃO, AFUNDOU O HOOD E SUMIU.",
        "SE CHEGAR À FRANÇA, VAI CAÇAR OS COMBOIOS QUE ALIMENTAM A INGLATERRA."
       ],
-      "win": "UM SINAL LONGO DÁ A DIREÇÃO: ELE FOGE PARA A FRANÇA.",
+      "win": "UM SINAL LONGO. ALGUÉM A BORDO FALA DEMAIS.",
       "lose": "O BISMARCK SOME NO ATLÂNTICO. OS COMBOIOS FICAM À MERCÊ DELE.",
       "scene": "harbour",
       "groups": true,
       "count": 4
+     },
+     {
+      "mode": "encode",
+      "title": "A DIREÇÃO",
+      "brief": [
+       "MANDE OS GRUPOS AO ALMIRANTADO. AS ESTAÇÕES DE GONIOMETRIA TAMBÉM O OUVIRAM."
+      ],
+      "win": "A DIREÇÃO: ELE FOGE PARA A FRANÇA.",
+      "lose": "O ALMIRANTADO ERRA A POSIÇÃO. A FROTA SEGUE PARA O NORTE.",
+      "scene": "harbour",
+      "echo": true
      },
      {
       "mode": "decode",
@@ -2828,13 +3023,13 @@
       ]
      },
      {
-      "mode": "decode",
+      "mode": "encode",
       "title": "TREINO",
       "brief": [
-       "MARSH TRANSMITE MAIS RÁPIDO A CADA DIA. LÁ, NINGUÉM VAI ESPERAR VOCÊ."
+       "MARSH TE FAZ TRANSMITIR MAIS RÁPIDO A CADA DIA. LÁ, NINGUÉM VAI ESPERAR VOCÊ."
       ],
       "win": "ELA ACENA COM A CABEÇA. UMA VEZ SÓ.",
-      "lose": "ELA PARA E RECOMEÇA, MAIS DEVAGAR. NA FRANÇA, NINGUÉM VAI FAZER ISSO.",
+      "lose": "VOCÊ TROPEÇA E RECOMEÇA, MAIS DEVAGAR. NA FRANÇA, NINGUÉM VAI ESPERAR.",
       "scene": "monoplane",
       "count": 4
      },
@@ -2850,6 +3045,19 @@
       "scene": "monoplane",
       "words": [
        "PULE"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "A LANTERNA",
+      "brief": [
+       "NO TRIGAL, VOCÊ PISCA A LANTERNA PARA O AVIÃO: TUDO BEM."
+      ],
+      "win": "O AVIÃO BALANÇA AS ASAS E VOLTA PARA A INGLATERRA.",
+      "lose": "O PILOTO DÁ VOLTAS, NA DÚVIDA. O MOTOR ACORDA A ALDEIA.",
+      "scene": "monoplane",
+      "words": [
+       "OK"
       ]
      },
      {
@@ -2983,6 +3191,20 @@
       "words": [
        "LES SANGLOTS LONGS",
        "BLESSENT MON COEUR"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "RECEBIDO",
+      "brief": [
+       "AVISE LONDRES QUE SUA REDE OUVIU. CINCO MINUTOS, NO MÁXIMO."
+      ],
+      "win": "LONDRES CONFIRMA. AGORA VOCÊ ESPERA A SENHA DE AÇÃO.",
+      "lose": "LONDRES NÃO SABE QUE VOCÊ OUVIU. VOCÊ ESPERA, NA DÚVIDA.",
+      "scene": "road",
+      "words": [
+       "MENSAGEM OUVIDA",
+       "ESTAMOS PRONTOS"
       ]
      },
      {
@@ -3173,7 +3395,8 @@
    "key": " KEY ",
    "lamp": " LAMP ",
    "title_big": "SOS MORSE",
-   "subtitle": "HOLD THE LINE  ·  1912 - 1944",
+   "subtitle": "HOLD THE LINE",
+   "years": "1912 - 1944",
    "tap_hold": "TAP SPACE = DIT {dot}        HOLD SPACE = DAH {dah}",
    "menu_begin": "[ENTER] BEGIN",
    "menu_continue": "[C] CONTINUE: VOLUME {v}, CHAPTER {n}",
@@ -3233,7 +3456,9 @@
    "drill": "KEY EACH LETTER {n} TIMES",
    "drill_done": "YOUR HAND HAS IT.",
    "volume_label": "VOLUME {v}",
-   "volume_after": "WHAT CAME AFTER"
+   "volume_after": "WHAT CAME AFTER",
+   "select_title": "ALL CHAPTERS",
+   "select_back": "A LETTER OR A TAP PLAYS IT   [ESC] BACK"
   },
   "pt": {
    "size": "AUMENTE O TERMINAL PARA PELO MENOS 80x24",
@@ -3249,7 +3474,8 @@
    "key": " TECLA ",
    "lamp": " LUZ ",
    "title_big": "SOS MORSE",
-   "subtitle": "MANTENHA A LINHA  ·  1912 - 1944",
+   "subtitle": "MANTENHA A LINHA",
+   "years": "1912 - 1944",
    "tap_hold": "TOQUE O ESPAÇO = PONTO {dot}      SEGURE O ESPAÇO = TRAÇO {dah}",
    "menu_begin": "[ENTER] COMEÇAR",
    "menu_continue": "[C] CONTINUAR: VOLUME {v}, CAPÍTULO {n}",
@@ -3309,7 +3535,9 @@
    "drill": "TRANSMITA CADA LETRA {n} VEZES",
    "drill_done": "SUA MÃO JÁ SABE.",
    "volume_label": "VOLUME {v}",
-   "volume_after": "O QUE VEIO DEPOIS"
+   "volume_after": "O QUE VEIO DEPOIS",
+   "select_title": "TODOS OS CAPÍTULOS",
+   "select_back": "UMA LETRA OU UM TOQUE ABRE   [ESC] VOLTAR"
   }
  },
  "sprites": {

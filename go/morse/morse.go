@@ -77,7 +77,7 @@ func letterCount(message string) int { return len(strings.ReplaceAll(message, " 
 // PaceAtChapter is a pace setting at this chapter: its first value at chapter 1, its last at the
 // final chapter, in a straight line between.
 //
-//	PaceAtChapter(1, content.Pace.WPM) == 11; PaceAtChapter(17, content.Pace.WPM) == 16
+//	PaceAtChapter(1, content.Pace.SendTime) == 8; PaceAtChapter(17, content.Pace.SendTime) == 3.5
 func PaceAtChapter(chapter int, setting [2]float64) float64 {
 	first, last := setting[0], setting[1]
 	return first + (last-first)*float64(chapter-1)/float64(len(content.Levels)-1)
@@ -192,6 +192,14 @@ func Schedule(word string, wpm, farnsworth float64) ([]Element, float64) {
 		t += dot * (3*farnsworth - 1)
 	}
 	return on, t
+}
+
+// FarnsworthFor is the factor that stretches the gap between letters at wpm to letterGap
+// seconds; never below 1, the standard 3-dot gap.
+//
+//	FarnsworthFor(2.2, 11) == 2.2/(3*1.2/11) ≈ 6.7
+func FarnsworthFor(letterGap, wpm float64) float64 {
+	return max(1, letterGap/(3*1.2/wpm))
 }
 
 func Signal(on []Element) Sound {

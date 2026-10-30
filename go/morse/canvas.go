@@ -18,6 +18,29 @@ type Canvas struct {
 	W, H, OX, OY int
 	Fg, Bg       Color
 	Cells        [][]Cell
+	Taps         []Tap // places on the canvas a tap or click sends a key
+}
+
+// Tap is a run of cells, counted on the whole canvas, that sends Key when tapped.
+type Tap struct {
+	X, Y, W int
+	Key     string
+}
+
+// KeyAt is the key a tap on cell (x, y) of the whole canvas sends, or "".
+func (c *Canvas) KeyAt(x, y int) string {
+	for _, t := range c.Taps {
+		if y == t.Y && x >= t.X && x < t.X+t.W {
+			return t.Key
+		}
+	}
+	return ""
+}
+
+// PutTap writes label from (x, y) and makes it send key when tapped.
+func (c *Canvas) PutTap(x, y int, label, key string, fg Color) {
+	c.Put(x, y, label, fg)
+	c.Taps = append(c.Taps, Tap{x + c.OX, y + c.OY, runeLen(label), key})
 }
 
 func NewCanvas(width, height int, fg, bg Color) *Canvas {

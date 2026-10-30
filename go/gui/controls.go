@@ -58,6 +58,7 @@ var (
 	declineCall    = action{"DECLINE", "RECUSAR", morse.KeyEscape}
 	hangUp         = action{"HANG UP", "DESLIGAR", morse.KeyEscape}
 	clearTapes     = action{"CLEAR", "LIMPAR", morse.KeyBackspace}
+	back           = action{"BACK", "VOLTAR", morse.KeyEscape}
 )
 
 // keyboardRows are the keyboard's keys while typing (a received word, a codename, a number to
@@ -89,6 +90,8 @@ func (a *App) screenActions() []action {
 		return []action{answerCall, declineCall}
 	case "line":
 		return []action{clearTapes, hangUp}
+	case "select":
+		return []action{back}
 	}
 	switch {
 	case g.State() == "chapter" && g.DrillDone():

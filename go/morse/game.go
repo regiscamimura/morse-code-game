@@ -75,8 +75,10 @@ type Game struct {
 	moverFrom float64  // where the scene's mover stood when this message began, 0 to 1
 	lastWords []string // what the last receiving beat received, for an echo
 
-	pos         int  // letters of the word done
-	hint        bool // show the pattern of the letter to send
+	titleKeyed  string // letters keyed silently on the title screen, listening for SOS
+	speed       int    // index into Speeds, chosen with the ▶ buttons; 0 is the pace as designed
+	pos         int    // letters of the word done
+	hint        bool   // show the pattern of the letter to send
 	timeTotal   float64
 	timeEnd     float64
 	nextBeat    float64 // next heartbeat sound in the last stretch
@@ -200,7 +202,7 @@ func (g *Game) storeProgress() {
 // ---- state changes
 
 func (g *Game) setState(state string, now float64) {
-	g.state, g.stateStart, g.typedAll = state, now, false
+	g.state, g.stateStart, g.typedAll, g.titleKeyed = state, now, false, ""
 	g.keyer = NewKeyer(g.cfg)
 	g.mixer.SetKey(false)
 	g.mixer.SetRemoteKey(false)
@@ -340,24 +342,89 @@ func (g *Game) startPlay(now float64) {
 	g.setState("play", now)
 	g.word = g.messages[g.msgNo]
 	g.pos, g.hint = 0, g.chapter <= 3
-	pace, n := content.Pace, float64(letterCount(g.word))
-	var budget float64
+	lead := .8
+	if g.msgNo > 0 { // straight on from the last message: a breath first
+		lead = 1.5
+	}
+	g.timeTotal = g.timeForMessage(lead)
+	g.timeEnd = now + g.timeTotal
 	if g.mode == "decode" {
-		lead := .8
-		if g.msgNo > 0 { // straight on from the last message: a breath first
-			lead = 1.5
-		}
-		var length float64
-		g.on, length = Schedule(g.word, PaceAtChapter(g.chapter, pace.WPM), PaceAtChapter(g.chapter, pace.Spacing))
+		pace := content.Pace
 		g.tapeLetters, g.lampLetters = LettersStillAided(g.chapter, pace.TapeChapters), LettersStillAided(g.chapter, pace.LampChapters)
 		g.replay(now, lead)
-		budget = length + lead + n*PaceAtChapter(g.chapter, pace.ReceiveTime)
-	} else {
-		budget = n * PaceAtChapter(g.chapter, pace.SendTime)
 	}
-	g.timeTotal = budget + 2
-	g.timeEnd = now + g.timeTotal
 	g.nextBeat = now
+}
+
+// speedKeys pick Speeds on a keyboard, and are what the ▶ buttons send.
+var speedKeys = []string{"1", "2", "3"}
+
+// Speeds are the ▶, ▶▶ and ▶▶▶ buttons: how many times faster than designed the message is
+// sent to the player, and how much less time they get for it.
+var Speeds = []float64{1, 1.5, 2}
+
+// timeForMessage is the seconds allowed for the current message at the chosen speed; when
+// receiving, it also times the signal, which starts after lead.
+//
+//	at ▶▶ a 4-letter message to send gets 4*SendTime/1.5 + 2 seconds
+func (g *Game) timeForMessage(lead float64) float64 {
+	pace, n, speed := content.Pace, float64(letterCount(g.word)), Speeds[g.speed]
+	if g.mode != "decode" {
+		return n*PaceAtChapter(g.chapter, pace.SendTime)/speed + 2
+	}
+	wpm := g.paceInVolume(pace.WPM) * speed
+	var length float64
+	g.on, length = Schedule(g.word, wpm, FarnsworthFor(g.paceInVolume(pace.LetterGap)/speed, wpm))
+	return length + lead + n*PaceAtChapter(g.chapter, pace.ReceiveTime)/speed + 2
+}
+
+// changeSpeed switches to Speeds[step] mid-message: the clock keeps the share of time it had
+// left, and a message being received starts over at the new speed.
+func (g *Game) changeSpeed(step int, now float64) {
+	if step == g.speed {
+		return
+	}
+	left := max(0, g.timeEnd-now) / g.timeTotal
+	g.speed = step
+	g.timeTotal = g.timeForMessage(.3)
+	g.timeEnd = now + left*g.timeTotal
+	if g.mode == "decode" {
+		g.replay(now, .3)
+	}
+	g.playSelect()
+}
+
+// paceInVolume is a receiving pace setting on this beat: its first value on the volume's first
+// receiving beat, a little closer to its last on each one after, back to the first in the
+// next volume.
+//
+//	g.paceInVolume(content.Pace.WPM) == 8 on a volume's first receiving beat
+func (g *Game) paceInVolume(setting [2]float64) float64 {
+	first, last := setting[0], setting[1]
+	nth, total := g.receivingBeatOfVolume()
+	if total < 2 {
+		return first
+	}
+	return first + (last-first)*float64(nth)/float64(total-1)
+}
+
+// receivingBeatOfVolume is which receiving beat of its volume the current beat is, from 0,
+// and how many receiving beats the volume has.
+func (g *Game) receivingBeatOfVolume() (nth, total int) {
+	v, n := g.volumeOf(g.chapter)
+	first := g.chapter - n + 1
+	for ch := first; ch < first+g.volumes()[v-1].Chapters; ch++ {
+		for i, b := range g.chapters()[ch-1].Beats {
+			if b.Mode != "decode" {
+				continue
+			}
+			if ch < g.chapter || ch == g.chapter && i < g.beatNo {
+				nth++
+			}
+			total++
+		}
+	}
+	return nth, total
 }
 
 func (g *Game) replay(now, lead float64) {
@@ -503,6 +570,10 @@ func (g *Game) finish(now float64) {
 // ---- input
 
 func (g *Game) SpaceDown(now float64) {
+	if g.state == "title" { // the secret SOS is keyed in silence
+		g.keyer.Press(now)
+		return
+	}
 	if !g.Keying() {
 		return
 	}
@@ -517,6 +588,10 @@ func (g *Game) SpaceDown(now float64) {
 }
 
 func (g *Game) SpaceUp(now float64) {
+	if g.state == "title" {
+		g.keyer.Release(now)
+		return
+	}
 	if g.Keying() {
 		g.keyer.Release(now)
 		g.mixer.SetKey(g.keyer.Sounding())
@@ -579,6 +654,11 @@ func (g *Game) Key(k string, now float64) {
 			return
 		}
 		g.playSelect()
+	case "select":
+		if n := int(strings.ToUpper(k)[0]-'A') + 1; len(k) == 1 && n >= 1 && n <= len(g.chapters()) {
+			g.startGame(n, now)
+			g.playSelect()
+		}
 	case "volume":
 		if enter && g.readyToContinue(now) && g.volumeClosing {
 			g.openChapter(now)
@@ -618,6 +698,10 @@ func (g *Game) Key(k string, now float64) {
 }
 
 func (g *Game) keyDuringPlay(k string, now float64) {
+	if step := slices.Index(speedKeys, k); step >= 0 { // messages never hold digits
+		g.changeSpeed(step, now)
+		return
+	}
 	if k == KeyTab {
 		if g.mode == "decode" {
 			g.replay(now, .3)
@@ -660,6 +744,26 @@ func typeKeyedLetters(k *Keyer, text string, letterGap, now float64) (string, st
 	return text, letter
 }
 
+// listenForSOS opens the chapter list when SOS is keyed on the title screen, a secret way to
+// play any chapter.
+func (g *Game) listenForSOS(now float64) {
+	if pattern := g.keyer.Tick(now); pattern != "" {
+		g.titleKeyed = lastRunes(g.titleKeyed+Decode[pattern], 3)
+		if g.titleKeyed == "SOS" {
+			g.setState("select", now)
+		}
+	}
+}
+
+// lastRunes is the last n runes of s.
+func lastRunes(s string, n int) string {
+	r := []rune(s)
+	return string(r[max(0, len(r)-n):])
+}
+
+// chapterKey is the letter that picks a chapter on the chapter list: A for the first.
+func chapterKey(chapter int) string { return string(rune('A' + chapter - 1)) }
+
 func (g *Game) Tick(now float64) {
 	switch g.state {
 	case "free", "chapter":
@@ -668,6 +772,8 @@ func (g *Game) Tick(now float64) {
 		if g.state == "chapter" {
 			g.countDrill(letter)
 		}
+	case "title":
+		g.listenForSOS(now)
 	case "codename", "switchboard", "calling", "ringing", "line":
 		g.tickLine(now)
 	case "play":

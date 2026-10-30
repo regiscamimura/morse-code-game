@@ -32,6 +32,21 @@ func (g *Game) DrawPhone(columns int, now float64) []*Canvas {
 		p.center(showIf(g.hi > 0, g.text("best", map[string]any{"best": g.hi})), Faint)
 		p.picture(picture, 3, 18)
 		p.center(g.text("subtitle", nil), Teal)
+		p.center(g.text("years", nil), Teal)
+	case "select":
+		c, y := p.row(Band)
+		c.Put(1, y, g.text("select_title", nil), Amber)
+		p.blank()
+		for n := range g.chapters() {
+			v, _ := g.volumeOf(n + 1)
+			color := Paper
+			if v%2 == 0 {
+				color = Teal
+			}
+			c, y := p.row(Ink)
+			line := []rune(g.chapterListLine(n + 1))
+			c.PutTap(1, y, string(line[:min(len(line), columns-2)]), strings.ToLower(chapterKey(n+1)), color)
+		}
 	case "volume":
 		_, title, subtitle, lines := g.shownVolume()
 		p.blanks(2)
@@ -90,6 +105,8 @@ func (g *Game) DrawPhone(columns int, now float64) []*Canvas {
 	case "play":
 		g.drawPhoneHud(p)
 		g.drawPhoneHeader(p)
+		speedRow, y := p.row(Ink)
+		g.drawSpeedButtons(speedRow, (columns-speedButtonsWidth)/2, y)
 		p.wrapped(g.task(), Teal)
 		lines, _, keyRow := g.messageLayout()
 		p.picture(picture, 3, keyRow)
