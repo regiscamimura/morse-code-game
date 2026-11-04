@@ -5,7 +5,8 @@
 // terminal version. A phone held upright shows the cartridge cover first, then the game at the
 // top of the screen in its phone layout (larger words between 80-column pictures, see
 // morse.Game.DrawPhone) and the controls below it: the flat red telegraph key while keying,
-// a keyboard while receiving, else just the screen's buttons.
+// a keyboard while receiving, else just the screen's buttons. A screen wider than tall, such as
+// a phone on its side or a tablet, keeps the same game and controls side by side.
 package gui
 
 import (
@@ -142,6 +143,14 @@ type strip struct {
 	rect   image.Rectangle
 }
 
+// sideBySide says the phone's controls go beside the game: a screen wider than tall has no
+// height to spare below it.
+func (a *App) sideBySide() bool { return a.width > a.height }
+
+// sidePanelWidth is the controls' share of a sideBySide screen: enough for a 10-key keyboard
+// row, at about the size it has on a phone held upright.
+func (a *App) sidePanelWidth() int { return a.width * 2 / 5 }
+
 // layoutScreen decides what the screen shows and where: on a desktop the 80x24 game filling
 // the window; on a phone the cover, or the game's strips stacked from the top.
 func (a *App) layoutScreen(now float64) {
@@ -155,6 +164,8 @@ func (a *App) layoutScreen(now float64) {
 			inserted = now - a.insertedAt
 		}
 		a.strips, a.gameBottom = []strip{{morse.DrawCover(80, 24, now, inserted), screen}}, a.height
+	case a.sideBySide():
+		a.strips, a.gameBottom = stackStrips(a.game.DrawPhone(phoneColumns, now), a.width-a.sidePanelWidth(), a.height)
 	default:
 		a.strips, a.gameBottom = stackStrips(a.game.DrawPhone(phoneColumns, now), a.width, a.height-a.controlsMinHeight())
 	}

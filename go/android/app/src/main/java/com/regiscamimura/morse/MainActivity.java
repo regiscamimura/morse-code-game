@@ -7,17 +7,22 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.DisplayCutout;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowInsets;
 import android.view.WindowInsetsController;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 
 import com.regiscamimura.morse.mobile.EbitenView;
 import com.regiscamimura.morse.mobile.Mobile;
 import com.regiscamimura.morse.mobile.URLOpener;
 
 public class MainActivity extends Activity {
+    /** morse.Ink, the game's background, so the strip beside a camera cutout doesn't show. */
+    private static final int INK = 0xFF0A0C16;
+
     private GameView view;
 
     @Override
@@ -32,7 +37,27 @@ public class MainActivity extends Activity {
         });
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         view = new GameView(this);
-        setContentView(view);
+        FrameLayout root = new FrameLayout(this);
+        root.setBackgroundColor(INK);
+        root.addView(view);
+        keepClearOfDisplayCutout(root);
+        setContentView(root);
+    }
+
+    /** Android 15 and later draw under a camera cutout, which sits at the game's side when the phone is turned. */
+    private void keepClearOfDisplayCutout(View root) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+            return;
+        }
+        root.setOnApplyWindowInsetsListener((v, insets) -> {
+            DisplayCutout cutout = insets.getDisplayCutout();
+            if (cutout == null) {
+                v.setPadding(0, 0, 0, 0);
+            } else {
+                v.setPadding(cutout.getSafeInsetLeft(), cutout.getSafeInsetTop(), cutout.getSafeInsetRight(), cutout.getSafeInsetBottom());
+            }
+            return insets;
+        });
     }
 
     @Override

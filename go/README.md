@@ -179,7 +179,9 @@ Every smoke call against the live exchange hands out two new numbers for good.
 go test ./...                       # keyers, content checks, playthroughs, a call between two games
 MORSE_EXCHANGE=ws://localhost:8787 go test ./exchange   # the client against a running exchange
 SCREENSHOTS=/tmp/shots SCREENSHOT_SIZE=1080x2400 xvfb-run go test ./gui -run Screens
-                                    # plays through the real phone GUI and saves PNGs
+                                    # plays through the real phone GUI and saves PNGs; fails if a
+                                    # control leaves the screen or the game runs into the controls.
+                                    # Use any size: 2400x1080 is a phone on its side
 SCREENSHOTS=/tmp/shots SCREENSHOT_SIZE=1080x2400 xvfb-run go test ./gui -run LineScreens
                                     # a call on the telegraph line, through a scripted exchange
 ```
