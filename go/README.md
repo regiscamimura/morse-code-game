@@ -198,3 +198,27 @@ To install, either copy `app/build/outputs/apk/debug/app-debug.apk` to the phone
 ```
 
 The launcher icon is the cover's cartridge, drawn by `go run ./cmd/morse-icon android/app/src/main/res`.
+
+## Releasing
+
+Git tags hold the version, so nobody edits a version number by hand. Merging the Release PR publishes to production:
+
+```
+push to main     -> the bot opens or updates one "Release v0.1.3" PR and its CHANGELOG.md section
+squash-merge it  -> tag v0.1.3 and a GitHub Release
+                 -> signed bundle, versionName 0.1.3, versionCode 103
+                 -> uploaded to Play production, live for everyone once Google approves it
+```
+
+| To do this | Do this |
+|---|---|
+| Bump minor or major | Put `[MINOR]` or `[MAJOR]` in the PR title: `Release v0.1.3 [MINOR]` becomes `Release v0.2.0 [MINOR]` |
+| Reword Play's "What's new" | Edit the new section of `CHANGELOG.md` on the `release` branch after setting the title (first 500 characters, English) |
+| Retry a failed build or upload | Actions -> the Release run -> Re-run failed jobs |
+| Stop a bad release | Halt the rollout in Play Console, then ship a fix: Play never accepts a lower versionCode |
+
+Commit subjects become the changelog, and players read it, so write them for players.
+
+Setup outside the repo: the Google Cloud project `sos-morse-play-ci` holds the `play-publisher` service account, invited in Play
+Console for this app. The repo secrets are `PLAY_SERVICE_ACCOUNT_JSON`, `UPLOAD_KEYSTORE_BASE64`, `UPLOAD_STORE_PASSWORD`,
+`UPLOAD_KEY_PASSWORD` and `UPLOAD_KEY_ALIAS`. Actions must be allowed to create pull requests.

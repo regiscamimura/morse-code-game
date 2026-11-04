@@ -1,0 +1,132 @@
+name: Release PR
+
+# Keeps ONE open "Release vX.Y.Z" PR on a bot-owned `release` branch.
+# - On every push to main: collects the commit subjects since the last vX.Y.Z tag
+#   into CHANGELOG.md and works out the next version (patch by default).
+# - When the PR title is edited (add [MINOR] or [MAJOR]): recomputes, so the version
+#   shown always matches the keyword.
+#
+# The title "Release vX.Y.Z" is the source of truth: release.yml reads the version
+# from it on merge, so the tag, the title and the CHANGELOG heading can't drift.
+#
+# GITHUB_TOKEN pushes and edits never re-trigger workflows, so this can't loop.
+# It needs the repo setting "Allow GitHub Actions to create and approve pull requests".
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [edited]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  # Real runs queue so a new one never cancels another mid-push; an unrelated PR edit
+  # gets its own group.
+  group: ${{ (github.event_name == 'push' || github.event.pull_request.head.ref == 'release') && 'release-pr' || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  release-pr:
+    if: >-
+      github.event_name == 'push'
+      || (github.event.pull_request.head.ref == 'release'
+          && github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Maintain the Release PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch --force --tags origin main
+
+          # Right after a Release PR merges, main's tip is the release commit, either
+          # directly or as a merge commit's second parent. Skip, so this doesn't race
+          # release.yml's tag and open a duplicate PR.
+          if [ "$GITHUB_EVENT_NAME" = "push" ] \
+             && { git log -1 --format='%s' origin/main | grep -qE '^Release v[0-9]+\.[0-9]+\.[0-9]' \
+                  || git log -1 --format='%s' "origin/main^2" 2>/dev/null | grep -qE '^Release v[0-9]+\.[0-9]+\.[0-9]'; }; then
+            echo "main is at a release commit: nothing to do."
+            exit 0
+          fi
+
+          last_tag="$(git describe --tags --match 'v[0-9]*.[0-9]*.[0-9]*' --abbrev=0 origin/main 2>/dev/null || true)"
+          if [ -z "$last_tag" ] && git tag -l 'v[0-9]*.[0-9]*.[0-9]*' | grep -q .; then
+            echo "::error::version tags exist but none are reachable from main: refusing to restart at v0.0.1."
+            exit 1
+          fi
+          range="${last_tag:+${last_tag}..}origin/main"
+
+          # The final sed drops the " (#NN)" GitHub appends to squash subjects.
+          changelog="$(git log "$range" --first-parent --no-merges --invert-grep \
+            --grep='^Release v[0-9]\+\.[0-9]\+\.[0-9]' \
+            --format='- %s' | sed -E 's/ \(#[0-9]+\)$//')"
+
+          pr_number="$(gh pr list --head release --base main --state open --json number --jq '.[0].number // empty')"
+
+          if [ -z "$changelog" ]; then
+            echo "No new commits since ${last_tag:-the start}: no release needed."
+            if [ -n "$pr_number" ]; then gh pr close "$pr_number" || true; fi
+            exit 0
+          fi
+
+          # The bump comes from the bot's PR title only, never the changelog, which may
+          # quote a marker. Highest wins.
+          pr_title=""
+          if [ -n "$pr_number" ]; then pr_title="$(gh pr view "$pr_number" --json title --jq '.title')"; fi
+          if printf '%s' "$pr_title" | grep -qF '[MAJOR]'; then
+            bump="major"; marker=" [MAJOR]"
+          elif printf '%s' "$pr_title" | grep -qF '[MINOR]'; then
+            bump="minor"; marker=" [MINOR]"
+          else
+            bump="patch"; marker=""
+          fi
+
+          major=0; minor=0; patch=0
+          if [ -n "$last_tag" ]; then
+            IFS=. read -r major minor patch <<< "${last_tag#v}"
+            if ! printf '%s' "$major$minor$patch" | grep -qE '^[0-9]+$'; then
+              echo "::error::last tag '$last_tag' is not a vMAJOR.MINOR.PATCH tag"
+              exit 1
+            fi
+          fi
+          major=$((10#$major)); minor=$((10#$minor)); patch=$((10#$patch))
+          case "$bump" in
+            major) major=$((major + 1)); minor=0; patch=0 ;;
+            minor) minor=$((minor + 1)); patch=0 ;;
+            *) patch=$((patch + 1)) ;;
+          esac
+          next_version="v${major}.${minor}.${patch}"
+          echo "Last tag: ${last_tag:-none} | bump: ${bump} | next: ${next_version}"
+
+          # Rebuild `release` from main each run, so the PR's diff is exactly one new
+          # CHANGELOG section.
+          git checkout -B release origin/main
+          if ! grep -q '<!-- RELEASES -->' CHANGELOG.md; then
+            echo "::error::CHANGELOG.md is missing the <!-- RELEASES --> marker."
+            exit 1
+          fi
+          printf '\n## %s (%s)\n\n%s\n' "$next_version" "$(date -u +%Y-%m-%d)" "$changelog" > "$RUNNER_TEMP/section.md"
+          sed "/<!-- RELEASES -->/r $RUNNER_TEMP/section.md" CHANGELOG.md > "$RUNNER_TEMP/CHANGELOG.md"
+          mv "$RUNNER_TEMP/CHANGELOG.md" CHANGELOG.md
+          git add CHANGELOG.md
+          git commit -m "Release ${next_version}"
+          git push --force origin release
+
+          hint='Squash-merging this PR publishes to production on Google Play. Patch by default: put MINOR or MAJOR in square brackets in this title for a bigger bump. The first 500 characters of the CHANGELOG section become "What'"'"'s new" on Play: to reword it, edit CHANGELOG.md on the `release` branch after setting the title, and merge before the next push to main.'
+          body="$(printf '%s\n\n%s\n' "$changelog" "$hint")"
+          title="Release ${next_version}${marker}"
+          if [ -n "$pr_number" ]; then
+            gh pr edit "$pr_number" --title "$title" --body "$body"
+          else
+            gh pr create --base main --head release --title "$title" --body "$body"
+          fi

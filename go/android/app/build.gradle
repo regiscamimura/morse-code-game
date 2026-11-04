@@ -15,8 +15,9 @@ android {
         applicationId 'com.regiscamimura.morse'
         minSdk 24
         targetSdk 36
-        versionCode 1
-        versionName '0.1.0'
+        // release.yml sets these from the git tag; local builds keep the placeholders
+        versionCode = System.getenv('MORSE_VERSION_CODE')?.toInteger() ?: 1
+        versionName = System.getenv('MORSE_VERSION_NAME') ?: '0.1.0'
     }
 
     signingConfigs {
