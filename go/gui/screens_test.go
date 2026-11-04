@@ -298,10 +298,33 @@ func (d *screenDriver) script() {
 	})
 }
 
+// checkLayout fails the run if a control is empty or off the screen, or the game runs into the
+// controls, on any frame of the script at this screen size.
+func (d *screenDriver) checkLayout() {
+	if d.app.onCover || d.failed != "" {
+		return
+	}
+	screen := image.Rectangle{Max: d.size}
+	for _, c := range d.app.controls {
+		if c.rect.Empty() || !c.rect.In(screen) {
+			d.failed = fmt.Sprintf("%s: control %q at %v is outside %v", d.app.game.State(), c.label, c.rect, screen)
+			return
+		}
+	}
+	panel := d.app.controlsArea()
+	for _, s := range d.app.strips {
+		if s.rect.Overlaps(panel) {
+			d.failed = fmt.Sprintf("%s: game strip %v overlaps the controls at %v", d.app.game.State(), s.rect, panel)
+			return
+		}
+	}
+}
+
 func (d *screenDriver) Update() error {
 	if err := d.app.Update(); err != nil {
 		return err
 	}
+	d.checkLayout()
 	if d.done || d.failed != "" {
 		return ebiten.Termination
 	}

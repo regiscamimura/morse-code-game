@@ -108,9 +108,13 @@ func (a *App) screenActions() []action {
 	return []action{enter}
 }
 
-// controlsArea is the phone's screen below the game: all of it for the telegraph key or the
-// keyboard, else just the bottom, enough for a row of buttons.
+// controlsArea is the screen the game leaves to the controls: a column beside it on a
+// sideBySide screen. Below it, all that's left for the telegraph key or the keyboard, else just
+// the bottom, enough for a row of buttons.
 func (a *App) controlsArea() image.Rectangle {
+	if a.sideBySide() {
+		return image.Rect(a.width-a.sidePanelWidth(), 0, a.width, a.height)
+	}
 	top := a.gameBottom
 	if !a.game.Keying() && !a.game.Typing() {
 		top = max(top, a.height-a.controlsMinHeight())
@@ -118,13 +122,13 @@ func (a *App) controlsArea() image.Rectangle {
 	return image.Rect(0, top, a.width, a.height)
 }
 
-// layoutControls lays out the phone's controls below the game: a row of the screen's buttons
+// layoutControls lays out the phone's controls in controlsArea: a row of the screen's buttons
 // at the bottom, and above it the red telegraph key while keying, or a keyboard while
-// receiving. Every row is as wide as the screen.
+// receiving. Every row is as wide as the area.
 func (a *App) layoutControls() []control {
-	below := a.controlsArea()
-	gap := max(3, below.Dx()/100)
-	area := below.Inset(gap * 3)
+	panel := a.controlsArea()
+	gap := max(3, panel.Dx()/100)
+	area := panel.Inset(gap * 3)
 	// a key's height: a fifth of the room under a keyboard, a quarter under the telegraph key,
 	// all of it for buttons alone; never taller than a 10-key row's keys are wide, times 1.6
 	keyHeight := area.Dy()
@@ -208,7 +212,7 @@ type panelPainter struct {
 }
 
 func (a *App) drawControls(screen *ebiten.Image) {
-	below := a.controlsArea()
+	area := a.controlsArea()
 	p := &a.panel
 	if p.image == nil || p.image.Bounds() != screen.Bounds() {
 		if p.image != nil {
@@ -219,7 +223,7 @@ func (a *App) drawControls(screen *ebiten.Image) {
 	if p.controls == nil || !slices.Equal(p.controls, a.controls) {
 		p.controls = a.controls
 		p.image.Clear()
-		drawSteelPanel(p.image, below)
+		drawSteelPanel(p.image, area)
 		for _, c := range a.controls {
 			if !c.telegraphKey {
 				drawGlassKey(p.image, c, controlTint(c), false)
@@ -227,8 +231,8 @@ func (a *App) drawControls(screen *ebiten.Image) {
 		}
 	}
 	op := &ebiten.DrawImageOptions{}
-	op.GeoM.Translate(float64(below.Min.X), float64(below.Min.Y))
-	screen.DrawImage(p.image.SubImage(below).(*ebiten.Image), op)
+	op.GeoM.Translate(float64(area.Min.X), float64(area.Min.Y))
+	screen.DrawImage(p.image.SubImage(area).(*ebiten.Image), op)
 	for _, c := range a.controls {
 		switch {
 		case c.telegraphKey:
@@ -260,8 +264,8 @@ func drawTelegraphKey(screen *ebiten.Image, r image.Rectangle, held bool) {
 	vector.FillRect(screen, x, y, w, h-edge, keyRed, false)
 }
 
-// drawSteelPanel fills the area below the game with steel plate, a seam along its top and a
-// rivet in each corner.
+// drawSteelPanel fills the controls' area with steel plate, a seam along its top and a rivet in
+// each corner.
 func drawSteelPanel(screen *ebiten.Image, r image.Rectangle) {
 	x, y, w, h := float32(r.Min.X), float32(r.Min.Y), float32(r.Dx()), float32(r.Dy())
 	vector.FillRect(screen, x, y, w, h, steel, false)
