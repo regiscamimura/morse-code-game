@@ -4,6 +4,10 @@ Written by the Release PR bot, newest first. See "Releasing" in `go/README.md`.
 
 <!-- RELEASES -->
 
+## v1.0.1 (2026-11-05)
+
+- A folder for the build. It worked on my machine
+
 ## v1.0.0 (2026-11-05)
 
 - Blind mode closes every volume. No clues, no mercy
