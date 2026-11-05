@@ -124,12 +124,12 @@ func (a *App) insertCartridgeOnTap(now float64) {
 		if inpututil.IsKeyJustPressed(ebiten.KeyEnter) || inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft) ||
 			len(inpututil.AppendJustPressedTouchIDs(nil)) > 0 {
 			a.insertedAt = now
+			a.mixer.Play(morse.Warble(), morse.FX, true) // the cartridge sings on its way in
 		}
 		return
 	}
 	if now-a.insertedAt > morse.CoverSeconds {
 		a.onCover = false
-		a.mixer.Play(morse.Warble(), morse.FX, true)
 	}
 }
 

@@ -286,6 +286,70 @@ func TestPlaythrough(t *testing.T) {
 	}
 }
 
+// TestBlindMessageIsAllOrNothing: no verdict on a letter, no clock, and one wrong letter loses
+// the whole message, receiving or sending.
+func TestBlindMessageIsAllOrNothing(t *testing.T) {
+	blindPlay := func(mode string) *Game {
+		g := NewGame(DefaultConfig(), NewMixer(0), 0)
+		g.startGame(1, 0)
+		g.beat, g.mode = Beat{Mode: mode, Blind: true}, mode
+		g.messages, g.msgNo = []string{"AT TEN"}, 0
+		g.startPlay(1)
+		return g
+	}
+	typeAll := func(g *Game, letters string) {
+		for _, ch := range letters {
+			g.Key(string(ch), 2)
+		}
+	}
+	g := blindPlay("decode")
+	typeAll(g, "attex")
+	g.Key(KeyBackspace, 2)
+	typeAll(g, "n")
+	g.Tick(1e6) // long past any clock
+	if g.State() != "play" || g.typed != "ATTEN" || g.score != 0 {
+		t.Fatalf("before ENTER: %s, typed %q, score %d", g.State(), g.typed, g.score)
+	}
+	g.Key(KeyEnter, 2)
+	if g.State() != "win" {
+		t.Errorf("all letters right: %s", g.State())
+	}
+	g = blindPlay("decode")
+	typeAll(g, "attem")
+	g.Key(KeyEnter, 2)
+	if g.State() != "lose" || g.lives != 2 {
+		t.Errorf("one letter wrong: %s, %d lives", g.State(), g.lives)
+	}
+	g = blindPlay("encode")
+	keyWord(g, "AT TEN", 2)
+	if g.State() != "win" {
+		t.Errorf("sent right: %s", g.State())
+	}
+	g = blindPlay("encode")
+	keyWord(g, "AT TEM", 2)
+	if g.State() != "lose" {
+		t.Errorf("sent one letter wrong: %s", g.State())
+	}
+}
+
+// TestEveryVolumeEndsBlind: each volume's last chapter has a blind message to receive and one to
+// send, and its last message is blind.
+func TestEveryVolumeEndsBlind(t *testing.T) {
+	for _, lang := range Langs {
+		chapter := 0
+		for _, v := range content.Volumes[lang] {
+			chapter += v.Chapters
+			beats := content.Chapters[lang][chapter-1].Beats
+			blind := func(mode string) bool {
+				return slices.ContainsFunc(beats, func(b Beat) bool { return b.Blind && b.Mode == mode })
+			}
+			if !blind("decode") || !blind("encode") || !beats[len(beats)-1].Blind {
+				t.Errorf("%s %s doesn't end blind", lang, v.Title)
+			}
+		}
+	}
+}
+
 // TestEveryScreenDraws draws each state in both languages, at every chapter's settings.
 func TestEveryScreenDraws(t *testing.T) {
 	for _, lang := range Langs {

@@ -77,7 +77,7 @@ func letterCount(message string) int { return len(strings.ReplaceAll(message, " 
 // PaceAtChapter is a pace setting at this chapter: its first value at chapter 1, its last at the
 // final chapter, in a straight line between.
 //
-//	PaceAtChapter(1, content.Pace.SendTime) == 8; PaceAtChapter(17, content.Pace.SendTime) == 3.5
+//	PaceAtChapter(1, content.Pace.SendTime) == 4.5;PaceAtChapter(17, content.Pace.SendTime) == 3.5
 func PaceAtChapter(chapter int, setting [2]float64) float64 {
 	first, last := setting[0], setting[1]
 	return first + (last-first)*float64(chapter-1)/float64(len(content.Levels)-1)

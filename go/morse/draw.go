@@ -146,8 +146,11 @@ func (g *Game) headerBand() (Color, string) {
 
 // task is what the player must do with the beat's messages.
 func (g *Game) task() string {
-	if g.beat.Task != "" {
+	switch {
+	case g.beat.Task != "":
 		return g.beat.Task
+	case g.beat.Blind:
+		return g.text("task_blind_"+g.mode, nil)
 	}
 	return g.text("task_"+g.mode, nil)
 }
@@ -205,7 +208,8 @@ func (g *Game) drawScene(c *Canvas, now float64, key string, p float64, ended *s
 	scene := content.Scenes[key]
 	sky, ground := sceneColors[scene.Sky], sceneColors[scene.Ground]
 	lost := ended != nil && !ended.won
-	if lost {
+	burning := ended != nil && ended.won && scene.Ending == "burns"
+	if lost || burning {
 		c.Band(3, 11, Ember)
 	} else {
 		c.Band(3, 11, sky)
@@ -245,6 +249,18 @@ func (g *Game) drawScene(c *Canvas, now float64, key string, p float64, ended *s
 	switch {
 	case ended == nil || !ended.won:
 		Sprite(c, mx, my, mover, spritePalette, int(now*4)%2 == 1, nil)
+	case burning: // it comes down in flames, a row a second, to the ground
+		fall := min(int(ended.t), 11-my-mh)
+		Sprite(c, mx, my+fall, mover, spritePalette, false, nil)
+		for row := range mh {
+			drawFire(c, mx, my+fall+row, mw, 1, ended.t, now)
+		}
+	case scene.Ending == "sinks":
+		// a row every 2/3 s, the sea drawn back over what has gone under
+		if depth := int(ended.t * 1.5); depth < mh {
+			Sprite(c, mx, my+depth, mover, spritePalette, false, nil)
+			c.Band(11, 13, ground)
+		}
 	case ended.t < 1.5:
 		faded := Faint
 		Sprite(c, mx, my, mover, spritePalette, false, &faded)
@@ -411,7 +427,44 @@ func (g *Game) drawSpeedButtons(c *Canvas, x, y int) {
 	}
 }
 
+// blindTop is the row a blind screen's big letters start on, the same for every message so that
+// where they stand gives nothing away. They take up to two lines, blindRows rows.
+const blindTop, blindRows = 8, 8
+
+// blindTypedLimit is the most letters a blind screen can show of what's typed.
+const blindTypedLimit = 2 * bigLineLetters
+
+// blindLines is what a blind screen shows in big letters: the message to send, or when
+// receiving, only what's been typed.
+//
+//	blindLines() == []string{"AT TEN"} sending; []string{"ATT"} receiving, with g.typed "ATT"
+func (g *Game) blindLines() []string {
+	if g.mode == "encode" {
+		return wrap(g.word, bigLineLetters)
+	}
+	var lines []string
+	for rest := g.typed; rest != ""; {
+		n := min(bigLineLetters, len(rest))
+		lines, rest = append(lines, rest[:n]), rest[n:]
+	}
+	return lines
+}
+
+// drawBlindPlay shows no scene, clock, lamp, tape, hint or key: only the task and blindLines.
+func (g *Game) drawBlindPlay(c *Canvas) {
+	g.drawHud(c)
+	g.drawHeader(c, g.task())
+	for n, line := range g.blindLines() {
+		BigCenter(c, blindTop+4*n, line, Paper)
+	}
+	c.Center(23, g.text("help_blind_"+g.mode, nil), Faint)
+}
+
 func (g *Game) drawPlay(c *Canvas, now float64) {
+	if g.beat.Blind {
+		g.drawBlindPlay(c)
+		return
+	}
 	g.drawHud(c)
 	g.drawHeader(c, g.task())
 	g.drawSpeedButtons(c, 79-speedButtonsWidth, 2)

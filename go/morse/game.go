@@ -78,6 +78,7 @@ type Game struct {
 	titleKeyed  string // letters keyed silently on the title screen, listening for SOS
 	speed       int    // index into Speeds, chosen with the ▶ buttons; 0 is the pace as designed
 	pos         int    // letters of the word done
+	typed       string // a blind message's letters so far, judged only when it's whole
 	hint        bool   // show the pattern of the letter to send
 	timeTotal   float64
 	timeEnd     float64
@@ -125,6 +126,9 @@ func (g *Game) Keying() bool {
 
 // Receiving: the player is typing the letters of a received word.
 func (g *Game) Receiving() bool { return g.state == "play" && g.mode == "decode" }
+
+// Blind: a message is being played with no clues (Beat.Blind).
+func (g *Game) Blind() bool { return g.state == "play" && g.beat.Blind }
 
 // Typing: the player types letters or digits: a received word, a codename, a number to dial.
 func (g *Game) Typing() bool {
@@ -341,7 +345,7 @@ func (g *Game) messageNumber() (n, total int) {
 func (g *Game) startPlay(now float64) {
 	g.setState("play", now)
 	g.word = g.messages[g.msgNo]
-	g.pos, g.hint = 0, g.chapter <= 3
+	g.pos, g.typed, g.hint = 0, "", g.chapter <= 3
 	lead := .8
 	if g.msgNo > 0 { // straight on from the last message: a breath first
 		lead = 1.5
@@ -398,7 +402,7 @@ func (g *Game) changeSpeed(step int, now float64) {
 // receiving beat, a little closer to its last on each one after, back to the first in the
 // next volume.
 //
-//	g.paceInVolume(content.Pace.WPM) == 8 on a volume's first receiving beat
+//	g.paceInVolume(content.Pace.WPM) == 15 on a volume's first receiving beat
 func (g *Game) paceInVolume(setting [2]float64) float64 {
 	first, last := setting[0], setting[1]
 	nth, total := g.receivingBeatOfVolume()
@@ -462,10 +466,54 @@ func (g *Game) correct(now float64) {
 	if g.pos < len(g.word) {
 		return
 	}
+	g.finishMessage(now)
+}
+
+// finishMessage goes on to the beat's next message, or wins the beat after its last.
+func (g *Game) finishMessage(now float64) {
 	if g.msgNo+1 < len(g.messages) {
 		g.nextMessage(now)
 	} else {
 		g.win(now)
+	}
+}
+
+// judgeBlindMessage settles a whole blind message. Every letter of a right one scores at the
+// top combo, for going without the clues; a single wrong letter loses it.
+//
+//	"AT TEN" with g.typed "ATTEN" wins; with "ATTEM" loses
+func (g *Game) judgeBlindMessage(now float64) {
+	if g.typed != strings.ReplaceAll(g.word, " ", "") {
+		g.lose(now)
+		return
+	}
+	g.score += 10 * g.chapter * 8 * letterCount(g.word)
+	g.finishMessage(now)
+}
+
+// typeBlindLetter takes a key while receiving blind: ENTER sends what's typed, as there's no
+// telling how long the message was.
+func (g *Game) typeBlindLetter(k string, now float64) {
+	ch := strings.ToUpper(k)
+	switch _, isLetter := Code[ch]; {
+	case (k == KeyEnter || k == "\r") && g.typed != "":
+		g.judgeBlindMessage(now)
+	case k == KeyBackspace || k == "\x08":
+		g.typed = g.typed[:max(0, len(g.typed)-1)]
+	case isLetter && len(g.typed) < blindTypedLimit:
+		g.typed += ch
+	}
+}
+
+// keyBlindLetter takes a letter keyed while sending blind, judged once there are enough.
+func (g *Game) keyBlindLetter(pattern string, now float64) {
+	letter, ok := Decode[pattern]
+	if !ok {
+		letter = "?"
+	}
+	g.typed += letter
+	if len(g.typed) >= letterCount(g.word) {
+		g.judgeBlindMessage(now)
 	}
 }
 
@@ -698,6 +746,12 @@ func (g *Game) Key(k string, now float64) {
 }
 
 func (g *Game) keyDuringPlay(k string, now float64) {
+	if g.beat.Blind { // no speed change either: it would play the message again
+		if g.mode == "decode" {
+			g.typeBlindLetter(k, now)
+		}
+		return
+	}
 	if step := slices.Index(speedKeys, k); step >= 0 { // messages never hold digits
 		g.changeSpeed(step, now)
 		return
@@ -778,7 +832,9 @@ func (g *Game) Tick(now float64) {
 		g.tickLine(now)
 	case "play":
 		if g.mode == "encode" {
-			if pattern := g.keyer.Tick(now); pattern != "" {
+			if pattern := g.keyer.Tick(now); pattern != "" && g.beat.Blind {
+				g.keyBlindLetter(pattern, now)
+			} else if pattern != "" {
 				need := string(g.word[g.pos])
 				if got := Decode[pattern]; got == need {
 					g.correct(now)
@@ -791,7 +847,7 @@ func (g *Game) Tick(now float64) {
 				}
 			}
 		}
-		if g.state == "play" {
+		if g.state == "play" && !g.beat.Blind { // blind has no clock: its length would be a clue
 			left := (g.timeEnd - now) / g.timeTotal
 			if now >= g.timeEnd {
 				g.lose(now)

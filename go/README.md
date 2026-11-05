@@ -58,6 +58,9 @@ KEY  • ━            = A   ▮▮▮▯▯
  └ lights up while the key is down
 ```
 
+- **Blind:** every volume ends with messages sent or received with no clues:
+  no clock, picture, lamp or sound for a letter. You hear a message once. All of
+  it is right or it's lost.
 - **Volumes:** the chapters are grouped into six stories: Titanic (4
   chapters), Lusitania (2), Room 40 (3), Hindenburg (1), Station X (3) and
   Coruja (4). A volume opens with the history you need ("1914. EUROPE GOES TO

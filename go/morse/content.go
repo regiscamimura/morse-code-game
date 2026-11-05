@@ -28,6 +28,9 @@ type Beat struct {
 	Echo   bool     `json:"echo"`
 	Count  int      `json:"count"`
 	Groups bool     `json:"groups"`
+	// Blind plays with no clues: no clock, picture, lamp, tape, hint or sound for a letter,
+	// and a received message is heard once. The whole message is right or it's lost.
+	Blind bool `json:"blind"`
 }
 
 // Chapter is a historical event. It opens on a cover: the Cover picture, the year and the title.
@@ -56,6 +59,7 @@ type Scene struct {
 	Target string `json:"target"`
 	Sky    string `json:"sky"`
 	Ground string `json:"ground"`
+	Ending string `json:"ending"` // what a won message does to the mover: "sinks", "burns", or it fades
 }
 
 // Pace sets how difficulty grows. Each pair is the value at the first chapter and at the
@@ -63,7 +67,8 @@ type Scene struct {
 type Pace struct {
 	// WPM is the speed of received letters, and LetterGap the silence between them in
 	// seconds: the first value on a volume's first receiving beat, the last on its final one.
-	// Each volume starts slow again.
+	// Each volume starts slow again. WPM stays near real Morse, so a letter sounds like one;
+	// LetterGap is where a beginner gets the time.
 	WPM         [2]float64 `json:"wpm"`
 	LetterGap   [2]float64 `json:"letter_gap"`
 	ReceiveTime [2]float64 `json:"receive_time"` // seconds allowed per letter to receive

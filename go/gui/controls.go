@@ -94,6 +94,10 @@ func (a *App) screenActions() []action {
 		return []action{back}
 	}
 	switch {
+	case g.Blind() && g.Receiving():
+		return []action{enter}
+	case g.Blind():
+		return nil
 	case g.State() == "chapter" && g.DrillDone():
 		return []action{hearNew, enter}
 	case g.State() == "chapter":

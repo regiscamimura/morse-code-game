@@ -105,6 +105,12 @@ func (g *Game) DrawPhone(columns int, now float64) []*Canvas {
 	case "play":
 		g.drawPhoneHud(p)
 		g.drawPhoneHeader(p)
+		if g.beat.Blind {
+			p.wrapped(g.task(), Teal)
+			p.blank()
+			p.picture(picture, blindTop, blindTop+blindRows)
+			break
+		}
 		speedRow, y := p.row(Ink)
 		g.drawSpeedButtons(speedRow, (columns-speedButtonsWidth)/2, y)
 		p.wrapped(g.task(), Teal)
