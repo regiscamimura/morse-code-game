@@ -10,6 +10,7 @@ export ANDROID_HOME="${ANDROID_HOME:-$HOME/Android/Sdk}"
 export ANDROID_NDK_HOME="${ANDROID_NDK_HOME:-$(ls -d "$ANDROID_HOME"/ndk/* | sort -V | tail -1)}"
 EBITENMOBILE="$(go env GOPATH)/bin/ebitenmobile"
 [ -x "$EBITENMOBILE" ] || go install github.com/hajimehoshi/ebiten/v2/cmd/ebitenmobile@v2.10.5
+mkdir -p app/libs # gitignored, so a fresh clone doesn't have it
 # max-page-size: Play rejects native libs not aligned for 16 KB pages (NDK r27 still links at 4 KB)
 "$EBITENMOBILE" bind -target android/arm64 -trimpath -ldflags="-s -w -extldflags=-Wl,-z,max-page-size=16384" -javapkg com.regiscamimura.morse -androidapi 24 \
     -o app/libs/morse.aar ../mobile
