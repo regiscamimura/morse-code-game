@@ -29,7 +29,8 @@ type Beat struct {
 	Count  int      `json:"count"`
 	Groups bool     `json:"groups"`
 	// Blind plays with no clues: no clock, picture, lamp, tape, hint or sound for a letter,
-	// and a received message is heard once. The whole message is right or it's lost.
+	// and a received message is heard once, slowly (Game.timeForMessage). The whole message is
+	// right or it's lost. Blind beats to receive open on single words and end on sentences.
 	Blind bool `json:"blind"`
 }
 
@@ -66,9 +67,9 @@ type Scene struct {
 // last, with a straight line between.
 type Pace struct {
 	// WPM is the speed of received letters, and LetterGap the silence between them in
-	// seconds: the first value on a volume's first receiving beat, the last on its final one.
-	// Each volume starts slow again. WPM stays near real Morse, so a letter sounds like one;
-	// LetterGap is where a beginner gets the time.
+	// seconds: the first value on a volume's first receiving beat, the last on its final one,
+	// though blind plays its own pace (Game.timeForMessage). Each volume starts slow again. WPM
+	// stays near real Morse, so a letter sounds like one; LetterGap is where a beginner gets the time.
 	WPM         [2]float64 `json:"wpm"`
 	LetterGap   [2]float64 `json:"letter_gap"`
 	ReceiveTime [2]float64 `json:"receive_time"` // seconds allowed per letter to receive
