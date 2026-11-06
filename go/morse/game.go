@@ -370,15 +370,25 @@ var Speeds = []float64{1, 1.5, 2}
 // timeForMessage is the seconds allowed for the current message at the chosen speed; when
 // receiving, it also times the signal, which starts after lead.
 //
+// Blind has no ▶ buttons, so it ignores them: heard once with no clues, it gets the volume's
+// first letters and the first gap one Speeds step slower.
+//
 //	at ▶▶ a 4-letter message to send gets 4*SendTime/1.5 + 2 seconds
+//	blind: 15 WPM, 3s between letters; Hindenburg's beat before it: 16.5 WPM, 1.4s
 func (g *Game) timeForMessage(lead float64) float64 {
 	pace, n, speed := content.Pace, float64(letterCount(g.word)), Speeds[g.speed]
+	if g.beat.Blind {
+		speed = 1
+	}
 	if g.mode != "decode" {
 		return n*PaceAtChapter(g.chapter, pace.SendTime)/speed + 2
 	}
-	wpm := g.paceInVolume(pace.WPM) * speed
+	wpm, letterGap := g.paceInVolume(pace.WPM)*speed, g.paceInVolume(pace.LetterGap)/speed
+	if g.beat.Blind {
+		wpm, letterGap = pace.WPM[0], pace.LetterGap[0]*Speeds[1]
+	}
 	var length float64
-	g.on, length = Schedule(g.word, wpm, FarnsworthFor(g.paceInVolume(pace.LetterGap)/speed, wpm))
+	g.on, length = Schedule(g.word, wpm, FarnsworthFor(letterGap, wpm))
 	return length + lead + n*PaceAtChapter(g.chapter, pace.ReceiveTime)/speed + 2
 }
 
@@ -491,12 +501,18 @@ func (g *Game) judgeBlindMessage(now float64) {
 	g.finishMessage(now)
 }
 
+// signalOver: the last tone of the message being received has played.
+func (g *Game) signalOver(now float64) bool {
+	return now >= g.signalStart+g.on[len(g.on)-1].End
+}
+
 // typeBlindLetter takes a key while receiving blind: ENTER sends what's typed, as there's no
-// telling how long the message was.
+// telling how long the message was. Not before the signal ends, though: at 7 seconds, the
+// silence between words sounds a lot like the end of a one-word message.
 func (g *Game) typeBlindLetter(k string, now float64) {
 	ch := strings.ToUpper(k)
 	switch _, isLetter := Code[ch]; {
-	case (k == KeyEnter || k == "\r") && g.typed != "":
+	case (k == KeyEnter || k == "\r") && g.typed != "" && g.signalOver(now):
 		g.judgeBlindMessage(now)
 	case k == KeyBackspace || k == "\x08":
 		g.typed = g.typed[:max(0, len(g.typed)-1)]

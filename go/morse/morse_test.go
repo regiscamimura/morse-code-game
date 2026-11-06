@@ -115,6 +115,9 @@ func TestContent(t *testing.T) {
 						t.Errorf("%s chapter %d: message %q uses locked letters or is too long to show", lang, n, w)
 					}
 				}
+				if w := b.Words; b.Blind && b.Mode == "decode" && (len(w) < 3 || strings.Contains(w[0], " ") || !strings.Contains(w[len(w)-1], " ")) {
+					t.Errorf("%s chapter %d: blind stages %q don't go from single words to a sentence", lang, n, w)
+				}
 				if b.Echo && (i == 0 || ch.Beats[i-1].Mode != "decode") {
 					t.Errorf("%s chapter %d: beat %d echoes a beat that received nothing", lang, n, i+1)
 				}
@@ -286,17 +289,19 @@ func TestPlaythrough(t *testing.T) {
 	}
 }
 
+// blindPlay starts the blind message AT TEN, to send or receive at time 1.
+func blindPlay(mode string) *Game {
+	g := NewGame(DefaultConfig(), NewMixer(0), 0)
+	g.startGame(1, 0)
+	g.beat, g.mode = Beat{Mode: mode, Blind: true}, mode
+	g.messages, g.msgNo = []string{"AT TEN"}, 0
+	g.startPlay(1)
+	return g
+}
+
 // TestBlindMessageIsAllOrNothing: no verdict on a letter, no clock, and one wrong letter loses
 // the whole message, receiving or sending.
 func TestBlindMessageIsAllOrNothing(t *testing.T) {
-	blindPlay := func(mode string) *Game {
-		g := NewGame(DefaultConfig(), NewMixer(0), 0)
-		g.startGame(1, 0)
-		g.beat, g.mode = Beat{Mode: mode, Blind: true}, mode
-		g.messages, g.msgNo = []string{"AT TEN"}, 0
-		g.startPlay(1)
-		return g
-	}
 	typeAll := func(g *Game, letters string) {
 		for _, ch := range letters {
 			g.Key(string(ch), 2)
@@ -306,17 +311,18 @@ func TestBlindMessageIsAllOrNothing(t *testing.T) {
 	typeAll(g, "attex")
 	g.Key(KeyBackspace, 2)
 	typeAll(g, "n")
-	g.Tick(1e6) // long past any clock
+	g.Key(KeyEnter, 2) // too soon: the signal is still playing
+	g.Tick(1e6)        // long past any clock
 	if g.State() != "play" || g.typed != "ATTEN" || g.score != 0 {
 		t.Fatalf("before ENTER: %s, typed %q, score %d", g.State(), g.typed, g.score)
 	}
-	g.Key(KeyEnter, 2)
+	g.Key(KeyEnter, 1e6)
 	if g.State() != "win" {
 		t.Errorf("all letters right: %s", g.State())
 	}
 	g = blindPlay("decode")
 	typeAll(g, "attem")
-	g.Key(KeyEnter, 2)
+	g.Key(KeyEnter, 1e6)
 	if g.State() != "lose" || g.lives != 2 {
 		t.Errorf("one letter wrong: %s, %d lives", g.State(), g.lives)
 	}
@@ -347,6 +353,21 @@ func TestEveryVolumeEndsBlind(t *testing.T) {
 				t.Errorf("%s %s doesn't end blind", lang, v.Title)
 			}
 		}
+	}
+}
+
+// TestBlindReceivingIsSlowAtAnySpeed: more time between letters than any other beat, and the ▶
+// buttons left on from an earlier beat change neither the signal nor the time allowed.
+func TestBlindReceivingIsSlowAtAnySpeed(t *testing.T) {
+	g := blindPlay("decode")
+	timeAtFirstSpeed := g.timeForMessage(0)
+	g.speed = len(Speeds) - 1
+	if got := g.timeForMessage(0); got != timeAtFirstSpeed {
+		t.Errorf("time allowed at the top speed: %v, at the first: %v", got, timeAtFirstSpeed)
+	}
+	betweenAandT := g.on[2].Start - g.on[1].End
+	if betweenAandT <= content.Pace.LetterGap[0] {
+		t.Errorf("%vs between letters isn't more than the slowest other beat's %vs", betweenAandT, content.Pace.LetterGap[0])
 	}
 }
 

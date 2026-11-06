@@ -919,6 +919,8 @@
       "lose": "YOU DO NOT FOLLOW. SHE LEAVES WITHOUT ASKING AGAIN.",
       "scene": "rescue",
       "words": [
+       "MISS",
+       "MATT",
        "IS MATT ON"
       ],
       "blind": true
@@ -1100,6 +1102,8 @@
       "lose": "YOU MISS THE REPORT. NO ONE KNOWS HOW MANY ARE STILL ALIVE IN THE WATER.",
       "scene": "boats",
       "words": [
+       "SEA",
+       "MEN",
        "MEN IN SEA",
        "SEND MORE"
       ],
@@ -1114,8 +1118,11 @@
       "win": "THE BOATS WORK INTO THE NIGHT. 761 SAVED. 1,198 DEAD, 128 OF THEM AMERICAN.",
       "lose": "THE MESSAGE DOES NOT GET THROUGH. THE LAST BOATS STAY IN HARBOUR.",
       "scene": "boats",
-      "echo": true,
-      "blind": true
+      "blind": true,
+      "words": [
+       "MEN IN SEA",
+       "SEND MORE"
+      ]
      }
     ]
    },
@@ -1305,6 +1312,8 @@
       "lose": "YOU CANNOT MAKE IT OUT. SHE DOES NOT WRITE AGAIN.",
       "scene": "rail",
       "words": [
+       "TEA",
+       "HAVE",
        "HAVE TEA WITH ME"
       ],
       "blind": true
@@ -1400,6 +1409,8 @@
       "lose": "YOU MISS THE FLASH. NO ONE KNOWS IF BRANDT IS ALIVE.",
       "scene": "fire",
       "words": [
+       "DOWN",
+       "RADIO",
        "SHE IS DOWN",
        "RADIO MAN WOUNDED"
       ],
@@ -1414,8 +1425,11 @@
       "win": "YOUR HANDS ARE SHAKING TOO.",
       "lose": "THE NEWS STALLS ON YOUR DESK. THE PAPERS HEAR IT FROM SOMEONE ELSE.",
       "scene": "airship",
-      "echo": true,
-      "blind": true
+      "blind": true,
+      "words": [
+       "SHE IS DOWN",
+       "RADIO MAN WOUNDED"
+      ]
      }
     ]
    },
@@ -1660,6 +1674,8 @@
       "lose": "THE SIGNAL IS LOST IN THE GUNFIRE. LONDON WAITS, NOT KNOWING.",
       "scene": "harbour",
       "words": [
+       "FIRE",
+       "SINKING",
        "BISMARCK SINKING"
       ],
       "blind": true
@@ -1673,8 +1689,10 @@
       "win": "THE HOOD IS AVENGED, THE PAPERS SAY. YOU THINK OF THE GENERAL.",
       "lose": "THE NEWS IS LATE. THE ADMIRALTY HEARS NOTHING.",
       "scene": "harbour",
-      "echo": true,
-      "blind": true
+      "blind": true,
+      "words": [
+       "BISMARCK SINKING"
+      ]
      }
     ]
    },
@@ -2002,6 +2020,8 @@
       "lose": "YOU DO NOT CATCH WHAT SHE ASKS. THE DOOR IS GIVING.",
       "scene": "mill",
       "words": [
+       "FREE",
+       "CHECK",
        "SEND YOUR CHECK",
        "ARE YOU FREE"
       ],
@@ -2284,6 +2304,8 @@
       "lose": "VOCÊ NÃO ENTENDE. ELA SAI SEM PERGUNTAR DE NOVO.",
       "scene": "rescue",
       "words": [
+       "AMO",
+       "MATT",
        "MATT ESTA"
       ],
       "blind": true
@@ -2465,6 +2487,8 @@
       "lose": "VOCÊ PERDE O RECADO. NINGUÉM SABE QUANTOS AINDA ESTÃO VIVOS NA ÁGUA.",
       "scene": "boats",
       "words": [
+       "MAR",
+       "MAIS",
        "MUITOS NO MAR",
        "MANDEM MAIS"
       ],
@@ -2479,8 +2503,11 @@
       "win": "OS BARCOS TRABALHAM ATÉ A NOITE. 761 SALVOS. 1.198 MORTOS, 128 DELES AMERICANOS.",
       "lose": "O RECADO NÃO CHEGA. OS ÚLTIMOS BARCOS FICAM NO PORTO.",
       "scene": "boats",
-      "echo": true,
-      "blind": true
+      "blind": true,
+      "words": [
+       "MUITOS NO MAR",
+       "MANDEM MAIS"
+      ]
      }
     ]
    },
@@ -2670,6 +2697,8 @@
       "lose": "VOCÊ NÃO ENTENDE O TELEGRAMA. ELA NÃO ESCREVE DE NOVO.",
       "scene": "rail",
       "words": [
+       "VER",
+       "VENHA",
        "VENHA ME VER"
       ],
       "blind": true
@@ -2765,6 +2794,8 @@
       "lose": "VOCÊ PERDE O BOLETIM. NINGUÉM SABE SE BRANDT ESTÁ VIVO.",
       "scene": "fire",
       "words": [
+       "VIVO",
+       "RADIO",
        "ESTA ARDENDO",
        "HOMEM DO RADIO VIVO"
       ],
@@ -2779,8 +2810,11 @@
       "win": "SUAS MÃOS TAMBÉM TREMEM.",
       "lose": "A NOTÍCIA EMPACA NA SUA MESA. OS JORNAIS SABEM POR OUTRA PESSOA.",
       "scene": "airship",
-      "echo": true,
-      "blind": true
+      "blind": true,
+      "words": [
+       "ESTA ARDENDO",
+       "HOMEM DO RADIO VIVO"
+      ]
      }
     ]
    },
@@ -3025,6 +3059,8 @@
       "lose": "O SINAL SE PERDE NO MEIO DOS TIROS. LONDRES ESPERA, SEM SABER.",
       "scene": "harbour",
       "words": [
+       "FOGO",
+       "AFUNDANDO",
        "BISMARCK AFUNDANDO"
       ],
       "blind": true
@@ -3038,8 +3074,10 @@
       "win": "O HOOD FOI VINGADO, DIZEM OS JORNAIS. VOCÊ PENSA NO GENERAL.",
       "lose": "A NOTÍCIA ATRASA. O ALMIRANTADO FICA SEM RESPOSTA.",
       "scene": "harbour",
-      "echo": true,
-      "blind": true
+      "blind": true,
+      "words": [
+       "BISMARCK AFUNDANDO"
+      ]
      }
     ]
    },
@@ -3367,6 +3405,8 @@
       "lose": "VOCÊ NÃO ENTENDE O QUE ELA PEDE. A PORTA ESTÁ CEDENDO.",
       "scene": "mill",
       "words": [
+       "LIVRE",
+       "MANDE",
        "MANDE A VERIFICACAO",
        "ESTA LIVRE"
       ],
