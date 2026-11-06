@@ -4,6 +4,10 @@ Written by the Release PR bot, newest first. See "Releasing" in `go/README.md`.
 
 <!-- RELEASES -->
 
+## v1.0.2 (2026-11-06)
+
+- Blind mode warms up with single words and slower letters. Still no mercy
+
 ## v1.0.1 (2026-11-05)
 
 - Blind mode closes every volume. No clues, no mercy
