@@ -4,6 +4,11 @@ Written by the Release PR bot, newest first. See "Releasing" in `go/README.md`.
 
 <!-- RELEASES -->
 
+## v2.0.0 (2026-11-14)
+
+- 1844, the Windy City, and whole words only. Amos keeps the slow pace
+- The dizzying years: Chicago 1893 to the Titanic, with pictures and working volume keys
+
 ## v1.0.2 (2026-11-06)
 
 - Blind mode warms up with single words and slower letters. Still no mercy
