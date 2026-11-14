@@ -1,4 +1,4 @@
-# Morse Code — The Listener, 1893–1912
+# Morse Code — The Listener, 1844–1912
 
 One game core drives three front ends:
 
@@ -63,8 +63,10 @@ KEY  • ━            = A   ▮▮▮▯▯
   heard again three times at most (`Tab`, or the phone's REPEAT). All of it is
   right or it's lost. Hearing starts on single words and ends on a sentence,
   with 3 seconds between letters: `MATT`, `LIST`, `IS MATT ON A LIST`.
-- **Volumes:** one operator's life in six stories, from messenger to the
-  Titanic's last night: the Chicago World's Fair of 1893 (4 chapters), the age
+- **Volumes:** one operator's life in seven stories, from messenger to the
+  Titanic's last night: the first wire, Baltimore 1844, where Amos Hale, the
+  player's teacher, hears the first letters as a boy (1 chapter), the Windy
+  City, Chicago 1889 to 1893 (3), the age
   of wonders: Niagara's dynamos, Marconi's letter S and Kitty Hawk (3), the San
   Francisco earthquake (2), the Republic's CQD (2), the wireless chase of Dr
   Crippen (3) and the Titanic (7): the dizzying years, when the world sped up.
@@ -72,10 +74,10 @@ KEY  • ━            = A   ▮▮▮▯▯
   came of it. Each page is an animated pixel picture with two or three lines
   under it, on a background in the picture's colours:
 
-      [the Midway at dusk, the Ferris wheel turning, the crowd walking]
-      VOLUME 1 · THE WHITE CITY · 1893                                  4/5
-      ON THE MIDWAY: A STREET FROM CAIRO, A BALLOON ON A ROPE, AND MR. FERRIS'S
-      GIANT WHEEL TURNING OVER IT ALL.
+      [Chicago's skyline under smoke]
+      VOLUME 2 · THE WINDY CITY · 1889 – 1893                           1/2
+      CHICAGO, 1889. THE WINDY CITY: SMOKE, MUD, STOCKYARDS, AND A RIVER THAT
+      STINKS ALL SUMMER.
 
   The pages are `prologue` and `epilogue` in `volumes`: `{"art": "midway",
   "lines": [...]}`, the art a key of `covers`. Chapters are numbered within their
@@ -86,7 +88,7 @@ KEY  • ━            = A   ▮▮▮▯▯
 - **Chapters:** each is a historical event. It opens on a cover: a pixel-art
   picture of the event (the White City on its lagoon, the Titanic going down by
   the bow), its year, its name, and where and when it happens
-  (`CHICAGO · THE WORLD'S COLUMBIAN EXPOSITION`). The chapter's screens take
+  (`CHICAGO · THE WORLD'S FAIR`). The chapter's screens take
   their background from its picture. Then about ten messages in four to seven
   beats, each briefing a line or two: the feeling of the moment, a fact for
   seasoning.
@@ -105,12 +107,18 @@ KEY  • ━            = A   ▮▮▮▯▯
 
       SOS SOS          win:  SHE HAS STRUCK A BERG AND IS SINKING. YOU RUN TO THE BRIDGE IN ONE BOOT.
                        lose: YOU SHUT DOWN AND SLEEP, LIKE THE CALIFORNIAN. NO ONE GOES TO THE TITANIC.
-- **Messages:** the real wires where history kept them (`WHAT HATH GOD WROUGHT`,
-  `LONGEST 57 SECONDS`, `CQD CQD DE MGY`), short ones of the story's own, or
-  what the beat before received, passed on. A beat may hold several; they
-  follow one another without a screen between. The whole message is on screen
-  at once, on one or two lines. Spaces, and letters you haven't learned yet,
-  go by on their own, dimmed: you key or type only the letters you know.
+- **Messages:** whole words only, every letter one you've learned. The real
+  wires where they fit (`THANK GOD ITS OVER`, `CQD CQD DE MGY`); where they
+  don't, the briefing tells them and you key something that does:
+
+      WHAT HATH GOD WROUGHT  (chapter 1, ETAN)   ✗ keyed as  AT AT T
+      E  T  A  N                                 ✓ the first letters on the tape
+
+  Short ones of the story's own, or what the beat before received, passed on.
+  In Portuguese every message is Portuguese, real ones translated
+  (`GRACAS A DEUS ACABOU`). A beat may hold several; they follow one another
+  without a screen between. The whole message is on screen at once, on one or
+  two lines; spaces go by on their own.
 - **Send missions:** tap out the message before the timer runs out, while
   the threat on screen (a liner, a train, a flying machine) moves closer. It
   crosses once per beat, each message taking it a share of the way.

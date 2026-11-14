@@ -111,11 +111,11 @@ func TestContent(t *testing.T) {
 			}
 			for i, b := range ch.Beats {
 				for _, w := range b.Words {
-					if !onlyUses(w, CodeOrder) || LettersToKey(w, n) == "" || !fitsTheScreen(w) {
-						t.Errorf("%s chapter %d: message %q can't be sent, has no letter to key, or is too long to show", lang, n, w)
+					if LettersToKey(w) == "" || !fitsTheScreen(w) {
+						t.Errorf("%s chapter %d: message %q has no letter to key, or is too long to show", lang, n, w)
 					}
-					if b.Blind && !onlyUses(w, Unlocked(n)) { // blind shows nothing that could tell what goes by
-						t.Errorf("%s chapter %d: blind message %q has letters not learned yet", lang, n, w)
+					if !onlyUses(w, Unlocked(n)) { // whole words only: no letter goes by unkeyed
+						t.Errorf("%s chapter %d: message %q has letters not learned yet", lang, n, w)
 					}
 				}
 				if w := b.Words; b.Blind && b.Mode == "decode" && (len(w) < 3 || strings.Contains(w[0], " ") || !strings.Contains(w[len(w)-1], " ")) {
@@ -129,7 +129,7 @@ func TestContent(t *testing.T) {
 				}
 				random := len(b.Words) == 0 && !b.Echo && !b.Groups
 				if random && !slices.ContainsFunc(content.Words[lang], func(w string) bool {
-					return onlyUses(w, Unlocked(n)) && len(LettersToKey(w, n)) <= LongestWord(n, b.Mode)
+					return onlyUses(w, Unlocked(n)) && len(LettersToKey(w)) <= LongestWord(n, b.Mode)
 				}) {
 					t.Errorf("%s chapter %d: no word fits a %s mission", lang, n, b.Mode)
 				}
@@ -300,10 +300,10 @@ func TestPlaythrough(t *testing.T) {
 		step(KeyEnter) // play
 		for g.State() == "play" {
 			if !g.Receiving() {
-				now = keyWord(g, LettersToKey(g.word, g.chapter), now)
+				now = keyWord(g, LettersToKey(g.word), now)
 				continue
 			}
-			for _, ch := range LettersToKey(g.word, g.chapter) {
+			for _, ch := range LettersToKey(g.word) {
 				if wrongOnce {
 					step("Q") // wrong on purpose: Q isn't in any chapter-1 message
 					wrongOnce = false

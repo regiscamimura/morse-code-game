@@ -40,7 +40,8 @@
    2
   ],
   "tape_chapters": 6,
-  "lamp_chapters": 9
+  "lamp_chapters": 9,
+  "ramp_beats": 13
  },
  "words": {
   "en": [
@@ -478,43 +479,45 @@
  "volumes": {
   "pt": [
    {
-    "title": "A CIDADE BRANCA",
-    "years": "1893",
-    "chapters": 4,
+    "title": "O PRIMEIRO FIO",
+    "years": "1844",
+    "chapters": 1,
     "prologue": [
+     {
+      "art": "telegram",
+      "lines": [
+       "1844. NENHUMA NOTÍCIA JAMAIS ANDOU MAIS RÁPIDO QUE UM CAVALO.",
+       "EM BALTIMORE, AMOS, DOZE ANOS, VARRE A ESTAÇÃO DO TREM. NUMA MESA, UMA MÁQUINA NOVA ESPERA UM SINAL DE WASHINGTON."
+      ]
+     }
+    ],
+    "epilogue": [
      {
       "art": "dizzy",
       "lines": [
-       "ANOS 1890. TRENS CRUZAM UM CONTINENTE EM DIAS, FIOS LEVAM PALAVRAS EM SEGUNDOS, E A LUZ ELÉTRICA EMPURRA A NOITE PARA LONGE.",
-       "O MUNDO ACELERA. SÃO OS ANOS VERTIGINOSOS."
+       "CINQUENTA ANOS DEPOIS, OS FIOS COBREM O MUNDO, ATÉ O FUNDO DO OCEANO.",
+       "AMOS TRABALHOU NELES A VIDA INTEIRA. SUA ÚNICA REGRA: QUEM OPERA NÃO SAI DA CHAVE."
       ]
-     },
+     }
+    ]
+   },
+   {
+    "title": "A CIDADE DOS VENTOS",
+    "years": "1889 – 1893",
+    "chapters": 3,
+    "prologue": [
      {
       "art": "chicago",
       "lines": [
-       "NENHUMA CIDADE CRESCE MAIS RÁPIDO QUE CHICAGO. UMA GERAÇÃO DEPOIS DE UM INCÊNDIO ARRASÁ-LA, ELA ERGUE OS PRIMEIROS ARRANHA-CÉUS DO MUNDO.",
-       "AGORA CONVIDOU O MUNDO INTEIRO PARA UMA VISITA."
-      ]
-     },
-     {
-      "art": "whitecity",
-      "lines": [
-       "1893. À BEIRA DO LAGO SURGE A CIDADE BRANCA: PALÁCIOS, CÚPULAS, COLUNAS, GÔNDOLAS, UMA GIGANTE DOURADA DE PÉ NA ÁGUA.",
-       "DE PERTO, É GESSO FEITO PARA UM VERÃO. DE LONGE, É O FUTURO."
-      ]
-     },
-     {
-      "art": "midway",
-      "lines": [
-       "NA MIDWAY: UMA RUA DO CAIRO, UM BALÃO PRESO NUMA CORDA E A RODA GIGANTE DO SR. FERRIS GIRANDO SOBRE TUDO.",
-       "NO FIM DA TARDE AS LÂMPADAS ELÉTRICAS SE ACENDEM, E A MULTIDÃO PERDE O FÔLEGO."
+       "CHICAGO, 1889. A CIDADE DOS VENTOS: FUMAÇA, LAMA, MATADOUROS, E UM RIO QUE FEDE O VERÃO INTEIRO.",
+       "ELA QUEIMOU INTEIRA EM 1871. AGORA CRESCE PARA CIMA: DEZ ANDARES, DOZE, DEZESSEIS. NINGUÉM FEZ ISSO ANTES."
       ]
      },
      {
       "art": "telegram",
       "lines": [
-       "VOCÊ TEM CATORZE ANOS E É MENSAGEIRO DA WESTERN UNION NA FEIRA. O DIA TODO CORRE COM TELEGRAMAS NO MEIO DA MULTIDÃO.",
-       "À NOITE, A TELEGRAFISTA NORA HALE TE ENSINA O CÓDIGO."
+       "VOCÊ TEM CATORZE ANOS E É MENSAGEIRO. O DIA TODO CORRE COM TELEGRAMAS PELA LAMA.",
+       "À NOITE, O VELHO AMOS HALE TE ENSINA O CÓDIGO."
       ]
      }
     ],
@@ -522,21 +525,14 @@
      {
       "art": "whitefire",
       "lines": [
-       "NO VERÃO SEGUINTE, UM INCÊNDIO LEVA A CIDADE BRANCA EM UMA ÚNICA NOITE. GESSO QUEIMA RÁPIDO."
+       "NO VERÃO SEGUINTE, O FOGO LEVA A FEIRA VAZIA EM UMA NOITE. GESSO QUEIMA RÁPIDO."
       ]
      },
      {
-      "art": "castle",
+      "art": "chicago",
       "lines": [
-       "O MÉDICO DA RUA 63, H. H. HOLMES, É PRESO EM 1894 POR FRAUDE DE SEGURO. CONFESSA 27 ASSASSINATOS.",
-       "O NOME DE ETTA NÃO ESTÁ EM LISTA NENHUMA, DE VIVOS OU DE MORTOS."
-      ]
-     },
-     {
-      "art": "telegram",
-      "lines": [
-       "NORA ASSINA SEUS PAPÉIS: TELEGRAFISTA.",
-       "O PAÍS ESTÁ COBERTO DE FIOS, E CADA FIO PRECISA DE UMA MÃO."
+       "EM 1900 CHICAGO FAZ SEU RIO CORRER AO CONTRÁRIO, PARA LONGE DO LAGO DE ONDE BEBE. CIDADE GRANDE, CONSERTOS GRANDES.",
+       "AMOS ASSINA SEUS PAPÉIS: TELEGRAFISTA."
       ]
      }
     ]
@@ -730,43 +726,45 @@
   ],
   "en": [
    {
-    "title": "THE WHITE CITY",
-    "years": "1893",
-    "chapters": 4,
+    "title": "THE FIRST WIRE",
+    "years": "1844",
+    "chapters": 1,
     "prologue": [
+     {
+      "art": "telegram",
+      "lines": [
+       "1844. NO NEWS HAS EVER TRAVELLED FASTER THAN A HORSE.",
+       "IN BALTIMORE, AMOS, TWELVE, SWEEPS THE RAILROAD DEPOT. ON A TABLE, A NEW MACHINE WAITS FOR A SIGNAL FROM WASHINGTON."
+      ]
+     }
+    ],
+    "epilogue": [
      {
       "art": "dizzy",
       "lines": [
-       "THE 1890S. TRAINS CROSS A CONTINENT IN DAYS, WIRES CARRY WORDS IN SECONDS, AND ELECTRIC LIGHT PUSHES BACK THE NIGHT.",
-       "THE WORLD IS SPEEDING UP. THESE ARE THE DIZZYING YEARS."
+       "FIFTY YEARS LATER, WIRES COVER THE WORLD, EVEN THE OCEAN FLOOR.",
+       "AMOS HAS WORKED THEM ALL HIS LIFE. HIS ONE RULE: AN OPERATOR STAYS AT THE KEY."
       ]
-     },
+     }
+    ]
+   },
+   {
+    "title": "THE WINDY CITY",
+    "years": "1889 – 1893",
+    "chapters": 3,
+    "prologue": [
      {
       "art": "chicago",
       "lines": [
-       "NO CITY GROWS FASTER THAN CHICAGO. A GENERATION AFTER A FIRE BURNED IT FLAT, IT IS BUILDING THE WORLD'S FIRST SKYSCRAPERS.",
-       "NOW IT HAS INVITED THE WHOLE WORLD TO VISIT."
-      ]
-     },
-     {
-      "art": "whitecity",
-      "lines": [
-       "1893. BY THE LAKE RISES THE WHITE CITY: PALACES, DOMES, COLUMNS, GONDOLAS, A GOLDEN GIANT STANDING IN THE WATER.",
-       "UP CLOSE, IT IS PLASTER BUILT FOR ONE SUMMER. FROM AFAR, IT IS THE FUTURE."
-      ]
-     },
-     {
-      "art": "midway",
-      "lines": [
-       "ON THE MIDWAY: A STREET FROM CAIRO, A BALLOON ON A ROPE, AND MR. FERRIS'S GIANT WHEEL TURNING OVER IT ALL.",
-       "AT DUSK THE ELECTRIC LAMPS COME ON, AND THE CROWD GASPS."
+       "CHICAGO, 1889. THE WINDY CITY: SMOKE, MUD, STOCKYARDS, AND A RIVER THAT STINKS ALL SUMMER.",
+       "IT BURNED FLAT IN 1871. NOW IT BUILDS UP: TEN FLOORS, TWELVE, SIXTEEN. NOBODY HAS DONE THAT BEFORE."
       ]
      },
      {
       "art": "telegram",
       "lines": [
-       "YOU ARE FOURTEEN, A WESTERN UNION MESSENGER AT THE FAIR. ALL DAY YOU RUN TELEGRAMS THROUGH THE CROWDS.",
-       "AT NIGHT, THE OPERATOR NORA HALE TEACHES YOU THE CODE."
+       "YOU ARE FOURTEEN, A MESSENGER. ALL DAY YOU RUN TELEGRAMS THROUGH THE MUD.",
+       "AT NIGHT, OLD AMOS HALE TEACHES YOU THE CODE."
       ]
      }
     ],
@@ -774,21 +772,14 @@
      {
       "art": "whitefire",
       "lines": [
-       "THE NEXT SUMMER, FIRE TAKES THE WHITE CITY IN A SINGLE EVENING. PLASTER BURNS FAST."
+       "THE NEXT SUMMER, FIRE TAKES THE EMPTY FAIR IN ONE NIGHT. PLASTER BURNS FAST."
       ]
      },
      {
-      "art": "castle",
+      "art": "chicago",
       "lines": [
-       "THE DOCTOR OF 63RD STREET, H. H. HOLMES, IS ARRESTED IN 1894 FOR INSURANCE FRAUD. HE CONFESSES TO 27 MURDERS.",
-       "ETTA'S NAME IS ON NO LIST, ALIVE OR DEAD."
-      ]
-     },
-     {
-      "art": "telegram",
-      "lines": [
-       "NORA SIGNS YOUR PAPERS: OPERATOR.",
-       "THE COUNTRY IS STRUNG WITH WIRES, AND EVERY WIRE NEEDS A HAND."
+       "IN 1900 CHICAGO MAKES ITS RIVER RUN BACKWARDS, AWAY FROM THE LAKE IT DRINKS. BIG CITY, BIG FIXES.",
+       "AMOS SIGNS YOUR PAPERS: OPERATOR."
       ]
      }
     ]
@@ -984,310 +975,207 @@
  "chapters": {
   "en": [
    {
+    "title": "THE FIRST WIRE",
+    "year": "1844",
+    "place": "BALTIMORE",
+    "era": "24 MAY 1844",
+    "cover": "telegram",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "THE FIRST LETTERS",
+      "brief": [
+       "THE DEPOT, BALTIMORE. MR. VAIL SITS AT THE MACHINE. AMOS STOPS SWEEPING. THE",
+       "PAPER TAPE STARTS TO MOVE, AND IT CLICKS. COPY THE LETTERS WITH HIM."
+      ],
+      "win": "THEN THE TAPE SPELLS IT OUT: WHAT HATH GOD WROUGHT. AMOS CANNOT READ IT YET. HE WILL.",
+      "lose": "THE CLICKS RUN TOGETHER. MR. VAIL LETS THE TAPE RUN AGAIN.",
+      "scene": "rail",
+      "words": [
+       "E",
+       "T",
+       "A",
+       "N"
+      ]
+     },
+     {
+      "mode": "encode",
+      "title": "SEND THEM BACK",
+      "brief": [
+       "WASHINGTON WANTS PROOF THE WIRE WORKS BOTH WAYS. MR. VAIL LETS THE BOY WITH",
+       "THE BROOM TRY THE KEY. SEND THE LETTERS YOU HEARD."
+      ],
+      "win": "THE KEY IS COLD AND HEAVY. AMOS DOES NOT WANT TO LET GO.",
+      "lose": "THE KEY SLIPS. MR. VAIL LAUGHS AND GUIDES HIS HAND.",
+      "scene": "rail",
+      "echo": true
+     },
+     {
+      "mode": "decode",
+      "title": "FIRST WORDS",
+      "brief": [
+       "AMOS COMES BACK EVERY DAY AFTER THAT. MR. VAIL TAPS SHORT WORDS FOR HIM."
+      ],
+      "win": "BY SUMMER HE READS THE TAPE FASTER THAN THE MEN. THEY GIVE HIM A JOB, AND A STOOL.",
+      "lose": "THE CLICKS RUN TOGETHER. MR. VAIL TAPS IT AGAIN, SLOWER.",
+      "scene": "rail",
+      "count": 3
+     }
+    ]
+   },
+   {
     "title": "THE MESSENGER",
-    "year": "1893",
-    "place": "CHICAGO",
-    "era": "THE WORLD'S COLUMBIAN EXPOSITION",
-    "cover": "whitecity",
-    "beats": [
-     {
-      "mode": "encode",
-      "title": "WHAT HATH GOD WROUGHT",
-      "brief": [
-       "MAY 1893. THE FAIR'S TELEGRAPH OFFICE, AFTER CLOSING. NORA STARTS YOU WHERE",
-       "EVERYONE STARTS: THE FIRST MESSAGE EVER SENT. KEY THE LETTERS YOU KNOW; THE",
-       "OTHERS GO BY ON THEIR OWN."
-      ],
-      "win": "SAMUEL MORSE SENT IT IN 1844. FIFTY YEARS ON, WIRES CROSS THE OCEANS.",
-      "lose": "MORSE GOT IT RIGHT THE FIRST TIME, NORA SAYS. AGAIN.",
-      "scene": "fair",
-      "words": [
-       "WHAT HATH GOD WROUGHT"
-      ]
-     },
-     {
-      "mode": "decode",
-      "title": "FIRST LETTERS",
-      "brief": [
-       "NOW THE OTHER WAY ROUND. NORA TAPS SHORT WORDS; YOU COPY THEM."
-      ],
-      "win": "'AGAIN TOMORROW.' YOU WALK HOME UNDER ELECTRIC LIGHTS, STILL HEARING DOTS.",
-      "lose": "THE DOTS RUN TOGETHER. NORA TAPS IT AGAIN, SLOWER.",
-      "scene": "fair",
-      "count": 3
-     },
-     {
-      "mode": "decode",
-      "title": "THE GOLDEN KEY",
-      "brief": [
-       "OPENING DAY. THE PRESIDENT PRESSED A GOLDEN KEY, AND THE WHOLE FAIR WOKE AT",
-       "ONCE: ENGINES, FOUNTAINS, FLAGS. NORA SENDS YOU HIS WORDS. COPY WHAT YOU",
-       "KNOW; LET THE REST GO BY."
-      ],
-      "win": "ONE TOUCH OF A KEY, AND A CITY WAKES UP. YOU WANT A KEY OF YOUR OWN.",
-      "lose": "THE CROWD DROWNS IT OUT. THE PAPERS WILL PRINT IT TOMORROW ANYWAY.",
-      "scene": "fair",
-      "words": [
-       "AS BY A TOUCH",
-       "THE MACHINERY",
-       "IS NOW SET IN MOTION"
-      ]
-     },
-     {
-      "mode": "decode",
-      "title": "CITY OF LIGHT",
-      "brief": [
-       "AT NIGHT THE FAIR GLOWS WITH ELECTRIC LAMPS. MOST VISITORS HAVE NEVER SEEN",
-       "ONE. THEIR WIRES HOME SAY SO."
-      ],
-      "win": "YOU RUN WIRES ALL NIGHT, UNTIL YOUR SHOES GIVE OUT.",
-      "lose": "A WIRE IS LOST. SOMEONE'S FAMILY NEVER HEARS ABOUT THE LIGHTS.",
-      "scene": "fair",
-      "words": [
-       "NIGHT LIKE NOON",
-       "SEND MONEY",
-       "STAYING A WEEK MORE"
-      ]
-     }
-    ]
-   },
-   {
-    "title": "THE WORLD'S FAIR HOTEL",
-    "year": "1893",
-    "place": "ENGLEWOOD, CHICAGO",
-    "era": "THE SUMMER OF THE FAIR",
-    "cover": "castle",
-    "beats": [
-     {
-      "mode": "decode",
-      "title": "63RD STREET",
-      "brief": [
-       "JUNE. A CHARMING DOCTOR HAS OPENED A HOTEL FOR FAIR VISITORS. YOU RUN HIS",
-       "WIRES. HE TIPS IN SILVER AND REMEMBERS YOUR NAME."
-      ],
-      "win": "THE HOUSE IS A MAZE. HE FIRES HIS BUILDERS EVERY FEW WEEKS.",
-      "lose": "YOU MIX UP THE WIRES. THE DOCTOR SMILES AND SAYS IT DOES NOT MATTER.",
-      "scene": "fair",
-      "words": [
-       "ROOMS FOR TWO",
-       "ARRIVING MONDAY"
-      ]
-     },
-     {
-      "mode": "encode",
-      "title": "ETTA",
-      "brief": [
-       "ETTA, NINETEEN, HAS COME FROM IOWA TO SEE THE FAIR. SHE TAKES A ROOM AT THE",
-       "DOCTOR'S HOTEL AND WIRES HER MOTHER."
-      ],
-      "win": "THE DOCTOR HAS OFFERED HER WORK, SHE SAYS. HE PAYS FOR THE WIRE HIMSELF.",
-      "lose": "THE WIRE DOES NOT GO. HER MOTHER WAITS A WEEK FOR A LETTER.",
-      "scene": "fair",
-      "words": [
-       "ARRIVED SAFE",
-       "LOVELY ROOMS"
-      ]
-     },
-     {
-      "mode": "decode",
-      "title": "THE WHEEL",
-      "brief": [
-       "21 JUNE. THE GREAT WHEEL TURNS FOR THE FIRST TIME, HIGHER THAN ANYTHING IN",
-       "TOWN. PARIS HAS ITS TOWER; CHICAGO HAS THIS. NORA DRILLS YOU WHILE IT TURNS."
-      ],
-      "win": "FIFTY CENTS A RIDE: A DAY'S PAY. YOU WATCH IT TURN FROM THE DOOR.",
-      "lose": "YOU WATCH THE WHEEL INSTEAD OF THE TAPE. NORA SIGHS.",
-      "scene": "fair",
-      "count": 3
-     },
-     {
-      "mode": "decode",
-      "title": "NO WORD",
-      "brief": [
-       "AUGUST. A WIRE FROM IOWA FOR ETTA, CARE OF THE DOCTOR'S HOTEL."
-      ],
-      "win": "THE DOCTOR SIGNS FOR IT. SHE HAS GONE EAST, HE SAYS, AND SMILES.",
-      "lose": "THE WIRE IS LOST. HER MOTHER SENDS ANOTHER. THE DOCTOR SIGNS FOR THAT ONE TOO.",
-      "scene": "fair",
-      "words": [
-       "NO LETTER IN A MONTH",
-       "ANSWER ETTA"
-      ]
-     }
-    ]
-   },
-   {
-    "title": "THE LAST MESSAGE",
     "year": "1889",
-    "place": "JOHNSTOWN, PENNSYLVANIA",
-    "era": "NORA'S STORY",
-    "cover": "johnstown",
+    "place": "CHICAGO",
+    "era": "THE WINDY CITY",
+    "cover": "chicago",
     "beats": [
      {
       "mode": "decode",
-      "title": "RAIN",
+      "title": "FIRST LESSON",
       "brief": [
-       "SEPTEMBER. NORA OPENS AN OLD LOGBOOK: JOHNSTOWN, 31 MAY 1889. SHE WAS AT THE",
-       "FAR END OF HETTIE OGLE'S WIRE THAT DAY. IT HAD RAINED ALL NIGHT."
+       "AMOS'S OFFICE, AFTER CLOSING. 'THESE ARE THE FIRST LETTERS I EVER HEARD,' HE",
+       "SAYS. 'AND TWO NEW ONES.'"
       ],
-      "win": "HETTIE RAN THE TOWN'S TELEGRAPH OFFICE. THE RIVER WAS RISING UNDER HER WINDOW.",
-      "lose": "YOU LOSE IT. NORA TAPS IT AGAIN. SHE KNOWS IT BY HEART.",
-      "scene": "rail",
-      "words": [
-       "RAIN GAUGE CARRIED AWAY",
-       "HIGHER THAN EVER KNOWN"
-      ]
+      "win": "'AGAIN TOMORROW.' YOU WALK HOME THROUGH THE SMOKE, STILL HEARING DOTS.",
+      "lose": "THE DOTS RUN TOGETHER. AMOS TAPS IT AGAIN, SLOWER.",
+      "scene": "fair",
+      "count": 3
      },
      {
       "mode": "decode",
-      "title": "THE DAM",
+      "title": "UP",
       "brief": [
-       "UP THE VALLEY, AN OLD DAM HOLDS A FISHING LAKE FOR A CLUB OF MILLIONAIRES. A",
-       "WARNING COMES DOWN THE RAILROAD WIRE."
+       "DOWNTOWN, BUILDINGS CLIMB ON STEEL FRAMES, TEN, TWELVE FLOORS. AMOS DRILLS YOU",
+       "WHILE THE RIVETS RING."
       ],
-      "win": "THE DAM HAS BEEN ABOUT TO BREAK FOR YEARS. THE TOWN IS TIRED OF HEARING IT.",
-      "lose": "THE STATIC TAKES IT. NORA SAYS IT WOULD NOT HAVE MATTERED. SHE DOES NOT SOUND SURE.",
-      "scene": "rail",
+      "win": "THE TACOMA BUILDING: TWELVE FLOORS. YOUR NECK HURTS FROM LOOKING UP.",
+      "lose": "A HAMMER DROPS SOMEWHERE. YOU LOSE THE COUNT.",
+      "scene": "fair",
+      "count": 3
+     },
+     {
+      "mode": "encode",
+      "title": "THE CITY WIRES",
+      "brief": [
+       "THE CITY NEVER STOPS WIRING. AMOS LETS YOU SEND THE SHORT ONES."
+      ],
+      "win": "A DOLLAR A DAY, AND ALL THE MUD YOUR BOOTS CAN CARRY HOME.",
+      "lose": "THE WIRE STALLS. AMOS SENDS IT HIMSELF, WITHOUT A WORD.",
+      "scene": "fair",
       "words": [
-       "SOUTH FORK DAM",
-       "IS LIABLE TO BREAK"
+       "MEET ME AT NINE",
+       "TIM MET ANNA"
+      ]
+     }
+    ]
+   },
+   {
+    "title": "THE WINDY CITY",
+    "year": "1890",
+    "place": "CHICAGO",
+    "era": "24 FEBRUARY 1890",
+    "cover": "chicago",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "THE BALLOTS",
+      "brief": [
+       "CONGRESS IS PICKING THE CITY FOR THE NEXT WORLD'S FAIR: NEW YORK OR CHICAGO. A",
+       "CROWD WAITS OUTSIDE AMOS'S WINDOW. COPY EVERY BALLOT."
+      ],
+      "win": "EIGHTH BALLOT. AMOS STOPS WRITING AND LOOKS UP.",
+      "lose": "YOU MISS A BALLOT. THE CROWD GROANS AT THE WINDOW.",
+      "scene": "fair",
+      "count": 3
+     },
+     {
+      "mode": "decode",
+      "title": "THE LAST BALLOT",
+      "brief": [
+       "WASHINGTON AGAIN. THE CROWD GOES QUIET."
+      ],
+      "win": "CHICAGO WINS. NEW YORK SNEERS AT THE WINDY CITY: ALL WIND AND BRAGGING. CHICAGO KEEPS THE NAME.",
+      "lose": "STATIC. THE CROWD READS YOUR FACE INSTEAD.",
+      "scene": "fair",
+      "words": [
+       "IT IS ON"
       ]
      },
      {
       "mode": "encode",
       "title": "PASS IT ON",
       "brief": [
-       "THE WARNING GOES ON TO JOHNSTOWN. NORA HAS YOU KEY IT, AS HETTIE DID."
+       "EVERY OFFICE IN TOWN WANTS THE NEWS. AMOS HANDS YOU THE KEY."
       ],
-      "win": "THE WATER IS COMING INTO HER OFFICE. SHE STAYS AT THE KEY.",
-      "lose": "THE WARNING STALLS. IN JOHNSTOWN, THE WATER KEEPS RISING.",
-      "scene": "rail",
-      "words": [
-       "NOTIFY THE PEOPLE",
-       "PREPARE FOR THE WORST"
-      ]
-     },
-     {
-      "mode": "decode",
-      "title": "THE LAST MESSAGE",
-      "brief": [
-       "HETTIE SENDS ONE MORE LINE."
-      ],
-      "win": "SOON AFTER, THE DAM GIVES WAY. WITHIN THE HOUR THE WAVE TAKES THE TOWN, AND HETTIE WITH IT.",
-      "lose": "YOU MISS IT. NORA TAPS IT ONCE MORE, VERY SLOWLY.",
-      "scene": "rail",
-      "words": [
-       "THIS IS MY LAST MESSAGE"
-      ]
-     },
-     {
-      "mode": "encode",
-      "title": "NORA'S LESSON",
-      "brief": [
-       "NORA CLOSES THE BOOK. 'REMEMBER HER. AN OPERATOR STAYS AT THE KEY.' KEY IT",
-       "BACK TO HER."
-      ],
-      "win": "SHE NODS. YOU WILL REMEMBER.",
-      "lose": "YOUR HAND SHAKES. NORA WAITS UNTIL IT STOPS.",
-      "scene": "rail",
-      "words": [
-       "STAY AT THE KEY"
-      ]
-     },
-     {
-      "mode": "decode",
-      "title": "A BETTER PAGE",
-      "brief": [
-       "NORA TURNS BACK A FEW PAGES. 'NOT EVERY DAY IS A FLOOD.' MAY 1888, A CABLE",
-       "FROM RIO DE JANEIRO."
-      ],
-      "win": "BRAZIL ENDS SLAVERY, THE LAST NATION IN THE AMERICAS TO DO IT. NORA COPIED IT SMILING.",
-      "lose": "YOU MISS IT. NORA TAPS IT AGAIN, GLADLY.",
-      "scene": "rail",
-      "words": [
-       "SLAVERY ABOLISHED",
-       "IN BRAZIL"
-      ]
+      "win": "THREE YEARS TO BUILD A FAIR ON A SWAMP. THE CITY STARTS THAT NIGHT.",
+      "lose": "THE KEY SLIPS. AMOS SENDS IT FOR YOU. NOBODY NOTICES: THE CITY IS CHEERING.",
+      "scene": "fair",
+      "echo": true
      }
     ]
    },
    {
-    "title": "THE FAIR CLOSES",
+    "title": "THE FAIR",
     "year": "1893",
     "place": "CHICAGO",
-    "era": "AUTUMN 1893",
-    "cover": "whitenight",
+    "era": "THE WORLD'S FAIR",
+    "cover": "whitecity",
     "beats": [
      {
       "mode": "decode",
-      "title": "NEW ZEALAND",
+      "title": "THE GOLDEN KEY",
       "brief": [
-       "LATE SEPTEMBER. A CABLE FROM THE FAR SIDE OF THE WORLD. NO COUNTRY HAS DONE",
-       "THIS BEFORE."
+       "1 MAY 1893. THE PRESIDENT PRESSES A GOLDEN KEY. THE CLICK RUNS DOWN THE WIRES",
+       "TO EVERY ENGINE IN THE FAIR."
       ],
-      "win": "NORA READS IT TWICE AND KEEPS IT IN HER POCKET. AMERICAN WOMEN WILL WAIT UNTIL 1920.",
-      "lose": "YOU GARBLE IT. NORA TAKES THE PENCIL AND COPIES IT HERSELF.",
+      "win": "ENGINES ROAR, FOUNTAINS LEAP. THE MUDDY CITY IS DRESSED ALL IN WHITE.",
+      "lose": "THE CROWD DROWNS IT OUT. THE FOUNTAINS START ANYWAY.",
       "scene": "fair",
       "words": [
-       "WOMEN GET THE VOTE",
-       "IN NEW ZEALAND"
+       "IT IS TIME"
       ]
      },
      {
       "mode": "decode",
-      "title": "CHICAGO DAY",
+      "title": "CITY OF LIGHT",
       "brief": [
-       "9 OCTOBER, CHICAGO DAY: THE BIGGEST CROWD THE FAIR HAS SEEN, AND FIREWORKS",
-       "AFTER DARK. THE WIRES NEVER STOP. NORA LETS YOU TAKE SOME."
+       "AT NIGHT THE FAIR BURNS WITH ELECTRIC LAMPS. MOST VISITORS HAVE NEVER SEEN",
+       "ONE. THEIR WIRES HOME NEVER STOP."
       ],
-      "win": "THE PAPERS SAY CHICAGO HAS BEATEN PARIS. NOBODY HERE DOUBTS IT.",
-      "lose": "YOU FALL BEHIND. NORA TAKES THE WIRE BACK WITHOUT A WORD.",
+      "win": "YOU RUN WIRES ALL NIGHT, UNTIL YOUR SHOES GIVE OUT.",
+      "lose": "A WIRE IS LOST. SOMEONE'S FAMILY NEVER HEARS ABOUT THE LIGHTS.",
       "scene": "fair",
       "count": 3
      },
      {
-      "mode": "encode",
-      "title": "THE MAYOR",
-      "brief": [
-       "28 OCTOBER. THE MAYOR SPENDS THE DAY PRAISING THE FAIR. THAT EVENING A MAN",
-       "RINGS HIS DOORBELL AND SHOOTS HIM. THE PRESS WANTS IT NOW."
-      ],
-      "win": "THE FAIR ENDS WITH NO FIREWORKS, ONLY A PRAYER.",
-      "lose": "THE FLASH DOES NOT GO. THE MORNING PAPERS HAVE IT FROM SOMEONE ELSE.",
-      "scene": "fair",
-      "words": [
-       "MAYOR HARRISON SHOT",
-       "MAYOR IS DEAD"
-      ]
-     },
-     {
       "mode": "decode",
-      "title": "ETTA'S MOTHER",
+      "title": "ANNIE",
       "brief": [
-       "A WIRE FROM IOWA FOR ETTA. NOBODY AT THE HOTEL ANSWERS, SO IT COMES BACK TO",
-       "YOU. NORA SAYS YOU ARE READY TO LISTEN WITH NOTHING BUT YOUR EARS."
+       "THE FAIR'S LAST WEEK. A WIRE FROM A GIRL AT SCHOOL IN NEW YORK, FOR HER MOTHER",
+       "ON STATE STREET. AMOS SAYS YOU ARE READY TO LISTEN WITH YOUR EARS ALONE."
       ],
-      "win": "HER MOTHER HAS WRITTEN TO THE HOTEL, THE POLICE, THE FAIR. NOBODY HAS SEEN ETTA.",
-      "lose": "IT GOES BY TOO FAST. NORA COPIES IT FOR YOU. YOU WISH SHE HADN'T.",
+      "win": "YOU RUN IT TO STATE STREET. HER MOTHER READS IT AT THE DOOR AND WRITES AN ANSWER ON YOUR PAD.",
+      "lose": "IT GOES BY TOO FAST. AMOS COPIES IT FOR YOU, AND SAYS NOTHING.",
       "scene": "fair",
       "words": [
        "MAMA",
-       "ETTA",
-       "MAMA MISSES ETTA"
+       "MISS",
+       "I MISS MAMA"
       ],
       "blind": true
      },
      {
       "mode": "encode",
-      "title": "YOUR ANSWER",
+      "title": "YOUR FIRST WIRE",
       "brief": [
-       "NORA LETS YOU ANSWER. YOUR FIRST WIRE AS AN OPERATOR."
+       "SEND THE MOTHER'S ANSWER. YOUR FIRST WIRE AS AN OPERATOR."
       ],
-      "win": "30 OCTOBER. THE WHITE CITY GOES DARK, AND THE CROWDS GO HOME.",
-      "lose": "THE WIRE DOES NOT GO. HER MOTHER WAITS FOR AN ANSWER THAT NEVER COMES.",
+      "win": "30 OCTOBER. THE FAIR GOES DARK. CHICAGO IS STILL DIRTY, STILL WINDY, AND SURE OF ITSELF.",
+      "lose": "THE WIRE DOES NOT GO. AMOS WAITS UNTIL YOUR HAND STOPS SHAKING.",
       "scene": "fair",
       "words": [
-       "ETTA NOT SEEN"
+       "MAMA MISSES ANNIE"
       ],
       "blind": true
      }
@@ -1311,8 +1199,8 @@
       "lose": "THE REPORT IS LOST. THE ENGINEERS TEST AGAIN, AND SWEAR.",
       "scene": "rail",
       "words": [
-       "DYNAMOS TURNING",
-       "TESTS GO WELL"
+       "TESTS OK",
+       "MOTORS OK"
       ]
      },
      {
@@ -1326,8 +1214,7 @@
       "lose": "THE SIGNAL IS LOST. THEY CLOSE THE SWITCH ANYWAY, AND HOLD THEIR BREATH.",
       "scene": "rail",
       "words": [
-       "READY AT NIAGARA",
-       "SWITCH AT MIDNIGHT"
+       "TRANSMISSION ON TIME"
       ]
      },
      {
@@ -1340,24 +1227,8 @@
       "lose": "NIAGARA HEARS NOTHING, AND FEARS THE LINE HAS BURNED.",
       "scene": "rail",
       "words": [
-       "POWER RECEIVED",
-       "ALL WELL"
-      ]
-     },
-     {
-      "mode": "decode",
-      "title": "A MONUMENT",
-      "brief": [
-       "JANUARY 1897. A BANQUET FOR THE MEN OF NIAGARA. TESLA, WHO RARELY SPEAKS IN",
-       "PUBLIC, STANDS UP. THE PRESS WIRES HIS WORDS."
-      ],
-      "win": "FOR ONE NIGHT, NOBODY IS AFRAID OF THE FUTURE.",
-      "lose": "YOU MISS HIS WORDS. THE APPLAUSE COMES THROUGH JUST FINE.",
-      "scene": "rail",
-      "words": [
-       "A TRUE MONUMENT",
-       "OF ENLIGHTENMENT",
-       "AND OF PEACE"
+       "MOTORS ON",
+       "NO ERRORS"
       ]
      }
     ]
@@ -1374,8 +1245,8 @@
       "title": "THE KITE",
       "brief": [
        "DECEMBER 1901, ST. JOHN'S. YOU WORK THE CABLE OFFICE. ON SIGNAL HILL, IN A",
-       "GALE, MARCONI FLIES A KITE AND LISTENS FOR ENGLAND. YOUR COLLEAGUES TAP 'S'",
-       "ON THE DESK, LAUGHING."
+       "GALE, MARCONI FLIES A KITE AND LISTENS FOR ENGLAND. YOUR COLLEAGUES TAP 'S' ON",
+       "THE DESK, LAUGHING."
       ],
       "win": "12 DECEMBER. ON THE HILL, MARCONI HEARS IT: THREE FAINT DOTS, FROM ACROSS THE OCEAN.",
       "lose": "THE GALE TAKES IT. ON THE HILL, THE KITE TAKES ANOTHER DIVE.",
@@ -1394,38 +1265,22 @@
       "lose": "THE STORY STALLS ON YOUR DESK. THE PAPERS GET IT ANYWAY.",
       "scene": "sea",
       "words": [
-       "SIGNALS CROSS ATLANTIC",
-       "WITHOUT WIRES"
+       "DOTS SENT ON AIR",
+       "IT IS TRUE"
       ]
      },
      {
       "mode": "encode",
       "title": "THE MONOPOLY",
       "brief": [
-       "YOUR COMPANY OWNS EVERY WIRE ON THE ISLAND, AND MEANS TO KEEP IT THAT WAY.",
-       "ITS LAWYER SERVES MARCONI NOTICE."
+       "YOUR COMPANY OWNS EVERY WIRE ON THE ISLAND, AND MEANS TO KEEP IT THAT WAY. ITS",
+       "LAWYER SERVES MARCONI NOTICE."
       ],
       "win": "MARCONI SAILS FOR CANADA, WHICH OFFERS HIM A STATION. YOU FEEL ON THE WRONG SIDE.",
       "lose": "THE NOTICE DOES NOT GO. THE LAWYER DELIVERS IT BY HAND.",
       "scene": "sea",
       "words": [
-       "CEASE AT ONCE"
-      ]
-     },
-     {
-      "mode": "decode",
-      "title": "THE PRESIDENT",
-      "brief": [
-       "JANUARY 1903. PRESIDENT ROOSEVELT WIRES THE KING OF ENGLAND, ACROSS THE",
-       "ATLANTIC, WITHOUT A WIRE."
-      ],
-      "win": "THE KING ANSWERS THE NEXT DAY. AT YOUR OFFICE, NOBODY LAUGHS ANYMORE.",
-      "lose": "YOU MISS IT. EVERY PAPER IN AMERICA PRINTS IT ANYWAY.",
-      "scene": "sea",
-      "words": [
-       "WONDERFUL TRIUMPH",
-       "OF SCIENTIFIC RESEARCH",
-       "AND INGENUITY"
+       "DESIST"
       ]
      }
     ]
@@ -1441,50 +1296,29 @@
       "mode": "decode",
       "title": "THE NIGHT WIRE",
       "brief": [
-       "DECEMBER 1903, THE NIGHT WIRE IN DAYTON, OHIO. THE PAPERS ARE SURE: A",
-       "MACHINE MAY FLY ONE DAY, IN..."
+       "DECEMBER 1903, THE NIGHT WIRE IN DAYTON, OHIO. THE PAPERS ARE SURE: MEN WILL",
+       "FLY IN A MILLION YEARS, MAYBE TEN. THE NIGHT EDITOR AGREES."
       ],
       "win": "TWO BROTHERS WHO MAKE BICYCLES ACROSS TOWN ARE AWAY ON A BEACH IN NORTH CAROLINA.",
       "lose": "THE STATIC TAKES IT. NO GREAT LOSS.",
       "scene": "biplane",
       "words": [
-       "ONE MILLION TO",
-       "TEN MILLION YEARS"
-      ]
-     },
-     {
-      "mode": "decode",
-      "title": "SUCCESS ASSURED",
-      "brief": [
-       "15 DECEMBER. A WIRE FROM KITTY HAWK FOR BISHOP WRIGHT. YESTERDAY HIS SONS",
-       "TRIED TO FLY, STALLED, AND HIT THE SAND."
-      ],
-      "win": "THEY CRASHED, AND THEY CALL IT SUCCESS. YOU LIKE THESE BROTHERS.",
-      "lose": "THE WIRE COMES OUT GARBLED. THE BISHOP WORRIES ALL NIGHT.",
-      "scene": "biplane",
-      "words": [
-       "POWER AND CONTROL AMPLE",
-       "RUDDER ONLY INJURED",
-       "SUCCESS ASSURED"
+       "NOT IN OUR TIME"
       ]
      },
      {
       "mode": "decode",
       "title": "THE TELEGRAM",
       "brief": [
-       "17 DECEMBER, LATE AFTERNOON. KITTY HAWK AGAIN, FOR THE BISHOP. HALFWAY",
-       "THROUGH, YOUR PENCIL STOPS."
+       "17 DECEMBER. A WIRE FOR BISHOP WRIGHT: HIS SONS HAVE FLOWN, FOUR TIMES, THE",
+       "LONGEST FOR NEARLY A MINUTE. NOBODY ON THE LINE BELIEVES IT."
       ],
-      "win": "A MACHINE HAS FLOWN. DOWN THE LINE, 59 SECONDS BECAME 57, AND ORVILLE BECAME 'OREVELLE'.",
-      "lose": "YOU LOSE THE THREAD. THE BISHOP GETS A PAGE OF NONSENSE.",
+      "win": "THE DAYTON EDITOR SHRUGS: IF IT HAD BEEN FIFTY-SEVEN MINUTES, IT MIGHT BE NEWS.",
+      "lose": "YOU LOSE THE THREAD. THE LINE GOES BACK TO ARGUING.",
       "scene": "biplane",
       "words": [
-       "SUCCESS FOUR FLIGHTS",
-       "THURSDAY MORNING",
-       "LONGEST 57 SECONDS",
-       "INFORM PRESS",
-       "HOME CHRISTMAS",
-       "OREVELLE WRIGHT"
+       "IS IT A STUNT",
+       "NOT A STUNT"
       ]
      },
      {
@@ -1539,23 +1373,23 @@
       "lose": "THE REVIEW GOES OUT GARBLED. THE CRITIC WILL NEVER FORGIVE YOU.",
       "scene": "road",
       "words": [
-       "CARUSO TRIUMPHS",
-       "HOUSE SOLD OUT"
+       "GREAT TENOR",
+       "STANDING ROOM"
       ]
      },
      {
       "mode": "decode",
       "title": "THE SHAKING",
       "brief": [
-       "5:12 AM. THE FLOOR ROLLS LIKE A DECK. PLASTER RAINS DOWN. EVERY LINE GOES",
-       "DEAD BUT ONE: NEW YORK IS CALLING."
+       "5:12 AM. THE FLOOR ROLLS LIKE A DECK. PLASTER RAINS DOWN. EVERY LINE GOES DEAD",
+       "BUT ONE: NEW YORK IS CALLING."
       ],
       "win": "THE LINE EAST HOLDS. OUTSIDE, CHIMNEYS LIE IN THE STREET.",
       "lose": "YOU CANNOT HEAR IT OVER THE NOISE. NEW YORK CALLS INTO THE DUST.",
       "scene": "road",
       "words": [
-       "SF SF ANSWER",
-       "ARE YOU THERE"
+       "ANSWER",
+       "ANSWER US"
       ]
      },
      {
@@ -1568,37 +1402,22 @@
       "lose": "AN AFTERSHOCK. THE FLASH BREAKS OFF HALFWAY.",
       "scene": "road",
       "words": [
-       "EARTHQUAKE",
-       "CITY BADLY DAMAGED"
-      ]
-     },
-     {
-      "mode": "decode",
-      "title": "NO WATER",
-      "brief": [
-       "FIRES BREAK OUT ACROSS THE CITY. THE FIRE ALARMS ARE DEAD, SO A CAPTAIN",
-       "SENDS HIS REPORT THROUGH YOU."
-      ],
-      "win": "THE CITY BURNS, AND THE HYDRANTS ARE DRY.",
-      "lose": "THE REPORT IS LOST. THE FIREMEN LEARN IT HYDRANT BY HYDRANT.",
-      "scene": "road",
-      "words": [
-       "MAINS BROKEN",
-       "NO WATER"
+       "GREAT TREMOR",
+       "GREAT DAMAGE"
       ]
      },
      {
       "mode": "encode",
       "title": "DYNAMITE",
       "brief": [
-       "WITH NO WATER, THE ARMY WILL BLOW UP HOUSES TO STOP THE FIRE. THEY NEED",
-       "DYNAMITE."
+       "FIRES EVERYWHERE, AND THE WATER MAINS ARE BROKEN. THE ARMY WILL BLOW UP HOUSES",
+       "TO STOP THE FIRE."
       ],
       "win": "THE BLASTS GO ON ALL DAY. SOME START NEW FIRES.",
       "lose": "THE REQUEST STALLS. THE FIRE DOES NOT.",
       "scene": "road",
       "words": [
-       "SEND DYNAMITE"
+       "SEND DETONATORS"
       ]
      }
     ]
@@ -1621,52 +1440,51 @@
       "lose": "THE QUEUE GROWS. SOME FAMILIES WILL READ THE LISTS OF THE DEAD INSTEAD.",
       "scene": "road",
       "words": [
-       "ALL SAFE",
-       "HOUSE GONE",
-       "WIRE MONEY"
+       "WE ARE OK",
+       "STORE IS GONE"
       ]
      },
      {
       "mode": "encode",
       "title": "THE LAST WIRE",
       "brief": [
-       "AFTERNOON. THE FIRE IS A BLOCK AWAY AND THE WINDOWS ARE HOT TO THE TOUCH.",
-       "ONE LAST MESSAGE, SAYS THE CHIEF, THEN EVERYONE OUT."
+       "AFTERNOON. THE FIRE IS A BLOCK AWAY AND THE WINDOWS ARE HOT TO THE TOUCH. ONE",
+       "LAST MESSAGE, SAYS THE CHIEF, THEN EVERYONE OUT."
       ],
-      "win": "AN OPERATOR STAYS AT THE KEY, NORA SAID. THE CHIEF PULLS YOU OUT BY THE COLLAR.",
+      "win": "AN OPERATOR STAYS AT THE KEY, AMOS SAID. THE CHIEF PULLS YOU OUT BY THE COLLAR.",
       "lose": "THE LINE DIES UNDER YOUR HAND. THE CHIEF PULLS YOU OUT BY THE COLLAR.",
       "scene": "road",
       "words": [
-       "FIRE ONE BLOCK AWAY",
-       "MUST LEAVE NOW"
+       "IT IS NEAR",
+       "WE MUST GO"
       ]
      },
      {
       "mode": "decode",
       "title": "THE WHARF",
       "brief": [
-       "A SHED ON A WHARF, ONE WIRE ACROSS THE BAY TO OAKLAND. IT IS ALL THE CITY",
-       "HAS LEFT."
+       "A SHED ON A WHARF, ONE WIRE ACROSS THE BAY TO OAKLAND. IT IS ALL THE CITY HAS",
+       "LEFT."
       ],
       "win": "YOU WORK IT FOR TWO DAYS, SLEEPING ON MAILBAGS.",
       "lose": "THE LINE IS SILENT. A LINEMAN GOES OUT ALONG THE WHARF TO FIND THE BREAK.",
       "scene": "road",
       "words": [
-       "OAKLAND HERE",
-       "GO AHEAD SF"
+       "UNDERSTOOD",
+       "GO ON"
       ]
      },
      {
       "mode": "decode",
-      "title": "NORA",
+      "title": "AMOS",
       "brief": [
        "A WIRE FOR YOU, FROM CHICAGO. THE SET IN THE SHED HAS NO TAPE AND NO LAMP."
       ],
-      "win": "SHE HAS READ EVERY LIST OF THE DEAD FOR TWO DAYS.",
-      "lose": "IT GOES BY IN THE NOISE OF THE WHARF. YOU KNOW THE FIST, AT LEAST. IT IS NORA.",
+      "win": "HE HAS READ EVERY LIST OF THE DEAD FOR TWO DAYS.",
+      "lose": "IT GOES BY IN THE NOISE OF THE WHARF. YOU KNOW THE FIST, AT LEAST. IT IS AMOS.",
       "scene": "road",
       "words": [
-       "NORA",
+       "AMOS",
        "OM",
        "R U OK OM"
       ],
@@ -1676,13 +1494,13 @@
       "mode": "encode",
       "title": "ALIVE",
       "brief": [
-       "ANSWER HER."
+       "ANSWER HIM."
       ],
       "win": "ON THE THIRD DAY THE FIRE STOPS AT VAN NESS AVENUE, WHERE THE ARMY BLEW UP A WHOLE STREET.",
-      "lose": "THE ANSWER DOES NOT GO. NORA KEEPS READING THE LISTS.",
+      "lose": "THE ANSWER DOES NOT GO. AMOS KEEPS READING THE LISTS.",
       "scene": "road",
       "words": [
-       "I AM OK NORA"
+       "I AM OK AMOS"
       ],
       "blind": true
      }
@@ -1706,23 +1524,23 @@
       "lose": "THE WARNING IS LOST. YOUR CAPTAIN KEEPS HIS SPEED, AND PRAYS.",
       "scene": "fog",
       "words": [
-       "THICK FOG",
-       "GO SLOW"
+       "DENSE MIST",
+       "SOUND HORNS"
       ]
      },
      {
       "mode": "decode",
       "title": "CQD",
       "brief": [
-       "A BIG WHITE STAR LINER, THE REPUBLIC, CALLS THE SHORE. HER OPERATOR IS JACK",
-       "BINNS."
+       "A BIG WHITE STAR LINER, THE REPUBLIC, CALLS THE SHORE. HER OPERATOR, JACK",
+       "BINNS, SENDS CQD: COME QUICK, DANGER."
       ],
       "win": "RAMMED IN THE FOG BY THE FLORIDA. BINNS'S CABIN WALL IS TORN AWAY.",
       "lose": "THE FOG EATS IT. YOU KNOW ONLY THAT SOMEONE IS CALLING.",
       "scene": "fog",
       "words": [
-       "CQD",
-       "REPUBLIC SHIPWRECKED"
+       "WE ARE HIT",
+       "SINKING"
       ]
      },
      {
@@ -1735,8 +1553,8 @@
       "lose": "YOU LOSE HIM. FOR A MOMENT YOU THINK THE REPUBLIC IS GONE. SHE IS NOT.",
       "scene": "fog",
       "words": [
-       "STAND BY",
-       "CAPTAINS MESSAGE"
+       "WAIT",
+       "MASTERS ORDERS"
       ]
      },
      {
@@ -1749,8 +1567,8 @@
       "lose": "YOUR RELAY DIES IN THE FOG. OTHER SHIPS CARRY IT FOR YOU.",
       "scene": "fog",
       "words": [
-       "REPUBLIC SINKING",
-       "SOUTH OF NANTUCKET"
+       "STEAMER SINKING",
+       "MAKE HASTE"
       ]
      }
     ]
@@ -1773,23 +1591,22 @@
       "lose": "THE SIGNALS FADE. THE BALTIC CIRCLES IN THE FOG.",
       "scene": "fog",
       "words": [
-       "HOW LOUD AM I",
-       "LOUDER NOW"
+       "HOW STRONG AM I",
+       "STRONGER NOW"
       ]
      },
      {
       "mode": "encode",
       "title": "TO THE SHORE",
       "brief": [
-       "THE PAPERS ARE FRANTIC. EVERY SHIP IN RANGE PASSES THE NEWS ASHORE, YOURS",
-       "TOO."
+       "THE PAPERS ARE FRANTIC. EVERY SHIP IN RANGE PASSES THE NEWS ASHORE, YOURS TOO."
       ],
       "win": "BY MORNING, IT IS ON EVERY FRONT PAGE IN AMERICA.",
       "lose": "THE RELAY STALLS. THE PAPERS PRINT RUMOURS INSTEAD.",
       "scene": "fog",
       "words": [
-       "BALTIC ALONGSIDE",
-       "TRANSFERRING ALL"
+       "STEAMERS TOGETHER",
+       "MOVING THEM NOW"
       ]
      },
      {
@@ -1802,7 +1619,7 @@
       "lose": "YOU MISS IT. FOR AN HOUR YOU FEAR THE WORST. THEN THE PAPERS SAY IT FOR YOU.",
       "scene": "fog",
       "words": [
-       "ALL HANDS SAVED"
+       "NONE MISSING"
       ]
      },
      {
@@ -1855,38 +1672,23 @@
       "lose": "YOU GARBLE THE BULLETIN. THE SALOON MAKES UP ITS OWN VERSION.",
       "scene": "sea",
       "words": [
-       "CELLAR MURDER",
-       "DOCTOR SOUGHT"
+       "MURDER IN LONDON",
+       "KILLER FLED"
       ]
      },
      {
       "mode": "decode",
       "title": "SUSPICIONS",
       "brief": [
-       "THE MONTROSE, TWO DAYS OUT OF ANTWERP, CALLS THE SHORE. HER CAPTAIN HAS BEEN",
-       "WATCHING A FATHER AND SON."
+       "THE MONTROSE, TWO DAYS OUT OF ANTWERP, CALLS THE SHORE. CAPTAIN KENDALL HAS",
+       "BEEN WATCHING TWO PASSENGERS."
       ],
-      "win": "THE 'SON' HOLDS HIS FATHER'S HAND A LITTLE TOO LONG.",
+      "win": "A SHAVED MOUSTACHE, A BOY'S SUIT TOO TIGHT. THEN THE MONTROSE SAILS OUT OF RANGE.",
       "lose": "THE SIGNAL FADES. YOU CATCH ONLY ONE WORD: CRIPPEN.",
       "scene": "sea",
       "words": [
-       "HAVE STRONG SUSPICIONS",
-       "LONDON CELLAR MURDERER"
-      ]
-     },
-     {
-      "mode": "decode",
-      "title": "A BOY",
-      "brief": [
-       "CAPTAIN KENDALL GOES ON."
-      ],
-      "win": "THEN THE MONTROSE SAILS OUT OF RANGE. FOR A WEEK, NO ONE CAN REACH HER.",
-      "lose": "STATIC. THE MONTROSE IS ALREADY FADING WEST.",
-      "scene": "sea",
-      "words": [
-       "MUSTACHE TAKEN OFF",
-       "DRESSED AS BOY",
-       "UNDOUBTEDLY A GIRL"
+       "FATHER AND SON",
+       "THE SON IS A GIRL"
       ]
      },
      {
@@ -1900,7 +1702,7 @@
       "lose": "THE QUESTION DOES NOT GO. THE SALOON BETS ON RUMOURS.",
       "scene": "sea",
       "words": [
-       "ANY NEWS OF CRIPPEN"
+       "WHERE IS HE NOW"
       ]
      }
     ]
@@ -1916,8 +1718,7 @@
       "mode": "decode",
       "title": "GAINING",
       "brief": [
-       "DEW'S SHIP, THE LAURENTIC, IS GAINING. HER OPERATOR ASKS EVERY SHIP HE",
-       "HEARS."
+       "DEW'S SHIP, THE LAURENTIC, IS GAINING. HER OPERATOR ASKS EVERY SHIP HE HEARS."
       ],
       "win": "SHE WILL REACH CANADA FIRST. CRIPPEN HAS NO IDEA.",
       "lose": "YOU MISS HIM. THE LAURENTIC ASKS SOMEONE ELSE.",
@@ -1937,7 +1738,7 @@
       "lose": "THE BULLETIN IS LOST. YOUR SALOON SETTLES ITS BETS BY SHOUTING.",
       "scene": "sea",
       "words": [
-       "CRIPPEN ON MONTROSE",
+       "DOCTOR ON THE MONTROSE",
        "DEW CLOSING IN"
       ]
      },
@@ -1945,15 +1746,15 @@
       "mode": "encode",
       "title": "QUIETLY",
       "brief": [
-       "THE MONTROSE COMES BACK INTO RANGE. KENDALL ASKS YOU TO PASS A MESSAGE TO",
-       "THE LAURENTIC. NOT A WORD TO THE PRESS."
+       "THE MONTROSE COMES BACK INTO RANGE. KENDALL ASKS YOU TO PASS A MESSAGE TO THE",
+       "LAURENTIC. NOT A WORD TO THE PRESS."
       ],
       "win": "DEW WILL BOARD AT FATHER POINT, DRESSED AS A RIVER PILOT.",
       "lose": "IT DOES NOT GO. KENDALL FINDS ANOTHER SHIP TO CARRY IT.",
       "scene": "sea",
       "words": [
        "BOTH STILL ABOARD",
-       "SUSPECT NOTHING"
+       "BOTH UNAWARE"
       ]
      },
      {
@@ -1967,7 +1768,7 @@
       "lose": "YOU MISS IT. A REPORTER ROWS OUT TO ASK YOU WHAT IT SAID.",
       "scene": "sea",
       "words": [
-       "KEEP THE LINE CLEAR",
+       "CLEAR THE LINE",
        "MONTROSE DUE AT DAWN"
       ]
      }
@@ -1991,8 +1792,8 @@
       "lose": "YOU MISS THE SIGNAL. THROUGH THE PORTHOLE, YOU SEE THE BOAT GO OUT ANYWAY.",
       "scene": "sea",
       "words": [
-       "PILOT BOAT OUT",
-       "MONTROSE STOPPING"
+       "BOAT GOING OUT",
+       "MONTROSE SLOWING"
       ]
      },
      {
@@ -2005,7 +1806,7 @@
       "lose": "YOU MISS IT. THE STATION SENDS IT AGAIN. AND AGAIN. AND AGAIN.",
       "scene": "sea",
       "words": [
-       "CRIPPEN ARRESTED",
+       "DOCTOR ARRESTED",
        "THANK GOD ITS OVER"
       ]
      },
@@ -2079,8 +1880,8 @@
       "mode": "decode",
       "title": "A NEW SHIP",
       "brief": [
-       "APRIL. THE TITANIC IS ON HER MAIDEN VOYAGE, AND HER RICH PASSENGERS NEVER",
-       "STOP WIRING."
+       "APRIL. THE TITANIC IS ON HER MAIDEN VOYAGE, AND HER RICH PASSENGERS NEVER STOP",
+       "WIRING."
       ],
       "win": "MILLIONAIRES WIRING THEIR VALETS. NOBODY ON THAT SHIP IS AFRAID OF ANYTHING.",
       "lose": "YOU LOSE THE THREAD. THE TITANIC DOES NOT EVEN NOTICE.",
@@ -2128,18 +1929,6 @@
       ]
      },
      {
-      "mode": "decode",
-      "title": "SEVEN HOURS",
-      "brief": [
-       "THE TITANIC'S SET BROKE DOWN IN THE NIGHT. PHILLIPS AND HIS JUNIOR, HAROLD",
-       "BRIDE, SPENT SEVEN HOURS FIXING IT. NOW THE WIRES PILE UP."
-      ],
-      "win": "PHILLIPS WORKS THE PILE ALL DAY. THE PASSENGERS PAY BY THE WORD. THE PILE IS MONEY.",
-      "lose": "YOU LOSE THE THREAD. PHILLIPS DOES NOT EVEN NOTICE.",
-      "scene": "fog",
-      "count": 2
-     },
-     {
       "mode": "encode",
       "title": "ONLY YOU LISTEN",
       "brief": [
@@ -2150,7 +1939,7 @@
       "scene": "sea",
       "words": [
        "ALL WELL",
-       "12 KNOTS"
+       "CALM SEA"
       ]
      }
     ]
@@ -2173,7 +1962,6 @@
       "lose": "THE STATIC TAKES IT. ONE WARNING FEWER IN THE AIR TONIGHT.",
       "scene": "ice",
       "words": [
-       "LAT 42 N TO 41 25 N",
        "MUCH HEAVY PACK ICE",
        "LARGE ICEBERGS"
       ]
@@ -2194,8 +1982,8 @@
       "mode": "decode",
       "title": "THE CALIFORNIAN",
       "brief": [
-       "2300. PHILLIPS IS ALONE, WORKING THE PILE. THE CALIFORNIAN, STOPPED IN THE",
-       "ICE NEARBY, BREAKS IN, LOUD."
+       "2300. PHILLIPS IS ALONE, WORKING THE PILE. THE CALIFORNIAN, STOPPED IN THE ICE",
+       "NEARBY, BREAKS IN, LOUD."
       ],
       "win": "HER OPERATOR IS TRYING TO HELP. IN THE TITANIC'S HEADPHONES, IT IS A SHOUT.",
       "lose": "YOU LOSE THE THREAD. PHILLIPS DOES NOT EVEN NOTICE.",
@@ -2241,16 +2029,15 @@
       "lose": "YOU TURN IN, LIKE THE CALIFORNIAN. WHAT WOULD YOU HAVE HEARD?",
       "scene": "ice",
       "words": [
-       "CQD CQD DE MGY",
-       "41 44 N 50 24 W"
+       "CQD CQD DE MGY"
       ]
      },
      {
       "mode": "decode",
       "title": "OLD MAN",
       "brief": [
-       "THE CARPATHIA'S OPERATOR HAS HEARD NOTHING. HE CALLS THE TITANIC TO CHAT.",
-       "YOU HEAR PHILLIPS ANSWER."
+       "THE CARPATHIA'S OPERATOR HAS HEARD NOTHING. HE CALLS THE TITANIC TO CHAT. YOU",
+       "HEAR PHILLIPS ANSWER."
       ],
       "win": "'SHALL I TELL MY CAPTAIN?' PHILLIPS: 'YES. COME QUICK.'",
       "lose": "STATIC. YOU KNOW ONLY THAT THE CARPATHIA HAS ANSWERED.",
@@ -2265,14 +2052,14 @@
       "mode": "encode",
       "title": "TOO FAR",
       "brief": [
-       "PHILLIPS CALLS YOUR SHIP. YOUR CAPTAIN WORKS IT OUT: TWENTY HOURS AT YOUR",
-       "BEST SPEED. TELL HIM THE TRUTH."
+       "PHILLIPS CALLS YOUR SHIP. YOUR CAPTAIN WORKS IT OUT: TWENTY HOURS AT YOUR BEST",
+       "SPEED. TELL HIM THE TRUTH."
       ],
       "win": "PHILLIPS: 'OK OM.' THEN BACK TO THE CARPATHIA, THREE AND A HALF HOURS AWAY.",
       "lose": "YOU CANNOT FIND THE WORDS. PHILLIPS STOPS WAITING FOR THEM.",
       "scene": "ice",
       "words": [
-       "300 MILES OFF",
+       "TOO FAR",
        "SORRY OLD MAN"
       ]
      },
@@ -2295,8 +2082,8 @@
       "mode": "decode",
       "title": "HALF EMPTY",
       "brief": [
-       "0140. THE FIRST BOATS LEFT HALF EMPTY: WHO WOULD TRADE A WARM, UNSINKABLE",
-       "SHIP FOR A ROWBOAT IN THE DARK? PHILLIPS TO HER SISTER, THE OLYMPIC:"
+       "0140. THE FIRST BOATS LEFT HALF EMPTY: WHO WOULD TRADE A WARM, UNSINKABLE SHIP",
+       "FOR A ROWBOAT IN THE DARK? PHILLIPS TO HER SISTER, THE OLYMPIC:"
       ],
       "win": "BOATS FOR HALF THE PEOPLE ABOARD. YOU DO THE SUM, AND WISH YOU HAD NOT.",
       "lose": "THE STATIC TAKES IT. YOU NEVER LEARN HOW BAD IT IS.",
@@ -2317,7 +2104,7 @@
       "lose": "PHILLIPS DOES NOT HEAR YOU. HE IS SENDING TO ANYONE WHO WILL LISTEN.",
       "scene": "ice",
       "words": [
-       "CARPATHIA AT 17 KNOTS",
+       "CARPATHIA COMING FAST",
        "HOLD ON OLD MAN"
       ]
      }
@@ -2334,8 +2121,7 @@
       "mode": "decode",
       "title": "THE BOILERS",
       "brief": [
-       "0145. PHILLIPS TO THE CARPATHIA: 'COME AS QUICKLY AS POSSIBLE, OLD MAN.'",
-       "THEN:"
+       "0145. PHILLIPS TO THE CARPATHIA: 'COME AS QUICKLY AS POSSIBLE, OLD MAN.' THEN:"
       ],
       "win": "ON THE CARPATHIA THE CAPTAIN CUTS THE HEAT AND HOT WATER. EVERY OUNCE OF STEAM GOES TO HER ENGINES.",
       "lose": "THE STATIC TAKES IT. THE CARPATHIA KEEPS COMING ANYWAY.",
@@ -2364,8 +2150,8 @@
       "mode": "decode",
       "title": "EVERY MAN FOR HIMSELF",
       "brief": [
-       "0205. CAPTAIN SMITH AT THE DOOR: 'MEN, YOU HAVE DONE YOUR FULL DUTY. NOW",
-       "IT'S EVERY MAN FOR HIMSELF.' PHILLIPS KEEPS SENDING."
+       "0205. CAPTAIN SMITH AT THE DOOR: 'MEN, YOU HAVE DONE YOUR FULL DUTY. NOW IT'S",
+       "EVERY MAN FOR HIMSELF.' PHILLIPS KEEPS SENDING."
       ],
       "win": "BRIDE STRAPS A LIFEBELT ON HIM AS HE WORKS. AT 0217, SILENCE.",
       "lose": "YOU LOSE HIM IN THE STATIC. WHEN HE COMES BACK, HE IS STILL SENDING.",
@@ -2379,7 +2165,7 @@
       "mode": "encode",
       "title": "SILENCE",
       "brief": [
-       "0217. THE AIR GOES QUIET. AN OPERATOR STAYS AT THE KEY, NORA SAID. PHILLIPS",
+       "0217. THE AIR GOES QUIET. AN OPERATOR STAYS AT THE KEY, AMOS SAID. PHILLIPS",
        "DID. YOU CALL HIM."
       ],
       "win": "NO ANSWER. AT 0220 THE TITANIC BREAKS IN TWO AND IS GONE. 1,500 PEOPLE ARE IN THE SEA.",
@@ -2410,9 +2196,8 @@
       "lose": "STATIC. THE NAMES WILL COME AGAIN. THEY HAVE TO.",
       "scene": "rescue",
       "words": [
-       "MILLVINA DEAN 9 WEEKS",
-       "EVA HART 7",
        "LILLIAN ASPLUND 5",
+       "EDITH BROWN 15",
        "HAROLD BRIDE 22"
       ]
      },
@@ -2420,9 +2205,8 @@
       "mode": "encode",
       "title": "ASHORE",
       "brief": [
-       "IN BOAT 16, STEWARDESS VIOLET JESSOP HELD A STRANGER'S BABY ALL NIGHT. ON",
-       "THE CARPATHIA A WOMAN SNATCHED IT AND RAN, WITHOUT A WORD. PASS THE NAMES",
-       "ASHORE."
+       "IN BOAT 16, STEWARDESS VIOLET JESSOP HELD A STRANGER'S BABY ALL NIGHT. ON THE",
+       "CARPATHIA A WOMAN SNATCHED IT AND RAN, WITHOUT A WORD. PASS THE NAMES ASHORE."
       ],
       "win": "IN NEW YORK THE NAMES GO UP ON A BOARD, ONE BY ONE. THE CROWD READS IN SILENCE.",
       "lose": "WITHOUT THE LIST, THOUSANDS OF FAMILIES SPEND DAYS NOT KNOWING WHO LIVED.",
@@ -2517,8 +2301,8 @@
       "mode": "decode",
       "title": "THE SAGES",
       "brief": [
-       "JOHN AND ANNIE SAGE WERE TAKING THEIR NINE CHILDREN TO A NEW LIFE IN",
-       "FLORIDA, IN STEERAGE."
+       "JOHN AND ANNIE SAGE WERE TAKING THEIR NINE CHILDREN TO A NEW LIFE IN FLORIDA,",
+       "IN STEERAGE."
       ],
       "win": "THE LARGEST FAMILY ABOARD. NONE OF THEM IS ON THE OTHER LIST.",
       "lose": "THE STATIC TAKES IT. ELEVEN NAMES, AND YOU CAUGHT NONE.",
@@ -2548,8 +2332,8 @@
       "mode": "decode",
       "title": "THE BAND",
       "brief": [
-       "THE BAND PLAYED ON DECK TO KEEP PEOPLE CALM, NEARLY TO THE END. ALL EIGHT",
-       "WERE LOST."
+       "THE BAND PLAYED ON DECK TO KEEP PEOPLE CALM, NEARLY TO THE END. ALL EIGHT WERE",
+       "LOST."
       ],
       "win": "HIS BODY IS FOUND WITH HIS MUSIC CASE STRAPPED TO HIM. FORTY THOUSAND COME TO HIS FUNERAL.",
       "lose": "YOU MISS THE NAME. THE TUNE STAYS WITH YOU.",
@@ -2572,13 +2356,14 @@
       "title": "PIER 54",
       "brief": [
        "18 APRIL, NIGHT, RAIN. THE CARPATHIA COMES UP THE HUDSON. FORTY THOUSAND",
-       "PEOPLE WAIT ON THE PIERS."
+       "PEOPLE WAIT ON THE PIERS. THE YOUNGEST SURVIVOR IS NINE WEEKS OLD."
       ],
       "win": "FAMILIES SEARCH EVERY FACE ON THE GANGWAY. SOME FIND THEIRS.",
       "lose": "YOU MISS IT. THE CROWD KNOWS ANYWAY: THE SHIP IS IN.",
       "scene": "rescue",
       "words": [
-       "CARPATHIA AT PIER 54"
+       "CARPATHIA AT PIER 54",
+       "MILLVINA DEAN 9 WEEKS"
       ]
      },
      {
@@ -2599,15 +2384,15 @@
      },
      {
       "mode": "decode",
-      "title": "NORA",
+      "title": "AMOS",
       "brief": [
        "A WIRE FROM CHICAGO, FOR YOU. YOU KNOW THE FIST BEFORE THE FIRST WORD."
       ],
-      "win": "NINETEEN YEARS AGO SHE TOLD YOU ABOUT HETTIE OGLE. NOW SHE HAS ANOTHER NAME.",
-      "lose": "IT GOES BY. YOU ASK HER TO SEND IT AGAIN. SHE DOES, SLOWER.",
+      "win": "TWENTY YEARS AGO HE TOLD YOU: AN OPERATOR STAYS AT THE KEY. NOW HE HAS A NAME FOR IT.",
+      "lose": "IT GOES BY. YOU ASK HIM TO SEND IT AGAIN. HE DOES, SLOWER.",
       "scene": "rescue",
       "words": [
-       "NORA",
+       "AMOS",
        "PHILLIPS",
        "HE STAYED AT THE KEY"
       ],
@@ -2617,8 +2402,8 @@
       "mode": "encode",
       "title": "THE LAST NAMES",
       "brief": [
-       "THE CREW LISTS COME LAST: STOKERS, STEWARDS, OFFICERS, THE WIRELESS ROOM.",
-       "YOU SEND THE LAST NAMES YOURSELF."
+       "THE CREW LISTS COME LAST: STOKERS, STEWARDS, OFFICERS, THE WIRELESS ROOM. YOU",
+       "SEND THE LAST NAMES YOURSELF."
       ],
       "win": "THE CAPTAIN, THE MAN WHO DESIGNED HER, THE OPERATOR WHO STAYED.",
       "lose": "YOUR HANDS NO LONGER OBEY. THE LAST NAME WILL HAVE TO WAIT FOR MORNING.",
@@ -2635,311 +2420,208 @@
   ],
   "pt": [
    {
-    "title": "O MENSAGEIRO",
-    "year": "1893",
-    "place": "CHICAGO",
-    "era": "A EXPOSIÇÃO MUNDIAL COLOMBIANA",
-    "cover": "whitecity",
+    "title": "O PRIMEIRO FIO",
+    "year": "1844",
+    "place": "BALTIMORE",
+    "era": "24 DE MAIO DE 1844",
+    "cover": "telegram",
     "beats": [
-     {
-      "mode": "encode",
-      "title": "O PRIMEIRO TELEGRAMA",
-      "brief": [
-       "MAIO DE 1893. O TELÉGRAFO DA FEIRA, DEPOIS DO EXPEDIENTE. NORA COMEÇA ONDE",
-       "TODO MUNDO COMEÇA: A PRIMEIRA MENSAGEM DA HISTÓRIA. TRANSMITA AS LETRAS QUE",
-       "CONHECE; AS OUTRAS PASSAM SOZINHAS."
-      ],
-      "win": "SAMUEL MORSE A ENVIOU EM 1844. CINQUENTA ANOS DEPOIS, OS FIOS CRUZAM OCEANOS.",
-      "lose": "MORSE ACERTOU DE PRIMEIRA, DIZ NORA. DE NOVO.",
-      "scene": "fair",
-      "words": [
-       "WHAT HATH GOD WROUGHT"
-      ]
-     },
      {
       "mode": "decode",
       "title": "AS PRIMEIRAS LETRAS",
       "brief": [
-       "AGORA AO CONTRÁRIO. NORA BATE PALAVRAS CURTAS; VOCÊ COPIA."
+       "A ESTAÇÃO DE BALTIMORE. O SR. VAIL SENTA À MÁQUINA. AMOS PARA DE VARRER. A",
+       "FITA DE PAPEL COMEÇA A CORRER, E ESTALA. COPIE AS LETRAS COM ELE."
       ],
-      "win": "'AMANHÃ TEM MAIS.' VOCÊ VOLTA PARA CASA SOB AS LUZES ELÉTRICAS, AINDA OUVINDO PONTOS.",
-      "lose": "OS PONTOS SE EMBOLAM. NORA REPETE, MAIS DEVAGAR.",
-      "scene": "fair",
-      "count": 3
-     },
-     {
-      "mode": "decode",
-      "title": "A CHAVE DE OURO",
-      "brief": [
-       "DIA DA ABERTURA. O PRESIDENTE APERTOU UMA CHAVE DE OURO, E A FEIRA INTEIRA",
-       "ACORDOU DE UMA VEZ: MÁQUINAS, CHAFARIZES, BANDEIRAS. NORA TE MANDA AS",
-       "PALAVRAS DELE. COPIE O QUE CONHECE; DEIXE O RESTO PASSAR."
-      ],
-      "win": "UM TOQUE NUMA CHAVE, E UMA CIDADE ACORDA. VOCÊ QUER UMA CHAVE SÓ SUA.",
-      "lose": "A MULTIDÃO ABAFA TUDO. OS JORNAIS IMPRIMEM AMANHÃ, DE QUALQUER JEITO.",
-      "scene": "fair",
+      "win": "ENTÃO A FITA SOLETRA: QUE OBRA FEZ DEUS. AMOS AINDA NÃO SABE LER AQUILO. VAI SABER.",
+      "lose": "OS ESTALOS SE EMBOLAM. O SR. VAIL DEIXA A FITA CORRER DE NOVO.",
+      "scene": "rail",
       "words": [
-       "AS BY A TOUCH",
-       "THE MACHINERY",
-       "IS NOW SET IN MOTION"
-      ]
-     },
-     {
-      "mode": "decode",
-      "title": "CIDADE LUZ",
-      "brief": [
-       "À NOITE A FEIRA BRILHA COM LÂMPADAS ELÉTRICAS. A MAIORIA DOS VISITANTES",
-       "NUNCA VIU UMA. OS TELEGRAMAS PARA CASA CONTAM."
-      ],
-      "win": "VOCÊ CORRE COM TELEGRAMAS A NOITE TODA, ATÉ OS SAPATOS DESISTIREM.",
-      "lose": "UM TELEGRAMA SE PERDE. UMA FAMÍLIA NUNCA FICA SABENDO DAS LUZES.",
-      "scene": "fair",
-      "words": [
-       "NOITE COMO DIA",
-       "MANDEM DINHEIRO",
-       "FICO MAIS UMA SEMANA"
-      ]
-     }
-    ]
-   },
-   {
-    "title": "O HOTEL DA FEIRA",
-    "year": "1893",
-    "place": "ENGLEWOOD, CHICAGO",
-    "era": "O VERÃO DA FEIRA",
-    "cover": "castle",
-    "beats": [
-     {
-      "mode": "decode",
-      "title": "RUA 63",
-      "brief": [
-       "JUNHO. UM MÉDICO SIMPÁTICO ABRIU UM HOTEL PARA OS VISITANTES DA FEIRA. VOCÊ",
-       "LEVA OS TELEGRAMAS DELE. ELE DÁ GORJETA EM PRATA E LEMBRA SEU NOME."
-      ],
-      "win": "A CASA É UM LABIRINTO. ELE DEMITE OS PEDREIROS A CADA POUCAS SEMANAS.",
-      "lose": "VOCÊ TROCA OS TELEGRAMAS. O MÉDICO SORRI E DIZ QUE NÃO IMPORTA.",
-      "scene": "fair",
-      "words": [
-       "QUARTO PARA DOIS",
-       "CHEGO SEGUNDA"
+       "E",
+       "T",
+       "A",
+       "N"
       ]
      },
      {
       "mode": "encode",
-      "title": "ETTA",
+      "title": "DE VOLTA",
       "brief": [
-       "ETTA, DEZENOVE ANOS, VEIO DE IOWA VER A FEIRA. ELA PEGA UM QUARTO NO HOTEL",
-       "DO MÉDICO E TELEGRAFA PARA A MÃE."
+       "WASHINGTON QUER PROVA DE QUE O FIO FUNCIONA NOS DOIS SENTIDOS. O SR. VAIL",
+       "DEIXA O MENINO DA VASSOURA TENTAR A CHAVE. MANDE AS LETRAS QUE OUVIU."
       ],
-      "win": "O MÉDICO LHE OFERECEU TRABALHO, ELA CONTA. ELE MESMO PAGA O TELEGRAMA.",
-      "lose": "O TELEGRAMA NÃO SAI. A MÃE ESPERA UMA SEMANA POR UMA CARTA.",
-      "scene": "fair",
-      "words": [
-       "CHEGUEI BEM",
-       "QUARTO LINDO"
-      ]
+      "win": "A CHAVE É FRIA E PESADA. AMOS NÃO QUER SOLTAR.",
+      "lose": "A CHAVE ESCORREGA. O SR. VAIL RI E GUIA A MÃO DELE.",
+      "scene": "rail",
+      "echo": true
      },
      {
       "mode": "decode",
-      "title": "A RODA",
+      "title": "PRIMEIRAS PALAVRAS",
       "brief": [
-       "21 DE JUNHO. A GRANDE RODA GIRA PELA PRIMEIRA VEZ, MAIS ALTA QUE TUDO NA",
-       "CIDADE. PARIS TEM SUA TORRE; CHICAGO TEM ISTO. NORA TE TREINA ENQUANTO ELA",
-       "GIRA."
+       "DEPOIS DISSO, AMOS VOLTA TODO DIA. O SR. VAIL TOCA PALAVRAS CURTAS PARA ELE."
       ],
-      "win": "CINQUENTA CENTAVOS A VOLTA: UM DIA DE SALÁRIO. VOCÊ A VÊ GIRAR DA PORTA.",
-      "lose": "VOCÊ OLHA A RODA EM VEZ DA FITA. NORA SUSPIRA.",
+      "win": "NO VERÃO ELE LÊ A FITA MAIS RÁPIDO QUE OS HOMENS. GANHA UM EMPREGO, E UM BANQUINHO.",
+      "lose": "OS ESTALOS SE EMBOLAM. O SR. VAIL TOCA DE NOVO, MAIS DEVAGAR.",
+      "scene": "rail",
+      "count": 3
+     }
+    ]
+   },
+   {
+    "title": "O MENSAGEIRO",
+    "year": "1889",
+    "place": "CHICAGO",
+    "era": "A CIDADE DOS VENTOS",
+    "cover": "chicago",
+    "beats": [
+     {
+      "mode": "decode",
+      "title": "PRIMEIRA LIÇÃO",
+      "brief": [
+       "O ESCRITÓRIO DE AMOS, DEPOIS DO EXPEDIENTE. 'ESTAS FORAM AS PRIMEIRAS LETRAS",
+       "QUE EU OUVI', ELE DIZ. 'E DUAS NOVAS.'"
+      ],
+      "win": "'AMANHÃ DE NOVO.' VOCÊ VOLTA PARA CASA NA FUMAÇA, AINDA OUVINDO PONTOS.",
+      "lose": "OS PONTOS SE EMBOLAM. AMOS TOCA DE NOVO, MAIS DEVAGAR.",
       "scene": "fair",
       "count": 3
      },
      {
       "mode": "decode",
-      "title": "SEM NOTÍCIA",
+      "title": "PARA CIMA",
       "brief": [
-       "AGOSTO. UM TELEGRAMA DE IOWA PARA ETTA, AOS CUIDADOS DO HOTEL DO MÉDICO."
+       "NO CENTRO, OS PRÉDIOS SOBEM EM ESQUELETOS DE AÇO, DEZ, DOZE ANDARES. AMOS",
+       "TREINA VOCÊ AO SOM DOS REBITES."
       ],
-      "win": "O MÉDICO ASSINA O RECEBIMENTO. ELA FOI PARA O LESTE, ELE DIZ, E SORRI.",
-      "lose": "O TELEGRAMA SE PERDE. A MÃE MANDA OUTRO. O MÉDICO ASSINA ESSE TAMBÉM.",
+      "win": "O EDIFÍCIO TACOMA: DOZE ANDARES. SEU PESCOÇO DÓI DE TANTO OLHAR PARA CIMA.",
+      "lose": "UM MARTELO CAI LÁ FORA. VOCÊ PERDE A CONTA.",
+      "scene": "fair",
+      "count": 3
+     },
+     {
+      "mode": "encode",
+      "title": "OS TELEGRAMAS DA CIDADE",
+      "brief": [
+       "A CIDADE NUNCA PARA DE TELEGRAFAR. AMOS DEIXA VOCÊ MANDAR OS CURTOS."
+      ],
+      "win": "UM DÓLAR POR DIA, E TODA A LAMA QUE CABE NAS BOTAS.",
+      "lose": "O TELEGRAMA EMPACA. AMOS MANDA ELE MESMO, SEM DIZER NADA.",
       "scene": "fair",
       "words": [
-       "NENHUMA CARTA EM UM MES",
-       "RESPONDA ETTA"
+       "ANA TEM NENEM",
+       "MAMAE TE AMA"
       ]
      }
     ]
    },
    {
-    "title": "A ÚLTIMA MENSAGEM",
-    "year": "1889",
-    "place": "JOHNSTOWN, PENSILVÂNIA",
-    "era": "A HISTÓRIA DE NORA",
-    "cover": "johnstown",
+    "title": "A CIDADE DOS VENTOS",
+    "year": "1890",
+    "place": "CHICAGO",
+    "era": "24 DE FEVEREIRO DE 1890",
+    "cover": "chicago",
     "beats": [
      {
       "mode": "decode",
-      "title": "CHUVA",
+      "title": "AS VOTAÇÕES",
       "brief": [
-       "SETEMBRO. NORA ABRE UM VELHO LIVRO DE REGISTROS: JOHNSTOWN, 31 DE MAIO DE",
-       "1889. NAQUELE DIA ELA ESTAVA NA OUTRA PONTA DO FIO DE HETTIE OGLE. TINHA",
-       "CHOVIDO A NOITE TODA."
+       "O CONGRESSO ESCOLHE A CIDADE DA PRÓXIMA FEIRA MUNDIAL: NOVA YORK OU CHICAGO.",
+       "UMA MULTIDÃO ESPERA NA JANELA DE AMOS. COPIE CADA VOTAÇÃO."
       ],
-      "win": "HETTIE CUIDAVA DO TELÉGRAFO DA CIDADE. O RIO SUBIA SOB A JANELA DELA.",
-      "lose": "VOCÊ PERDE. NORA REPETE. ELA SABE DE COR.",
-      "scene": "rail",
-      "words": [
-       "RAIN GAUGE CARRIED AWAY",
-       "HIGHER THAN EVER KNOWN"
-      ]
+      "win": "OITAVA VOTAÇÃO. AMOS PARA DE ESCREVER E LEVANTA OS OLHOS.",
+      "lose": "VOCÊ PERDE UMA VOTAÇÃO. A MULTIDÃO RESMUNGA NA JANELA.",
+      "scene": "fair",
+      "count": 3
      },
      {
       "mode": "decode",
-      "title": "A REPRESA",
+      "title": "A ÚLTIMA VOTAÇÃO",
       "brief": [
-       "VALE ACIMA, UMA VELHA REPRESA SEGURA O LAGO DE PESCA DE UM CLUBE DE",
-       "MILIONÁRIOS. UM AVISO DESCE PELO FIO DA FERROVIA."
+       "WASHINGTON DE NOVO. A MULTIDÃO SE CALA."
       ],
-      "win": "A REPRESA ESTÁ PARA ESTOURAR HÁ ANOS. A CIDADE CANSOU DE OUVIR ISSO.",
-      "lose": "A ESTÁTICA ENGOLE. NORA DIZ QUE NÃO TERIA FEITO DIFERENÇA. NÃO PARECE TER CERTEZA.",
-      "scene": "rail",
+      "win": "CHICAGO VENCE. NOVA YORK DEBOCHA DA CIDADE DOS VENTOS: SÓ VENTO E BRAVATA. CHICAGO FICA COM O NOME.",
+      "lose": "ESTÁTICA. A MULTIDÃO LÊ O SEU ROSTO.",
+      "scene": "fair",
       "words": [
-       "SOUTH FORK DAM",
-       "IS LIABLE TO BREAK"
+       "E NOSSA"
       ]
      },
      {
       "mode": "encode",
       "title": "PASSE ADIANTE",
       "brief": [
-       "O AVISO SEGUE PARA JOHNSTOWN. NORA PEDE QUE VOCÊ TRANSMITA, COMO HETTIE FEZ."
+       "TODO ESCRITÓRIO DA CIDADE QUER A NOTÍCIA. AMOS TE PASSA A CHAVE."
       ],
-      "win": "A ÁGUA ESTÁ ENTRANDO NA SALA DELA. ELA FICA NA CHAVE.",
-      "lose": "O AVISO EMPACA. EM JOHNSTOWN, A ÁGUA CONTINUA SUBINDO.",
-      "scene": "rail",
-      "words": [
-       "NOTIFY THE PEOPLE",
-       "PREPARE FOR THE WORST"
-      ]
-     },
-     {
-      "mode": "decode",
-      "title": "A ÚLTIMA MENSAGEM",
-      "brief": [
-       "HETTIE MANDA MAIS UMA LINHA."
-      ],
-      "win": "LOGO DEPOIS A REPRESA CEDE. EM UMA HORA A ONDA LEVA A CIDADE, E HETTIE COM ELA.",
-      "lose": "VOCÊ PERDE. NORA REPETE UMA VEZ, BEM DEVAGAR.",
-      "scene": "rail",
-      "words": [
-       "THIS IS MY LAST MESSAGE"
-      ]
-     },
-     {
-      "mode": "encode",
-      "title": "A LIÇÃO DE NORA",
-      "brief": [
-       "NORA FECHA O LIVRO. 'LEMBRE DELA. UM TELEGRAFISTA FICA NA CHAVE.' TRANSMITA",
-       "DE VOLTA PARA ELA."
-      ],
-      "win": "ELA ACENA. VOCÊ VAI LEMBRAR.",
-      "lose": "SUA MÃO TREME. NORA ESPERA PASSAR.",
-      "scene": "rail",
-      "words": [
-       "FIQUE NA CHAVE"
-      ]
-     },
-     {
-      "mode": "decode",
-      "title": "UMA PÁGINA MELHOR",
-      "brief": [
-       "NORA VOLTA ALGUMAS PÁGINAS. 'NEM TODO DIA É ENCHENTE.' MAIO DE 1888, UM CABO",
-       "DO RIO DE JANEIRO."
-      ],
-      "win": "O BRASIL ACABA COM A ESCRAVIDÃO, A ÚLTIMA NAÇÃO DAS AMÉRICAS A FAZÊ-LO. NORA COPIOU SORRINDO.",
-      "lose": "VOCÊ PERDE. NORA REPETE, COM GOSTO.",
-      "scene": "rail",
-      "words": [
-       "E DECLARADA EXTINTA",
-       "A ESCRAVIDAO NO BRASIL"
-      ]
+      "win": "TRÊS ANOS PARA ERGUER UMA FEIRA NUM PÂNTANO. A CIDADE COMEÇA NAQUELA NOITE.",
+      "lose": "A CHAVE ESCORREGA. AMOS MANDA POR VOCÊ. NINGUÉM REPARA: A CIDADE ESTÁ FESTEJANDO.",
+      "scene": "fair",
+      "echo": true
      }
     ]
    },
    {
-    "title": "O FIM DA FEIRA",
+    "title": "A FEIRA",
     "year": "1893",
     "place": "CHICAGO",
-    "era": "OUTONO DE 1893",
-    "cover": "whitenight",
+    "era": "A FEIRA MUNDIAL",
+    "cover": "whitecity",
     "beats": [
      {
       "mode": "decode",
-      "title": "NOVA ZELÂNDIA",
+      "title": "A CHAVE DE OURO",
       "brief": [
-       "FIM DE SETEMBRO. UM CABO DO OUTRO LADO DO MUNDO. NENHUM PAÍS FEZ ISSO ANTES."
+       "1º DE MAIO DE 1893. O PRESIDENTE APERTA UMA CHAVE DE OURO. O ESTALO CORRE",
+       "PELOS FIOS ATÉ CADA MOTOR DA FEIRA."
       ],
-      "win": "NORA LÊ DUAS VEZES E GUARDA NO BOLSO. AS BRASILEIRAS VÃO ESPERAR ATÉ 1932.",
-      "lose": "VOCÊ TRUNCA. NORA PEGA O LÁPIS E COPIA ELA MESMA.",
+      "win": "MOTORES RUGEM, FONTES SALTAM. A CIDADE DA LAMA SE VESTE TODA DE BRANCO.",
+      "lose": "A MULTIDÃO ABAFA O SINAL. AS FONTES LIGAM ASSIM MESMO.",
       "scene": "fair",
       "words": [
-       "MULHERES VOTAM",
-       "NA NOVA ZELANDIA"
+       "E O MOMENTO"
       ]
      },
      {
       "mode": "decode",
-      "title": "DIA DE CHICAGO",
+      "title": "CIDADE LUZ",
       "brief": [
-       "9 DE OUTUBRO, DIA DE CHICAGO: A MAIOR MULTIDÃO QUE A FEIRA JÁ VIU, E FOGOS",
-       "AO ANOITECER. OS FIOS NÃO PARAM. NORA TE DEIXA PEGAR ALGUNS."
+       "À NOITE A FEIRA ARDE EM LÂMPADAS ELÉTRICAS. A MAIORIA DOS VISITANTES NUNCA VIU",
+       "UMA. OS TELEGRAMAS PARA CASA NÃO PARAM."
       ],
-      "win": "OS JORNAIS DIZEM QUE CHICAGO VENCEU PARIS. NINGUÉM AQUI DUVIDA.",
-      "lose": "VOCÊ FICA PARA TRÁS. NORA PEGA O FIO DE VOLTA SEM DIZER NADA.",
+      "win": "VOCÊ CORRE COM TELEGRAMAS A NOITE INTEIRA, ATÉ O SAPATO FURAR.",
+      "lose": "UM TELEGRAMA SE PERDE. UMA FAMÍLIA NUNCA FICA SABENDO DAS LUZES.",
       "scene": "fair",
       "count": 3
      },
      {
-      "mode": "encode",
-      "title": "O PREFEITO",
-      "brief": [
-       "28 DE OUTUBRO. O PREFEITO PASSA O DIA ELOGIANDO A FEIRA. À NOITE UM HOMEM",
-       "TOCA A CAMPAINHA DELE E ATIRA. A IMPRENSA QUER A NOTÍCIA JÁ."
-      ],
-      "win": "A FEIRA TERMINA SEM FOGOS, SÓ COM UMA ORAÇÃO.",
-      "lose": "O FLASH NÃO SAI. OS JORNAIS DA MANHÃ RECEBEM DE OUTRO.",
-      "scene": "fair",
-      "words": [
-       "PREFEITO BALEADO",
-       "PREFEITO MORTO"
-      ]
-     },
-     {
       "mode": "decode",
-      "title": "A MÃE DE ETTA",
+      "title": "ANNIE",
       "brief": [
-       "UM TELEGRAMA DE IOWA PARA ETTA. NINGUÉM NO HOTEL RESPONDE, E ELE VOLTA PARA",
-       "VOCÊ. NORA DIZ QUE VOCÊ JÁ PODE OUVIR SÓ COM OS OUVIDOS."
+       "A ÚLTIMA SEMANA DA FEIRA. UM TELEGRAMA DE UMA MENINA NUM INTERNATO EM NOVA",
+       "YORK PARA A MÃE, NA STATE STREET. AMOS DIZ QUE VOCÊ JÁ PODE OUVIR SÓ COM OS",
+       "OUVIDOS."
       ],
-      "win": "A MÃE ESCREVEU AO HOTEL, À POLÍCIA, À FEIRA. NINGUÉM VIU ETTA.",
-      "lose": "PASSA RÁPIDO DEMAIS. NORA COPIA PARA VOCÊ. VOCÊ PREFERIA QUE NÃO.",
+      "win": "VOCÊ CORRE ATÉ A STATE STREET. A MÃE LÊ NA PORTA E ESCREVE A RESPOSTA NO SEU BLOCO.",
+      "lose": "PASSA RÁPIDO DEMAIS. AMOS COPIA PARA VOCÊ, SEM DIZER NADA.",
       "scene": "fair",
       "words": [
-       "ETTA",
        "MAMAE",
-       "MAMAE TE AMA"
+       "TE AMO",
+       "TE AMO MAMAE"
       ],
       "blind": true
      },
      {
       "mode": "encode",
-      "title": "SUA RESPOSTA",
+      "title": "SEU PRIMEIRO TELEGRAMA",
       "brief": [
-       "NORA DEIXA VOCÊ RESPONDER. SEU PRIMEIRO TELEGRAMA COMO TELEGRAFISTA."
+       "MANDE A RESPOSTA DA MÃE. SEU PRIMEIRO TELEGRAMA COMO TELEGRAFISTA."
       ],
-      "win": "30 DE OUTUBRO. A CIDADE BRANCA SE APAGA, E A MULTIDÃO VAI PARA CASA.",
-      "lose": "O TELEGRAMA NÃO SAI. A MÃE ESPERA UMA RESPOSTA QUE NUNCA VEM.",
+      "win": "30 DE OUTUBRO. A FEIRA SE APAGA. CHICAGO CONTINUA SUJA, VENTOSA E CHEIA DE SI.",
+      "lose": "O TELEGRAMA NÃO SAI. AMOS ESPERA SUA MÃO PARAR DE TREMER.",
       "scene": "fair",
       "words": [
-       "ETTA SEM SINAIS"
+       "MAMAE TE AMA MAIS"
       ],
       "blind": true
      }
@@ -2964,23 +2646,22 @@
       "lose": "O RELATÓRIO SE PERDE. OS ENGENHEIROS TESTAM DE NOVO, E PRAGUEJAM.",
       "scene": "rail",
       "words": [
-       "DINAMOS GIRANDO",
-       "TESTES INDO BEM"
+       "TESTES OK",
+       "MOTORES OK"
       ]
      },
      {
       "mode": "decode",
       "title": "MEIA-NOITE",
       "brief": [
-       "15 DE NOVEMBRO, QUASE MEIA-NOITE. SEU FIO ESTÁ ABERTO PARA NIÁGARA. À",
-       "MEIA-NOITE ELES FECHAM A CHAVE."
+       "15 DE NOVEMBRO, QUASE MEIA-NOITE. SEU FIO ESTÁ ABERTO PARA NIÁGARA. À MEIA-",
+       "NOITE ELES FECHAM A CHAVE."
       ],
       "win": "NA SUBESTAÇÃO DE BUFFALO, OS PONTEIROS SALTAM. AS CATARATAS VIERAM POR UM FIO.",
       "lose": "O SINAL SE PERDE. FECHAM A CHAVE MESMO ASSIM, E PRENDEM A RESPIRAÇÃO.",
       "scene": "rail",
       "words": [
-       "PRONTOS NO NIAGARA",
-       "CHAVE A MEIA NOITE"
+       "TRANSMISSAO A MEIA NOITE"
       ]
      },
      {
@@ -2993,24 +2674,8 @@
       "lose": "O NIÁGARA NÃO OUVE NADA, E TEME QUE A LINHA TENHA QUEIMADO.",
       "scene": "rail",
       "words": [
-       "ENERGIA RECEBIDA",
-       "TUDO BEM"
-      ]
-     },
-     {
-      "mode": "decode",
-      "title": "UM MONUMENTO",
-      "brief": [
-       "JANEIRO DE 1897. UM BANQUETE PARA OS HOMENS DE NIÁGARA. TESLA, QUE QUASE",
-       "NUNCA FALA EM PÚBLICO, SE LEVANTA. A IMPRENSA TELEGRAFA AS PALAVRAS DELE."
-      ],
-      "win": "POR UMA NOITE, NINGUÉM TEM MEDO DO FUTURO.",
-      "lose": "VOCÊ PERDE AS PALAVRAS. OS APLAUSOS CHEGAM PERFEITAMENTE.",
-      "scene": "rail",
-      "words": [
-       "A TRUE MONUMENT",
-       "OF ENLIGHTENMENT",
-       "AND OF PEACE"
+       "MOTORES OK",
+       "SEM ERROS"
       ]
      }
     ]
@@ -3026,9 +2691,9 @@
       "mode": "decode",
       "title": "A PIPA",
       "brief": [
-       "DEZEMBRO DE 1901, SAINT JOHN'S. VOCÊ TRABALHA NO ESCRITÓRIO DO CABO. NO",
-       "SIGNAL HILL, NUM VENDAVAL, MARCONI EMPINA UMA PIPA E ESCUTA A INGLATERRA. OS",
-       "COLEGAS BATEM 'S' NA MESA, RINDO."
+       "DEZEMBRO DE 1901, SAINT JOHN'S. VOCÊ TRABALHA NO ESCRITÓRIO DO CABO. NO SIGNAL",
+       "HILL, NUM VENDAVAL, MARCONI EMPINA UMA PIPA E ESCUTA A INGLATERRA. OS COLEGAS",
+       "BATEM 'S' NA MESA, RINDO."
       ],
       "win": "12 DE DEZEMBRO. NO MORRO, MARCONI OUVE: TRÊS PONTOS FRACOS, DO OUTRO LADO DO OCEANO.",
       "lose": "A VENTANIA LEVA. NA COLINA, A PIPA DÁ OUTRO MERGULHO.",
@@ -3047,8 +2712,8 @@
       "lose": "A NOTÍCIA EMPACA NA SUA MESA. OS JORNAIS RECEBEM MESMO ASSIM.",
       "scene": "sea",
       "words": [
-       "SINAIS CRUZAM O ATLANTICO",
-       "SEM FIOS"
+       "SINAIS NO AR",
+       "E SERIO"
       ]
      },
      {
@@ -3062,23 +2727,8 @@
       "lose": "A NOTIFICAÇÃO NÃO SAI. O ADVOGADO A ENTREGA EM MÃOS.",
       "scene": "sea",
       "words": [
-       "PARE IMEDIATAMENTE"
-      ]
-     },
-     {
-      "mode": "decode",
-      "title": "O PRESIDENTE",
-      "brief": [
-       "JANEIRO DE 1903. O PRESIDENTE ROOSEVELT TELEGRAFA AO REI DA INGLATERRA,",
-       "ATRAVÉS DO ATLÂNTICO, SEM FIO."
-      ],
-      "win": "O REI RESPONDE NO DIA SEGUINTE. NO SEU ESCRITÓRIO, NINGUÉM RI MAIS.",
-      "lose": "VOCÊ PERDE. TODO JORNAL DOS EUA PUBLICA MESMO ASSIM.",
-      "scene": "sea",
-      "words": [
-       "WONDERFUL TRIUMPH",
-       "OF SCIENTIFIC RESEARCH",
-       "AND INGENUITY"
+       "DESISTA",
+       "OU SAIA"
       ]
      }
     ]
@@ -3094,58 +2744,38 @@
       "mode": "decode",
       "title": "O TURNO DA NOITE",
       "brief": [
-       "DEZEMBRO DE 1903, O TURNO DA NOITE EM DAYTON, OHIO. OS JORNAIS TÊM CERTEZA:",
-       "UMA MÁQUINA PODE VOAR UM DIA, DAQUI A..."
+       "DEZEMBRO DE 1903, O TURNO DA NOITE EM DAYTON, OHIO. OS JORNAIS TÊM CERTEZA: O",
+       "HOMEM VAI VOAR DAQUI A UM MILHÃO DE ANOS, TALVEZ DEZ. O EDITOR DA NOITE",
+       "CONCORDA."
       ],
       "win": "DOIS IRMÃOS QUE FAZEM BICICLETAS DO OUTRO LADO DA CIDADE ESTÃO NUMA PRAIA DA CAROLINA DO NORTE.",
       "lose": "A ESTÁTICA LEVA. NÃO É GRANDE PERDA.",
       "scene": "biplane",
       "words": [
-       "ONE MILLION TO",
-       "TEN MILLION YEARS"
-      ]
-     },
-     {
-      "mode": "decode",
-      "title": "SUCESSO GARANTIDO",
-      "brief": [
-       "15 DE DEZEMBRO. UM TELEGRAMA DE KITTY HAWK PARA O BISPO WRIGHT. ONTEM OS",
-       "FILHOS DELE TENTARAM VOAR, PERDERAM VELOCIDADE E BATERAM NA AREIA."
-      ],
-      "win": "ELES CAÍRAM, E CHAMAM ISSO DE SUCESSO. VOCÊ GOSTA DESSES IRMÃOS.",
-      "lose": "O TELEGRAMA SAI TRUNCADO. O BISPO PASSA A NOITE PREOCUPADO.",
-      "scene": "biplane",
-      "words": [
-       "POWER AND CONTROL AMPLE",
-       "RUDDER ONLY INJURED",
-       "SUCCESS ASSURED"
+       "NAO NESTE MUNDO"
       ]
      },
      {
       "mode": "decode",
       "title": "O TELEGRAMA",
       "brief": [
-       "17 DE DEZEMBRO, FIM DA TARDE. KITTY HAWK DE NOVO, PARA O BISPO. NO MEIO, SEU",
-       "LÁPIS PARA."
+       "17 DE DEZEMBRO. UM TELEGRAMA PARA O BISPO WRIGHT: OS FILHOS DELE VOARAM,",
+       "QUATRO VEZES, A MAIS LONGA POR QUASE UM MINUTO. NINGUÉM NA LINHA ACREDITA."
       ],
-      "win": "UMA MÁQUINA VOOU. NO CAMINHO, 59 SEGUNDOS VIRARAM 57, E ORVILLE VIROU 'OREVELLE'.",
-      "lose": "VOCÊ PERDE O FIO. O BISPO RECEBE UMA PÁGINA SEM SENTIDO.",
+      "win": "O EDITOR DE DAYTON DÁ DE OMBROS: SE FOSSEM CINQUENTA E SETE MINUTOS, TALVEZ FOSSE NOTÍCIA.",
+      "lose": "VOCÊ PERDE O FIO. A LINHA VOLTA A DISCUTIR.",
       "scene": "biplane",
       "words": [
-       "SUCCESS FOUR FLIGHTS",
-       "THURSDAY MORNING",
-       "LONGEST 57 SECONDS",
-       "INFORM PRESS",
-       "HOME CHRISTMAS",
-       "OREVELLE WRIGHT"
+       "MENTIRA",
+       "NAO E MENTIRA"
       ]
      },
      {
       "mode": "decode",
       "title": "NORFOLK",
       "brief": [
-       "O PLANTONISTA DE NORFOLK TE CHAMA, DE COLEGA PARA COLEGA. TODO MUNDO NA",
-       "LINHA TEM UMA OPINIÃO."
+       "O PLANTONISTA DE NORFOLK TE CHAMA, DE COLEGA PARA COLEGA. TODO MUNDO NA LINHA",
+       "TEM UMA OPINIÃO."
       ],
       "win": "METADE DA LINHA ACHA QUE FOI UMA PIPA. A OUTRA METADE APOSTOU CONTRA.",
       "lose": "PASSA. NORFOLK SUSPIRA NO FIO E PERGUNTA DE NOVO AMANHÃ.",
@@ -3163,7 +2793,7 @@
       "brief": [
        "RESPONDA."
       ],
-      "win": "NORFOLK FICA QUIETO. DEPOIS: 'TNX OM. PERDI UM DÓLAR.'",
+      "win": "NORFOLK FICA QUIETO. DEPOIS: 'VALEU, AMIGO. PERDI UM DÓLAR.'",
       "lose": "SUA RESPOSTA SAI TRUNCADA. NORFOLK CONCLUI QUE ERA PIPA.",
       "scene": "biplane",
       "words": [
@@ -3192,8 +2822,8 @@
       "lose": "A CRÍTICA SAI TRUNCADA. O CRÍTICO NUNCA VAI TE PERDOAR.",
       "scene": "road",
       "words": [
-       "CARUSO TRIUNFA",
-       "CASA LOTADA"
+       "GRANDE TENOR",
+       "SEM INGRESSOS"
       ]
      },
      {
@@ -3207,52 +2837,36 @@
       "lose": "VOCÊ NÃO OUVE COM O BARULHO. NOVA YORK CHAMA PARA A POEIRA.",
       "scene": "road",
       "words": [
-       "SF SF RESPONDA",
-       "ESTA AI"
+       "ESTAO AI",
+       "ATENDAM"
       ]
      },
      {
       "mode": "encode",
       "title": "TERREMOTO",
       "brief": [
-       "SEU CHEFE RABISCA UM FLASH PARA A IMPRENSA. TRANSMITA ANTES DO PRÓXIMO",
-       "TREMOR."
+       "SEU CHEFE RABISCA UM FLASH PARA A IMPRENSA. TRANSMITA ANTES DO PRÓXIMO TREMOR."
       ],
       "win": "NA HORA DO CAFÉ, NOVA YORK JÁ SABE.",
       "lose": "UM TREMOR SECUNDÁRIO. O FLASH SE PARTE NO MEIO.",
       "scene": "road",
       "words": [
        "TERREMOTO",
-       "CIDADE MUITO DANIFICADA"
-      ]
-     },
-     {
-      "mode": "decode",
-      "title": "SEM ÁGUA",
-      "brief": [
-       "INCÊNDIOS COMEÇAM PELA CIDADE. OS ALARMES DE INCÊNDIO ESTÃO MUDOS, E UM",
-       "CAPITÃO MANDA O RELATÓRIO POR VOCÊ."
-      ],
-      "win": "A CIDADE QUEIMA, E OS HIDRANTES ESTÃO SECOS.",
-      "lose": "O RELATÓRIO SE PERDE. OS BOMBEIROS DESCOBREM HIDRANTE POR HIDRANTE.",
-      "scene": "road",
-      "words": [
-       "ADUTORAS ROMPIDAS",
-       "SEM AGUA"
+       "GRANDES DANOS"
       ]
      },
      {
       "mode": "encode",
       "title": "DINAMITE",
       "brief": [
-       "SEM ÁGUA, O EXÉRCITO VAI EXPLODIR CASAS PARA CONTER O FOGO. PRECISAM DE",
-       "DINAMITE."
+       "FOGO POR TODA PARTE, E OS CANOS DE ÁGUA ESTÃO ROMPIDOS. O EXÉRCITO VAI",
+       "EXPLODIR CASAS PARA PARAR O FOGO."
       ],
       "win": "AS EXPLOSÕES SEGUEM O DIA TODO. ALGUMAS COMEÇAM NOVOS INCÊNDIOS.",
       "lose": "O PEDIDO EMPACA. O FOGO, NÃO.",
       "scene": "road",
       "words": [
-       "MANDEM DINAMITE"
+       "MANDEM DETONADORES"
       ]
      }
     ]
@@ -3268,16 +2882,15 @@
       "mode": "encode",
       "title": "UMA LINHA",
       "brief": [
-       "UMA LINHA PARA O LESTE AINDA FUNCIONA, E É A SUA. A CIDADE INTEIRA FAZ FILA",
-       "NO SEU GUICHÊ PARA DIZER QUE ESTÁ VIVA."
+       "UMA LINHA PARA O LESTE AINDA FUNCIONA, E É A SUA. A CIDADE INTEIRA FAZ FILA NO",
+       "SEU GUICHÊ PARA DIZER QUE ESTÁ VIVA."
       ],
       "win": "NINGUÉM ESCREVE MAIS QUE TRÊS PALAVRAS. NINGUÉM PRECISA.",
       "lose": "A FILA CRESCE. ALGUMAS FAMÍLIAS VÃO LER AS LISTAS DE MORTOS NO LUGAR.",
       "scene": "road",
       "words": [
-       "TODOS BEM",
-       "CASA PERDIDA",
-       "MANDEM DINHEIRO"
+       "ESTAMOS OK",
+       "SEM TETO"
       ]
      },
      {
@@ -3287,43 +2900,43 @@
        "TARDE. O FOGO ESTÁ A UMA QUADRA E AS JANELAS QUEIMAM AO TOQUE. UMA ÚLTIMA",
        "MENSAGEM, DIZ O CHEFE, E TODO MUNDO PARA FORA."
       ],
-      "win": "UM TELEGRAFISTA FICA NA CHAVE, DISSE NORA. O CHEFE TE ARRASTA PELA GOLA.",
+      "win": "UM TELEGRAFISTA FICA NA CHAVE, DISSE AMOS. O CHEFE TE ARRASTA PELA GOLA.",
       "lose": "A LINHA MORRE SOB SUA MÃO. O CHEFE TE ARRASTA PELO COLARINHO.",
       "scene": "road",
       "words": [
-       "FOGO A UMA QUADRA",
-       "TEMOS QUE SAIR"
+       "ARDE A RUA TODA",
+       "TEMOS DE SAIR"
       ]
      },
      {
       "mode": "decode",
       "title": "O CAIS",
       "brief": [
-       "UM GALPÃO NUM CAIS, UM FIO ATRAVÉS DA BAÍA ATÉ OAKLAND. É TUDO O QUE SOBROU",
-       "À CIDADE."
+       "UM GALPÃO NUM CAIS, UM FIO ATRAVÉS DA BAÍA ATÉ OAKLAND. É TUDO O QUE SOBROU À",
+       "CIDADE."
       ],
       "win": "VOCÊ TRABALHA NELE DOIS DIAS, DORMINDO EM SACOS DE CORREIO.",
       "lose": "A LINHA ESTÁ MUDA. UM GUARDA-FIOS SAI PELO CAIS ATRÁS DO ROMPIMENTO.",
       "scene": "road",
       "words": [
-       "AQUI OAKLAND",
-       "PODE MANDAR SF"
+       "ENTENDIDO",
+       "SIGA"
       ]
      },
      {
       "mode": "decode",
-      "title": "NORA",
+      "title": "AMOS",
       "brief": [
        "UM TELEGRAMA PARA VOCÊ, DE CHICAGO. O APARELHO DO GALPÃO NÃO TEM FITA NEM",
        "LÂMPADA."
       ],
-      "win": "HÁ DOIS DIAS ELA LÊ TODAS AS LISTAS DE MORTOS.",
-      "lose": "PASSA NO BARULHO DO CAIS. PELO MENOS VOCÊ RECONHECE A MÃO. É NORA.",
+      "win": "HÁ DOIS DIAS ELE LÊ TODAS AS LISTAS DE MORTOS.",
+      "lose": "PASSA NO BARULHO DO CAIS. PELO MENOS VOCÊ RECONHECE A MÃO. É AMOS.",
       "scene": "road",
       "words": [
-       "NORA",
-       "OM",
-       "TUDO OK OM"
+       "AMOS",
+       "AMIGO",
+       "TUDO OK AMIGO"
       ],
       "blind": true
      },
@@ -3334,10 +2947,10 @@
        "RESPONDA."
       ],
       "win": "NO TERCEIRO DIA O FOGO PARA NA AVENIDA VAN NESS, ONDE O EXÉRCITO EXPLODIU UMA RUA INTEIRA.",
-      "lose": "A RESPOSTA NÃO SAI. NORA CONTINUA LENDO AS LISTAS.",
+      "lose": "A RESPOSTA NÃO SAI. AMOS CONTINUA LENDO AS LISTAS.",
       "scene": "road",
       "words": [
-       "ESTOU OK NORA"
+       "ESTOU OK AMOS"
       ],
       "blind": true
      }
@@ -3361,7 +2974,7 @@
       "lose": "O AVISO SE PERDE. SEU CAPITÃO MANTÉM A VELOCIDADE, E REZA.",
       "scene": "fog",
       "words": [
-       "NEBLINA FECHADA",
+       "NEVOEIRO DENSO",
        "VA DEVAGAR"
       ]
      },
@@ -3369,15 +2982,15 @@
       "mode": "decode",
       "title": "CQD",
       "brief": [
-       "UM GRANDE NAVIO DA WHITE STAR, O REPUBLIC, CHAMA A COSTA. O OPERADOR DELE É",
-       "JACK BINNS."
+       "UM GRANDE NAVIO DA WHITE STAR, O REPUBLIC, CHAMA A COSTA. O OPERADOR, JACK",
+       "BINNS, MANDA CQD: VENHAM RÁPIDO, PERIGO."
       ],
       "win": "ABALROADO NA NEBLINA PELO FLORIDA. A PAREDE DA CABINE DE BINNS FOI ARRANCADA.",
       "lose": "A NEBLINA ENGOLE. VOCÊ SÓ SABE QUE ALGUÉM ESTÁ CHAMANDO.",
       "scene": "fog",
       "words": [
-       "CQD",
-       "REPUBLIC SHIPWRECKED"
+       "NAVIO ATINGIDO",
+       "ENTRANDO AGUA"
       ]
      },
      {
@@ -3390,23 +3003,22 @@
       "lose": "VOCÊ O PERDE. POR UM INSTANTE ACHA QUE O REPUBLIC SE FOI. NÃO SE FOI.",
       "scene": "fog",
       "words": [
-       "STAND BY",
-       "CAPTAINS MESSAGE"
+       "AGUARDEM",
+       "ORDENS DO NAVIO"
       ]
      },
      {
       "mode": "encode",
       "title": "A TODOS OS NAVIOS",
       "brief": [
-       "TODO NAVIO AO ALCANCE PRECISA OUVIR. SEU CAPITÃO VIRA NA NEBLINA PARA",
-       "AJUDAR."
+       "TODO NAVIO AO ALCANCE PRECISA OUVIR. SEU CAPITÃO VIRA NA NEBLINA PARA AJUDAR."
       ],
       "win": "O BALTIC RESPONDE PRIMEIRO, E VIRA PARA PROCURAR.",
       "lose": "SUA RETRANSMISSÃO MORRE NA NEBLINA. OUTROS NAVIOS LEVAM POR VOCÊ.",
       "scene": "fog",
       "words": [
-       "REPUBLIC AFUNDANDO",
-       "AO SUL DE NANTUCKET"
+       "NAVIO ADERNANDO",
+       "VENHAM AGORA"
       ]
      }
     ]
@@ -3429,8 +3041,8 @@
       "lose": "OS SINAIS SOMEM. O BALTIC DÁ VOLTAS NA NEBLINA.",
       "scene": "fog",
       "words": [
-       "COMO ME OUVE",
-       "MAIS ALTO AGORA"
+       "ME OUVE AGORA",
+       "ESTA AUMENTANDO"
       ]
      },
      {
@@ -3444,8 +3056,8 @@
       "lose": "A RETRANSMISSÃO EMPACA. OS JORNAIS PUBLICAM BOATOS.",
       "scene": "fog",
       "words": [
-       "BALTIC AO LADO",
-       "TRANSFERINDO TODOS"
+       "NAVIOS UNIDOS",
+       "MUDANDO TODOS"
       ]
      },
      {
@@ -3458,7 +3070,7 @@
       "lose": "VOCÊ PERDE. POR UMA HORA, TEME O PIOR. DEPOIS OS JORNAIS CONTAM.",
       "scene": "fog",
       "words": [
-       "ALL HANDS SAVED"
+       "TODOS VIVOS"
       ]
      },
      {
@@ -3471,9 +3083,9 @@
       "lose": "PASSA NA ESTÁTICA. VOCÊ CONHECE A MÃO. SABE O QUE ELE QUIS DIZER.",
       "scene": "fog",
       "words": [
-       "THANKS",
-       "OM",
-       "THANKS OM GOOD NIGHT"
+       "GRATO",
+       "AMIGO",
+       "GRATO AMIGO ATE AMANHA"
       ],
       "blind": true
      },
@@ -3487,7 +3099,7 @@
       "lose": "SUA RESPOSTA TROPEÇA. ELE DORME ANTES DE ACABAR, DE QUALQUER JEITO.",
       "scene": "fog",
       "words": [
-       "VA DORMIR OM"
+       "VA DORMIR AMIGO"
       ],
       "blind": true
      }
@@ -3511,38 +3123,23 @@
       "lose": "VOCÊ TRUNCA O BOLETIM. O SALÃO INVENTA A PRÓPRIA VERSÃO.",
       "scene": "sea",
       "words": [
-       "CRIME DO PORAO",
-       "MEDICO PROCURADO"
+       "ASSASSINATO EM LONDRES",
+       "ASSASSINO FUGIU"
       ]
      },
      {
       "mode": "decode",
       "title": "SUSPEITAS",
       "brief": [
-       "O MONTROSE, A DOIS DIAS DE ANTUÉRPIA, CHAMA A COSTA. O CAPITÃO VEM",
-       "OBSERVANDO UM PAI E UM FILHO."
+       "O MONTROSE, DOIS DIAS FORA DE ANTUÉRPIA, CHAMA A COSTA. O CAPITÃO KENDALL ANDA",
+       "OBSERVANDO DOIS PASSAGEIROS."
       ],
-      "win": "O 'FILHO' SEGURA A MÃO DO PAI UM POUCO DEMAIS.",
+      "win": "UM BIGODE RASPADO, UM TERNO DE MENINO APERTADO DEMAIS. ENTÃO O MONTROSE SAI DE ALCANCE.",
       "lose": "O SINAL SOME. VOCÊ SÓ PEGA UMA PALAVRA: CRIPPEN.",
       "scene": "sea",
       "words": [
-       "HAVE STRONG SUSPICIONS",
-       "LONDON CELLAR MURDERER"
-      ]
-     },
-     {
-      "mode": "decode",
-      "title": "UM MENINO",
-      "brief": [
-       "O CAPITÃO KENDALL CONTINUA."
-      ],
-      "win": "AÍ O MONTROSE SAI DO ALCANCE. POR UMA SEMANA, NINGUÉM CONSEGUE FALAR COM ELE.",
-      "lose": "ESTÁTICA. O MONTROSE JÁ SOME PARA O OESTE.",
-      "scene": "sea",
-      "words": [
-       "MUSTACHE TAKEN OFF",
-       "DRESSED AS BOY",
-       "UNDOUBTEDLY A GIRL"
+       "SENHOR E FILHO",
+       "O FILHO E MULHER"
       ]
      },
      {
@@ -3556,7 +3153,7 @@
       "lose": "A PERGUNTA NÃO SAI. O SALÃO APOSTA EM BOATOS.",
       "scene": "sea",
       "words": [
-       "NOVIDADES DE CRIPPEN"
+       "ONDE ELE ESTA AGORA"
       ]
      }
     ]
@@ -3572,8 +3169,8 @@
       "mode": "decode",
       "title": "GANHANDO TERRENO",
       "brief": [
-       "O NAVIO DE DEW, O LAURENTIC, ESTÁ GANHANDO TERRENO. O OPERADOR DELE PERGUNTA",
-       "A TODO NAVIO QUE OUVE."
+       "O NAVIO DE DEW, O LAURENTIC, ESTÁ GANHANDO TERRENO. O OPERADOR DELE PERGUNTA A",
+       "TODO NAVIO QUE OUVE."
       ],
       "win": "ELE VAI CHEGAR AO CANADÁ PRIMEIRO. CRIPPEN NEM DESCONFIA.",
       "lose": "VOCÊ O PERDE. O LAURENTIC PERGUNTA A OUTRO.",
@@ -3594,8 +3191,8 @@
       "lose": "O BOLETIM SE PERDE. O SALÃO ACERTA AS APOSTAS NO GRITO.",
       "scene": "sea",
       "words": [
-       "CRIPPEN NO MONTROSE",
-       "DEW SE APROXIMA"
+       "O MEDICO ESTA NO MONTROSE",
+       "DEW ESTA CHEGANDO"
       ]
      },
      {
@@ -3609,8 +3206,8 @@
       "lose": "NÃO SAI. KENDALL ACHA OUTRO NAVIO PARA LEVAR.",
       "scene": "sea",
       "words": [
-       "BOTH STILL ABOARD",
-       "SUSPECT NOTHING"
+       "AMBOS AINDA A BORDO",
+       "NADA SABEM"
       ]
      },
      {
@@ -3648,8 +3245,8 @@
       "lose": "VOCÊ PERDE O SINAL. PELA ESCOTILHA, VÊ O BARCO SAIR DO MESMO JEITO.",
       "scene": "sea",
       "words": [
-       "BARCO DO PRATICO",
-       "MONTROSE PARANDO"
+       "BARCO SAINDO",
+       "MONTROSE DIMINUI"
       ]
      },
      {
@@ -3662,8 +3259,8 @@
       "lose": "VOCÊ PERDE. A ESTAÇÃO MANDA DE NOVO. E DE NOVO. E DE NOVO.",
       "scene": "sea",
       "words": [
-       "CRIPPEN ARRESTED",
-       "THANK GOD ITS OVER"
+       "MEDICO DETIDO",
+       "GRACAS A DEUS ACABOU"
       ]
      },
      {
@@ -3721,8 +3318,8 @@
       "mode": "decode",
       "title": "O POLO SUL",
       "brief": [
-       "MARÇO DE 1912. O NAVIO DE AMUNDSEN CHEGA À TASMÂNIA, E ELE CORRE DIRETO PARA",
-       "O TELÉGRAFO."
+       "MARÇO DE 1912. O NAVIO DE AMUNDSEN CHEGA À TASMÂNIA, E ELE CORRE DIRETO PARA O",
+       "TELÉGRAFO."
       ],
       "win": "O MUNDO PARECE NÃO TER MAIS BORDAS. NO MÊS QUE VEM, O TITANIC ZARPA.",
       "lose": "O CABO TRUNCA. POR UM DIA, OS JORNAIS CHUTAM.",
@@ -3748,11 +3345,11 @@
       "mode": "encode",
       "title": "PASSE ADIANTE",
       "brief": [
-       "O TITANIC ESTÁ LONGE DA COSTA. O OPERADOR-CHEFE, JACK PHILLIPS, 25 ANOS,",
-       "PEDE QUE VOCÊ RETRANSMITA. ELE TE CHAMA DE 'OLD MAN', COMO TODO OPERADOR."
+       "O TITANIC ESTÁ LONGE DA COSTA. O OPERADOR-CHEFE, JACK PHILLIPS, 25 ANOS, PEDE",
+       "QUE VOCÊ RETRANSMITA. ELE TE CHAMA DE 'MEU VELHO', COMO TODO OPERADOR."
       ],
-      "win": "PHILLIPS: 'TNX OM.' OBRIGADO, MEU VELHO.",
-      "lose": "OS TELEGRAMAS FICAM PARADOS. PHILLIPS CHAMA DE NOVO: 'ACORDA, OM.'",
+      "win": "PHILLIPS: 'VALEU, MEU VELHO.'",
+      "lose": "OS TELEGRAMAS FICAM PARADOS. PHILLIPS CHAMA DE NOVO: 'ACORDA, MEU VELHO.'",
       "scene": "fog",
       "echo": true
      },
@@ -3786,18 +3383,6 @@
       ]
      },
      {
-      "mode": "decode",
-      "title": "SETE HORAS",
-      "brief": [
-       "O APARELHO DO TITANIC QUEBROU À NOITE. PHILLIPS E SEU AJUDANTE, HAROLD",
-       "BRIDE, LEVARAM SETE HORAS CONSERTANDO. AGORA OS TELEGRAMAS SE ACUMULAM."
-      ],
-      "win": "PHILLIPS TRABALHA NA PILHA O DIA TODO. OS PASSAGEIROS PAGAM POR PALAVRA. A PILHA É DINHEIRO.",
-      "lose": "VOCÊ PERDE O FIO. PHILLIPS NEM PERCEBE.",
-      "scene": "fog",
-      "count": 2
-     },
-     {
       "mode": "encode",
       "title": "SÓ VOCÊ ESCUTA",
       "brief": [
@@ -3808,7 +3393,7 @@
       "scene": "sea",
       "words": [
        "TUDO BEM",
-       "12 NOS"
+       "MAR CALMO"
       ]
      }
     ]
@@ -3831,19 +3416,18 @@
       "lose": "A ESTÁTICA ENGOLE TUDO. UM AVISO A MENOS NO AR ESTA NOITE.",
       "scene": "ice",
       "words": [
-       "LAT 42 N TO 41 25 N",
-       "MUCH HEAVY PACK ICE",
-       "LARGE ICEBERGS"
+       "MUITO GELO COMPACTO",
+       "GRANDES ICEBERGS"
       ]
      },
      {
       "mode": "encode",
       "title": "SEM MSG",
       "brief": [
-       "RETRANSMITA PARA O TITANIC. UM AVISO PARA O CAPITÃO COMEÇA COM 'MSG'. ESTE",
-       "NÃO COMEÇA."
+       "RETRANSMITA PARA O TITANIC. UM AVISO PARA O CAPITÃO COMEÇA COM 'MSG'. ESTE NÃO",
+       "COMEÇA."
       ],
-      "win": "PHILLIPS: 'R OM.' SEM 'MSG' VAI PARA A PILHA. NUNCA CHEGA À PONTE.",
+      "win": "PHILLIPS: 'CERTO, MEU VELHO.' SEM 'MSG' VAI PARA A PILHA. NUNCA CHEGA À PONTE.",
       "lose": "SUA RETRANSMISSÃO NÃO PASSA. O TITANIC SEGUE A 22 NÓS, NOITE ADENTRO.",
       "scene": "ice",
       "echo": true
@@ -3859,9 +3443,9 @@
       "lose": "VOCÊ PERDE O FIO. PHILLIPS NEM PERCEBE.",
       "scene": "ice",
       "words": [
-       "SAY OLD MAN",
-       "WE ARE STOPPED",
-       "SURROUNDED BY ICE"
+       "ESCUTA MEU VELHO",
+       "ESTAMOS PARADOS",
+       "CERCADOS DE GELO"
       ]
      },
      {
@@ -3874,9 +3458,9 @@
       "lose": "VOCÊ PERDE A RESPOSTA. O QUE PHILLIPS DISSE? EVANS LEVA ISSO PARA A CAMA.",
       "scene": "ice",
       "words": [
-       "SHUT UP SHUT UP",
-       "I AM BUSY",
-       "WORKING CAPE RACE"
+       "CALA A BOCA CALA A BOCA",
+       "ESTOU OCUPADO",
+       "FALANDO COM CAPE RACE"
       ]
      }
     ]
@@ -3899,8 +3483,7 @@
       "lose": "VOCÊ VAI DORMIR, COMO O CALIFORNIAN. O QUE TERIA OUVIDO?",
       "scene": "ice",
       "words": [
-       "CQD CQD DE MGY",
-       "41 44 N 50 24 W"
+       "CQD CQD DE MGY"
       ]
      },
      {
@@ -3914,9 +3497,9 @@
       "lose": "ESTÁTICA. VOCÊ SÓ SABE QUE O CARPATHIA RESPONDEU.",
       "scene": "ice",
       "words": [
-       "COME AT ONCE",
-       "WE HAVE STRUCK A BERG",
-       "ITS A CQD OLD MAN"
+       "VENHAM JA",
+       "BATEMOS NUM ICEBERG",
+       "E UM CQD MEU VELHO"
       ]
      },
      {
@@ -3926,20 +3509,20 @@
        "PHILLIPS CHAMA SEU NAVIO. SEU CAPITÃO FAZ A CONTA: VINTE HORAS NA VELOCIDADE",
        "MÁXIMA. DIGA A VERDADE."
       ],
-      "win": "PHILLIPS: 'OK OM.' E VOLTA PARA O CARPATHIA, A TRÊS HORAS E MEIA DALI.",
+      "win": "PHILLIPS: 'OK, MEU VELHO.' E VOLTA PARA O CARPATHIA, A TRÊS HORAS E MEIA DALI.",
       "lose": "VOCÊ NÃO ACHA AS PALAVRAS. PHILLIPS PARA DE ESPERAR.",
       "scene": "ice",
       "words": [
-       "A 480 KM",
-       "SINTO MUITO OM"
+       "LONGE DEMAIS",
+       "SINTO MUITO MEU VELHO"
       ]
      },
      {
       "mode": "decode",
       "title": "O CHAMADO NOVO",
       "brief": [
-       "0H45. NA SALA DE RÁDIO DO TITANIC, BRIDE BRINCA: 'MANDE SOS. É O CHAMADO",
-       "NOVO, E PODE SER SUA ÚLTIMA CHANCE DE USÁ-LO.'"
+       "0H45. NA SALA DE RÁDIO DO TITANIC, BRIDE BRINCA: 'MANDE SOS. É O CHAMADO NOVO,",
+       "E PODE SER SUA ÚLTIMA CHANCE DE USÁ-LO.'"
       ],
       "win": "PHILLIPS RI, E MANDA. POUCOS OPERADORES OUVIRAM UM SOS DE VERDADE. VOCÊ OUVIU AGORA.",
       "lose": "ESTÁTICA. QUANDO LIMPA, PHILLIPS AINDA ESTÁ CHAMANDO.",
@@ -3960,8 +3543,8 @@
       "lose": "A ESTÁTICA ENGOLE TUDO. VOCÊ NUNCA SABE O QUANTO É GRAVE.",
       "scene": "ice",
       "words": [
-       "PUTTING WOMEN OFF IN BOATS",
-       "CANNOT LAST MUCH LONGER"
+       "MULHERES NOS BOTES",
+       "NAO AGUENTAMOS MUITO MAIS"
       ]
      },
      {
@@ -3971,12 +3554,12 @@
        "O CARPATHIA CORRE MAIS RÁPIDO DO QUE NUNCA, AINDA A HORAS DE DISTÂNCIA. DÊ A",
        "PHILLIPS ALGO PARA LEVAR À PONTE."
       ],
-      "win": "'R OM.' É TUDO QUE ELE TEM TEMPO DE DIZER.",
+      "win": "'CERTO, MEU VELHO.' É TUDO QUE ELE TEM TEMPO DE DIZER.",
       "lose": "PHILLIPS NÃO TE OUVE. ELE CHAMA QUALQUER UM QUE ESCUTE.",
       "scene": "ice",
       "words": [
-       "CARPATHIA A 17 NOS",
-       "AGUENTE OM"
+       "CARPATHIA A CAMINHO",
+       "AGUENTA MEU VELHO"
       ]
      }
     ]
@@ -3992,15 +3575,15 @@
       "mode": "decode",
       "title": "AS CALDEIRAS",
       "brief": [
-       "1H45. PHILLIPS PARA O CARPATHIA: 'COME AS QUICKLY AS POSSIBLE, OLD MAN.'",
+       "1H45. PHILLIPS PARA O CARPATHIA: 'VENHA O MAIS RÁPIDO POSSÍVEL, MEU VELHO.'",
        "DEPOIS:"
       ],
       "win": "NO CARPATHIA O CAPITÃO CORTA O AQUECIMENTO E A ÁGUA QUENTE. TODO O VAPOR VAI PARA AS MÁQUINAS.",
       "lose": "A ESTÁTICA ENGOLE. O CARPATHIA CONTINUA VINDO, MESMO ASSIM.",
       "scene": "ice",
       "words": [
-       "ENGINE ROOM FILLING",
-       "UP TO THE BOILERS"
+       "CASA DE MAQUINAS INUNDANDO",
+       "AGUA ATE AS CALDEIRAS"
       ]
      },
      {
@@ -4037,7 +3620,7 @@
       "mode": "encode",
       "title": "SILÊNCIO",
       "brief": [
-       "2H17. O AR SILENCIA. UM TELEGRAFISTA FICA NA CHAVE, DISSE NORA. PHILLIPS",
+       "2H17. O AR SILENCIA. UM TELEGRAFISTA FICA NA CHAVE, DISSE AMOS. PHILLIPS",
        "FICOU. VOCÊ O CHAMA."
       ],
       "win": "SEM RESPOSTA. ÀS 2H20 O TITANIC SE PARTE AO MEIO E SOME. 1.500 PESSOAS ESTÃO NO MAR.",
@@ -4045,7 +3628,7 @@
       "scene": "sinking",
       "words": [
        "MGY MGY",
-       "RESPONDA OM"
+       "RESPONDA MEU VELHO"
       ]
      }
     ]
@@ -4061,16 +3644,15 @@
       "mode": "decode",
       "title": "OS VIVOS",
       "brief": [
-       "AMANHECER. O CARPATHIA RECOLHE OS BOTES, UM A UM: 705 PESSOAS. O OPERADOR",
-       "DELE MANDA OS NOMES DOS VIVOS."
+       "AMANHECER. O CARPATHIA RECOLHE OS BOTES, UM A UM: 705 PESSOAS. O OPERADOR DELE",
+       "MANDA OS NOMES DOS VIVOS."
       ],
       "win": "OS PÉS DE BRIDE ESTÃO ESMAGADOS. ELE AJUDA NA CHAVE MESMO ASSIM. PHILLIPS NÃO ESTÁ NA LISTA.",
       "lose": "ESTÁTICA. OS NOMES VÃO VIR DE NOVO. TÊM QUE VIR.",
       "scene": "rescue",
       "words": [
-       "MILLVINA DEAN 9 SEMANAS",
-       "EVA HART 7",
        "LILLIAN ASPLUND 5",
+       "EDITH BROWN 15",
        "HAROLD BRIDE 22"
       ]
      },
@@ -4079,8 +3661,8 @@
       "title": "PARA TERRA",
       "brief": [
        "NO BOTE 16, A CAMAREIRA VIOLET JESSOP SEGUROU O BEBÊ DE UMA DESCONHECIDA A",
-       "NOITE TODA. NO CARPATHIA UMA MULHER O PEGOU E SAIU CORRENDO, SEM UMA",
-       "PALAVRA. PASSE OS NOMES À COSTA."
+       "NOITE TODA. NO CARPATHIA UMA MULHER O PEGOU E SAIU CORRENDO, SEM UMA PALAVRA.",
+       "PASSE OS NOMES À COSTA."
       ],
       "win": "EM NOVA YORK OS NOMES SOBEM NUM QUADRO, UM A UM. A MULTIDÃO LÊ EM SILÊNCIO.",
       "lose": "SEM A LISTA, MILHARES DE FAMÍLIAS PASSAM DIAS SEM SABER QUEM VIVEU.",
@@ -4099,15 +3681,15 @@
       "lose": "O TELEGRAMA NÃO SAI. O MARIDO LÊ AS LISTAS E NÃO ACHA NENHUM DOS DOIS NOMES.",
       "scene": "rescue",
       "words": [
-       "PHILIP AND I SAFE"
+       "PHILIP E EU SALVOS"
       ]
      },
      {
       "mode": "decode",
       "title": "UMA MÃO NOVA",
       "brief": [
-       "O CARPATHIA DE NOVO: UMA MÃO NOVA, LENTA E CUIDADOSA. EVELYN MARSH",
-       "SOBREVIVEU, SOZINHA. ELA SABE MORSE."
+       "O CARPATHIA DE NOVO: UMA MÃO NOVA, LENTA E CUIDADOSA. EVELYN MARSH SOBREVIVEU,",
+       "SOZINHA. ELA SABE MORSE."
       ],
       "win": "MATT NÃO ESTÁ EM LISTA NENHUMA. ALGUÉM PRECISA CONTAR. VOCÊ CONTA.",
       "lose": "VOCÊ NÃO ENTENDE. ELA PARA DE PERGUNTAR.",
@@ -4229,14 +3811,15 @@
       "mode": "decode",
       "title": "PÍER 54",
       "brief": [
-       "18 DE ABRIL, NOITE, CHUVA. O CARPATHIA SOBE O RIO HUDSON. QUARENTA MIL",
-       "PESSOAS ESPERAM NO CAIS."
+       "18 DE ABRIL, NOITE, CHUVA. O CARPATHIA SOBE O HUDSON. QUARENTA MIL PESSOAS",
+       "ESPERAM NOS CAIS. A SOBREVIVENTE MAIS NOVA TEM NOVE SEMANAS."
       ],
       "win": "FAMÍLIAS PROCURAM CADA ROSTO NA PRANCHA. ALGUMAS ENCONTRAM O SEU.",
       "lose": "VOCÊ PERDE. A MULTIDÃO JÁ SABE: O NAVIO CHEGOU.",
       "scene": "rescue",
       "words": [
-       "CARPATHIA NO PIER 54"
+       "CARPATHIA NO PIER 54",
+       "MILLVINA DEAN 9 SEMANAS"
       ]
      },
      {
@@ -4250,23 +3833,23 @@
       "lose": "VOCÊ PERDE. NA SEMANA SEGUINTE, O SENADO LÊ EM VOZ ALTA, DE QUALQUER JEITO.",
       "scene": "rescue",
       "words": [
-       "SAY OLD MAN",
-       "KEEP YOUR MOUTH SHUT",
-       "YOU WILL GET BIG MONEY"
+       "ESCUTA MEU VELHO",
+       "BOCA FECHADA",
+       "VAI GANHAR MUITO DINHEIRO"
       ]
      },
      {
       "mode": "decode",
-      "title": "NORA",
+      "title": "AMOS",
       "brief": [
        "UM TELEGRAMA DE CHICAGO, PARA VOCÊ. VOCÊ RECONHECE A MÃO ANTES DA PRIMEIRA",
        "PALAVRA."
       ],
-      "win": "DEZENOVE ANOS ATRÁS ELA TE CONTOU DE HETTIE OGLE. AGORA TEM OUTRO NOME.",
-      "lose": "PASSA. VOCÊ PEDE QUE ELA MANDE DE NOVO. ELA MANDA, MAIS DEVAGAR.",
+      "win": "VINTE ANOS ATRÁS ELE TE DISSE: QUEM OPERA NÃO SAI DA CHAVE. AGORA ELE TEM UM NOME PARA ISSO.",
+      "lose": "PASSA. VOCÊ PEDE QUE ELE MANDE DE NOVO. ELE MANDA, MAIS DEVAGAR.",
       "scene": "rescue",
       "words": [
-       "NORA",
+       "AMOS",
        "PHILLIPS",
        "ELE FICOU NA CHAVE"
       ],
@@ -4347,7 +3930,7 @@
    "lamp": " LAMP ",
    "title_big": "SOS MORSE",
    "subtitle": "THE DIZZYING YEARS",
-   "years": "1893 - 1912",
+   "years": "1844 - 1912",
    "tap_hold": "TAP SPACE = DIT {dot}        HOLD SPACE = DAH {dah}",
    "menu_begin": "[ENTER] BEGIN",
    "menu_continue": "[C] CONTINUE: VOLUME {v}, CHAPTER {n}",
@@ -4433,7 +4016,7 @@
    "lamp": " LUZ ",
    "title_big": "SOS MORSE",
    "subtitle": "OS ANOS VERTIGINOSOS",
-   "years": "1893 - 1912",
+   "years": "1844 - 1912",
    "tap_hold": "TOQUE O ESPAÇO = PONTO {dot}      SEGURE O ESPAÇO = TRAÇO {dah}",
    "menu_begin": "[ENTER] COMEÇAR",
    "menu_continue": "[C] CONTINUAR: VOLUME {v}, CAPÍTULO {n}",
@@ -6641,7 +6224,7 @@
    {
     "title": "THE OTHER STORIES",
     "lines": [
-     "HETTIE OGLE LIES IN GRANDVIEW CEMETERY, ABOVE JOHNSTOWN. H. H. HOLMES WAS HANGED IN 1896.",
+     "ALFRED VAIL, WHO TOOK THE FIRST MESSAGE IN BALTIMORE, GOT LITTLE CREDIT AND LESS MONEY. HE LEFT THE TELEGRAPH IN 1848 AND DIED IN 1859. THE CHICAGO RIVER STILL RUNS BACKWARDS.",
      "TESLA DIED IN 1943, ALONE, IN A NEW YORK HOTEL ROOM. NIAGARA STILL MAKES ELECTRICITY.",
      "WILBUR WRIGHT DIED OF TYPHOID IN MAY 1912, SIX WEEKS AFTER THE TITANIC. ORVILLE LIVED TO SEE AIRPLANES CROSS OCEANS.",
      "CAPTAIN KENDALL, WHO CAUGHT CRIPPEN, COMMANDED THE EMPRESS OF IRELAND WHEN SHE SANK IN THE ST. LAWRENCE IN 1914. HE SURVIVED. MORE THAN A THOUSAND DID NOT."
@@ -6650,17 +6233,17 @@
    {
     "title": "TRUE AND INVENTED",
     "lines": [
-     "YOU, NORA HALE, ETTA, EVELYN MARSH, MATT AND THE MERIDIAN ARE INVENTED, AND SO ARE THE MERIDIAN'S RELAYS.",
-     "EVERYONE ELSE WAS REAL. WHERE HISTORY KEPT THEIR WIRES, YOU KEYED THEIR OWN WORDS: MORSE'S, HETTIE OGLE'S, THE WRIGHTS', KENDALL'S, PHILLIPS'S.",
+     "YOU, AMOS HALE, ANNIE, EVELYN MARSH, MATT AND THE MERIDIAN ARE INVENTED, AND SO ARE THE MERIDIAN'S RELAYS.",
+     "EVERYONE ELSE WAS REAL. WHERE THEIR OWN WORDS FIT THE LETTERS YOU KNEW, YOU KEYED THEM: PHILLIPS'S, CRIPPEN'S, THE CALIFORNIAN'S. THE REST YOU READ.",
      "THE AGES ON THE LISTS COME FROM THE PASSENGER RECORDS. THE LISTS SENT IN 1912 CARRIED ONLY NAMES."
     ]
    },
    {
     "title": "TO READ MORE",
     "lines": [
-     "WALTER LORD, A NIGHT TO REMEMBER (1955). ERIK LARSON, THE DEVIL IN THE WHITE CITY (2003), AND THUNDERSTRUCK (2006), ON MARCONI AND CRIPPEN.",
-     "DAVID MCCULLOUGH, THE JOHNSTOWN FLOOD (1968) AND THE WRIGHT BROTHERS (2015). SIMON WINCHESTER, A CRACK IN THE EDGE OF THE WORLD (2005), ON 1906.",
-     "ONLINE: ENCYCLOPEDIA-TITANICA.ORG. TITANICINQUIRY.ORG, FOR THE 1912 INQUIRIES. NPS.GOV, ON JOHNSTOWN AND THE WRIGHTS. EARLYRADIOHISTORY.US. LOC.GOV."
+     "WALTER LORD, A NIGHT TO REMEMBER (1955). TOM STANDAGE, THE VICTORIAN INTERNET (1998). ERIK LARSON, THUNDERSTRUCK (2006), ON MARCONI AND CRIPPEN.",
+     "DAVID MCCULLOUGH, THE WRIGHT BROTHERS (2015). SIMON WINCHESTER, A CRACK IN THE EDGE OF THE WORLD (2005), ON 1906.",
+     "ONLINE: ENCYCLOPEDIA-TITANICA.ORG. TITANICINQUIRY.ORG, FOR THE 1912 INQUIRIES. NPS.GOV, ON THE WRIGHTS. EARLYRADIOHISTORY.US. LOC.GOV."
     ]
    }
   ],
@@ -6722,7 +6305,7 @@
    {
     "title": "AS OUTRAS HISTÓRIAS",
     "lines": [
-     "HETTIE OGLE ESTÁ NO CEMITÉRIO DE GRANDVIEW, NO ALTO DE JOHNSTOWN. H. H. HOLMES FOI ENFORCADO EM 1896.",
+     "ALFRED VAIL, QUE RECEBEU A PRIMEIRA MENSAGEM EM BALTIMORE, LEVOU POUCO CRÉDITO E MENOS DINHEIRO. DEIXOU O TELÉGRAFO EM 1848 E MORREU EM 1859. O RIO DE CHICAGO AINDA CORRE AO CONTRÁRIO.",
      "TESLA MORREU EM 1943, SOZINHO, NUM QUARTO DE HOTEL EM NOVA YORK. O NIÁGARA AINDA GERA ELETRICIDADE.",
      "WILBUR WRIGHT MORREU DE TIFO EM MAIO DE 1912, SEIS SEMANAS DEPOIS DO TITANIC. ORVILLE VIVEU PARA VER AVIÕES CRUZAREM OCEANOS.",
      "O CAPITÃO KENDALL, QUE PEGOU CRIPPEN, COMANDAVA O EMPRESS OF IRELAND QUANDO ELE AFUNDOU NO SÃO LOURENÇO EM 1914. ELE SOBREVIVEU. MAIS DE MIL NÃO."
@@ -6731,17 +6314,17 @@
    {
     "title": "VERDADE E INVENÇÃO",
     "lines": [
-     "VOCÊ, NORA HALE, ETTA, EVELYN MARSH, MATT E O MERIDIAN SÃO INVENTADOS, ASSIM COMO AS RETRANSMISSÕES DO MERIDIAN.",
-     "TODOS OS OUTROS EXISTIRAM. ONDE A HISTÓRIA GUARDOU OS TELEGRAMAS, VOCÊ TRANSMITIU AS PRÓPRIAS PALAVRAS DELES: DE MORSE, DE HETTIE OGLE, DOS WRIGHT, DE KENDALL, DE PHILLIPS.",
+     "VOCÊ, AMOS HALE, ANNIE, EVELYN MARSH, MATT E O MERIDIAN SÃO INVENTADOS, ASSIM COMO AS RETRANSMISSÕES DO MERIDIAN.",
+     "TODOS OS OUTROS EXISTIRAM. ONDE AS PALAVRAS DELES CABIAM NAS LETRAS QUE VOCÊ SABIA, VOCÊ AS TRANSMITIU, TRADUZIDAS: AS DE PHILLIPS, DE CRIPPEN, DO CALIFORNIAN. O RESTO VOCÊ LEU.",
      "AS IDADES NAS LISTAS VÊM DOS REGISTROS DE PASSAGEIROS. AS LISTAS DE 1912 TRAZIAM SÓ NOMES."
     ]
    },
    {
     "title": "PARA LER MAIS",
     "lines": [
-     "WALTER LORD, UMA NOITE PARA LEMBRAR (1955). ERIK LARSON, O DEMÔNIO NA CIDADE BRANCA (2003), E THUNDERSTRUCK (2006), SOBRE MARCONI E CRIPPEN.",
-     "DAVID MCCULLOUGH, THE JOHNSTOWN FLOOD (1968) E OS IRMÃOS WRIGHT (2015). SIMON WINCHESTER, A CRACK IN THE EDGE OF THE WORLD (2005), SOBRE 1906.",
-     "NA INTERNET: ENCYCLOPEDIA-TITANICA.ORG. TITANICINQUIRY.ORG, COM OS INQUÉRITOS DE 1912. NPS.GOV, SOBRE JOHNSTOWN E OS WRIGHT. EARLYRADIOHISTORY.US. LOC.GOV."
+     "WALTER LORD, UMA NOITE PARA LEMBRAR (1955). TOM STANDAGE, THE VICTORIAN INTERNET (1998). ERIK LARSON, THUNDERSTRUCK (2006), SOBRE MARCONI E CRIPPEN.",
+     "DAVID MCCULLOUGH, OS IRMÃOS WRIGHT (2015). SIMON WINCHESTER, A CRACK IN THE EDGE OF THE WORLD (2005), SOBRE 1906.",
+     "NA INTERNET: ENCYCLOPEDIA-TITANICA.ORG. TITANICINQUIRY.ORG, COM OS INQUÉRITOS DE 1912. NPS.GOV, SOBRE OS WRIGHT. EARLYRADIOHISTORY.US. LOC.GOV."
     ]
    }
   ]

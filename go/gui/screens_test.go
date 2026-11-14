@@ -270,7 +270,7 @@ func (d *screenDriver) script() {
 		word := d.codeWord()
 		d.typeKey(morse.KeyEnter)
 		d.expectState("play")
-		for i, ch := range morse.LettersToKey(word, 1) { // the letters not learned yet go by
+		for i, ch := range morse.LettersToKey(word) {
 			for j, e := range morse.Code[string(ch)] {
 				if e == '-' {
 					d.telegraphKey(18)

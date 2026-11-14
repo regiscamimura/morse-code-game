@@ -80,24 +80,13 @@ func LongestWord(chapter int, mode string) int {
 	return min(10, 5+(chapter-1)/3)
 }
 
-// goesBy: the player doesn't key or type ch, it passes on its own. Spaces, digits and letters
-// not among learned (Unlocked) go by, so a message can keep its real words.
-func goesBy(ch byte, learned string) bool {
-	return !strings.ContainsRune(learned, rune(ch))
-}
-
-// LettersToKey is what the player keys or types of a message at the chapter: its learned
-// letters, in order.
+// LettersToKey is what the player keys or types of a message: every letter, the spaces going
+// by on their own. Messages hold only letters learned by their chapter, so none is skipped:
+// keying half a word breaks the feeling of sending something real.
 //
-//	LettersToKey("MUCH ICE", 3) == "MIE", with ETANIMSO learned
-func LettersToKey(message string, chapter int) string {
-	learned := Unlocked(chapter)
-	return strings.Map(func(r rune) rune {
-		if strings.ContainsRune(learned, r) {
-			return r
-		}
-		return -1
-	}, message)
+//	LettersToKey("MEET ME") == "MEETME"
+func LettersToKey(message string) string {
+	return strings.ReplaceAll(message, " ", "")
 }
 
 // PaceAtChapter is a pace setting at this chapter: its first value at chapter 1, its last at the
@@ -147,7 +136,7 @@ func PickWord(chapter int, lang, mode string) string {
 	known, focus := Unlocked(chapter), FocusLetters(chapter)
 	var pool, fresh []string
 	for _, w := range content.Words[lang] {
-		if onlyUses(w, known) && len(LettersToKey(w, chapter)) <= LongestWord(chapter, mode) {
+		if onlyUses(w, known) && len(LettersToKey(w)) <= LongestWord(chapter, mode) {
 			pool = append(pool, w)
 			if strings.ContainsAny(w, focus) {
 				fresh = append(fresh, w)

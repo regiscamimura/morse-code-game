@@ -487,7 +487,7 @@ var Speeds = []float64{1, 1.5, 2}
 //	at ▶▶ a 4-letter message to send gets 4*SendTime/1.5 + 2 seconds
 //	blind: 15 WPM, 3s between letters; a sighted beat late in a volume: about 16.5 WPM, 1.4s
 func (g *Game) timeForMessage(lead float64) float64 {
-	pace, n, speed := content.Pace, float64(len(LettersToKey(g.word, g.chapter))), Speeds[g.speed]
+	pace, n, speed := content.Pace, float64(len(LettersToKey(g.word))), Speeds[g.speed]
 	if g.beat.Blind {
 		speed = 1
 	}
@@ -521,16 +521,18 @@ func (g *Game) changeSpeed(step int, now float64) {
 
 // paceInVolume is a receiving pace setting on this beat: its first value on the volume's first
 // receiving beat, a little closer to its last on each one after, back to the first in the
-// next volume.
+// next volume. A volume shorter than Pace.RampBeats stops short of the last value.
 //
 //	g.paceInVolume(content.Pace.WPM) == 15 on a volume's first receiving beat
+//	letter gap on the 1844 volume's 2nd and last receiving beat: 2 - 1.2/12 = 1.9s, not 0.8s
 func (g *Game) paceInVolume(setting [2]float64) float64 {
 	first, last := setting[0], setting[1]
 	nth, total := g.receivingBeatOfVolume()
-	if total < 2 {
+	steps := max(total, content.Pace.RampBeats) - 1
+	if steps < 1 {
 		return first
 	}
-	return first + (last-first)*float64(nth)/float64(total-1)
+	return first + (last-first)*float64(nth)/float64(steps)
 }
 
 // receivingBeatOfVolume is which receiving beat of its volume the current beat is, from 0,
@@ -588,10 +590,9 @@ func (g *Game) correct(now float64) {
 	g.finishMessage(now)
 }
 
-// passLettersThatGoBy moves the message on to its next letter to key or type.
+// passLettersThatGoBy moves the message on to its next letter to key or type, past spaces.
 func (g *Game) passLettersThatGoBy() {
-	learned := Unlocked(g.chapter)
-	for g.pos < len(g.word) && goesBy(g.word[g.pos], learned) {
+	for g.pos < len(g.word) && g.word[g.pos] == ' ' {
 		g.pos++
 	}
 }
@@ -606,12 +607,12 @@ func (g *Game) finishMessage(now float64) {
 }
 
 // judgeBlindMessage settles a whole blind message. Every letter of a right one scores at the
-// top combo, for going without the clues; a single wrong letter loses it. Letters that go by
-// aren't typed.
+// top combo, for going without the clues; a single wrong letter loses it. Spaces aren't
+// typed.
 //
 //	"AT TEN" with g.typed "ATTEN" wins; with "ATTEM" loses
 func (g *Game) judgeBlindMessage(now float64) {
-	toKey := LettersToKey(g.word, g.chapter)
+	toKey := LettersToKey(g.word)
 	if g.typed != toKey {
 		g.lose(now)
 		return
@@ -649,7 +650,7 @@ func (g *Game) keyBlindLetter(pattern string, now float64) {
 		letter = "?"
 	}
 	g.typed += letter
-	if len(g.typed) >= len(LettersToKey(g.word, g.chapter)) {
+	if len(g.typed) >= len(LettersToKey(g.word)) {
 		g.judgeBlindMessage(now)
 	}
 }

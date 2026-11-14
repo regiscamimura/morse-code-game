@@ -91,6 +91,9 @@ type Pace struct {
 	// and lights the lamp for LampChapters; after that it's heard only.
 	TapeChapters int `json:"tape_chapters"`
 	LampChapters int `json:"lamp_chapters"`
+	// RampBeats is the fewest receiving beats a volume's pace climbs over: a volume with fewer
+	// ends short of the fast end instead of rushing there. The one-chapter 1844 volume has two.
+	RampBeats int `json:"ramp_beats"`
 }
 
 type Content struct {

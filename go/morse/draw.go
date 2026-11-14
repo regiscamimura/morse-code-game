@@ -425,17 +425,6 @@ func (g *Game) drawBrief(c *Canvas, now float64) {
 func (g *Game) drawCodeWord(c *Canvas, y int) {
 	text := g.text("code_word", map[string]any{"word": g.word})
 	c.Center(y, text, Amber)
-	at := strings.LastIndex(text, g.word)
-	if at < 0 { // a translation that doesn't show the word: nothing to dim
-		return
-	}
-	x := c.CenterX(text) + runeLen(text[:at])
-	learned := Unlocked(g.chapter)
-	for i := range len(g.word) {
-		if goesBy(g.word[i], learned) {
-			c.Put(x+i, y, g.word[i:i+1], Faint)
-		}
-	}
 }
 
 // speedButtons are ▶ ▶▶ ▶▶▶ from x on row y, the chosen one lit; they're this wide.
@@ -508,16 +497,15 @@ func (g *Game) drawPlay(c *Canvas, now float64) {
 	c.Put(7+n, 13, strings.Repeat("▬", 60-n), Band)
 	c.Put(70, 13, fmt.Sprintf("%4.0fs", left), color)
 	lines, top, keyRow := g.messageLayout()
-	learned := Unlocked(g.chapter)
 	hintX := 0 // under the letter to send next
 	i := 0     // the letter of g.word being drawn
 	for n, line := range lines {
 		x0, y := 40-BigTextWidth(line)/2, top+4*n
 		for col, ch := range strings.Split(line, "") {
-			done, passes := i < g.pos, goesBy(ch[0], learned)
+			done, passes := i < g.pos, ch == " "
 			letterColor := Dim
 			switch {
-			case passes: // not learned yet: shown faint, never keyed
+			case passes: // a space: never keyed
 				letterColor = Faint
 			case done:
 				letterColor = Go
