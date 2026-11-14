@@ -6,8 +6,16 @@ Written by the Release PR bot, newest first. See "Releasing" in `go/README.md`.
 
 ## v2.0.0 (2026-11-14)
 
-- 1844, the Windy City, and whole words only. Amos keeps the slow pace
-- The dizzying years: Chicago 1893 to the Titanic, with pictures and working volume keys
+- A new story: from the first telegraph wire, 1844, to the Titanic
+- The Titanic is the finale now. The later wars can wait
+- Grow up in Chicago, the Windy City: smoke, mud, skyscrapers
+- Whole words only. No more keying half a word
+- Hearing practice: a letter plays, you name it
+- Animated pictures in every volume
+- Portuguese is all Portuguese, quotes included
+- Volume keys work on the first press
+- Early letters come slower. Nobody is born fluent
+- An afterword on what became of everyone
 
 ## v1.0.2 (2026-11-06)
 
