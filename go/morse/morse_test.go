@@ -111,8 +111,11 @@ func TestContent(t *testing.T) {
 			}
 			for i, b := range ch.Beats {
 				for _, w := range b.Words {
-					if !onlyUses(w, Unlocked(n)) || !fitsTheScreen(w) {
-						t.Errorf("%s chapter %d: message %q uses locked letters or is too long to show", lang, n, w)
+					if !onlyUses(w, CodeOrder) || LettersToKey(w, n) == "" || !fitsTheScreen(w) {
+						t.Errorf("%s chapter %d: message %q can't be sent, has no letter to key, or is too long to show", lang, n, w)
+					}
+					if b.Blind && !onlyUses(w, Unlocked(n)) { // blind shows nothing that could tell what goes by
+						t.Errorf("%s chapter %d: blind message %q has letters not learned yet", lang, n, w)
 					}
 				}
 				if w := b.Words; b.Blind && b.Mode == "decode" && (len(w) < 3 || strings.Contains(w[0], " ") || !strings.Contains(w[len(w)-1], " ")) {
@@ -126,7 +129,7 @@ func TestContent(t *testing.T) {
 				}
 				random := len(b.Words) == 0 && !b.Echo && !b.Groups
 				if random && !slices.ContainsFunc(content.Words[lang], func(w string) bool {
-					return onlyUses(w, Unlocked(n)) && letterCount(w) <= LongestWord(n, b.Mode)
+					return onlyUses(w, Unlocked(n)) && len(LettersToKey(w, n)) <= LongestWord(n, b.Mode)
 				}) {
 					t.Errorf("%s chapter %d: no word fits a %s mission", lang, n, b.Mode)
 				}
@@ -140,13 +143,39 @@ func TestContent(t *testing.T) {
 				}
 			}
 		}
+		pages := content.Afterword[lang]
+		if len(pages) == 0 || len(pages) != len(content.Afterword["en"]) {
+			t.Errorf("%s: %d afterword pages, English has %d", lang, len(pages), len(content.Afterword["en"]))
+		}
+		for _, page := range pages {
+			lines = append(lines, page.Title)
+			if len(paragraphs(page.Lines, 76)) > 21 {
+				t.Errorf("%s: afterword page %q passes 21 lines", lang, page.Title)
+			}
+		}
 		chaptersInVolumes := 0
 		for i, v := range content.Volumes[lang] {
 			chaptersInVolumes += v.Chapters
 			last := i == len(content.Volumes[lang])-1
-			if v.Chapters != content.Volumes["en"][i].Chapters || len(paragraphs(v.Prologue, 76)) > 10 ||
-				len(paragraphs(v.Epilogue, 76)) > 10 || (len(v.Epilogue) == 0) != last {
-				t.Errorf("%s volume %d: chapters differ from English, a prologue or epilogue passes 10 lines, or the epilogue is missing", lang, i+1)
+			if v.Chapters != content.Volumes["en"][i].Chapters || len(v.Prologue) == 0 || (len(v.Epilogue) == 0) != last {
+				t.Errorf("%s volume %d: chapters differ from English, or the prologue or epilogue is missing", lang, i+1)
+			}
+			for _, page := range slices.Concat(v.Prologue, v.Epilogue) {
+				// the lines go between the band under the picture and the continue line, row 23
+				if _, ok := content.Covers[page.Art]; !ok || len(paragraphs(page.Lines, 76)) > 23-(storyBandRow+2) {
+					t.Errorf("%s volume %d: a page has no picture %q, or too many lines: %q", lang, i+1, page.Art, page.Lines)
+				}
+			}
+			g := NewGame(DefaultConfig(), NewMixer(0), 0)
+			g.lang, g.chapter = lang, chaptersInVolumes-v.Chapters+1 // the volume's first chapter
+			for _, closing := range []bool{false, !last} {
+				if closing {
+					g.chapter, g.volumeClosing = chaptersInVolumes+1, true // the next volume's first, opening on this epilogue
+				}
+				// centred under the picture, the band must leave room for the page count at the right
+				if name, when, _ := g.shownVolume(); runeLen(name+" · "+when) > 66 {
+					t.Errorf("%s volume %d: the band %q is too long", lang, i+1, name+" · "+when)
+				}
 			}
 			lines = append(lines, v.Title, v.Years)
 		}
@@ -165,6 +194,13 @@ func TestContent(t *testing.T) {
 		}
 	}
 	for name, art := range content.Covers {
+		if len(art.Sky) == 0 || len(art.Ground) == 0 {
+			t.Errorf("cover %s: no sky or ground colours", name)
+			continue
+		}
+		if brightness(Faint)-brightness(art.shade()) < 35 {
+			t.Errorf("cover %s: Faint text barely shows on its shade %v", name, art.shade())
+		}
 		for _, l := range art.Layers {
 			if _, ok := content.Sprites[l.Sprite]; l.Sprite != "" && !ok {
 				t.Errorf("cover %s: no sprite %q", name, l.Sprite)
@@ -239,8 +275,9 @@ func TestPlaythrough(t *testing.T) {
 	if g.State() != "volume" {
 		t.Fatalf("after begin: %s", g.State())
 	}
-	step(KeyEnter) // finish typing the prologue
-	step(KeyEnter) // the volume
+	for pages := 0; g.State() == "volume" && pages < 20; pages++ {
+		step(KeyEnter) // finish typing the prologue's page, or turn it
+	}
 	if g.State() != "cover" {
 		t.Fatalf("after the volume: %s", g.State())
 	}
@@ -263,10 +300,10 @@ func TestPlaythrough(t *testing.T) {
 		step(KeyEnter) // play
 		for g.State() == "play" {
 			if !g.Receiving() {
-				now = keyWord(g, g.word, now)
+				now = keyWord(g, LettersToKey(g.word, g.chapter), now)
 				continue
 			}
-			for _, ch := range strings.ReplaceAll(g.word, " ", "") {
+			for _, ch := range LettersToKey(g.word, g.chapter) {
 				if wrongOnce {
 					step("Q") // wrong on purpose: Q isn't in any chapter-1 message
 					wrongOnce = false
@@ -290,14 +327,17 @@ func TestPlaythrough(t *testing.T) {
 }
 
 // blindPlay starts the blind message AT TEN, to send or receive at time 1.
-func blindPlay(mode string) *Game {
+// gamePlaying is a game at its first message, message, of beat in chapter.
+func gamePlaying(chapter int, beat Beat, message string) *Game {
 	g := NewGame(DefaultConfig(), NewMixer(0), 0)
-	g.startGame(1, 0)
-	g.beat, g.mode = Beat{Mode: mode, Blind: true}, mode
-	g.messages, g.msgNo = []string{"AT TEN"}, 0
+	g.startGame(chapter, 0)
+	g.beat, g.mode = beat, beat.Mode
+	g.messages, g.msgNo = []string{message}, 0
 	g.startPlay(1)
 	return g
 }
+
+func blindPlay(mode string) *Game { return gamePlaying(1, Beat{Mode: mode, Blind: true}, "AT TEN") }
 
 // TestBlindMessageIsAllOrNothing: no verdict on a letter, no clock, and one wrong letter loses
 // the whole message, receiving or sending.
@@ -335,6 +375,70 @@ func TestBlindMessageIsAllOrNothing(t *testing.T) {
 	keyWord(g, "AT TEM", 2)
 	if g.State() != "lose" {
 		t.Errorf("sent one letter wrong: %s", g.State())
+	}
+}
+
+// TestLettersNotLearnedGoBy: in chapter 1 (ETAN), receiving "MUCH ICE AT 10" takes only the
+// typed E, A and T; the rest pass on their own.
+func TestLettersNotLearnedGoBy(t *testing.T) {
+	g := gamePlaying(1, Beat{Mode: "decode"}, "MUCH ICE AT 10")
+	for _, ch := range "eat" {
+		g.Key(string(ch), 2)
+	}
+	if g.State() != "win" || g.lives != 3 {
+		t.Errorf("after E, A, T: %s, %d lives", g.State(), g.lives)
+	}
+	g = gamePlaying(1, Beat{Mode: "encode", Blind: true}, "MUCH ICE AT 10")
+	keyWord(g, "EAT", 2)
+	if g.State() != "win" {
+		t.Errorf("blind, sent E, A, T: %s", g.State())
+	}
+}
+
+// TestBlindRepeatsStopAtThree: TAB plays a blind message to receive again, three times at most.
+func TestBlindRepeatsStopAtThree(t *testing.T) {
+	g := blindPlay("decode")
+	var lastStart float64
+	for i := 1; i <= blindRepeatLimit+1; i++ {
+		g.Key(KeyTab, float64(i*10))
+		if want := max(0, blindRepeatLimit-i); g.BlindRepeatsLeft() != want {
+			t.Errorf("after %d repeats: %d left, want %d", i, g.BlindRepeatsLeft(), want)
+		}
+		if i == blindRepeatLimit {
+			lastStart = g.signalStart
+		}
+	}
+	if g.signalStart != lastStart {
+		t.Errorf("a TAB past the limit replayed the message: it starts at %v", g.signalStart)
+	}
+}
+
+// TestSpeedKeysAreNeverDigits: a typed 2 is a digit, even before digits are learned; SHIFT 2
+// and the ▶▶ button pick the speed.
+func TestSpeedKeysAreNeverDigits(t *testing.T) {
+	for _, c := range []struct {
+		chapter   int
+		key       string
+		wantSpeed int
+	}{{1, "2", 0}, {chapterTeaching('2'), "2", 0}, {1, "@", 1}, {chapterTeaching('2'), speedKeys[2], 2}} {
+		g := gamePlaying(c.chapter, Beat{Mode: "decode"}, "AGE 2")
+		g.Key(c.key, 2)
+		if g.speed != c.wantSpeed {
+			t.Errorf("chapter %d, key %q: speed %d, want %d", c.chapter, c.key, g.speed, c.wantSpeed)
+		}
+	}
+}
+
+// TestPracticeKeepsEveryLetterAfterTheEnd: finishing the game sends the saved chapter back to
+// 1, but practice still plays every letter and digit.
+func TestPracticeKeepsEveryLetterAfterTheEnd(t *testing.T) {
+	g := NewGame(DefaultConfig(), NewMixer(0), 0)
+	if g.practiceLetters() != "ETAN" {
+		t.Errorf("a new game practises %q", g.practiceLetters())
+	}
+	g.finish(0)
+	if g.savedChapter != 1 || g.practiceLetters() != Unlocked(len(content.Levels)) {
+		t.Errorf("after the end: chapter %d, practising %q", g.savedChapter, g.practiceLetters())
 	}
 }
 
@@ -383,7 +487,7 @@ func TestEveryScreenDraws(t *testing.T) {
 				g.startBeat(1)
 				g.startPlay(2)
 				g.line.remote = NewKeyer(DefaultConfig())
-				for _, state := range []string{"volume", "cover", "chapter", "brief", "play", "win", "lose", "free", "game_over", "ending", "lang", "title",
+				for _, state := range []string{"volume", "cover", "chapter", "brief", "play", "win", "lose", "free", "listen", "game_over", "ending", "afterword", "lang", "title",
 					"codename", "switchboard", "calling", "ringing", "line"} {
 					g.state = state
 					g.progressEnd, g.banner = .5, "OK"
@@ -433,5 +537,49 @@ func TestAidsFadeLetterByLetter(t *testing.T) {
 	}
 	if PaceAtChapter(1, pace.WPM) != pace.WPM[0] || PaceAtChapter(len(content.Levels), pace.WPM) != pace.WPM[1] {
 		t.Error("pace doesn't run from its first value to its last")
+	}
+}
+
+// TestDoubleTapDoesNotTurnAPageUnread: ENTER shows a page's lines at once, and only after the
+// page's hold does ENTER turn it.
+func TestDoubleTapDoesNotTurnAPageUnread(t *testing.T) {
+	g := NewGame(DefaultConfig(), NewMixer(0), 0)
+	g.openVolume(false, 0)
+	press := func(now float64) { // as the app does: a key, then a frame drawn
+		g.Key(KeyEnter, now)
+		g.Draw(80, 24, now)
+	}
+	press(.5) // shows the lines
+	press(.6) // too soon: the page holds
+	if g.page != 0 {
+		t.Fatalf("a double tap turned the page to %d", g.page)
+	}
+	press(.6 + continueHolds["volume"] + .1)
+	if g.page != 1 {
+		t.Fatalf("after the hold, still on page %d", g.page)
+	}
+}
+
+// TestEpilogueLeadsToTheNextPrologue wins volume 1's last chapter, pages through its
+// epilogue, and lands on the first page of volume 2's prologue.
+func TestEpilogueLeadsToTheNextPrologue(t *testing.T) {
+	g := NewGame(DefaultConfig(), NewMixer(0), 0)
+	g.chapter = content.Volumes["en"][0].Chapters
+	g.beatNo = len(g.currentChapter().Beats) - 1
+	g.setState("win", 0)
+	now := 1.0
+	g.afterResult(now)
+	for page := range content.Volumes["en"][0].Epilogue {
+		if g.State() != "volume" || !g.volumeClosing || g.page != page {
+			t.Fatalf("epilogue page %d: state %s, closing %v, page %d", page, g.State(), g.volumeClosing, g.page)
+		}
+		for range 2 { // as a player does: ENTER shows the page's lines, and after its hold turns it
+			now += 2
+			g.Key(KeyEnter, now)
+			g.Draw(80, 24, now)
+		}
+	}
+	if name, _, _ := g.shownVolume(); g.State() != "volume" || g.volumeClosing || g.page != 0 || !strings.HasPrefix(name, "VOLUME 2 ") {
+		t.Fatalf("after the epilogue: state %s, closing %v, page %d of %q", g.State(), g.volumeClosing, g.page, name)
 	}
 }

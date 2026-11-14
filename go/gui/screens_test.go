@@ -141,6 +141,22 @@ type screenDriver struct {
 
 func (d *screenDriver) then(wait int, do func()) { d.steps = append(d.steps, step{wait, do}) }
 
+// pageThroughVolume presses ENTER past each of the volume's pages, one press to show a
+// page's lines and one, after its hold, to turn it, until the chapter's cover.
+func (d *screenDriver) pageThroughVolume() {
+	presses := 0
+	var press func()
+	press = func() {
+		if d.app.game.State() != "volume" || presses >= 40 {
+			return
+		}
+		d.app.game.Key(morse.KeyEnter, d.app.now())
+		presses++
+		d.steps = append([]step{{70, press}}, d.steps...) // the next press, before the script goes on
+	}
+	d.then(70, press)
+}
+
 func (d *screenDriver) screenshot(name string) {
 	d.then(2, func() { d.shot = name })
 }
@@ -231,14 +247,15 @@ func (d *screenDriver) script() {
 	d.typeKey(morse.KeyEnter)
 	d.expectState("volume")
 	d.typeKey(morse.KeyEnter) // skip the typing-out
-	d.then(70, func() {})     // past the volume's hold, so ENTER moves on
+	d.then(70, func() {})     // past the page's hold, so ENTER moves on
 	d.screenshot("3-volume")
-	d.typeKey(morse.KeyEnter)
+	d.pageThroughVolume()
 	d.expectState("cover")
 	d.then(70, func() {}) // past the cover's hold, so ENTER moves on
 	d.screenshot("3a-cover")
 	d.typeKey(morse.KeyEnter)
 	d.expectState("chapter")
+	d.then(30, func() {}) // the new screen's first frames are slow under xvfb: a dit keyed in them reads as a dah
 	for range 3 {
 		for _, ch := range "ETAN" {
 			d.keyLetter(ch)
@@ -249,14 +266,11 @@ func (d *screenDriver) script() {
 	d.expectState("brief")
 	d.typeKey(morse.KeyEnter)
 	d.screenshot("4-brief")
-	d.then(1, func() {
+	d.then(40, func() { // past the brief's hold, so ENTER starts the mission
 		word := d.codeWord()
 		d.typeKey(morse.KeyEnter)
 		d.expectState("play")
-		for i, ch := range word {
-			if ch == ' ' {
-				continue
-			}
+		for i, ch := range morse.LettersToKey(word, 1) { // the letters not learned yet go by
 			for j, e := range morse.Code[string(ch)] {
 				if e == '-' {
 					d.telegraphKey(18)
@@ -276,7 +290,7 @@ func (d *screenDriver) script() {
 		d.typeKey(morse.KeyEnter)
 		d.expectState("brief")
 		d.typeKey(morse.KeyEnter) // skip the typing-out
-		d.then(5, func() {})      // the game sees it all typed on its next draw
+		d.then(40, func() {})     // past the brief's hold, and the game has drawn it all typed
 		d.typeKey(morse.KeyEnter)
 		d.expectState("play")
 		d.then(90, func() {})

@@ -1,4 +1,4 @@
-# Morse Code — The Listener, 1912–1944
+# Morse Code — The Listener, 1893–1912
 
 One game core drives three front ends:
 
@@ -59,20 +59,45 @@ KEY  • ━            = A   ▮▮▮▯▯
 ```
 
 - **Blind:** every volume ends with messages sent or received with no clues:
-  no clock, picture, lamp or sound for a letter. You hear a message once. All of
-  it is right or it's lost. Hearing starts on single words and ends on a sentence,
-  with 3 seconds between letters: `MISS`, `MATT`, `IS MATT ON`.
-- **Volumes:** the chapters are grouped into six stories: Titanic (4
-  chapters), Lusitania (2), Room 40 (3), Hindenburg (1), Station X (3) and
-  Coruja (4). A volume opens with the history you need ("1914. EUROPE GOES TO
-  WAR...") and closes with what came of it ("THE LUSITANIA TOOK 1,198 LIVES.
-  128 WERE AMERICAN."). Chapters are numbered within their volume:
-  `VOLUME 2 · CHAPTER 1`.
+  no clock, picture, lamp or sound for a letter. A message to receive can be
+  heard again three times at most (`Tab`, or the phone's REPEAT). All of it is
+  right or it's lost. Hearing starts on single words and ends on a sentence,
+  with 3 seconds between letters: `MATT`, `LIST`, `IS MATT ON A LIST`.
+- **Volumes:** one operator's life in six stories, from messenger to the
+  Titanic's last night: the Chicago World's Fair of 1893 (4 chapters), the age
+  of wonders: Niagara's dynamos, Marconi's letter S and Kitty Hawk (3), the San
+  Francisco earthquake (2), the Republic's CQD (2), the wireless chase of Dr
+  Crippen (3) and the Titanic (7): the dizzying years, when the world sped up.
+  A volume opens on a few picture pages that set the mood and closes on what
+  came of it. Each page is an animated pixel picture with two or three lines
+  under it, on a background in the picture's colours:
+
+      [the Midway at dusk, the Ferris wheel turning, the crowd walking]
+      VOLUME 1 · THE WHITE CITY · 1893                                  4/5
+      ON THE MIDWAY: A STREET FROM CAIRO, A BALLOON ON A ROPE, AND MR. FERRIS'S
+      GIANT WHEEL TURNING OVER IT ALL.
+
+  The pages are `prologue` and `epilogue` in `volumes`: `{"art": "midway",
+  "lines": [...]}`, the art a key of `covers`. Chapters are numbered within their
+  volume: `VOLUME 2 · CHAPTER 1`.
+- **Afterword:** after the ending, pages on what became of the real people
+  (Bride, Millvina Dean, the Navratil boys, Violet Jessop...), what is invented,
+  and what to read next. Text in `afterword` in `morse/content.json`.
 - **Chapters:** each is a historical event. It opens on a cover: a pixel-art
-  picture of the event (the Titanic going down by the bow, the Hindenburg in
-  flames over the mast), its year, its name, and where and when it happens
-  (`LONDON · THE FIRST WORLD WAR`). Only the flames, smoke,
-  searchlights and sea move. Then about ten messages in four or five beats.
+  picture of the event (the White City on its lagoon, the Titanic going down by
+  the bow), its year, its name, and where and when it happens
+  (`CHICAGO · THE WORLD'S COLUMBIAN EXPOSITION`). The chapter's screens take
+  their background from its picture. Then about ten messages in four to seven
+  beats, each briefing a line or two: the feeling of the moment, a fact for
+  seasoning.
+- **Pictures:** `covers` in `content.json` paint them from layers: sprites,
+  which can `drift` across (gondolas, trains, ships) or `twinkle` (electric
+  lights); a Ferris `wheel` that turns; a fountain's `spray`; water that
+  `reflect`s what stands above it; searchlight `beam`s and gunfire `flash`es;
+  and over the whole picture `weather` (`rain`, `snow`) or `fireworks`:
+
+      {"wheel": 11, "x": 58, "y": 12}                       a wheel turning about 58, 12
+      {"sprite": "cover_gondola", "x": 30, "y": 24, "drift": 2.5}   2.5 pixels a second, round again
 - **Beats:** each beat is a step of the story. The briefing says who is
   sending and why it matters. The message carries the plot. Winning says what
   your message made happen; losing says what happens without it, before you
@@ -80,13 +105,14 @@ KEY  • ━            = A   ▮▮▮▯▯
 
       SOS SOS          win:  SHE HAS STRUCK A BERG AND IS SINKING. YOU RUN TO THE BRIDGE IN ONE BOOT.
                        lose: YOU SHUT DOWN AND SLEEP, LIKE THE CALIFORNIAN. NO ONE GOES TO THE TITANIC.
-- **Messages:** short sentences (`TEA AT TEN`, `SOS SOS`, `THE WAR IS OVER`),
-  cipher groups (`TNEAT`), or what the beat before received, passed on. A beat
-  may hold several; they follow one another without a screen between. The
-  whole message is on screen at once, on one or two lines. Spaces are skipped
-  for you: you key or type only the letters.
+- **Messages:** the real wires where history kept them (`WHAT HATH GOD WROUGHT`,
+  `LONGEST 57 SECONDS`, `CQD CQD DE MGY`), short ones of the story's own, or
+  what the beat before received, passed on. A beat may hold several; they
+  follow one another without a screen between. The whole message is on screen
+  at once, on one or two lines. Spaces, and letters you haven't learned yet,
+  go by on their own, dimmed: you key or type only the letters you know.
 - **Send missions:** tap out the message before the timer runs out, while
-  the threat on screen (a liner, a train, a submarine) moves closer. It
+  the threat on screen (a liner, a train, a flying machine) moves closer. It
   crosses once per beat, each message taking it a share of the way.
 - **Receive missions:** a signal plays and you type the letters you hear.
   A lamp flashes along and the dits and dahs scroll past on a tape. The aids
@@ -99,16 +125,20 @@ KEY  • ━            = A   ▮▮▮▯▯
   `SENT N • ━   NEED A • ━`.
 - **Learning order:** new letters arrive in Koch order (`ETAN`, `IM`, `SO`…).
   Each must be keyed three times on the chapter's letter screen before the
-  messages begin. Every third chapter brings no new letters: its messages lean
-  on the two groups before it. Messages only use letters you've learned
-  (`TestContent` checks every fixed one).
+  messages begin. A chapter brings two new letters at most (`ETAN` and the
+  digits aside), and
+  every volume ends on a chapter with none, whose messages lean on the groups
+  before it and whose blind beats test them. The digits come last, five at a
+  time, so the closing names carry their ages (`IDA STRAUS 63`). Blind messages
+  only use what you've learned (`TestContent` checks every fixed one).
 
 | Screen  | Key | Does |
 |---------|-----|------|
 | title   | `Enter` / `C` | new game / continue from your chapter |
 |         | `F` or `P` | free practice, with a full Morse chart |
 |         | `L` | language |
-| mission | `Tab` | hint (send; costs points) / replay the signal (receive) |
+| mission | `Tab` | hint (send; costs points) / replay the signal (receive; three times when blind) |
+|         | `!` `@` `#` | speed ▶ ▶▶ ▶▶▶ (SHIFT 1 2 3: digits are typed, as messages hold them) |
 
 Options: `--letter-gap .4` (more time between letters), `--dah-time .25` (a dah
 must be held longer).

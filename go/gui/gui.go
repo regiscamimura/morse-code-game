@@ -326,7 +326,7 @@ func (a *App) tappedKey(at image.Point) string {
 }
 
 func (a *App) Draw(screen *ebiten.Image) {
-	screen.Fill(rgba(morse.Ink))
+	screen.Fill(rgba(a.Backdrop()))
 	for len(a.painters) < len(a.strips) {
 		a.painters = append(a.painters, cellPainter{})
 	}
@@ -336,6 +336,15 @@ func (a *App) Draw(screen *ebiten.Image) {
 	if !a.desktop && !a.onCover {
 		a.drawControls(screen)
 	}
+}
+
+// Backdrop is the background of the canvases drawn this frame: cellPainter leaves cells of that
+// colour to the screen's fill, and the window around the game can match it.
+func (a *App) Backdrop() morse.Color {
+	if len(a.strips) == 0 {
+		return morse.Ink
+	}
+	return a.strips[0].canvas.Bg
 }
 
 func rgba(c morse.Color) color.RGBA { return color.RGBA{c.R, c.G, c.B, 255} }

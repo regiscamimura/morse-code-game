@@ -50,6 +50,8 @@ var (
 	repeat         = action{"REPEAT", "REPETIR", morse.KeyTab}
 	hearNew        = action{"HEAR AGAIN", "OUVIR DE NOVO", morse.KeyTab}
 	erase          = action{"ERASE", "APAGAR", morse.KeyBackspace}
+	listen         = action{"LISTEN", "OUVIR", morse.KeyTab}
+	send           = action{"SEND", "TRANSMITIR", morse.KeyEnter}
 	enter          = action{"ENTER", "ENTER", morse.KeyEnter}
 	telegraphLine  = action{"LINE", "LINHA", "w"}
 	callNumber     = action{"CALL", "CHAMAR", morse.KeyEnter}
@@ -94,6 +96,8 @@ func (a *App) screenActions() []action {
 		return []action{back}
 	}
 	switch {
+	case g.Blind() && g.Receiving() && g.BlindRepeatsLeft() > 0:
+		return []action{repeat, enter}
 	case g.Blind() && g.Receiving():
 		return []action{enter}
 	case g.Blind():
@@ -102,8 +106,10 @@ func (a *App) screenActions() []action {
 		return []action{hearNew, enter}
 	case g.State() == "chapter":
 		return []action{hearNew}
+	case g.Listening():
+		return []action{repeat, send}
 	case g.State() == "free":
-		return []action{erase}
+		return []action{erase, listen}
 	case g.Receiving():
 		return []action{repeat}
 	case g.State() == "play":

@@ -13,6 +13,8 @@ type Save struct {
 	Hi      int    `json:"hi"`
 	Chapter int    `json:"chapter"`
 	Lang    string `json:"lang"`
+	// Finished: the last chapter was won once, so practice draws on every letter
+	Finished bool `json:"finished,omitempty"`
 	// the telegraph line: what others see, the key to this game's number, and the number
 	Codename   string `json:"codename,omitempty"`
 	LineSecret string `json:"line_secret,omitempty"`

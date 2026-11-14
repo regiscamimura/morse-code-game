@@ -14,7 +14,7 @@ import (
 // screen: rows of the 80-column picture, and runs of text `columns` wide.
 func (g *Game) DrawPhone(columns int, now float64) []*Canvas {
 	picture := g.Draw(80, 24, now)
-	p := &page{columns: columns}
+	p := &page{columns: columns, bg: picture.Bg}
 	elapsed := now - g.stateStart
 	switch g.state {
 	case "lang":
@@ -34,7 +34,7 @@ func (g *Game) DrawPhone(columns int, now float64) []*Canvas {
 		p.center(g.text("subtitle", nil), Teal)
 		p.center(g.text("years", nil), Teal)
 	case "select":
-		c, y := p.row(Band)
+		c, y := p.rowOn(Band)
 		c.Put(1, y, g.text("select_title", nil), Amber)
 		p.blank()
 		for n := range g.chapters() {
@@ -43,19 +43,21 @@ func (g *Game) DrawPhone(columns int, now float64) []*Canvas {
 			if v%2 == 0 {
 				color = Teal
 			}
-			c, y := p.row(Ink)
+			c, y := p.row()
 			line := []rune(g.chapterListLine(n + 1))
 			c.PutTap(1, y, string(line[:min(len(line), columns-2)]), strings.ToLower(chapterKey(n+1)), color)
 		}
 	case "volume":
-		_, title, subtitle, lines := g.shownVolume()
-		p.blanks(2)
-		p.picture(picture, 3, 7)
+		page, count := g.shownStoryPage()
+		p.picture(picture, 0, storyBandRow)
+		c, y := p.rowOn(Band)
+		c.Put(c.W-1-runeLen(count), y, count, Dim)
 		p.blank()
-		p.wrapped(title, Paper)
-		p.center(subtitle, Dim)
+		name, when, _ := g.shownVolume()
+		p.wrapped(name, Amber)
+		p.center(when, Dim)
 		p.blank()
-		g.typedAll = p.typed(paragraphs(lines, columns-2), elapsed, Paper)
+		g.typedAll = p.typed(paragraphs(page.Lines, columns-2), elapsed, Paper)
 		p.blank()
 		p.center(showIf(g.typedAll && g.readyToContinue(now) && blinkOn(now), g.text("continue", nil)), Amber)
 	case "cover": // set out like a book's cover: chapter, picture, year, title
@@ -81,10 +83,10 @@ func (g *Game) DrawPhone(columns int, now float64) []*Canvas {
 		p.picture(picture, 6, 13)
 		p.wrapped(g.drillLine())
 		p.blank()
-		c, y := p.row(Ink)
+		c, y := p.row()
 		try := g.text("try_them", nil)
 		c.Put(1, y, try+tail(g.freeText, columns-2-runeLen(try)), Dim)
-		c, y = p.row(Ink)
+		c, y = p.row()
 		g.drawKey(c, 1, y, now)
 		p.blank()
 		p.center(showIf(g.DrillDone() && blinkOn(now), g.text("enter_begin", nil)), Amber)
@@ -94,14 +96,14 @@ func (g *Game) DrawPhone(columns int, now float64) []*Canvas {
 		p.wrapped(g.chapterLine(), Teal)
 		p.picture(picture, 3, 13)
 		p.blank()
-		var lines []string
-		for _, line := range g.beat.Brief {
-			lines = append(lines, g.withWord(line))
-		}
-		g.typedAll = p.typed(append(lines, "", g.task()), elapsed, Paper)
+		brief := g.withWord(strings.Join(g.beat.Brief, " ")) // one paragraph, its rows set for 80 columns
+		g.typedAll = p.typed([]string{brief, "", g.task()}, elapsed, Paper)
 		p.blank()
-		p.center(showIf(g.typedAll && g.mode == "encode", g.text("code_word", map[string]any{"word": g.word})), Amber)
-		p.center(showIf(g.typedAll && blinkOn(now), g.text("ready", nil)), Amber)
+		c, y := p.row()
+		if g.typedAll && g.mode == "encode" {
+			g.drawCodeWord(c, y)
+		}
+		p.center(showIf(g.typedAll && g.readyToContinue(now) && blinkOn(now), g.text("ready", nil)), Amber)
 	case "play":
 		g.drawPhoneHud(p)
 		g.drawPhoneHeader(p)
@@ -109,9 +111,12 @@ func (g *Game) DrawPhone(columns int, now float64) []*Canvas {
 			p.wrapped(g.task(), Teal)
 			p.blank()
 			p.picture(picture, blindTop, blindTop+blindRows)
+			if g.mode == "decode" {
+				p.center(g.text("repeats_left", map[string]any{"left": g.BlindRepeatsLeft()}), Dim)
+			}
 			break
 		}
-		speedRow, y := p.row(Ink)
+		speedRow, y := p.row()
 		g.drawSpeedButtons(speedRow, (columns-speedButtonsWidth)/2, y)
 		p.wrapped(g.task(), Teal)
 		lines, _, keyRow := g.messageLayout()
@@ -121,7 +126,7 @@ func (g *Game) DrawPhone(columns int, now float64) []*Canvas {
 		} else {
 			p.blank()
 		}
-		c, y := p.row(Ink)
+		c, y := p.row()
 		if g.mode == "encode" {
 			g.drawKey(c, 1, y, now)
 		} else {
@@ -138,13 +143,19 @@ func (g *Game) DrawPhone(columns int, now float64) []*Canvas {
 		p.center(outcome, outcomeColor)
 		p.blank()
 		p.center(showIf(g.readyToContinue(now) && blinkOn(now), g.text("continue", nil)), Amber)
-	case "free":
-		c, y := p.row(Band)
+	case "free", "listen":
+		c, y := p.rowOn(Band)
 		c.Center(y, g.text("practice", nil), Amber)
 		g.drawPhoneCodeChart(p)
+		if g.Listening() {
+			p.blank()
+			p.center(g.text("listen_prompt", nil), Amber)
+			p.center(showIf(now < g.msgUntil, g.msg), g.msgColor)
+			break
+		}
 		p.picture(picture, 12, 16)
 		p.center(tail(g.freeText, columns-4), Dim)
-		c, y = p.row(Ink)
+		c, y = p.row()
 		g.drawKey(c, 1, y, now)
 	case "game_over":
 		p.picture(picture, 5, 9)
@@ -158,14 +169,14 @@ func (g *Game) DrawPhone(columns int, now float64) []*Canvas {
 		p.blank()
 		p.center(showIf(g.readyToContinue(now) && blinkOn(now), "[ENTER]"), Paper)
 	case "codename":
-		c, y := p.row(Band)
+		c, y := p.rowOn(Band)
 		c.Center(y, g.text("exchange", nil), Amber)
 		p.blank()
 		p.wrapped(g.text("choose_codename", nil), Paper)
 		p.wrapped(g.text("codename_hint", nil), Dim)
 		p.picture(picture, 7, 13)
 	case "switchboard", "calling", "ringing":
-		c, y := p.row(Band)
+		c, y := p.rowOn(Band)
 		c.Center(y, g.text("exchange", nil), Amber)
 		p.picture(picture, 2, 8)
 		p.wrapped(g.text("codename_is", map[string]any{"name": g.line.codename}), Paper)
@@ -173,13 +184,13 @@ func (g *Game) DrawPhone(columns int, now float64) []*Canvas {
 		p.picture(picture, 11, 22)
 		p.wrapped(showIf(now < g.msgUntil, g.msg), g.msgColor)
 	case "line":
-		c, y := p.row(ListenBand)
+		c, y := p.rowOn(ListenBand)
 		c.Center(y, g.text("on_the_line", map[string]any{"n": g.line.peerNumber, "name": g.line.peerCodename}), Amber)
 		p.picture(picture, 2, 15)
 		for _, side := range []struct{ name, keyed string }{
 			{g.text("you", nil), g.freeText}, {g.line.peerCodename, g.line.remoteText},
 		} {
-			c, y := p.row(Ink)
+			c, y := p.row()
 			c.Put(1, y, side.name+":", Paper)
 			c.Put(runeLen(side.name)+3, y, tail(side.keyed, columns-runeLen(side.name)-4), Dim)
 		}
@@ -190,13 +201,25 @@ func (g *Game) DrawPhone(columns int, now float64) []*Canvas {
 		g.typedAll = p.typed(content.Ending[g.lang], elapsed, Dim)
 		p.blank()
 		p.center(showIf(g.typedAll, g.finalScoreLine()), Amber)
+	case "afterword":
+		page, count := g.shownAfterword()
+		c, y := p.rowOn(Band)
+		c.Put(1, y, count, Dim)
+		p.wrapped(page.Title, Amber)
+		p.blank()
+		for _, line := range paragraphs(page.Lines, columns-2) {
+			c, y := p.row()
+			c.Put(1, y, line, Paper)
+		}
+		p.blank()
+		p.center(showIf(g.readyToContinue(now) && blinkOn(now), g.text("continue", nil)), Amber)
 	}
 	return p.strips
 }
 
 // drawPhoneHud: score, chapter and lives on one row.
 func (g *Game) drawPhoneHud(p *page) {
-	c, y := p.row(Band)
+	c, y := p.rowOn(Band)
 	score := g.text("score", map[string]any{"score": g.score})
 	c.Put(1, y, score, Amber)
 	// centred, unless the row is too narrow: then two spaces after the score
@@ -210,7 +233,7 @@ func (g *Game) drawPhoneHud(p *page) {
 // messages it is.
 func (g *Game) drawPhoneHeader(p *page) {
 	band, title := g.headerBand()
-	c, y := p.row(band)
+	c, y := p.rowOn(band)
 	c.Put(1, y, title, Paper)
 	n, total := g.messageNumber()
 	count := fmt.Sprintf("%d/%d", n, total)
@@ -219,17 +242,14 @@ func (g *Game) drawPhoneHeader(p *page) {
 
 // drawPhoneCodeChart: every letter and digit with its pattern, in three columns of twelve.
 func (g *Game) drawPhoneCodeChart(p *page) {
-	c, top := p.row(Ink)
+	c, top := p.row()
 	for range 11 {
-		p.row(Ink)
+		p.row()
 	}
 	last := lastLetter(g.freeText)
 	for i, ch := range strings.Split(CodeOrder, "") {
 		x, y := 1+(i/12)*(p.columns/3), top+i%12
-		letterColor, patternColor := Paper, Teal
-		if ch == last {
-			letterColor, patternColor = Lamp, Lamp
-		}
+		letterColor, patternColor := g.practiceChartColors(ch, last)
 		c.Put(x, y, ch, letterColor)
 		c.Put(x+2, y, Pretty(Code[ch]), patternColor)
 	}
@@ -239,6 +259,7 @@ func (g *Game) drawPhoneCodeChart(p *page) {
 // `columns` wide.
 type page struct {
 	columns int
+	bg      Color // behind the text: Game.Backdrop
 	strips  []*Canvas
 	text    *Canvas // the run of text being written; nil when the last strip is a picture
 }
@@ -249,10 +270,14 @@ func (p *page) picture(c *Canvas, y0, y1 int) {
 	p.text = nil
 }
 
-// row adds a text row on bg and returns the canvas holding it and the row's y on it.
-func (p *page) row(bg Color) (*Canvas, int) {
+// row adds a text row on the page's background and returns the canvas holding it and the
+// row's y on it.
+func (p *page) row() (*Canvas, int) { return p.rowOn(p.bg) }
+
+// rowOn adds a text row on bg, like row: a band.
+func (p *page) rowOn(bg Color) (*Canvas, int) {
 	if p.text == nil {
-		p.text = &Canvas{W: p.columns, Fg: Paper, Bg: Ink}
+		p.text = &Canvas{W: p.columns, Fg: Paper, Bg: p.bg}
 		p.strips = append(p.strips, p.text)
 	}
 	cells := make([]Cell, p.columns)
@@ -264,7 +289,7 @@ func (p *page) row(bg Color) (*Canvas, int) {
 	return p.text, p.text.H - 1
 }
 
-func (p *page) blank() { p.row(Ink) }
+func (p *page) blank() { p.row() }
 
 func (p *page) blanks(n int) {
 	for range n {
@@ -273,7 +298,7 @@ func (p *page) blanks(n int) {
 }
 
 func (p *page) center(text string, color Color) {
-	c, y := p.row(Ink)
+	c, y := p.row()
 	c.Center(y, text, color)
 }
 
@@ -290,9 +315,9 @@ func (p *page) typed(lines []string, elapsed float64, color Color) bool {
 	for _, line := range lines {
 		wrapped = append(wrapped, wrap(line, p.columns-2)...)
 	}
-	c, top := p.row(Ink)
+	c, top := p.row()
 	for range len(wrapped) - 1 {
-		p.row(Ink)
+		p.row()
 	}
 	return DrawTypedLines(c, top, wrapped, elapsed, color)
 }

@@ -108,8 +108,11 @@ func (c *Canvas) Band(y0, y1 int, bg Color) {
 // Center writes text centred on the drawing area: 80 columns, or the whole width of a canvas
 // narrower than that with no offset (see Rows and the phone's text).
 func (c *Canvas) Center(y int, text string, fg Color) {
-	c.Put((c.W-2*c.OX)/2-runeLen(text)/2, y, text, fg)
+	c.Put(c.CenterX(text), y, text, fg)
 }
+
+// CenterX is the column Center starts text at.
+func (c *Canvas) CenterX(text string) int { return (c.W-2*c.OX)/2 - runeLen(text)/2 }
 
 // Rows is rows y0..y1-1 of the drawing area as a canvas of their own, sharing its cells.
 func (c *Canvas) Rows(y0, y1 int) *Canvas {

@@ -44,8 +44,17 @@ func Pretty(pattern string) string {
 
 // Unlocked is every letter learned by the given chapter.
 func Unlocked(chapter int) string {
-	return strings.Join(content.Levels[:min(chapter, len(content.Levels))], "")
+	return unlockedByChapter[min(chapter, len(content.Levels))]
 }
+
+// unlockedByChapter[n] is Unlocked(n), built once: drawing asks for it every frame.
+var unlockedByChapter = func() []string {
+	learned := []string{""}
+	for _, letters := range content.Levels {
+		learned = append(learned, learned[len(learned)-1]+letters)
+	}
+	return learned
+}()
 
 // FocusLetters are the letters a chapter drills: its new ones, or for a chapter without new
 // ones the two groups before it.
@@ -71,8 +80,25 @@ func LongestWord(chapter int, mode string) int {
 	return min(10, 5+(chapter-1)/3)
 }
 
-// letterCount is the letters in a message, leaving out the spaces between its words.
-func letterCount(message string) int { return len(strings.ReplaceAll(message, " ", "")) }
+// goesBy: the player doesn't key or type ch, it passes on its own. Spaces, digits and letters
+// not among learned (Unlocked) go by, so a message can keep its real words.
+func goesBy(ch byte, learned string) bool {
+	return !strings.ContainsRune(learned, rune(ch))
+}
+
+// LettersToKey is what the player keys or types of a message at the chapter: its learned
+// letters, in order.
+//
+//	LettersToKey("MUCH ICE", 3) == "MIE", with ETANIMSO learned
+func LettersToKey(message string, chapter int) string {
+	learned := Unlocked(chapter)
+	return strings.Map(func(r rune) rune {
+		if strings.ContainsRune(learned, r) {
+			return r
+		}
+		return -1
+	}, message)
+}
 
 // PaceAtChapter is a pace setting at this chapter: its first value at chapter 1, its last at the
 // final chapter, in a straight line between.
@@ -121,7 +147,7 @@ func PickWord(chapter int, lang, mode string) string {
 	known, focus := Unlocked(chapter), FocusLetters(chapter)
 	var pool, fresh []string
 	for _, w := range content.Words[lang] {
-		if onlyUses(w, known) && letterCount(w) <= LongestWord(chapter, mode) {
+		if onlyUses(w, known) && len(LettersToKey(w, chapter)) <= LongestWord(chapter, mode) {
 			pool = append(pool, w)
 			if strings.ContainsAny(w, focus) {
 				fresh = append(fresh, w)

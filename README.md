@@ -4,7 +4,7 @@ Story games that each teach a skill. You start by inserting a cartridge, Atari 2
 
 | Cartridge | You learn | The story |
 |---|---|---|
-| **MORSE CODE** | Morse code, sending and receiving | 1912–1944. One wireless operator's life: the Titanic's SOS, Room 40, the Hindenburg, Bletchley's listeners, a last transmission in occupied France. English or Brazilian Portuguese. Written in Go for the terminal, a desktop window and Android: see [`go/`](go/README.md). |
+| **MORSE CODE** | Morse code, sending and receiving | 1893–1912, the dizzying years. One operator's life, from messenger at the Chicago World's Fair to the Titanic's last night: Kitty Hawk, the San Francisco earthquake, the first rescue by wireless, a murderer caught by wireless. English or Brazilian Portuguese. Written in Go for the terminal, a desktop window and Android: see [`go/`](go/README.md). |
 | **VIM** | vim, from `hjkl` to `.` and `:wq` | December 31, 1999. A lab AI is rewriting the reactor's code, and the only working terminal runs vim. |
 
 ## Get it

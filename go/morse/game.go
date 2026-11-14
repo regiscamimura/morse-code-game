@@ -28,10 +28,14 @@ func DefaultConfig() Config {
 }
 
 // continueHolds is how long a screen stays before ENTER moves on from it, seconds.
-var continueHolds = map[string]float64{"volume": 1, "cover": 1, "win": 1, "lose": 1, "game_over": 1.5, "ending": 1.5}
+// They are the screens that only wait for ENTER (WaitsForEnter).
+var continueHolds = map[string]float64{"volume": 1, "cover": 1, "brief": .5, "win": 1, "lose": 1, "game_over": 1.5, "ending": 1.5, "afterword": .5}
 
 // drillTimes is how often each new letter must be keyed before a chapter's messages begin.
 const drillTimes = 3
+
+// blindRepeatLimit is how many times a blind message to receive may be heard again.
+const blindRepeatLimit = 3
 
 // Keys the game understands besides typed letters.
 const (
@@ -53,10 +57,12 @@ type Game struct {
 
 	state        string
 	stateStart   float64
-	typedAll     bool // the current screen's typed-out lines are fully shown
+	holdFrom     float64 // when the screen's continueHolds began: as it opened, or as its typing-out was skipped
+	typedAll     bool    // the current screen's typed-out lines are fully shown
 	lang         string
 	hi           int
 	savedChapter int
+	finished     bool // the last chapter was won once (Save.Finished)
 	// volumeClosing: the volume screen shows the epilogue of the volume just finished, rather
 	// than the prologue of the one the chapter opens
 	volumeClosing bool
@@ -75,19 +81,22 @@ type Game struct {
 	moverFrom float64  // where the scene's mover stood when this message began, 0 to 1
 	lastWords []string // what the last receiving beat received, for an echo
 
-	titleKeyed  string // letters keyed silently on the title screen, listening for SOS
-	speed       int    // index into Speeds, chosen with the ▶ buttons; 0 is the pace as designed
-	pos         int    // letters of the word done
-	typed       string // a blind message's letters so far, judged only when it's whole
-	hint        bool   // show the pattern of the letter to send
-	timeTotal   float64
-	timeEnd     float64
-	nextBeat    float64 // next heartbeat sound in the last stretch
-	progressEnd float64
-	on          []Element // the received word's tones
-	signalStart float64
-	tapeLetters string // letters the receiving tape still shows
-	lampLetters string // letters that still light the lamp
+	titleKeyed   string // letters keyed silently on the title screen, listening for SOS
+	speed        int    // index into Speeds, chosen with the ▶ buttons; 0 is the pace as designed
+	pos          int    // letters of the word done
+	typed        string // a blind message's letters so far, judged only when it's whole
+	blindRepeats int    // times the blind message being received was heard again
+	blindHeard   bool   // the blind message being received has played to its end at least once
+	page         int    // the page shown of a volume's prologue or epilogue, or of the afterword
+	hint         bool   // show the pattern of the letter to send
+	timeTotal    float64
+	timeEnd      float64
+	nextBeat     float64 // next heartbeat sound in the last stretch
+	progressEnd  float64
+	on           []Element // the received word's tones
+	signalStart  float64
+	tapeLetters  string // letters the receiving tape still shows
+	lampLetters  string // letters that still light the lamp
 
 	msg      string
 	msgColor Color
@@ -98,7 +107,7 @@ type Game struct {
 
 func NewGame(cfg Config, mixer *Mixer, now float64) *Game {
 	saved := LoadSave(cfg.SavePath)
-	g := &Game{cfg: cfg, mixer: mixer, hi: saved.Hi, savedChapter: max(1, saved.Chapter), lang: "en", chapter: 1, mode: "encode"}
+	g := &Game{cfg: cfg, mixer: mixer, hi: saved.Hi, savedChapter: max(1, saved.Chapter), finished: saved.Finished, lang: "en", chapter: 1, mode: "encode"}
 	if slices.Contains(Langs, saved.Lang) {
 		g.lang = saved.Lang
 	}
@@ -130,10 +139,14 @@ func (g *Game) Receiving() bool { return g.state == "play" && g.mode == "decode"
 // Blind: a message is being played with no clues (Beat.Blind).
 func (g *Game) Blind() bool { return g.state == "play" && g.beat.Blind }
 
-// Typing: the player types letters or digits: a received word, a codename, a number to dial.
+// Typing: the player types letters or digits: a received word, a heard letter, a codename, a
+// number to dial.
 func (g *Game) Typing() bool {
-	return g.Receiving() || g.state == "codename" || g.state == "switchboard"
+	return g.Receiving() || g.Listening() || g.state == "codename" || g.state == "switchboard"
 }
+
+// Listening: practice plays letters (g.word) to name rather than taking them from the key.
+func (g *Game) Listening() bool { return g.state == "listen" }
 
 // LineAvailable: the game can reach the telephone exchange, so the title offers the line.
 func (g *Game) LineAvailable() bool { return g.cfg.Wire != nil }
@@ -171,27 +184,31 @@ func (g *Game) chapterLine() string {
 	return g.text("brief_line", values)
 }
 
-// shownVolume is what the volume screen shows: the volume's number, title, a line under it
-// (its years, or that this is what came after) and the lines typed out below.
-func (g *Game) shownVolume() (n int, title, subtitle string, lines []string) {
-	n, _ = g.volumeOf(g.chapter)
+// shownVolume is what the volume screen shows: the volume's name ("VOLUME 1 · THE WHITE CITY"),
+// when ("1893", or that this is what came after) and its pages.
+func (g *Game) shownVolume() (name, when string, pages []StoryPage) {
+	n, _ := g.volumeOf(g.chapter)
 	if g.volumeClosing {
-		v := g.volumes()[n-2]
-		return n - 1, v.Title, g.text("volume_after", nil), v.Epilogue
+		n-- // the volume just finished
 	}
 	v := g.volumes()[n-1]
-	return n, v.Title, v.Years, v.Prologue
+	name = g.text("volume_label", map[string]any{"v": n}) + " · " + v.Title
+	if g.volumeClosing {
+		return name, g.text("volume_after", nil), v.Epilogue
+	}
+	return name, v.Years, v.Prologue
 }
 
 // WaitsForEnter is true on the screens that only wait for ENTER, which a tap on the phone's
 // game also gives.
 func (g *Game) WaitsForEnter() bool {
-	return slices.Contains([]string{"volume", "cover", "brief", "win", "lose", "game_over", "ending"}, g.state)
+	_, waits := continueHolds[g.state]
+	return waits
 }
 
 // readyToContinue: the screen has stayed its continueHolds, so ENTER moves on and says so.
 func (g *Game) readyToContinue(now float64) bool {
-	return now-g.stateStart > continueHolds[g.state]
+	return now-g.holdFrom > continueHolds[g.state]
 }
 
 func (g *Game) text(key string, values map[string]any) string {
@@ -199,14 +216,14 @@ func (g *Game) text(key string, values map[string]any) string {
 }
 
 func (g *Game) storeProgress() {
-	WriteSave(g.cfg.SavePath, Save{Hi: g.hi, Chapter: g.savedChapter, Lang: g.lang,
+	WriteSave(g.cfg.SavePath, Save{Hi: g.hi, Chapter: g.savedChapter, Lang: g.lang, Finished: g.finished,
 		Codename: g.line.codename, LineSecret: g.line.secret, LineNumber: g.line.number})
 }
 
 // ---- state changes
 
 func (g *Game) setState(state string, now float64) {
-	g.state, g.stateStart, g.typedAll, g.titleKeyed = state, now, false, ""
+	g.state, g.stateStart, g.holdFrom, g.typedAll, g.titleKeyed = state, now, now, false, ""
 	g.keyer = NewKeyer(g.cfg)
 	g.mixer.SetKey(false)
 	g.mixer.SetRemoteKey(false)
@@ -244,11 +261,63 @@ func (g *Game) openChapter(now float64) {
 	g.newLetters = FocusLetters(g.chapter)
 	g.drill = make([]int, len(g.newLetters))
 	if _, nth := g.volumeOf(g.chapter); nth == 1 {
-		g.volumeClosing = false
-		g.setState("volume", now)
+		g.openVolume(false, now)
 		return
 	}
 	g.setState("cover", now)
+}
+
+// openVolume shows the first page of the volume's prologue, or when closing, of the epilogue
+// of the volume just finished.
+func (g *Game) openVolume(closing bool, now float64) {
+	g.volumeClosing, g.page = closing, 0
+	g.setState("volume", now)
+}
+
+// shownStoryPage is the prologue or epilogue page on the volume screen, and its pageCount.
+func (g *Game) shownStoryPage() (StoryPage, string) {
+	_, _, pages := g.shownVolume()
+	return pages[g.page], g.pageCount(len(pages))
+}
+
+// leaveVolume goes on from the volume's last page: after an epilogue to the next volume, after
+// a prologue to the chapter's cover.
+func (g *Game) leaveVolume(now float64) {
+	if g.volumeClosing {
+		g.openChapter(now)
+		return
+	}
+	g.setState("cover", now)
+}
+
+// pageCount is "2/4" for the page shown of total, or "" when there's only one.
+func (g *Game) pageCount(total int) string {
+	return showIf(total > 1, fmt.Sprintf("%d/%d", g.page+1, total))
+}
+
+// turnPage shows the next of the screen's total pages; false after the last, when it's time
+// to leave the screen.
+func (g *Game) turnPage(total int, now float64) bool {
+	if g.page+1 >= total {
+		return false
+	}
+	g.page++
+	g.setState(g.state, now)
+	g.playSelect()
+	return true
+}
+
+// Backdrop is the colour behind the screen's words: a shade of the picture of the volume page
+// or chapter shown, so each has a colour of its own; elsewhere, the night.
+func (g *Game) Backdrop() Color {
+	switch g.state {
+	case "volume":
+		page, _ := g.shownStoryPage()
+		return content.Covers[page.Art].shade()
+	case "cover", "chapter", "brief", "play", "win", "lose":
+		return content.Covers[g.currentChapter().Cover].shade()
+	}
+	return Ink
 }
 
 // leaveCover goes on to the chapter's new letters, or straight to its first message when it
@@ -345,7 +414,8 @@ func (g *Game) messageNumber() (n, total int) {
 func (g *Game) startPlay(now float64) {
 	g.setState("play", now)
 	g.word = g.messages[g.msgNo]
-	g.pos, g.typed, g.hint = 0, "", g.chapter <= 3
+	g.pos, g.typed, g.hint, g.blindRepeats, g.blindHeard = 0, "", g.chapter <= 3, 0, false
+	g.passLettersThatGoBy()
 	lead := .8
 	if g.msgNo > 0 { // straight on from the last message: a breath first
 		lead = 1.5
@@ -360,8 +430,49 @@ func (g *Game) startPlay(now float64) {
 	g.nextBeat = now
 }
 
-// speedKeys pick Speeds on a keyboard, and are what the ▶ buttons send.
-var speedKeys = []string{"1", "2", "3"}
+// speedKeys are what the ▶ buttons send, never typed; on a keyboard SHIFT 1, 2 and 3 (!, @, #)
+// pick the speed. Digits are letters to type, as messages hold them.
+var speedKeys = []string{"▶", "▶▶", "▶▶▶"}
+
+// speedStep is the Speeds step a key picks, or -1 when it picks none.
+//
+//	speedStep("@") == 1; speedStep("2") == -1
+func speedStep(k string) int {
+	for _, keys := range [][]string{speedKeys, {"!", "@", "#"}} {
+		if step := slices.Index(keys, k); step >= 0 {
+			return step
+		}
+	}
+	return -1
+}
+
+// practiceLetters are the letters practice plays and lights: those learned so far, or every
+// one once the game has been finished.
+func (g *Game) practiceLetters() string {
+	if g.finished {
+		return Unlocked(len(content.Levels))
+	}
+	return Unlocked(g.savedChapter)
+}
+
+// repeatBlindMessage plays the blind message being received again, blindRepeatLimit times at most.
+func (g *Game) repeatBlindMessage(now float64) {
+	if g.blindRepeats >= blindRepeatLimit {
+		return
+	}
+	g.blindHeard = g.blindHeard || g.signalOver(now)
+	g.blindRepeats++
+	g.replay(now, .3)
+}
+
+// BlindRepeatsLeft is how many more times the blind message being received may be heard.
+func (g *Game) BlindRepeatsLeft() int { return blindRepeatLimit - g.blindRepeats }
+
+// shownAfterword is the afterword page on screen, and its pageCount: "3/9".
+func (g *Game) shownAfterword() (AfterwordPage, string) {
+	pages := content.Afterword[g.lang]
+	return pages[g.page], g.pageCount(len(pages))
+}
 
 // Speeds are the ▶, ▶▶ and ▶▶▶ buttons: how many times faster than designed the message is
 // sent to the player, and how much less time they get for it.
@@ -370,13 +481,13 @@ var Speeds = []float64{1, 1.5, 2}
 // timeForMessage is the seconds allowed for the current message at the chosen speed; when
 // receiving, it also times the signal, which starts after lead.
 //
-// Blind has no ▶ buttons, so it ignores them: heard once with no clues, it gets the volume's
-// first letters and the first gap one Speeds step slower.
+// Blind has no ▶ buttons, so it ignores them: heard with no clues (and blindRepeatLimit
+// repeats at most), it gets the volume's first letters and the first gap one Speeds step slower.
 //
 //	at ▶▶ a 4-letter message to send gets 4*SendTime/1.5 + 2 seconds
-//	blind: 15 WPM, 3s between letters; Hindenburg's beat before it: 16.5 WPM, 1.4s
+//	blind: 15 WPM, 3s between letters; a sighted beat late in a volume: about 16.5 WPM, 1.4s
 func (g *Game) timeForMessage(lead float64) float64 {
-	pace, n, speed := content.Pace, float64(letterCount(g.word)), Speeds[g.speed]
+	pace, n, speed := content.Pace, float64(len(LettersToKey(g.word, g.chapter))), Speeds[g.speed]
 	if g.beat.Blind {
 		speed = 1
 	}
@@ -469,14 +580,20 @@ func (g *Game) correct(now float64) {
 	points := 10 * g.chapter * min(g.combo, 8)
 	g.score += points
 	g.say(fmt.Sprintf("+%d", points), Go, now)
-	g.mixer.Play(Square(1047, .04, .08), FX, false)
-	for g.pos < len(g.word) && g.word[g.pos] == ' ' {
-		g.pos++
-	}
+	g.dingRightLetter()
+	g.passLettersThatGoBy()
 	if g.pos < len(g.word) {
 		return
 	}
 	g.finishMessage(now)
+}
+
+// passLettersThatGoBy moves the message on to its next letter to key or type.
+func (g *Game) passLettersThatGoBy() {
+	learned := Unlocked(g.chapter)
+	for g.pos < len(g.word) && goesBy(g.word[g.pos], learned) {
+		g.pos++
+	}
 }
 
 // finishMessage goes on to the beat's next message, or wins the beat after its last.
@@ -489,15 +606,17 @@ func (g *Game) finishMessage(now float64) {
 }
 
 // judgeBlindMessage settles a whole blind message. Every letter of a right one scores at the
-// top combo, for going without the clues; a single wrong letter loses it.
+// top combo, for going without the clues; a single wrong letter loses it. Letters that go by
+// aren't typed.
 //
 //	"AT TEN" with g.typed "ATTEN" wins; with "ATTEM" loses
 func (g *Game) judgeBlindMessage(now float64) {
-	if g.typed != strings.ReplaceAll(g.word, " ", "") {
+	toKey := LettersToKey(g.word, g.chapter)
+	if g.typed != toKey {
 		g.lose(now)
 		return
 	}
-	g.score += 10 * g.chapter * 8 * letterCount(g.word)
+	g.score += 10 * g.chapter * 8 * len(toKey)
 	g.finishMessage(now)
 }
 
@@ -512,10 +631,12 @@ func (g *Game) signalOver(now float64) bool {
 func (g *Game) typeBlindLetter(k string, now float64) {
 	ch := strings.ToUpper(k)
 	switch _, isLetter := Code[ch]; {
-	case (k == KeyEnter || k == "\r") && g.typed != "" && g.signalOver(now):
+	case (k == KeyEnter || k == "\r") && g.typed != "" && (g.signalOver(now) || g.blindHeard):
 		g.judgeBlindMessage(now)
 	case k == KeyBackspace || k == "\x08":
 		g.typed = g.typed[:max(0, len(g.typed)-1)]
+	case k == KeyTab:
+		g.repeatBlindMessage(now)
 	case isLetter && len(g.typed) < blindTypedLimit:
 		g.typed += ch
 	}
@@ -528,7 +649,7 @@ func (g *Game) keyBlindLetter(pattern string, now float64) {
 		letter = "?"
 	}
 	g.typed += letter
-	if len(g.typed) >= letterCount(g.word) {
+	if len(g.typed) >= len(LettersToKey(g.word, g.chapter)) {
 		g.judgeBlindMessage(now)
 	}
 }
@@ -553,6 +674,14 @@ func (g *Game) nextMessage(now float64) {
 func (g *Game) wrong(text string, now float64) {
 	g.combo = 0
 	g.timeEnd -= g.timeTotal * .1
+	g.buzzWrong(text, now)
+}
+
+// dingRightLetter is the ding of a right letter, in play or practice.
+func (g *Game) dingRightLetter() { g.mixer.Play(Square(1047, .04, .08), FX, false) }
+
+// buzzWrong says what was wrong, in red, over the buzzer.
+func (g *Game) buzzWrong(text string, now float64) {
 	g.say(text, Alert, now)
 	g.mixer.Play(Square(150, .12, .15), FX, false)
 }
@@ -596,8 +725,7 @@ func (g *Game) afterResult(now float64) {
 		if _, nth := g.volumeOf(g.chapter); nth == 1 && g.chapter <= len(g.chapters()) {
 			g.savedChapter = max(g.savedChapter, g.chapter) // leaving on the epilogue still keeps the chapter won
 			g.storeProgress()
-			g.volumeClosing = true
-			g.setState("volume", now)
+			g.openVolume(true, now)
 			return
 		}
 		g.openChapter(now)
@@ -619,7 +747,7 @@ func (g *Game) gameOver(now float64) {
 }
 
 func (g *Game) finish(now float64) {
-	g.savedChapter = 1
+	g.savedChapter, g.finished = 1, true
 	g.recordScore()
 	g.setState("ending", now)
 	g.newLetters = ""
@@ -683,8 +811,12 @@ func (g *Game) Key(k string, now float64) {
 	}
 	enter := k == KeyEnter || k == "\r"
 	if enter && (s == "brief" || s == "ending" || s == "volume") && !g.typedAll {
-		g.stateStart -= 100 // skip the typing-out
+		g.stateStart -= 100 // skip the typing-out, but hold the shown page: a double tap won't turn it unread
+		g.holdFrom = now
 		return
+	}
+	if enter && g.WaitsForEnter() && !g.readyToContinue(now) {
+		return // too soon after the screen, or its lines, came up
 	}
 	switch s {
 	case "lang":
@@ -724,13 +856,11 @@ func (g *Game) Key(k string, now float64) {
 			g.playSelect()
 		}
 	case "volume":
-		if enter && g.readyToContinue(now) && g.volumeClosing {
-			g.openChapter(now)
-		} else if enter && g.readyToContinue(now) {
-			g.setState("cover", now)
+		if _, _, pages := g.shownVolume(); enter && !g.turnPage(len(pages), now) {
+			g.leaveVolume(now)
 		}
 	case "cover":
-		if enter && g.readyToContinue(now) {
+		if enter {
 			g.leaveCover(now)
 		}
 	case "chapter":
@@ -744,18 +874,26 @@ func (g *Game) Key(k string, now float64) {
 			g.startPlay(now)
 		}
 	case "win", "lose":
-		if enter && g.readyToContinue(now) {
+		if enter {
 			g.afterResult(now)
 		}
-	case "game_over", "ending":
-		if enter && g.readyToContinue(now) {
+	case "game_over":
+		if enter {
+			g.toTitle(now)
+		}
+	case "ending":
+		if enter {
+			g.page = 0
+			g.setState("afterword", now)
+		}
+	case "afterword":
+		if enter && !g.turnPage(len(content.Afterword[g.lang]), now) {
 			g.toTitle(now)
 		}
 	case "free":
-		if k == KeyBackspace || k == "\x08" {
-			r := []rune(g.freeText)
-			g.freeText = string(r[:max(0, len(r)-1)])
-		}
+		g.keyDuringPractice(k, now)
+	case "listen":
+		g.keyWhileListening(k, enter, now)
 	case "play":
 		g.keyDuringPlay(k, now)
 	}
@@ -768,7 +906,7 @@ func (g *Game) keyDuringPlay(k string, now float64) {
 		}
 		return
 	}
-	if step := slices.Index(speedKeys, k); step >= 0 { // messages never hold digits
+	if step := speedStep(k); step >= 0 {
 		g.changeSpeed(step, now)
 		return
 	}
@@ -791,6 +929,64 @@ func (g *Game) keyDuringPlay(k string, now float64) {
 	} else {
 		g.wrong(g.text("incorrect", map[string]any{"ch": ch, "pattern": Pretty(Code[ch])}), now)
 	}
+}
+
+// keyDuringPractice: BACKSPACE erases, and TAB turns to listening (not ENTER: on a phone
+// that's the telegraph key).
+func (g *Game) keyDuringPractice(k string, now float64) {
+	switch {
+	case k == KeyBackspace || k == "\x08":
+		r := []rune(g.freeText)
+		g.freeText = string(r[:max(0, len(r)-1)])
+	case k == KeyTab:
+		g.setState("listen", now)
+		g.word = ""
+		g.playPracticeLetter(.3, now)
+	}
+}
+
+// keyWhileListening: a typed letter names the one heard, TAB plays it again and ENTER goes
+// back to sending.
+func (g *Game) keyWhileListening(k string, enter bool, now float64) {
+	switch {
+	case k == KeyTab:
+		g.replay(now, .3)
+	case enter:
+		g.setState("free", now)
+		g.msgUntil = 0
+		g.mixer.StopSignal()
+	default:
+		g.nameHeardLetter(strings.ToUpper(k), now)
+	}
+}
+
+// playPracticeLetter plays a letter the player has learned so far, never the same twice in a
+// row: with only ETAN learned, it's one of E, T, A and N.
+func (g *Game) playPracticeLetter(lead, now float64) {
+	letters := g.practiceLetters()
+	next := g.word
+	for next == g.word && len(letters) > 1 {
+		next = string(letters[rand.IntN(len(letters))])
+	}
+	g.word = next
+	g.on, _ = Schedule(g.word, content.Pace.WPM[0], 1)
+	g.replay(now, lead)
+}
+
+// nameHeardLetter judges a typed letter against the one heard: right plays a new one, wrong
+// shows what the typed letter sounds like and plays the heard one again.
+func (g *Game) nameHeardLetter(ch string, now float64) {
+	if _, isLetter := Code[ch]; !isLetter {
+		return
+	}
+	if ch == g.word {
+		g.say(ch+"  "+Pretty(Code[ch]), Go, now)
+		g.dingRightLetter()
+		g.playPracticeLetter(.8, now)
+		return
+	}
+	g.buzzWrong(g.text("incorrect", map[string]any{"ch": ch, "pattern": Pretty(Code[ch])}), now)
+	g.replay(now, .8)
 }
 
 // ---- time

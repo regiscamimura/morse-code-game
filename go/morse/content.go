@@ -28,9 +28,9 @@ type Beat struct {
 	Echo   bool     `json:"echo"`
 	Count  int      `json:"count"`
 	Groups bool     `json:"groups"`
-	// Blind plays with no clues: no clock, picture, lamp, tape, hint or sound for a letter,
-	// and a received message is heard once, slowly (Game.timeForMessage). The whole message is
-	// right or it's lost. Blind beats to receive open on single words and end on sentences.
+	// Blind plays with no clues: no clock, picture, lamp, tape, hint or letter sounds. A message
+	// to receive is heard slowly, blindRepeatLimit more times at most; all of it is right or it's
+	// lost. Blind beats to receive open on single words and end on sentences.
 	Blind bool `json:"blind"`
 }
 
@@ -38,20 +38,33 @@ type Beat struct {
 type Chapter struct {
 	Title string `json:"title"`
 	Year  string `json:"year"`
-	Place string `json:"place"` // where it happens: "LONDON"
-	Era   string `json:"era"`   // the times around it: "THE FIRST WORLD WAR"
+	Place string `json:"place"` // where it happens: "CHICAGO"
+	Era   string `json:"era"`   // the times around it: "THE WORLD'S COLUMBIAN EXPOSITION"
 	Cover string `json:"cover"` // a key of Content.Covers
 	Beats []Beat `json:"beats"`
 }
 
-// Volume is a run of chapters telling one story: the Titanic, the Lusitania. It opens on its
-// Prologue, the history the player needs, and closes on its Epilogue, what came of it.
+// Volume is a run of chapters telling one story: the White City, the Titanic. It opens on its
+// Prologue, the times the player steps into, and closes on its Epilogue, what came of it.
 type Volume struct {
-	Title    string   `json:"title"`
-	Years    string   `json:"years"`
-	Chapters int      `json:"chapters"` // how many chapters, following the previous volume's
-	Prologue []string `json:"prologue"`
-	Epilogue []string `json:"epilogue"` // "" for the last volume, which closes on the game's ending
+	Title    string      `json:"title"`
+	Years    string      `json:"years"`
+	Chapters int         `json:"chapters"` // how many chapters, following the previous volume's
+	Prologue []StoryPage `json:"prologue"`
+	Epilogue []StoryPage `json:"epilogue"` // none for the last volume, which closes on the game's ending
+}
+
+// StoryPage is a page of a prologue or epilogue: a picture, and a few lines under it.
+type StoryPage struct {
+	Art   string   `json:"art"`   // a key of Content.Covers
+	Lines []string `json:"lines"` // paragraphs
+}
+
+// AfterwordPage is a page of what became of the people in the story, or of its sources,
+// shown after the ending.
+type AfterwordPage struct {
+	Title string   `json:"title"`
+	Lines []string `json:"lines"` // paragraphs
 }
 
 // Scene: the mover creeping toward the target is the mission timer. Sky and ground name palette colours.
@@ -89,6 +102,7 @@ type Content struct {
 	Volumes     map[string][]Volume          `json:"volumes"`
 	Chapters    map[string][]Chapter         `json:"chapters"`
 	Ending      map[string][]string          `json:"ending"`
+	Afterword   map[string][]AfterwordPage   `json:"afterword"`
 	WinBanners  map[string][]string          `json:"win_banners"`
 	LoseBanners map[string][]string          `json:"lose_banners"`
 	UI          map[string]map[string]string `json:"ui"`

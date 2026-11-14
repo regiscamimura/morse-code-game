@@ -3,6 +3,7 @@ package com.regiscamimura.morse;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,10 +18,9 @@ import android.widget.FrameLayout;
 
 import com.regiscamimura.morse.mobile.EbitenView;
 import com.regiscamimura.morse.mobile.Mobile;
-import com.regiscamimura.morse.mobile.URLOpener;
 
 public class MainActivity extends Activity {
-    /** morse.Ink, the game's background, so the strip beside a camera cutout doesn't show. */
+    /** morse.Ink, the game's first background; the game repaints the strip beside a camera cutout to match. */
     private static final int INK = 0xFF0A0C16;
 
     private GameView view;
@@ -29,16 +29,13 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Mobile.setDataDir(getFilesDir().getAbsolutePath());
-        Mobile.setURLOpener(new URLOpener() {
-            @Override
-            public void openURL(String url) {
-                runOnUiThread(() -> openInBrowser(url));
-            }
-        });
+        Mobile.setURLOpener(url -> runOnUiThread(() -> openInBrowser(url)));
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        setVolumeControlStream(AudioManager.STREAM_MUSIC); // the volume keys set the game's sound, even when it's quiet, not the ringer
         view = new GameView(this);
         FrameLayout root = new FrameLayout(this);
         root.setBackgroundColor(INK);
+        Mobile.setBackdropPainter(argb -> runOnUiThread(() -> root.setBackgroundColor(argb)));
         root.addView(view);
         keepClearOfDisplayCutout(root);
         setContentView(root);
@@ -105,27 +102,20 @@ public class MainActivity extends Activity {
         view.resumeGame();
     }
 
-    /** Turns Back into the game's ESC, and logs a crash in the Go game instead of failing silently. */
+    /** Turns Back into the game's ESC, leaves the system keys to Android, and logs a crash in the Go game. */
     private static class GameView extends EbitenView {
         GameView(Activity activity) {
             super(activity);
         }
 
-        /** Back is the game's ESC: it leaves a mission or the free practice. */
+        /** Back is the game's ESC: it leaves a mission or the free practice. Volume and the other system
+         *  keys go to Android: EbitenView would keep every first press and pass on only a held key's repeats. */
         @Override
-        public boolean onKeyDown(int keyCode, KeyEvent e) {
-            if (keyCode == KeyEvent.KEYCODE_BACK) {
-                return super.onKeyDown(KeyEvent.KEYCODE_ESCAPE, new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ESCAPE));
+        public boolean dispatchKeyEvent(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+                return super.dispatchKeyEvent(new KeyEvent(e.getAction(), KeyEvent.KEYCODE_ESCAPE));
             }
-            return super.onKeyDown(keyCode, e);
-        }
-
-        @Override
-        public boolean onKeyUp(int keyCode, KeyEvent e) {
-            if (keyCode == KeyEvent.KEYCODE_BACK) {
-                return super.onKeyUp(KeyEvent.KEYCODE_ESCAPE, new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ESCAPE));
-            }
-            return super.onKeyUp(keyCode, e);
+            return !e.isSystem() && super.dispatchKeyEvent(e);
         }
 
         @Override

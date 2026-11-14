@@ -38,11 +38,12 @@ var sceneColors = map[string]Color{"NIGHT": Night, "EARTH": Earth, "SEA": Sea, "
 // spritePalette maps sprite pixels to colours.
 var spritePalette = map[byte]Color{'K': Ink, 'D': Faint, 'S': Dim, 'A': Amber, 'O': Flame,
 	'W': Paper, 'Y': Lamp, 'R': Alert, 'T': Teal, 'E': Ember, 'N': Night, 'G': Go,
-	'B': Color{110, 66, 34}, 'V': Color{34, 62, 42}, 'L': Color{184, 190, 200}, 'M': Color{36, 40, 52}}
+	'B': Color{110, 66, 34}, 'V': Color{34, 62, 42}, 'L': Color{184, 190, 200}, 'M': Color{36, 40, 52},
+	'H': Color{150, 72, 48}, 'C': Color{64, 92, 138}, 'P': Color{200, 188, 164}}
 
 // Draw renders the current screen on a width x height canvas (80x24 or larger).
 func (g *Game) Draw(width, height int, now float64) *Canvas {
-	c := NewCanvas(width, height, Paper, Ink)
+	c := NewCanvas(width, height, Paper, g.Backdrop())
 	if width < 80 || height < 24 {
 		c.OX, c.OY = 0, 0
 		c.Put(0, 0, g.text("size", nil), Amber)
@@ -75,12 +76,14 @@ func (g *Game) Draw(width, height int, now float64) *Canvas {
 		g.drawResult(c, now, true)
 	case "lose":
 		g.drawResult(c, now, false)
-	case "free":
+	case "free", "listen":
 		g.drawFree(c, now)
 	case "game_over":
 		g.drawGameOver(c, now)
 	case "ending":
 		g.drawEnding(c, now)
+	case "afterword":
+		g.drawAfterword(c, now)
 	}
 	return c
 }
@@ -267,7 +270,7 @@ func (g *Game) drawScene(c *Canvas, now float64, key string, p float64, ended *s
 	}
 }
 
-// chapterListLine is a chapter's line on the chapter list: "[A] 1912  THE CARPATHIA".
+// chapterListLine is a chapter's line on the chapter list: "[A] 1893  THE MESSENGER".
 func (g *Game) chapterListLine(n int) string {
 	ch := g.chapters()[n-1]
 	return fmt.Sprintf("[%s] %s  %s", chapterKey(n), ch.Year, ch.Title)
@@ -283,7 +286,7 @@ func (g *Game) drawChapterList(c *Canvas) {
 		if v%2 == 0 {
 			color = Teal
 		}
-		c.PutTap(4, 3+n, g.chapterListLine(n+1), strings.ToLower(chapterKey(n+1)), color)
+		c.PutTap(4, 2+n, g.chapterListLine(n+1), strings.ToLower(chapterKey(n+1)), color)
 	}
 	c.Center(23, g.text("select_back", nil), Faint)
 }
@@ -308,14 +311,19 @@ func (g *Game) drawTitle(c *Canvas, now float64) {
 	}
 }
 
-// drawVolume: the volume's number big and its title, then its prologue typed out; or, as it
-// closes, its epilogue.
+// storyBandRow is the row under a volume page's picture that names the volume.
+const storyBandRow = coverHeight / 2
+
+// drawVolume: a page of the volume's prologue, or as it closes, its epilogue: its picture, the
+// volume named under it, then its lines typed out.
 func (g *Game) drawVolume(c *Canvas, now float64) {
-	n, title, subtitle, lines := g.shownVolume()
-	BigCenter(c, 3, g.text("volume_label", map[string]any{"v": n}), Amber)
-	c.Center(8, title, Paper)
-	c.Center(9, subtitle, Dim)
-	if g.drawTypedLines(c, 12, paragraphs(lines, 76), now, Paper) && g.readyToContinue(now) && blinkOn(now) {
+	name, when, _ := g.shownVolume()
+	page, count := g.shownStoryPage()
+	DrawCoverArt(c, page.Art, now)
+	c.Band(storyBandRow, storyBandRow+1, Band)
+	c.Center(storyBandRow, name+" · "+when, Amber)
+	c.Put(79-runeLen(count), storyBandRow, count, Dim)
+	if g.drawTypedLines(c, storyBandRow+2, paragraphs(page.Lines, 76), now, Paper) && g.readyToContinue(now) && blinkOn(now) {
 		c.Center(23, g.text("continue", nil), Amber)
 	}
 }
@@ -353,16 +361,16 @@ func (g *Game) drawChapter(c *Canvas, now float64) {
 	g.drawHud(c)
 	c.Center(2, g.chapterLine(), Dim)
 	c.Center(5, g.lettersLabel(), Teal)
-	columnWidth := 76 / len(g.newLetters)
+	columnWidth := 76 / len(g.newLetters) // each takes 15: its big letter, a gap, a digit's pattern
 	last := lastLetter(g.freeText)
 	for i, ch := range strings.Split(g.newLetters, "") {
-		x := 2 + i*columnWidth + columnWidth/2 - 9
+		x := 2 + i*columnWidth + (columnWidth-15)/2
 		color := Paper
 		if last == ch {
 			color = Go
 		}
 		Big(c, x, 7, ch, color)
-		c.Put(x+8, 8, Pretty(Code[ch]), Lamp)
+		c.Put(x+6, 8, Pretty(Code[ch]), Lamp)
 		done, pipColor := g.drill[i], Lamp
 		if done >= drillTimes {
 			pipColor = Go
@@ -405,10 +413,27 @@ func (g *Game) drawBrief(c *Canvas, now float64) {
 	}
 	if g.drawTypedLines(c, 14, append(lines, "", g.task()), now, Paper) {
 		if g.mode == "encode" {
-			c.Center(19, g.text("code_word", map[string]any{"word": g.word}), Amber)
+			g.drawCodeWord(c, 19)
 		}
-		if blinkOn(now) {
+		if g.readyToContinue(now) && blinkOn(now) {
 			c.Center(22, g.text("ready", nil), Amber)
+		}
+	}
+}
+
+// drawCodeWord centres the message to send on row y, its letters that go by in Faint.
+func (g *Game) drawCodeWord(c *Canvas, y int) {
+	text := g.text("code_word", map[string]any{"word": g.word})
+	c.Center(y, text, Amber)
+	at := strings.LastIndex(text, g.word)
+	if at < 0 { // a translation that doesn't show the word: nothing to dim
+		return
+	}
+	x := c.CenterX(text) + runeLen(text[:at])
+	learned := Unlocked(g.chapter)
+	for i := range len(g.word) {
+		if goesBy(g.word[i], learned) {
+			c.Put(x+i, y, g.word[i:i+1], Faint)
 		}
 	}
 }
@@ -457,7 +482,7 @@ func (g *Game) drawBlindPlay(c *Canvas) {
 	for n, line := range g.blindLines() {
 		BigCenter(c, blindTop+4*n, line, Paper)
 	}
-	c.Center(23, g.text("help_blind_"+g.mode, nil), Faint)
+	c.Center(23, g.text("help_blind_"+g.mode, map[string]any{"left": g.BlindRepeatsLeft()}), Faint)
 }
 
 func (g *Game) drawPlay(c *Canvas, now float64) {
@@ -483,19 +508,23 @@ func (g *Game) drawPlay(c *Canvas, now float64) {
 	c.Put(7+n, 13, strings.Repeat("▬", 60-n), Band)
 	c.Put(70, 13, fmt.Sprintf("%4.0fs", left), color)
 	lines, top, keyRow := g.messageLayout()
+	learned := Unlocked(g.chapter)
 	hintX := 0 // under the letter to send next
 	i := 0     // the letter of g.word being drawn
 	for n, line := range lines {
 		x0, y := 40-BigTextWidth(line)/2, top+4*n
 		for col, ch := range strings.Split(line, "") {
-			done := i < g.pos
-			letterColor := Faint
-			if done {
+			done, passes := i < g.pos, goesBy(ch[0], learned)
+			letterColor := Dim
+			switch {
+			case passes: // not learned yet: shown faint, never keyed
+				letterColor = Faint
+			case done:
 				letterColor = Go
-			} else if i == g.pos {
+			case i == g.pos:
 				letterColor, hintX = Lamp, x0+col*6+2
 			}
-			if g.mode != "encode" && !done && ch != " " {
+			if g.mode != "encode" && !done && !passes {
 				ch = "_"
 			}
 			Big(c, x0+col*6, y, ch, letterColor)
@@ -647,17 +676,32 @@ func (g *Game) drawFree(c *Canvas, now float64) {
 	last := lastLetter(g.freeText)
 	for i, ch := range strings.Split(CodeOrder, "") {
 		x, y := 3+(i/9)*19, 2+i%9
-		letterColor, patternColor := Paper, Teal
-		if ch == last {
-			letterColor, patternColor = Lamp, Lamp
-		}
+		letterColor, patternColor := g.practiceChartColors(ch, last)
 		c.Put(x, y, ch, letterColor)
 		c.Put(x+2, y, Pretty(Code[ch]), patternColor)
+	}
+	if g.Listening() {
+		c.Center(14, g.text("listen_prompt", nil), Amber)
+		c.Center(17, showIf(now < g.msgUntil, g.msg), g.msgColor)
+		c.Center(23, g.text("listen_help", nil), Faint)
+		return
 	}
 	BigCenter(c, 12, tail(g.freeText, 12), Amber)
 	c.Center(17, tail(g.freeText, 70), Dim)
 	g.drawKey(c, 24, 19, now)
 	c.Center(23, g.text("free_help", nil), Faint)
+}
+
+// practiceChartColors are a code chart letter's colours, and its pattern's: lit when just
+// keyed; while listening, faint unless it may be played.
+func (g *Game) practiceChartColors(ch, last string) (Color, Color) {
+	switch {
+	case g.Listening() && !strings.Contains(g.practiceLetters(), ch):
+		return Faint, Faint
+	case !g.Listening() && ch == last:
+		return Lamp, Lamp
+	}
+	return Paper, Teal
 }
 
 func (g *Game) drawGameOver(c *Canvas, now float64) {
@@ -678,6 +722,20 @@ func (g *Game) drawEnding(c *Canvas, now float64) {
 	BigCenter(c, 14, g.text("end_big", nil), Amber)
 	if g.drawTypedLines(c, 19, content.Ending[g.lang], now, Dim) {
 		c.Center(23, g.finalScoreLine(), Amber)
+	}
+}
+
+// drawAfterword shows a page of what became of the people in the story, or its sources.
+func (g *Game) drawAfterword(c *Canvas, now float64) {
+	page, count := g.shownAfterword()
+	c.Band(0, 1, Band)
+	c.Put(1, 0, page.Title, Amber)
+	c.Put(79-runeLen(count), 0, count, Dim)
+	for i, line := range paragraphs(page.Lines, 76) {
+		c.Put(2, 2+i, line, Paper)
+	}
+	if g.readyToContinue(now) && blinkOn(now) {
+		c.Center(23, g.text("continue", nil), Amber)
 	}
 }
 
