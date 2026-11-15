@@ -318,7 +318,7 @@ func TestPlaythrough(t *testing.T) {
 		g.Draw(80, 24, now)
 		step(KeyEnter)
 	}
-	if g.State() != "cover" || g.chapter != 2 {
+	if g.State() != "volume" || g.chapter != 2 { // chapter 2 opens volume 2, on its prologue
 		t.Fatalf("after chapter 1: %s, chapter %d", g.State(), g.chapter)
 	}
 	if g.score == 0 {
@@ -378,20 +378,24 @@ func TestBlindMessageIsAllOrNothing(t *testing.T) {
 	}
 }
 
-// TestLettersNotLearnedGoBy: in chapter 1 (ETAN), receiving "MUCH ICE AT 10" takes only the
-// typed E, A and T; the rest pass on their own.
-func TestLettersNotLearnedGoBy(t *testing.T) {
-	g := gamePlaying(1, Beat{Mode: "decode"}, "MUCH ICE AT 10")
-	for _, ch := range "eat" {
+// TestOnlySpacesGoBy: whole words only, so receiving or sending "AT TEN" takes every letter;
+// just the space passes on its own.
+func TestOnlySpacesGoBy(t *testing.T) {
+	g := gamePlaying(1, Beat{Mode: "decode"}, "AT TEN")
+	for _, ch := range "atte" {
 		g.Key(string(ch), 2)
 	}
-	if g.State() != "win" || g.lives != 3 {
-		t.Errorf("after E, A, T: %s, %d lives", g.State(), g.lives)
+	if g.State() != "play" {
+		t.Errorf("a letter short: %s", g.State())
 	}
-	g = gamePlaying(1, Beat{Mode: "encode", Blind: true}, "MUCH ICE AT 10")
-	keyWord(g, "EAT", 2)
+	g.Key("n", 2)
+	if g.State() != "win" || g.lives != 3 {
+		t.Errorf("after A, T, T, E, N: %s, %d lives", g.State(), g.lives)
+	}
+	g = gamePlaying(1, Beat{Mode: "encode", Blind: true}, "AT TEN")
+	keyWord(g, "ATTEN", 2)
 	if g.State() != "win" {
-		t.Errorf("blind, sent E, A, T: %s", g.State())
+		t.Errorf("blind, sent A, T, T, E, N: %s", g.State())
 	}
 }
 
@@ -443,11 +447,12 @@ func TestPracticeKeepsEveryLetterAfterTheEnd(t *testing.T) {
 }
 
 // TestEveryVolumeEndsBlind: each volume's last chapter has a blind message to receive and one to
-// send, and its last message is blind.
+// send, and its last message is blind. The first volume is one chapter, the first four letters:
+// too soon for no clues.
 func TestEveryVolumeEndsBlind(t *testing.T) {
 	for _, lang := range Langs {
-		chapter := 0
-		for _, v := range content.Volumes[lang] {
+		chapter := content.Volumes[lang][0].Chapters
+		for _, v := range content.Volumes[lang][1:] {
 			chapter += v.Chapters
 			beats := content.Chapters[lang][chapter-1].Beats
 			blind := func(mode string) bool {
@@ -544,6 +549,7 @@ func TestAidsFadeLetterByLetter(t *testing.T) {
 // page's hold does ENTER turn it.
 func TestDoubleTapDoesNotTurnAPageUnread(t *testing.T) {
 	g := NewGame(DefaultConfig(), NewMixer(0), 0)
+	g.chapter = content.Volumes[g.lang][0].Chapters + 1 // volume 2: a prologue of more than one page
 	g.openVolume(false, 0)
 	press := func(now float64) { // as the app does: a key, then a frame drawn
 		g.Key(KeyEnter, now)

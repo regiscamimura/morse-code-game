@@ -130,7 +130,7 @@ func (g *Game) DrillDone() bool {
 
 // Keying: the telegraph key is live (sending, practising, or trying a chapter's new letters).
 func (g *Game) Keying() bool {
-	return g.state == "free" || g.state == "chapter" || g.state == "line" || (g.state == "play" && g.mode == "encode")
+	return g.state == "free" || g.state == "chapter" || (g.state == "line" && !g.line.notesOpen) || (g.state == "play" && g.mode == "encode")
 }
 
 // Receiving: the player is typing the letters of a received word.
@@ -142,7 +142,7 @@ func (g *Game) Blind() bool { return g.state == "play" && g.beat.Blind }
 // Typing: the player types letters or digits: a received word, a heard letter, a codename, a
 // number to dial.
 func (g *Game) Typing() bool {
-	return g.Receiving() || g.Listening() || g.state == "codename" || g.state == "switchboard"
+	return g.Receiving() || g.Listening() || g.state == "codename" || g.state == "switchboard" || g.TakingNotes()
 }
 
 // Listening: practice plays letters (g.word) to name rather than taking them from the key.
@@ -767,6 +767,10 @@ func (g *Game) SpaceDown(now float64) {
 		g.keyer.Press(now)
 		return
 	}
+	if g.TakingNotes() { // the space bar writes a space in the notes
+		g.writeNote(" ")
+		return
+	}
 	if !g.Keying() {
 		return
 	}
@@ -994,10 +998,12 @@ func (g *Game) nameHeardLetter(ch string, now float64) {
 
 // typeKeyedLetters adds to text the letter the keyer just finished, if any, and a space once
 // the key has been idle a while after a word; text keeps its last 60 runes. It also returns
-// the letter, or "" when none was finished.
-func typeKeyedLetters(k *Keyer, text string, letterGap, now float64) (string, string) {
+// the letter and the pattern keyed for it ("?" and "..--" when no letter has it), or "" for both
+// when none was finished.
+func typeKeyedLetters(k *Keyer, text string, letterGap, now float64) (string, string, string) {
 	var letter string
-	if pattern := k.Tick(now); pattern != "" {
+	pattern := k.Tick(now)
+	if pattern != "" {
 		var ok bool
 		if letter, ok = Decode[pattern]; !ok {
 			letter = "?"
@@ -1008,7 +1014,7 @@ func typeKeyedLetters(k *Keyer, text string, letterGap, now float64) (string, st
 	if idle && text != "" && !strings.HasSuffix(text, " ") && now-k.Last > letterGap*2.5 {
 		text += " "
 	}
-	return text, letter
+	return text, letter, pattern
 }
 
 // listenForSOS opens the chapter list when SOS is keyed on the title screen, a secret way to
@@ -1035,7 +1041,7 @@ func (g *Game) Tick(now float64) {
 	switch g.state {
 	case "free", "chapter":
 		var letter string
-		g.freeText, letter = typeKeyedLetters(g.keyer, g.freeText, g.cfg.LetterGap, now)
+		g.freeText, letter, _ = typeKeyedLetters(g.keyer, g.freeText, g.cfg.LetterGap, now)
 		if g.state == "chapter" {
 			g.countDrill(letter)
 		}

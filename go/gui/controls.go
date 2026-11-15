@@ -60,6 +60,11 @@ var (
 	declineCall    = action{"DECLINE", "RECUSAR", morse.KeyEscape}
 	hangUp         = action{"HANG UP", "DESLIGAR", morse.KeyEscape}
 	clearTapes     = action{"CLEAR", "LIMPAR", morse.KeyBackspace}
+	lights         = action{"LIGHTS", "LUZES", "l"}
+	reveal         = action{"REVEAL", "REVELAR", "r"}
+	takeNotes      = action{"NOTES", "NOTAS", morse.KeyTab}
+	backToKey      = action{"KEY", "TECLA", morse.KeyTab}
+	space          = action{"SPACE", "ESPAÇO", " "}
 	back           = action{"BACK", "VOLTAR", morse.KeyEscape}
 )
 
@@ -91,7 +96,10 @@ func (a *App) screenActions() []action {
 	case "ringing":
 		return []action{answerCall, declineCall}
 	case "line":
-		return []action{clearTapes, hangUp}
+		if g.TakingNotes() {
+			return []action{space, backToKey, hangUp}
+		}
+		return []action{lights, reveal, takeNotes, clearTapes, hangUp}
 	case "select":
 		return []action{back}
 	}
@@ -118,13 +126,9 @@ func (a *App) screenActions() []action {
 	return []action{enter}
 }
 
-// controlsArea is the screen the game leaves to the controls: a column beside it on a
-// sideBySide screen. Below it, all that's left for the telegraph key or the keyboard, else just
-// the bottom, enough for a row of buttons.
+// controlsArea is the screen the game leaves to the controls, below it: all that's left for the
+// telegraph key or the keyboard, else just the bottom, enough for a row of buttons.
 func (a *App) controlsArea() image.Rectangle {
-	if a.sideBySide() {
-		return image.Rect(a.width-a.sidePanelWidth(), 0, a.width, a.height)
-	}
 	top := a.gameBottom
 	if !a.game.Keying() && !a.game.Typing() {
 		top = max(top, a.height-a.controlsMinHeight())
@@ -133,7 +137,7 @@ func (a *App) controlsArea() image.Rectangle {
 }
 
 // layoutControls lays out the phone's controls in controlsArea: a row of the screen's buttons
-// at the bottom, and above it the red telegraph key while keying, or a keyboard while
+// at the bottom, and above it the telegraph key while keying, or a keyboard while
 // receiving. Every row is as wide as the area.
 func (a *App) layoutControls() []control {
 	panel := a.controlsArea()
@@ -160,10 +164,13 @@ func (a *App) layoutControls() []control {
 	above := image.Rect(area.Min.X, area.Min.Y, area.Max.X, buttons.Min.Y-gap*3)
 
 	if a.game.Keying() {
-		side := min(above.Dx(), above.Dy(), a.width*45/100)
+		// as big as the room allows in the art's own shape, up to near half an upright phone
+		art := telegraphKeyArt[0]
+		pixel := min(above.Dx()/len(art[0]), above.Dy()/len(art), min(a.width, a.height)*45/100/len(art[0]))
+		w, h := pixel*len(art[0]), pixel*len(art)
 		center := image.Pt((above.Min.X+above.Max.X)/2, (above.Min.Y+above.Max.Y)/2)
-		square := image.Rect(center.X-side/2, center.Y-side/2, center.X+side/2, center.Y+side/2)
-		return append(controls, control{rect: square, telegraphKey: true})
+		key := image.Rect(center.X-w/2, center.Y-h/2, center.X+w/2, center.Y+h/2)
+		return append(controls, control{rect: key, telegraphKey: true})
 	}
 	if !a.game.Typing() {
 		return controls
@@ -201,17 +208,52 @@ func splitRow(row image.Rectangle, gap int, weights []int) []image.Rectangle {
 }
 
 // The controls look like a submarine's panel: lamps of tinted glass on dark riveted steel,
-// glowing when pressed, and a flat red telegraph key.
+// glowing when pressed, and a telegraph key in pixel art: a brass lever on a wooden base.
 var (
-	steel       = color.NRGBA{20, 25, 31, 255}
-	steelSeam   = color.NRGBA{34, 41, 50, 255}
-	rivet       = color.NRGBA{52, 61, 72, 255}
-	sonarGreen  = color.NRGBA{80, 235, 170, 255}
-	lampAmber   = color.NRGBA{255, 178, 64, 255}
-	keyRed      = color.NRGBA{178, 34, 34, 255}
-	keyRedLit   = color.NRGBA{236, 62, 48, 255}
-	keyRedShade = color.NRGBA{120, 22, 22, 255}
+	steel      = color.NRGBA{20, 25, 31, 255}
+	steelSeam  = color.NRGBA{34, 41, 50, 255}
+	rivet      = color.NRGBA{52, 61, 72, 255}
+	sonarGreen = color.NRGBA{80, 235, 170, 255}
+	lampAmber  = color.NRGBA{255, 178, 64, 255}
 )
+
+// telegraphKeyArt is the telegraph key in pixels, seen from above: a wooden knob ringed in brass
+// on a brass lever running to its pivot, on a wooden base with a screw in each corner. Held, the
+// brass shines and the knob, pushed down, goes darker.
+var telegraphKeyArt = func() [2][]string {
+	up := []string{
+		"WWWWWWWWWWWWWWWWWW",
+		"WSWWWWWWwWWWWWWWSW",
+		"WWWGGGGWWWWWWWWWWW",
+		"WWGkkkKGWWWWWWGGGW",
+		"WWGkKKKGGGGGGGGgGW",
+		"WWGKKKKGYYYYYYYgGW",
+		"WWGKKKKGgggggggGGW",
+		"WWWGGGGWWWWwWWGGGW",
+		"WWWWwWWWWWWWWWWWWW",
+		"WSWWWWWWWWWWwWWWSW",
+		"WWWWWWWWWWWWWWWWWW",
+		"DDDDDDDDDDDDDDDDDD",
+	}
+	held := make([]string, len(up))
+	pressed := strings.NewReplacer("G", "Y", "k", "K")
+	for i, row := range up {
+		held[i] = pressed.Replace(row)
+	}
+	return [2][]string{up, held}
+}()
+
+var telegraphKeyColors = map[byte]color.NRGBA{
+	'k': {122, 78, 44, 255},   // the knob's lit top
+	'K': {90, 55, 32, 255},    // the knob
+	'Y': {242, 203, 106, 255}, // brass in the light
+	'G': {218, 166, 60, 255},  // brass
+	'g': {156, 114, 40, 255},  // brass in shadow
+	'W': {138, 90, 46, 255},   // the base
+	'w': {110, 69, 34, 255},   // its grain
+	'D': {62, 37, 18, 255},    // its edge
+	'S': {90, 64, 30, 255},    // a screw
+}
 
 // panelPainter keeps the steel and the unlit glass keys drawn on an image of its own, redrawn
 // only when the controls change: they're too slow to draw every frame, or every key press,
@@ -261,17 +303,34 @@ func controlTint(c control) color.NRGBA {
 	return sonarGreen
 }
 
-// drawTelegraphKey draws the telegraph key as a flat red square with a darker lower edge,
-// brighter and pushed down by that edge while held.
+// telegraphKeyImages are telegraphKeyArt up and held as images a pixel per pixel, made once:
+// one scaled draw a frame, not a rectangle per pixel.
+var telegraphKeyImages [2]*ebiten.Image
+
+// drawTelegraphKey draws telegraphKeyArt, held down or up, scaled to fill r, which layoutControls
+// sized to whole pixels of the art.
 func drawTelegraphKey(screen *ebiten.Image, r image.Rectangle, held bool) {
-	x, y, w, h := float32(r.Min.X), float32(r.Min.Y), float32(r.Dx()), float32(r.Dy())
-	edge := max(4, h/24)
+	state := 0
 	if held {
-		vector.FillRect(screen, x, y+edge, w, h-edge, keyRedLit, false)
-		return
+		state = 1
 	}
-	vector.FillRect(screen, x, y+h-edge, w, edge, keyRedShade, false)
-	vector.FillRect(screen, x, y, w, h-edge, keyRed, false)
+	if telegraphKeyImages[state] == nil {
+		art := telegraphKeyArt[state]
+		pixels := make([]byte, 0, len(art)*len(art[0])*4)
+		for _, line := range art {
+			for col := range len(line) {
+				c := telegraphKeyColors[line[col]]
+				pixels = append(pixels, c.R, c.G, c.B, c.A)
+			}
+		}
+		telegraphKeyImages[state] = ebiten.NewImage(len(art[0]), len(art))
+		telegraphKeyImages[state].WritePixels(pixels)
+	}
+	art := telegraphKeyImages[state]
+	op := &ebiten.DrawImageOptions{Filter: ebiten.FilterNearest}
+	op.GeoM.Scale(float64(r.Dx())/float64(art.Bounds().Dx()), float64(r.Dy())/float64(art.Bounds().Dy()))
+	op.GeoM.Translate(float64(r.Min.X), float64(r.Min.Y))
+	screen.DrawImage(art, op)
 }
 
 // drawSteelPanel fills the controls' area with steel plate, a seam along its top and a rivet in

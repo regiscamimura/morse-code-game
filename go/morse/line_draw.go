@@ -146,37 +146,68 @@ func fillEllipse(c *Canvas, cx, cy, rx, ry float64, color Color) {
 	}
 }
 
-// drawLine draws a call in progress: each side's lamp, the letter it's keying and what it has
-// keyed, this player on the left.
+// drawLine draws a call in progress, this player on the left: each side's lamp, the letter it's
+// keying and what it has keyed. The far end's side stays dark but for what the player has
+// turned on (lights: dits and dahs; reveal: letters), and says what the far end turned on.
 func (g *Game) drawLine(c *Canvas, now float64) {
 	g.drawExchangeBand(c, ListenBand, g.text("on_the_line", map[string]any{"n": g.line.peerNumber, "name": g.line.peerCodename}))
-	k := g.keyer
+	k, line := g.keyer, g.line
 	sides := []struct {
-		name   string
-		lit    bool
-		live   string
-		keyed  string
-		middle int
+		name          string
+		lit           bool
+		live          string
+		keyed, tape   string
+		lights, shown bool
+		middle        int
 	}{
-		{g.text("you", nil) + " · " + g.line.codename, k.Sounding() || (k.Down() && now-k.Last < .12), k.Live(now), g.freeText, 20},
-		{g.line.peerCodename, g.line.remoteToneOn, g.line.remote.Live(now), g.line.remoteText, 60},
+		{g.text("you", nil) + " · " + line.codename, k.Sounding() || (k.Down() && now-k.Last < .12), k.Live(now), g.freeText, "", true, true, 20},
+		{line.peerCodename, line.remoteToneOn, line.remote.Live(now), line.remoteText, line.remoteTape, line.mine.lights, line.mine.reveal, 60},
 	}
 	for _, side := range sides {
 		c.Put(side.middle-runeLen(side.name)/2, 2, side.name, Paper)
 		lamp := Faint
-		if side.lit {
+		if side.lit && side.lights {
 			lamp = Lamp
 		}
 		fillEllipse(c, float64(side.middle), 5.5, 7, 2.6, lamp)
-		pattern := Pretty(side.live)
-		c.Put(side.middle-runeLen(pattern)/2, 9, pattern, Lamp)
-		last := tail(strings.TrimRight(side.keyed, " "), 5)
-		Big(c, side.middle-BigTextWidth(last)/2, 11, last, Amber)
-		typed := tail(side.keyed, 36)
-		c.Put(side.middle-runeLen(typed)/2, 16, typed, Dim)
+		if side.lights {
+			pattern := Pretty(side.live)
+			c.Put(side.middle-runeLen(pattern)/2, 9, pattern, Lamp)
+		}
+		if side.shown {
+			last := tail(strings.TrimRight(side.keyed, " "), 5)
+			Big(c, side.middle-BigTextWidth(last)/2, 11, last, Amber)
+			typed := tail(side.keyed, 36)
+			c.Put(side.middle-runeLen(typed)/2, 16, typed, Dim)
+		}
+		if side.lights && side.tape != "" {
+			tape := tailOfWords(side.tape, 36)
+			c.Put(side.middle-runeLen(tape)/2, 17, tape, Lamp)
+		}
 	}
+	peeking := g.peerPeeking() // under this player's side: the far end is reading it
+	c.Put(20-runeLen(peeking)/2, 19, peeking, Alert)
 	if now < g.msgUntil {
 		c.Center(21, g.msg, g.msgColor)
+	} else if notes := g.notesLine(now); notes != "" {
+		c.Center(21, notes, Amber)
 	}
-	c.Center(23, g.text("line_help", nil), Faint)
+	help := "line_help"
+	if line.notesOpen {
+		help = "line_notes_help"
+	}
+	c.Center(23, g.text(help, nil), Faint)
+}
+
+// notesLine is the player's notes as shown: "NOTES: SOS AT", a cursor blinking while they write,
+// or "" when there are none and the keyboard is away.
+func (g *Game) notesLine(now float64) string {
+	if !g.line.notesOpen && g.line.notes == "" {
+		return ""
+	}
+	notes := g.line.notes
+	if g.line.notesOpen && blinkOn(now) {
+		notes += "_"
+	}
+	return g.text("notes", nil) + ": " + notes
 }

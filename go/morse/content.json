@@ -3544,7 +3544,7 @@
       "scene": "ice",
       "words": [
        "MULHERES NOS BOTES",
-       "NAO AGUENTAMOS MUITO MAIS"
+       "NAO AGUENTA MAIS"
       ]
      },
      {
@@ -3582,7 +3582,7 @@
       "lose": "A ESTÁTICA ENGOLE. O CARPATHIA CONTINUA VINDO, MESMO ASSIM.",
       "scene": "ice",
       "words": [
-       "CASA DE MAQUINAS INUNDANDO",
+       "MAQUINAS INUNDANDO",
        "AGUA ATE AS CALDEIRAS"
       ]
      },
@@ -3835,7 +3835,7 @@
       "words": [
        "ESCUTA MEU VELHO",
        "BOCA FECHADA",
-       "VAI GANHAR MUITO DINHEIRO"
+       "VAI GANHAR DINHEIRO"
       ]
      },
      {
@@ -3985,7 +3985,11 @@
    "line_down": "THE EXCHANGE DROPPED THE LINE",
    "on_the_line": "ON THE LINE WITH MORSE {n} · {name}",
    "you": "YOU",
-   "line_help": "TAP / HOLD SPACE TO KEY   [BKSP] CLEAR   [ESC] HANG UP",
+   "line_help": "SPACE KEYS  [L] LIGHTS  [R] REVEAL  [TAB] NOTES  [BKSP] CLEAR  [ESC] HANG UP",
+   "line_notes_help": "WRITE WHAT YOU HEAR   [TAB] BACK TO THE KEY   [ESC] HANG UP",
+   "notes": "NOTES",
+   "peer_lights": "LIGHTS ON",
+   "peer_reveal": "REVEALED",
    "task_encode": "SEND THE MESSAGE.",
    "task_decode": "COPY THE MESSAGE.",
    "lose_line": "THE SIGNAL IS LOST. TRY AGAIN.",
@@ -4071,7 +4075,11 @@
    "line_down": "A LIGAÇÃO COM A CENTRAL CAIU",
    "on_the_line": "NA LINHA COM MORSE {n} · {name}",
    "you": "VOCÊ",
-   "line_help": "TOQUE / SEGURE O ESPAÇO   [BKSP] LIMPAR   [ESC] DESLIGAR",
+   "line_help": "ESPAÇO TECLA  [L] LUZES  [R] REVELAR  [TAB] NOTAS  [BKSP] LIMPAR  [ESC] SAIR",
+   "line_notes_help": "ESCREVA O QUE OUVE   [TAB] VOLTAR À TECLA   [ESC] DESLIGAR",
+   "notes": "NOTAS",
+   "peer_lights": "LUZES ACESAS",
+   "peer_reveal": "REVELOU",
    "task_encode": "ENVIE A MENSAGEM.",
    "task_decode": "COPIE A MENSAGEM.",
    "lose_line": "O SINAL SE PERDEU. TENTE DE NOVO.",

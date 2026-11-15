@@ -4,9 +4,9 @@
 // On a desktop the game fills the window and is played from the keyboard alone, like the
 // terminal version. A phone held upright shows the cartridge cover first, then the game at the
 // top of the screen in its phone layout (larger words between 80-column pictures, see
-// morse.Game.DrawPhone) and the controls below it: the flat red telegraph key while keying,
-// a keyboard while receiving, else just the screen's buttons. A screen wider than tall, such as
-// a phone on its side or a tablet, keeps the same game and controls side by side.
+// morse.Game.DrawPhone) and the controls below it: the telegraph key while keying,
+// a keyboard while receiving, else just the screen's buttons. A phone on its side or a tablet
+// stacks them the same way, the controls taking a share of the height instead of the width.
 package gui
 
 import (
@@ -143,14 +143,6 @@ type strip struct {
 	rect   image.Rectangle
 }
 
-// sideBySide says the phone's controls go beside the game: a screen wider than tall has no
-// height to spare below it.
-func (a *App) sideBySide() bool { return a.width > a.height }
-
-// sidePanelWidth is the controls' share of a sideBySide screen: enough for a 10-key keyboard
-// row, at about the size it has on a phone held upright.
-func (a *App) sidePanelWidth() int { return a.width * 2 / 5 }
-
 // layoutScreen decides what the screen shows and where: on a desktop the 80x24 game filling
 // the window; on a phone the cover, or the game's strips stacked from the top.
 func (a *App) layoutScreen(now float64) {
@@ -164,8 +156,6 @@ func (a *App) layoutScreen(now float64) {
 			inserted = now - a.insertedAt
 		}
 		a.strips, a.gameBottom = []strip{{morse.DrawCover(80, 24, now, inserted), screen}}, a.height
-	case a.sideBySide():
-		a.strips, a.gameBottom = stackStrips(a.game.DrawPhone(phoneColumns, now), a.width-a.sidePanelWidth(), a.height)
 	default:
 		a.strips, a.gameBottom = stackStrips(a.game.DrawPhone(phoneColumns, now), a.width, a.height-a.controlsMinHeight())
 	}
@@ -190,15 +180,17 @@ func stackStrips(canvases []*morse.Canvas, width, maxHeight int) ([]strip, int) 
 	return strips, int(y)
 }
 
-// controlsMinHeight is the least room the phone's controls need below the game.
+// controlsMinHeight is the least room the phone's controls need below the game: a share of the
+// width held upright, of the height on its side, so the game keeps the top either way.
 func (a *App) controlsMinHeight() int {
+	side := min(a.width, a.height*9/10)
 	switch {
 	case a.game.Typing():
-		return a.width * 62 / 100 // a keyboard and a row of buttons
+		return side * 62 / 100 // a keyboard and a row of buttons
 	case a.game.Keying():
-		return a.width * 50 / 100 // the telegraph key and a row of buttons
+		return side * 50 / 100 // the telegraph key and a row of buttons
 	}
-	return a.width / 5 // a row of buttons
+	return side / 5 // a row of buttons
 }
 
 var namedKeys = map[ebiten.Key]string{

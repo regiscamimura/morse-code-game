@@ -187,13 +187,25 @@ func (g *Game) DrawPhone(columns int, now float64) []*Canvas {
 		c, y := p.rowOn(ListenBand)
 		c.Center(y, g.text("on_the_line", map[string]any{"n": g.line.peerNumber, "name": g.line.peerCodename}), Amber)
 		p.picture(picture, 2, 15)
-		for _, side := range []struct{ name, keyed string }{
-			{g.text("you", nil), g.freeText}, {g.line.peerCodename, g.line.remoteText},
-		} {
-			c, y := p.row()
-			c.Put(1, y, side.name+":", Paper)
-			c.Put(runeLen(side.name)+3, y, tail(side.keyed, columns-runeLen(side.name)-4), Dim)
+		type tape struct {
+			name, keyed string
+			color       Color
+			fit         func(string, int) string // keeps the end that fits
 		}
+		tapes := []tape{{g.text("you", nil), g.freeText, Dim, tail}}
+		if g.line.mine.reveal {
+			tapes = append(tapes, tape{g.line.peerCodename, g.line.remoteText, Dim, tail})
+		}
+		if g.line.mine.lights {
+			tapes = append(tapes, tape{g.line.peerCodename + " " + Dot + Dah, g.line.remoteTape, Lamp, tailOfWords})
+		}
+		for _, t := range tapes {
+			c, y := p.row()
+			c.Put(1, y, t.name+":", Paper)
+			c.Put(runeLen(t.name)+3, y, t.fit(t.keyed, columns-runeLen(t.name)-4), t.color)
+		}
+		p.wrapped(g.notesLine(now), Amber)
+		p.center(g.peerPeeking(), Alert)
 		p.center(showIf(now < g.msgUntil, g.msg), g.msgColor)
 	case "ending":
 		p.picture(picture, 3, 18)
