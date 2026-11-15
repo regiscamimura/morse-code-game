@@ -4,6 +4,10 @@ Written by the Release PR bot, newest first. See "Releasing" in `go/README.md`.
 
 <!-- RELEASES -->
 
+## v2.1.0 (2026-11-15)
+
+- On the line you only hear the other end now. Peek with LIGHTS or REVEAL and they'll know
+
 ## v2.0.0 (2026-11-14)
 
 - A new story: from the first telegraph wire, 1844, to the Titanic
