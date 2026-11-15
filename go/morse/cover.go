@@ -56,7 +56,7 @@ func DrawCartridge(c *Canvas, x, y int) {
 	c.PutOn(labelX, y+4, centerIn("SOS MORSE", width), coverBlack, first)
 	c.PutOn(labelX, y+5, strings.Repeat("▀", width), second, third)
 	Sprite(c, x+3, y+6, telegraphKeyArt, cartridgePalette, false, nil)
-	c.PutOn(labelX, y+11, centerIn("HOLD THE LINE", width), coverGrey, cartLabel)
+	c.PutOn(labelX, y+11, centerIn("DIZZYING YEARS", width), coverGrey, cartLabel)
 	c.PutOn(labelX, y+12, strings.Repeat("▀", width), third, second)
 }
 

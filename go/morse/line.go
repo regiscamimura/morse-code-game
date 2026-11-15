@@ -18,6 +18,10 @@ import (
 // What crosses the line is when the key went down and up, by the sender's clock, never
 // sound. The far end replays them lineDelay late, so the spacing that tells a dit from a dah
 // survives the network's hiccups, and decodes them with a Keyer of its own.
+//
+// As on a real wire, the far end is only heard: its lamp, dits and dahs, and letters stay hidden
+// until the player turns on the lights (the dits and dahs) or reveals the letters. Each side
+// sees whether the other has, so a partner who peeks is caught.
 
 // Wire is the game's connection to the telephone exchange.
 type Wire interface {
@@ -36,6 +40,7 @@ type WireMessage struct {
 	Reason   string  `json:"reason,omitempty"`
 	Down     bool    `json:"down"`
 	At       float64 `json:"at,omitempty"`
+	On       bool    `json:"on,omitempty"` // "lights" and "reveal": turned on, or off
 }
 
 const (
@@ -59,11 +64,21 @@ type telegraphLine struct {
 	sentToneOn   bool   // what the far end was last told about this player's key
 	remote       *Keyer // decodes the far end's key
 	remoteText   string // the letters it has keyed
+	remoteTape   string // and as dits and dahs: "••• ━━━ ••• / •••• ••", a "/" between words
 	remoteToneOn bool
 	remoteKeys   []remoteKey // heard but not yet replayed
 	remoteClock  float64     // add to the far end's times to get this game's
 	remoteHeard  float64     // when its last key arrived
+
+	mine, peers peek // what this player sees of the far end, and what the far end sees of this one
+
+	notes     string // what the player wrote down of what they heard
+	notesOpen bool   // the keyboard is out for notes, and the key put away
 }
+
+// peek is what one side of a call has turned on to read the other: its dits and dahs (lights),
+// its letters (reveal).
+type peek struct{ lights, reveal bool }
 
 type remoteKey struct {
 	down bool
@@ -160,8 +175,23 @@ func (g *Game) lineKey(k string, now float64) bool {
 		case escape:
 			g.cfg.Wire.Send(WireMessage{Type: "hangup"})
 			g.backToSwitchboard("", now)
+		case k == KeyTab:
+			g.line.notesOpen = !g.line.notesOpen
+			if g.line.notesOpen && g.keyer.Down() { // the key is put away: let it go
+				g.keyer.Release(now)
+				g.mixer.SetKey(false)
+				g.sendToneDownTheLine(now)
+			}
+		case g.line.notesOpen:
+			g.writeNote(k)
 		case k == KeyBackspace || k == "\x08":
-			g.freeText, g.line.remoteText = "", ""
+			g.freeText, g.line.remoteText, g.line.remoteTape = "", "", "" // the notes stay
+		case k == "l" || k == "L":
+			g.line.mine.lights = !g.line.mine.lights
+			g.cfg.Wire.Send(WireMessage{Type: "lights", On: g.line.mine.lights})
+		case k == "r" || k == "R":
+			g.line.mine.reveal = !g.line.mine.reveal
+			g.cfg.Wire.Send(WireMessage{Type: "reveal", On: g.line.mine.reveal})
 		default:
 			return k != " " // a typed space keys, like anywhere else
 		}
@@ -212,10 +242,10 @@ func (g *Game) tickLine(now float64) {
 			g.line.nextRing = now + 3
 		}
 	case "line":
-		g.freeText, _ = typeKeyedLetters(g.keyer, g.freeText, g.cfg.LetterGap, now)
+		g.freeText, _, _ = typeKeyedLetters(g.keyer, g.freeText, g.cfg.LetterGap, now)
 		g.sendToneDownTheLine(now)
 		g.replayRemoteKeys(now)
-		g.line.remoteText, _ = typeKeyedLetters(g.line.remote, g.line.remoteText, g.cfg.LetterGap, now)
+		g.recordRemoteLetters(now)
 	}
 }
 
@@ -263,6 +293,14 @@ func (g *Game) hearExchange(m WireMessage, now float64) {
 		if s == "line" {
 			g.hearRemoteKey(m.Down, m.At, now)
 		}
+	case "lights":
+		if s == "line" {
+			g.line.peers.lights = m.On
+		}
+	case "reveal":
+		if s == "line" {
+			g.line.peers.reveal = m.On
+		}
 	}
 }
 
@@ -270,8 +308,60 @@ func (g *Game) startLine(now float64) {
 	g.setState("line", now)
 	g.freeText = ""
 	g.line.remote = NewKeyer(Config{Releases: true, DahTime: g.cfg.DahTime, LetterGap: g.cfg.LetterGap})
-	g.line.remoteText, g.line.remoteKeys, g.line.remoteToneOn, g.line.sentToneOn = "", nil, false, false
+	g.line.remoteText, g.line.remoteTape, g.line.remoteKeys, g.line.remoteToneOn, g.line.sentToneOn = "", "", nil, false, false
 	g.line.remoteHeard = math.Inf(-1)
+	g.line.mine, g.line.peers = peek{}, peek{}
+	g.line.notes, g.line.notesOpen = "", false
+}
+
+// TakingNotes: on a call with the keyboard out to write down what's heard, not the key.
+func (g *Game) TakingNotes() bool { return g.state == "line" && g.line.notesOpen }
+
+// writeNote adds a typed letter, digit or space to the notes, or takes the last one back.
+func (g *Game) writeNote(k string) {
+	notes := g.line.notes
+	switch {
+	case k == KeyBackspace || k == "\x08":
+		notes = strings.TrimSuffix(notes, tail(notes, 1))
+	case k == " " && notes != "" && !strings.HasSuffix(notes, " "):
+		notes += " "
+	case isCodenameCharacter(k):
+		notes += strings.ToUpper(k)
+	}
+	g.line.notes = tail(notes, 60)
+}
+
+// recordRemoteLetters writes down the far end's finished letters, and the dits and dahs it keyed
+// for them, so the lights show even a pattern that is no letter.
+func (g *Game) recordRemoteLetters(now float64) {
+	line := &g.line
+	text, _, pattern := typeKeyedLetters(line.remote, line.remoteText, g.cfg.LetterGap, now)
+	if pattern != "" {
+		if line.remoteTape != "" {
+			line.remoteTape += " "
+		}
+		line.remoteTape = tailOfWords(line.remoteTape+strings.ReplaceAll(Pretty(pattern), " ", ""), 120)
+	}
+	if strings.HasSuffix(text, " ") && !strings.HasSuffix(line.remoteText, " ") {
+		line.remoteTape = tailOfWords(line.remoteTape+" /", 120)
+	}
+	line.remoteText = text
+}
+
+// peerPeeking says what the far end has turned on to read this player: "AGUIA: LIGHTS ON ·
+// REVEALED", or "" while it only listens.
+func (g *Game) peerPeeking() string {
+	var on []string
+	if g.line.peers.lights {
+		on = append(on, g.text("peer_lights", nil))
+	}
+	if g.line.peers.reveal {
+		on = append(on, g.text("peer_reveal", nil))
+	}
+	if len(on) == 0 {
+		return ""
+	}
+	return g.line.peerCodename + ": " + strings.Join(on, " · ")
 }
 
 // sendToneDownTheLine tells the far end when this player's tone starts or stops.

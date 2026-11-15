@@ -149,6 +149,19 @@ func tail(s string, n int) string {
 	return string(r[len(r)-n:])
 }
 
+// tailOfWords is the end of s in at most n runes, cut at a space so it never starts in the
+// middle of a letter's pattern.
+func tailOfWords(s string, n int) string {
+	cut := tail(s, n)
+	if cut == s {
+		return s
+	}
+	if i := strings.Index(cut, " "); i >= 0 {
+		return strings.TrimLeft(cut[i:], " /")
+	}
+	return ""
+}
+
 // lastLetter is the last non-space rune of s, or "".
 func lastLetter(s string) string {
 	return tail(strings.TrimRight(s, " "), 1)

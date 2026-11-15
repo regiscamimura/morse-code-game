@@ -58,7 +58,7 @@ func (w *fakeWire) Send(m WireMessage) {
 		w.state, peer.state = "connected", "connected"
 		w.inbox = append(w.inbox, WireMessage{Type: "connected", Number: peer.number, Codename: peer.codename})
 		peer.inbox = append(peer.inbox, WireMessage{Type: "connected", Number: w.number, Codename: w.codename})
-	case "key":
+	case "key", "lights", "reveal":
 		if w.state == "connected" {
 			peer.inbox = append(peer.inbox, m)
 		}
@@ -72,7 +72,8 @@ func (w *fakeWire) Send(m WireMessage) {
 }
 
 // TestCallAcrossTheLine: one player picks a codename, dials the other, who answers; an E keyed
-// at one end is decoded at the other, and hanging up sends both back to the switchboard.
+// at one end is decoded at the other, hidden there until the lights or the reveal are turned on,
+// which the keying end sees; hanging up sends both back to the switchboard.
 func TestCallAcrossTheLine(t *testing.T) {
 	exchange := &fakeExchange{lines: map[int]*fakeWire{}}
 	now := 0.0
@@ -132,6 +133,40 @@ func TestCallAcrossTheLine(t *testing.T) {
 	if got := strings.TrimSpace(caller.freeText); got != "E" {
 		t.Errorf("near end decoded %q, want E", got)
 	}
+	if callee.line.mine != (peek{}) || caller.peerPeeking() != "" {
+		t.Error("the far end can see the keying before turning on the lights or revealing")
+	}
+	callee.Key("l", now)
+	callee.Key("r", now)
+	run(.1)
+	if want := Dot + " /"; callee.line.remoteTape != want {
+		t.Errorf("lights show %q, want %q", callee.line.remoteTape, want)
+	}
+	if want := "AGUIA: " + callee.text("peer_lights", nil) + " · " + callee.text("peer_reveal", nil); caller.peerPeeking() != want {
+		t.Errorf("caller sees the callee peeking at %q, want %q", caller.peerPeeking(), want)
+	}
+	callee.Key("l", now)
+	run(.1)
+	if caller.peerPeeking() != "AGUIA: "+caller.text("peer_reveal", nil) {
+		t.Errorf("after the lights went off, the caller sees %q", caller.peerPeeking())
+	}
+
+	callee.SpaceDown(now)   // the key held as the notes open...
+	callee.Key(KeyTab, now) // the notes: the keyboard out, the key away
+	if callee.keyer.Down() || callee.line.sentToneOn {
+		t.Error("the key stayed down, its tone on, after the notes opened")
+	}
+	for _, k := range []string{"s", "o", " ", "s", KeyBackspace, "x"} {
+		callee.Key(k, now)
+	}
+	callee.SpaceDown(now)
+	if callee.line.notes != "SO X " || callee.Keying() || !callee.Typing() {
+		t.Errorf("notes %q, keying %v", callee.line.notes, callee.Keying())
+	}
+	callee.Key(KeyTab, now)
+	if !callee.Keying() || callee.line.notes != "SO X " {
+		t.Errorf("back to the key: keying %v, notes %q", callee.Keying(), callee.line.notes)
+	}
 
 	caller.Key(KeyEscape, now)
 	run(.1)
@@ -147,5 +182,15 @@ func TestDialTurnsAndReturns(t *testing.T) {
 	}
 	if got := turn.rotation(turn.end() + .01); got != 0 {
 		t.Errorf("after its ten pulses the dial is at %v°, want 0°", got)
+	}
+}
+
+// TestTailOfWordsNeverCutsALetter: the lights' tape, too long to show, loses whole letters.
+func TestTailOfWordsNeverCutsALetter(t *testing.T) {
+	tape := "••• ━━━ ••• / •••• ••"
+	for n, want := range map[int]string{30: tape, 9: "•••• ••", 8: "•••• ••", 5: "••"} {
+		if got := tailOfWords(tape, n); got != want {
+			t.Errorf("tailOfWords(%q, %d) = %q, want %q", tape, n, got, want)
+		}
 	}
 }

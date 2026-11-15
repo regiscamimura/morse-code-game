@@ -17,7 +17,7 @@ func main() {
 	volume := flag.Float64("volume", .4, "0 (mute) to 1")
 	fullscreen := flag.Bool("fullscreen", false, "start full screen")
 	flag.Parse()
-	ebiten.SetWindowTitle("SOS Morse - Hold the Line")
+	ebiten.SetWindowTitle("SOS Morse - Dizzying Years")
 	ebiten.SetWindowSize(1280, 768) // 80x24 cells twice as tall as wide
 	ebiten.SetWindowResizingMode(ebiten.WindowResizingModeEnabled)
 	ebiten.SetFullscreen(*fullscreen)

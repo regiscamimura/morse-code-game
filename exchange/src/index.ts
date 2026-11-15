@@ -15,6 +15,8 @@ import { DurableObject } from "cloudflare:workers";
 //   callee → exchange {"type":"answer"}
 //   exchange → both   {"type":"connected","number":<the other side>,"codename":"<theirs>"}
 //   game → exchange   {"type":"key","down":true,"at":12.34}  passed to the other side as is
+//   game → exchange   {"type":"lights","on":true}              passed on: the player sees the other's dits and dahs
+//   game → exchange   {"type":"reveal","on":true}              passed on: the player sees the other's letters
 //   game → exchange   {"type":"hangup"}                       the other side gets {"type":"hung_up"}
 
 interface Env {
@@ -74,7 +76,7 @@ export class Exchange extends DurableObject<Env> {
 
 	async webSocketMessage(ws: WebSocket, data: string | ArrayBuffer): Promise<void> {
 		if (typeof data !== "string" || data.length > 256) return;
-		let message: { type?: unknown; number?: unknown; down?: unknown; at?: unknown };
+		let message: { type?: unknown; number?: unknown; down?: unknown; at?: unknown; on?: unknown };
 		try {
 			message = JSON.parse(data);
 		} catch {
@@ -92,10 +94,13 @@ export class Exchange extends DurableObject<Env> {
 				this.hangUp(ws, line);
 				return;
 			case "key":
-				if (line.state === "connected" && typeof message.down === "boolean" && typeof message.at === "number") {
-					const peer = this.socketOfLine(line.peer);
-					if (peer) send(peer, { type: "key", down: message.down, at: message.at });
+				if (typeof message.down === "boolean" && typeof message.at === "number") {
+					this.passToOtherEnd(line, { type: "key", down: message.down, at: message.at });
 				}
+				return;
+			case "lights":
+			case "reveal":
+				this.passToOtherEnd(line, { type: message.type, on: message.on === true });
 				return;
 		}
 	}
@@ -106,6 +111,13 @@ export class Exchange extends DurableObject<Env> {
 
 	async webSocketError(ws: WebSocket): Promise<void> {
 		this.hangUp(ws, readLine(ws));
+	}
+
+	// passToOtherEnd sends a message to the other side of the line's call, if it's on one.
+	private passToOtherEnd(line: Line, message: object): void {
+		if (line.state !== "connected") return;
+		const peerSocket = this.socketOfLine(line.peer);
+		if (peerSocket) send(peerSocket, message);
 	}
 
 	// ring rings line `number` for the caller, or tells the caller why it can't.
