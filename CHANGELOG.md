@@ -6,7 +6,11 @@ Written by the Release PR bot, newest first. See "Releasing" in `go/README.md`.
 
 ## v2.1.0 (2026-11-15)
 
-- On the line you only hear the other end now. Peek with LIGHTS or REVEAL and they'll know
+- On the line you only hear the other end, like a real wire
+- LIGHTS shows their dits and dahs, REVEAL their letters. They'll know you peeked
+- NOTES: write down what you hear
+- Sideways phones stack like upright ones
+- A wooden telegraph key with brass trim, seen from above
 
 ## v2.0.0 (2026-11-14)
 
