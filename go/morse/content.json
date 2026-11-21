@@ -2385,6 +2385,7 @@
      {
       "mode": "decode",
       "title": "AMOS",
+      "memorial": true,
       "brief": [
        "A WIRE FROM CHICAGO, FOR YOU. YOU KNOW THE FIST BEFORE THE FIRST WORD."
       ],
@@ -2401,6 +2402,7 @@
      {
       "mode": "encode",
       "title": "THE LAST NAMES",
+      "memorial": true,
       "brief": [
        "THE CREW LISTS COME LAST: STOKERS, STEWARDS, OFFICERS, THE WIRELESS ROOM. YOU",
        "SEND THE LAST NAMES YOURSELF."
@@ -3841,6 +3843,7 @@
      {
       "mode": "decode",
       "title": "AMOS",
+      "memorial": true,
       "brief": [
        "UM TELEGRAMA DE CHICAGO, PARA VOCÊ. VOCÊ RECONHECE A MÃO ANTES DA PRIMEIRA",
        "PALAVRA."
@@ -3858,6 +3861,7 @@
      {
       "mode": "encode",
       "title": "OS ÚLTIMOS NOMES",
+      "memorial": true,
       "brief": [
        "AS LISTAS DA TRIPULAÇÃO VÊM POR ÚLTIMO: FOGUISTAS, CAMAREIROS, OFICIAIS, A",
        "SALA DE RÁDIO. VOCÊ MESMO MANDA OS ÚLTIMOS NOMES."
@@ -4003,7 +4007,9 @@
    "task_blind_encode": "BLIND: NO CLUES. KEY IT ALL, ALL RIGHT, OR IT IS LOST.",
    "help_blind_decode": "TYPE WHAT YOU HEARD   [TAB] REPEAT ({left} LEFT)   [ENTER] SEND   [ESC] QUIT",
    "help_blind_encode": "TAP SPACE = DIT •    HOLD SPACE = DAH ━    [ESC] QUIT",
-   "repeats_left": "REPEATS LEFT: {left}"
+   "repeats_left": "REPEATS LEFT: {left}",
+   "help_memorial_decode": "TYPE WHAT YOU HEARD   [TAB] HEAR IT AGAIN   [ENTER] SEND   [ESC] QUIT",
+   "memorial_again": "AGAIN, SLOWLY."
   },
   "pt": {
    "size": "AUMENTE O TERMINAL PARA PELO MENOS 80x24",
@@ -4093,10 +4099,25 @@
    "task_blind_encode": "ÀS CEGAS: SEM PISTAS. TRANSMITA TUDO CERTO, OU SE PERDE.",
    "help_blind_decode": "DIGITE O QUE OUVIU    [TAB] REPETIR ({left})    [ENTER] ENVIAR    [ESC] SAIR",
    "help_blind_encode": "TOQUE = PONTO •    SEGURE = TRAÇO ━    [ESC] SAIR",
-   "repeats_left": "REPETIÇÕES: {left}"
+   "repeats_left": "REPETIÇÕES: {left}",
+   "help_memorial_decode": "DIGITE O QUE OUVIU    [TAB] OUVIR DE NOVO    [ENTER] ENVIAR    [ESC] SAIR",
+   "memorial_again": "DE NOVO, DEVAGAR."
   }
  },
  "sprites": {
+  "cloud_long": [
+   "........LLLL..........",
+   "....LLLLWWWLLL...LLL..",
+   "..LLWWWWWWWWLLLLLWWLL.",
+   "LLLLLLLLLLLLLLLLLLLLLL",
+   "..SSSSSSSSSSSSSSSSSS.."
+  ],
+  "cloud_small": [
+   "...LLL.....",
+   ".LLWWWLLL..",
+   "LLLLLLLLLLL",
+   ".SSSSSSSS.."
+  ],
   "city": [
    "......S.......",
    ".....SSS......",
@@ -4978,6 +4999,19 @@
   }
  },
  "covers": {
+  "calmsea": {
+   "sky": ["#04060e", "#0b1228", "#16224a"],
+   "ground": ["#10263e", "#050c18"],
+   "horizon": 18,
+   "water": true,
+   "stars": true,
+   "layers": [
+    {"sprite": "cloud_long", "x": 6, "y": 3, "drift": 0.35},
+    {"sprite": "cloud_small", "x": 50, "y": 8, "drift": 0.2},
+    {"sprite": "cloud_small", "x": 30, "y": 1, "drift": 0.5},
+    {"reflect": true}
+   ]
+  },
   "carpathia": {
    "sky": [
     "#05070f",

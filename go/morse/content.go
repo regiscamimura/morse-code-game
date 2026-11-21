@@ -32,6 +32,10 @@ type Beat struct {
 	// to receive is heard slowly, blindRepeatLimit more times at most; all of it is right or it's
 	// lost. Blind beats to receive open on single words and end on sentences.
 	Blind bool `json:"blind"`
+	// Memorial is a blind beat about real people who died: no score, lives, clock, banners or
+	// game sounds, only the Morse itself over a calm sea at night. A wrong message is simply
+	// heard or keyed again.
+	Memorial bool `json:"memorial"`
 }
 
 // Chapter is a historical event. It opens on a cover: the Cover picture, the year and the title.

@@ -457,7 +457,7 @@ func (g *Game) practiceLetters() string {
 
 // repeatBlindMessage plays the blind message being received again, blindRepeatLimit times at most.
 func (g *Game) repeatBlindMessage(now float64) {
-	if g.blindRepeats >= blindRepeatLimit {
+	if g.blindRepeats >= blindRepeatLimit && !g.beat.Memorial {
 		return
 	}
 	g.blindHeard = g.blindHeard || g.signalOver(now)
@@ -485,7 +485,8 @@ var Speeds = []float64{1, 1.5, 2}
 // repeats at most), it gets the volume's first letters and the first gap one Speeds step slower.
 //
 //	at ▶▶ a 4-letter message to send gets 4*SendTime/1.5 + 2 seconds
-//	blind: 15 WPM, 3s between letters; a sighted beat late in a volume: about 16.5 WPM, 1.4s
+//	blind: 15 WPM, 3s between letters; a sighted beat late in a volume: about 16.5 WPM, each
+//	letter played 0.3s after the last is typed
 func (g *Game) timeForMessage(lead float64) float64 {
 	pace, n, speed := content.Pace, float64(len(LettersToKey(g.word))), Speeds[g.speed]
 	if g.beat.Blind {
@@ -494,13 +495,15 @@ func (g *Game) timeForMessage(lead float64) float64 {
 	if g.mode != "decode" {
 		return n*PaceAtChapter(g.chapter, pace.SendTime)/speed + 2
 	}
-	wpm, letterGap := g.paceInVolume(pace.WPM)*speed, g.paceInVolume(pace.LetterGap)/speed
+	// sighted, each letter plays once the last is typed: no gap to wait out, only replay's lead
+	wpm, farnsworth, leads := g.paceInVolume(pace.WPM)*speed, 1.0, max(0, n-1)*.3
 	if g.beat.Blind {
-		wpm, letterGap = pace.WPM[0], pace.LetterGap[0]*Speeds[1]
+		wpm = pace.WPM[0]
+		farnsworth, leads = FarnsworthFor(pace.LetterGap[0]*Speeds[1], wpm), 0
 	}
 	var length float64
-	g.on, length = Schedule(g.word, wpm, FarnsworthFor(letterGap, wpm))
-	return length + lead + n*PaceAtChapter(g.chapter, pace.ReceiveTime)/speed + 2
+	g.on, length = Schedule(g.word, wpm, farnsworth)
+	return length + leads + lead + n*PaceAtChapter(g.chapter, pace.ReceiveTime)/speed + 2
 }
 
 // changeSpeed switches to Speeds[step] mid-message: the clock keeps the share of time it had
@@ -554,9 +557,23 @@ func (g *Game) receivingBeatOfVolume() (nth, total int) {
 	return nth, total
 }
 
+// replay plays the message being received after lead seconds: all of it when blind, else only
+// the letter to type, as the next one plays once it's typed. signalStart stays the start of
+// the whole message, so g.on's times hold for the lamp and the tape.
 func (g *Game) replay(now, lead float64) {
-	g.signalStart = now + lead
-	g.mixer.Play(Concat(Rest(lead), Signal(g.on)), Sig, true)
+	on := slices.Clone(g.on)
+	if g.state == "play" && !g.beat.Blind {
+		on = slices.DeleteFunc(on, func(e Element) bool { return e.Letter != g.pos })
+	}
+	if len(on) == 0 {
+		return
+	}
+	shift := on[0].Start
+	g.signalStart = now + lead - shift
+	for i := range on {
+		on[i].Start, on[i].End = on[i].Start-shift, on[i].End-shift
+	}
+	g.mixer.Play(Concat(Rest(lead), Signal(on)), Sig, true)
 }
 
 // progress is how much of the message's time is gone, 0 to 1.
@@ -585,6 +602,9 @@ func (g *Game) correct(now float64) {
 	g.dingRightLetter()
 	g.passLettersThatGoBy()
 	if g.pos < len(g.word) {
+		if g.mode == "decode" {
+			g.replay(now, .3)
+		}
 		return
 	}
 	g.finishMessage(now)
@@ -613,11 +633,21 @@ func (g *Game) finishMessage(now float64) {
 //	"AT TEN" with g.typed "ATTEN" wins; with "ATTEM" loses
 func (g *Game) judgeBlindMessage(now float64) {
 	toKey := LettersToKey(g.word)
+	if g.typed != toKey && g.beat.Memorial { // nothing lost: it's heard or keyed again
+		g.typed = ""
+		g.say(g.text("memorial_again", nil), Dim, now)
+		if g.mode == "decode" {
+			g.replay(now, 1)
+		}
+		return
+	}
 	if g.typed != toKey {
 		g.lose(now)
 		return
 	}
-	g.score += 10 * g.chapter * 8 * len(toKey)
+	if !g.beat.Memorial {
+		g.score += 10 * g.chapter * 8 * len(toKey)
+	}
 	g.finishMessage(now)
 }
 
@@ -662,14 +692,16 @@ func (g *Game) timeBonus(now float64) int {
 
 // nextMessage goes straight on to the beat's next message, banking this one's time bonus.
 func (g *Game) nextMessage(now float64) {
-	bonus := g.timeBonus(now)
-	g.score += bonus
+	if !g.beat.Memorial {
+		bonus := g.timeBonus(now)
+		g.score += bonus
+		g.mixer.Play(Notes([]float64{659, 784}, .08, .1), FX, false)
+		g.say(g.text("time_bonus", map[string]any{"bonus": bonus}), Amber, now)
+	}
 	g.moverFrom = g.sceneProgress(g.progress(now))
 	g.msgNo++
 	g.msgsDone++
-	g.mixer.Play(Notes([]float64{659, 784}, .08, .1), FX, false)
 	g.startPlay(now)
-	g.say(g.text("time_bonus", map[string]any{"bonus": bonus}), Amber, now)
 }
 
 func (g *Game) wrong(text string, now float64) {
@@ -691,14 +723,18 @@ func pickOne(options []string) string { return options[rand.IntN(len(options))] 
 
 func (g *Game) win(now float64) {
 	g.progressEnd = g.sceneProgress(g.progress(now))
-	g.bonus = g.timeBonus(now)
-	g.score += g.bonus
-	g.banner = pickOne(content.WinBanners[g.lang])
 	if g.mode == "decode" {
 		g.lastWords = g.messages
 	}
 	g.mixer.StopSignal()
 	g.setState("win", now)
+	if g.beat.Memorial {
+		g.bonus, g.banner = 0, ""
+		return
+	}
+	g.bonus = g.timeBonus(now)
+	g.score += g.bonus
+	g.banner = pickOne(content.WinBanners[g.lang])
 	g.mixer.Play(Notes([]float64{523, 659, 784}, .12, .1), FX, true)
 }
 

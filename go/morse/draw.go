@@ -474,7 +474,43 @@ func (g *Game) drawBlindPlay(c *Canvas) {
 	c.Center(23, g.text("help_blind_"+g.mode, map[string]any{"left": g.BlindRepeatsLeft()}), Faint)
 }
 
+// drawMemorialPlay is a memorial beat (Beat.Memorial): no score, hearts or clock, only the sea
+// under the clouds and stars, the beat's title over it, and what's typed or to key under it.
+func (g *Game) drawMemorialPlay(c *Canvas, now float64) {
+	DrawCoverArt(c, "calmsea", now)
+	c.Center(1, g.beat.Title, Dim)
+	for n, line := range g.blindLines() {
+		BigCenter(c, memorialTop+4*n, line, Paper)
+	}
+	help := g.text("help_memorial_decode", nil)
+	if g.mode == "encode" {
+		help = g.text("help_blind_encode", nil)
+	}
+	if now < g.msgUntil {
+		help = g.msg
+	}
+	c.Center(15, help, Dim)
+}
+
+// memorialTop is the row a memorial beat's big letters start on, under the sea.
+const memorialTop = 16
+
+// drawMemorialResult: the sea, and the beat's last line.
+func (g *Game) drawMemorialResult(c *Canvas, now float64) {
+	DrawCoverArt(c, "calmsea", now)
+	for i, line := range wrap(g.withWord(g.beat.Win), 78) {
+		c.Center(18+i, line, Paper)
+	}
+	if g.readyToContinue(now) {
+		c.Center(23, g.text("continue", nil), Dim)
+	}
+}
+
 func (g *Game) drawPlay(c *Canvas, now float64) {
+	if g.beat.Memorial {
+		g.drawMemorialPlay(c, now)
+		return
+	}
 	if g.beat.Blind {
 		g.drawBlindPlay(c)
 		return
@@ -570,7 +606,14 @@ func (g *Game) hintPattern() string {
 func (g *Game) drawLampAndTape(c *Canvas, x, y, tapeWidth int, now float64) {
 	t := now - g.signalStart
 	letterOf := func(e Element) rune { return rune(g.word[e.Letter]) }
-	lit := slices.ContainsFunc(g.on, func(e Element) bool {
+	heard := g.on // later letters wait their turn; g.on is in letter order
+	for i, e := range g.on {
+		if e.Letter > g.pos {
+			heard = g.on[:i]
+			break
+		}
+	}
+	lit := slices.ContainsFunc(heard, func(e Element) bool {
 		return e.Start <= t && t < e.End && strings.ContainsRune(g.lampLetters, letterOf(e))
 	})
 	lamp := g.text("lamp", nil)
@@ -580,12 +623,12 @@ func (g *Game) drawLampAndTape(c *Canvas, x, y, tapeWidth int, now float64) {
 		c.PutOn(x, y, lamp, Dim, Faint)
 	}
 	var tape []string
-	for i, e := range g.on {
+	for i, e := range heard {
 		if e.Start > t {
 			continue
 		}
-		newLetter := i == 0 || g.on[i-1].Letter != e.Letter
-		if newLetter && i > 0 && e.Letter-g.on[i-1].Letter > 1 { // a space between words
+		newLetter := i == 0 || heard[i-1].Letter != e.Letter
+		if newLetter && i > 0 && e.Letter-heard[i-1].Letter > 1 { // a space between words
 			tape = append(tape, "/")
 		}
 		switch {
@@ -603,6 +646,10 @@ func (g *Game) drawLampAndTape(c *Canvas, x, y, tapeWidth int, now float64) {
 }
 
 func (g *Game) drawResult(c *Canvas, now float64, won bool) {
+	if g.beat.Memorial {
+		g.drawMemorialResult(c, now)
+		return
+	}
 	t := now - g.stateStart
 	g.drawHud(c)
 	g.drawHeader(c, g.task())
