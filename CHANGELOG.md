@@ -4,6 +4,10 @@ Written by the Release PR bot, newest first. See "Releasing" in `go/README.md`.
 
 <!-- RELEASES -->
 
+## v2.2.0 (2026-11-21)
+
+- Each letter waits for you, the clock doesn't. The dead are remembered under the stars
+
 ## v2.1.0 (2026-11-15)
 
 - On the line you only hear the other end, like a real wire
