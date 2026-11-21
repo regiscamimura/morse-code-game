@@ -2199,7 +2199,9 @@
        "LILLIAN ASPLUND 5",
        "EDITH BROWN 15",
        "HAROLD BRIDE 22"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "encode",
@@ -2211,7 +2213,9 @@
       "win": "IN NEW YORK THE NAMES GO UP ON A BOARD, ONE BY ONE. THE CROWD READS IN SILENCE.",
       "lose": "WITHOUT THE LIST, THOUSANDS OF FAMILIES SPEND DAYS NOT KNOWING WHO LIVED.",
       "scene": "rescue",
-      "echo": true
+      "echo": true,
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "encode",
@@ -2226,7 +2230,9 @@
       "scene": "rescue",
       "words": [
        "PHILIP AND I SAFE"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -2243,7 +2249,8 @@
        "LIST",
        "IS MATT ON A LIST"
       ],
-      "blind": true
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "encode",
@@ -2256,7 +2263,9 @@
       "scene": "sea",
       "words": [
        "MAMA I MISS MATT"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -2270,7 +2279,9 @@
       "scene": "rescue",
       "words": [
        "WHO ARE THESE BOYS"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      }
     ]
    },
@@ -2295,7 +2306,9 @@
        "BABY DANBOM 4 MONTHS",
        "LORAINE ALLISON 2",
        "CARL ASPLUND 5"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -2310,7 +2323,9 @@
       "words": [
        "THE SAGE FAMILY",
        "ALL ELEVEN LOST"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -2326,7 +2341,9 @@
        "ISIDOR STRAUS 67",
        "IDA STRAUS 63",
        "JOHN JACOB ASTOR 47"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -2340,7 +2357,9 @@
       "scene": "rescue",
       "words": [
        "WALLACE HARTLEY 33"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      }
     ]
    },
@@ -2385,6 +2404,7 @@
      {
       "mode": "decode",
       "title": "AMOS",
+      "memorial": true,
       "brief": [
        "A WIRE FROM CHICAGO, FOR YOU. YOU KNOW THE FIST BEFORE THE FIRST WORD."
       ],
@@ -2401,6 +2421,7 @@
      {
       "mode": "encode",
       "title": "THE LAST NAMES",
+      "memorial": true,
       "brief": [
        "THE CREW LISTS COME LAST: STOKERS, STEWARDS, OFFICERS, THE WIRELESS ROOM. YOU",
        "SEND THE LAST NAMES YOURSELF."
@@ -3654,7 +3675,9 @@
        "LILLIAN ASPLUND 5",
        "EDITH BROWN 15",
        "HAROLD BRIDE 22"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "encode",
@@ -3667,7 +3690,9 @@
       "win": "EM NOVA YORK OS NOMES SOBEM NUM QUADRO, UM A UM. A MULTIDÃO LÊ EM SILÊNCIO.",
       "lose": "SEM A LISTA, MILHARES DE FAMÍLIAS PASSAM DIAS SEM SABER QUEM VIVEU.",
       "scene": "rescue",
-      "echo": true
+      "echo": true,
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "encode",
@@ -3682,7 +3707,9 @@
       "scene": "rescue",
       "words": [
        "PHILIP E EU SALVOS"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -3699,7 +3726,8 @@
        "LISTA",
        "MATT ESTA NUMA LISTA"
       ],
-      "blind": true
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "encode",
@@ -3712,7 +3740,9 @@
       "scene": "sea",
       "words": [
        "MAE TE AMO"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -3726,7 +3756,9 @@
       "scene": "rescue",
       "words": [
        "QUEM SAO ESTES MENINOS"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      }
     ]
    },
@@ -3751,7 +3783,9 @@
        "BEBE DANBOM 4 MESES",
        "LORAINE ALLISON 2",
        "CARL ASPLUND 5"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -3766,7 +3800,9 @@
       "words": [
        "A FAMILIA SAGE",
        "TODOS OS ONZE"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -3782,7 +3818,9 @@
        "ISIDOR STRAUS 67",
        "IDA STRAUS 63",
        "JOHN JACOB ASTOR 47"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -3796,7 +3834,9 @@
       "scene": "rescue",
       "words": [
        "WALLACE HARTLEY 33"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      }
     ]
    },
@@ -3841,6 +3881,7 @@
      {
       "mode": "decode",
       "title": "AMOS",
+      "memorial": true,
       "brief": [
        "UM TELEGRAMA DE CHICAGO, PARA VOCÊ. VOCÊ RECONHECE A MÃO ANTES DA PRIMEIRA",
        "PALAVRA."
@@ -3858,6 +3899,7 @@
      {
       "mode": "encode",
       "title": "OS ÚLTIMOS NOMES",
+      "memorial": true,
       "brief": [
        "AS LISTAS DA TRIPULAÇÃO VÊM POR ÚLTIMO: FOGUISTAS, CAMAREIROS, OFICIAIS, A",
        "SALA DE RÁDIO. VOCÊ MESMO MANDA OS ÚLTIMOS NOMES."
@@ -4003,7 +4045,9 @@
    "task_blind_encode": "BLIND: NO CLUES. KEY IT ALL, ALL RIGHT, OR IT IS LOST.",
    "help_blind_decode": "TYPE WHAT YOU HEARD   [TAB] REPEAT ({left} LEFT)   [ENTER] SEND   [ESC] QUIT",
    "help_blind_encode": "TAP SPACE = DIT •    HOLD SPACE = DAH ━    [ESC] QUIT",
-   "repeats_left": "REPEATS LEFT: {left}"
+   "repeats_left": "REPEATS LEFT: {left}",
+   "help_memorial_decode": "TYPE WHAT YOU HEAR   [TAB] HEAR IT AGAIN   [ESC] QUIT",
+   "memorial_line": "IN MEMORY OF THE MORE THAN 1,500 WHO DIED ON 15 APRIL 1912."
   },
   "pt": {
    "size": "AUMENTE O TERMINAL PARA PELO MENOS 80x24",
@@ -4093,7 +4137,9 @@
    "task_blind_encode": "ÀS CEGAS: SEM PISTAS. TRANSMITA TUDO CERTO, OU SE PERDE.",
    "help_blind_decode": "DIGITE O QUE OUVIU    [TAB] REPETIR ({left})    [ENTER] ENVIAR    [ESC] SAIR",
    "help_blind_encode": "TOQUE = PONTO •    SEGURE = TRAÇO ━    [ESC] SAIR",
-   "repeats_left": "REPETIÇÕES: {left}"
+   "repeats_left": "REPETIÇÕES: {left}",
+   "help_memorial_decode": "DIGITE O QUE OUVE    [TAB] OUVIR DE NOVO    [ESC] SAIR",
+   "memorial_line": "EM MEMÓRIA DOS MAIS DE 1.500 QUE MORRERAM EM 15 DE ABRIL DE 1912."
   }
  },
  "sprites": {
@@ -4978,6 +5024,20 @@
   }
  },
  "covers": {
+  "calmsea": {
+   "sky": [
+    "#04060e",
+    "#0b1228",
+    "#16224a"
+   ],
+   "ground": [
+    "#10263e",
+    "#050c18"
+   ],
+   "horizon": 18,
+   "water": false,
+   "stars": true
+  },
   "carpathia": {
    "sky": [
     "#05070f",

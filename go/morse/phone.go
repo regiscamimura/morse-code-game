@@ -16,6 +16,21 @@ func (g *Game) DrawPhone(columns int, now float64) []*Canvas {
 	picture := g.Draw(80, 24, now)
 	p := &page{columns: columns, bg: picture.Bg}
 	elapsed := now - g.stateStart
+	if g.beat.Memorial && (g.state == "play" || g.state == "win" || g.state == "lose") {
+		// the picture's small text rows would be too small here: they're set as phone text
+		p.wrapped(g.beat.Title, Amber)
+		p.wrapped(g.text("memorial_line", nil), Paper)
+		p.picture(picture, 3, 15)
+		if g.state == "play" {
+			p.picture(picture, memorialTop, memorialTop+blindRows)
+			p.wrapped(g.memorialHelp(), Teal)
+		} else {
+			p.wrapped(g.withWord(g.beat.Win), Paper)
+			p.blank()
+			p.center(showIf(g.readyToContinue(now), g.text("continue", nil)), Dim)
+		}
+		return p.strips
+	}
 	switch g.state {
 	case "lang":
 		p.picture(picture, 3, 18)
