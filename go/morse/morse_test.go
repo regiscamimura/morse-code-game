@@ -118,7 +118,7 @@ func TestContent(t *testing.T) {
 						t.Errorf("%s chapter %d: message %q has letters not learned yet", lang, n, w)
 					}
 				}
-				if w := b.Words; b.Blind && b.Mode == "decode" && (len(w) < 3 || strings.Contains(w[0], " ") || !strings.Contains(w[len(w)-1], " ")) {
+				if w := b.Words; b.Blind && !b.Memorial && b.Mode == "decode" && (len(w) < 3 || strings.Contains(w[0], " ") || !strings.Contains(w[len(w)-1], " ")) {
 					t.Errorf("%s chapter %d: blind stages %q don't go from single words to a sentence", lang, n, w)
 				}
 				if b.Echo && (i == 0 || ch.Beats[i-1].Mode != "decode") {

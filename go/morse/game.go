@@ -633,14 +633,6 @@ func (g *Game) finishMessage(now float64) {
 //	"AT TEN" with g.typed "ATTEN" wins; with "ATTEM" loses
 func (g *Game) judgeBlindMessage(now float64) {
 	toKey := LettersToKey(g.word)
-	if g.typed != toKey && g.beat.Memorial { // nothing lost: it's heard or keyed again
-		g.typed = ""
-		g.say(g.text("memorial_again", nil), Dim, now)
-		if g.mode == "decode" {
-			g.replay(now, 1)
-		}
-		return
-	}
 	if g.typed != toKey {
 		g.lose(now)
 		return
@@ -661,6 +653,14 @@ func (g *Game) signalOver(now float64) bool {
 // silence between words sounds a lot like the end of a one-word message.
 func (g *Game) typeBlindLetter(k string, now float64) {
 	ch := strings.ToUpper(k)
+	if g.beat.Memorial {
+		if k == KeyTab {
+			g.repeatBlindMessage(now)
+		} else {
+			g.takeMemorialLetter(ch, now)
+		}
+		return
+	}
 	switch _, isLetter := Code[ch]; {
 	case (k == KeyEnter || k == "\r") && g.typed != "" && (g.signalOver(now) || g.blindHeard):
 		g.judgeBlindMessage(now)
@@ -673,9 +673,26 @@ func (g *Game) typeBlindLetter(k string, now float64) {
 	}
 }
 
+// takeMemorialLetter keeps a letter typed or keyed on a memorial beat only if it's the next
+// one, with no sound either way; the last one finishes the message.
+func (g *Game) takeMemorialLetter(letter string, now float64) {
+	toKey := LettersToKey(g.word)
+	if len(g.typed) >= len(toKey) || letter != toKey[len(g.typed):len(g.typed)+1] {
+		return
+	}
+	g.typed += letter
+	if g.typed == toKey {
+		g.judgeBlindMessage(now)
+	}
+}
+
 // keyBlindLetter takes a letter keyed while sending blind, judged once there are enough.
 func (g *Game) keyBlindLetter(pattern string, now float64) {
 	letter, ok := Decode[pattern]
+	if g.beat.Memorial {
+		g.takeMemorialLetter(letter, now)
+		return
+	}
 	if !ok {
 		letter = "?"
 	}

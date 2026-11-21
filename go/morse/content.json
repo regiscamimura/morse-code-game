@@ -2199,7 +2199,9 @@
        "LILLIAN ASPLUND 5",
        "EDITH BROWN 15",
        "HAROLD BRIDE 22"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "encode",
@@ -2211,7 +2213,9 @@
       "win": "IN NEW YORK THE NAMES GO UP ON A BOARD, ONE BY ONE. THE CROWD READS IN SILENCE.",
       "lose": "WITHOUT THE LIST, THOUSANDS OF FAMILIES SPEND DAYS NOT KNOWING WHO LIVED.",
       "scene": "rescue",
-      "echo": true
+      "echo": true,
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "encode",
@@ -2226,7 +2230,9 @@
       "scene": "rescue",
       "words": [
        "PHILIP AND I SAFE"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -2243,7 +2249,8 @@
        "LIST",
        "IS MATT ON A LIST"
       ],
-      "blind": true
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "encode",
@@ -2256,7 +2263,9 @@
       "scene": "sea",
       "words": [
        "MAMA I MISS MATT"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -2270,7 +2279,9 @@
       "scene": "rescue",
       "words": [
        "WHO ARE THESE BOYS"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      }
     ]
    },
@@ -2295,7 +2306,9 @@
        "BABY DANBOM 4 MONTHS",
        "LORAINE ALLISON 2",
        "CARL ASPLUND 5"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -2310,7 +2323,9 @@
       "words": [
        "THE SAGE FAMILY",
        "ALL ELEVEN LOST"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -2326,7 +2341,9 @@
        "ISIDOR STRAUS 67",
        "IDA STRAUS 63",
        "JOHN JACOB ASTOR 47"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -2340,7 +2357,9 @@
       "scene": "rescue",
       "words": [
        "WALLACE HARTLEY 33"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      }
     ]
    },
@@ -3656,7 +3675,9 @@
        "LILLIAN ASPLUND 5",
        "EDITH BROWN 15",
        "HAROLD BRIDE 22"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "encode",
@@ -3669,7 +3690,9 @@
       "win": "EM NOVA YORK OS NOMES SOBEM NUM QUADRO, UM A UM. A MULTIDÃO LÊ EM SILÊNCIO.",
       "lose": "SEM A LISTA, MILHARES DE FAMÍLIAS PASSAM DIAS SEM SABER QUEM VIVEU.",
       "scene": "rescue",
-      "echo": true
+      "echo": true,
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "encode",
@@ -3684,7 +3707,9 @@
       "scene": "rescue",
       "words": [
        "PHILIP E EU SALVOS"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -3701,7 +3726,8 @@
        "LISTA",
        "MATT ESTA NUMA LISTA"
       ],
-      "blind": true
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "encode",
@@ -3714,7 +3740,9 @@
       "scene": "sea",
       "words": [
        "MAE TE AMO"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -3728,7 +3756,9 @@
       "scene": "rescue",
       "words": [
        "QUEM SAO ESTES MENINOS"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      }
     ]
    },
@@ -3753,7 +3783,9 @@
        "BEBE DANBOM 4 MESES",
        "LORAINE ALLISON 2",
        "CARL ASPLUND 5"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -3768,7 +3800,9 @@
       "words": [
        "A FAMILIA SAGE",
        "TODOS OS ONZE"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -3784,7 +3818,9 @@
        "ISIDOR STRAUS 67",
        "IDA STRAUS 63",
        "JOHN JACOB ASTOR 47"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      },
      {
       "mode": "decode",
@@ -3798,7 +3834,9 @@
       "scene": "rescue",
       "words": [
        "WALLACE HARTLEY 33"
-      ]
+      ],
+      "blind": true,
+      "memorial": true
      }
     ]
    },
@@ -4008,8 +4046,8 @@
    "help_blind_decode": "TYPE WHAT YOU HEARD   [TAB] REPEAT ({left} LEFT)   [ENTER] SEND   [ESC] QUIT",
    "help_blind_encode": "TAP SPACE = DIT •    HOLD SPACE = DAH ━    [ESC] QUIT",
    "repeats_left": "REPEATS LEFT: {left}",
-   "help_memorial_decode": "TYPE WHAT YOU HEARD   [TAB] HEAR IT AGAIN   [ENTER] SEND   [ESC] QUIT",
-   "memorial_again": "AGAIN, SLOWLY."
+   "help_memorial_decode": "TYPE WHAT YOU HEAR   [TAB] HEAR IT AGAIN   [ESC] QUIT",
+   "memorial_line": "IN MEMORY OF THE MORE THAN 1,500 WHO DIED ON 15 APRIL 1912."
   },
   "pt": {
    "size": "AUMENTE O TERMINAL PARA PELO MENOS 80x24",
@@ -4100,24 +4138,11 @@
    "help_blind_decode": "DIGITE O QUE OUVIU    [TAB] REPETIR ({left})    [ENTER] ENVIAR    [ESC] SAIR",
    "help_blind_encode": "TOQUE = PONTO •    SEGURE = TRAÇO ━    [ESC] SAIR",
    "repeats_left": "REPETIÇÕES: {left}",
-   "help_memorial_decode": "DIGITE O QUE OUVIU    [TAB] OUVIR DE NOVO    [ENTER] ENVIAR    [ESC] SAIR",
-   "memorial_again": "DE NOVO, DEVAGAR."
+   "help_memorial_decode": "DIGITE O QUE OUVE    [TAB] OUVIR DE NOVO    [ESC] SAIR",
+   "memorial_line": "EM MEMÓRIA DOS MAIS DE 1.500 QUE MORRERAM EM 15 DE ABRIL DE 1912."
   }
  },
  "sprites": {
-  "cloud_long": [
-   "........LLLL..........",
-   "....LLLLWWWLLL...LLL..",
-   "..LLWWWWWWWWLLLLLWWLL.",
-   "LLLLLLLLLLLLLLLLLLLLLL",
-   "..SSSSSSSSSSSSSSSSSS.."
-  ],
-  "cloud_small": [
-   "...LLL.....",
-   ".LLWWWLLL..",
-   "LLLLLLLLLLL",
-   ".SSSSSSSS.."
-  ],
   "city": [
    "......S.......",
    ".....SSS......",
@@ -5000,17 +5025,18 @@
  },
  "covers": {
   "calmsea": {
-   "sky": ["#04060e", "#0b1228", "#16224a"],
-   "ground": ["#10263e", "#050c18"],
+   "sky": [
+    "#04060e",
+    "#0b1228",
+    "#16224a"
+   ],
+   "ground": [
+    "#10263e",
+    "#050c18"
+   ],
    "horizon": 18,
-   "water": true,
-   "stars": true,
-   "layers": [
-    {"sprite": "cloud_long", "x": 6, "y": 3, "drift": 0.35},
-    {"sprite": "cloud_small", "x": 50, "y": 8, "drift": 0.2},
-    {"sprite": "cloud_small", "x": 30, "y": 1, "drift": 0.5},
-    {"reflect": true}
-   ]
+   "water": false,
+   "stars": true
   },
   "carpathia": {
    "sky": [

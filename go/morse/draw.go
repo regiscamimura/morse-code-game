@@ -478,18 +478,40 @@ func (g *Game) drawBlindPlay(c *Canvas) {
 // under the clouds and stars, the beat's title over it, and what's typed or to key under it.
 func (g *Game) drawMemorialPlay(c *Canvas, now float64) {
 	DrawCoverArt(c, "calmsea", now)
-	c.Center(1, g.beat.Title, Dim)
-	for n, line := range g.blindLines() {
-		BigCenter(c, memorialTop+4*n, line, Paper)
-	}
-	help := g.text("help_memorial_decode", nil)
+	c.Center(1, g.beat.Title, Amber)
+	c.Center(2, g.text("memorial_line", nil), Paper)
+	g.drawMemorialLetters(c)
+	c.Center(15, g.memorialHelp(), Teal)
+}
+
+// memorialHelp is the line under a memorial beat's sea: which keys do what.
+func (g *Game) memorialHelp() string {
 	if g.mode == "encode" {
-		help = g.text("help_blind_encode", nil)
+		return g.text("help_blind_encode", nil)
 	}
-	if now < g.msgUntil {
-		help = g.msg
+	return g.text("help_memorial_decode", nil)
+}
+
+// drawMemorialLetters draws the message in big letters, each one amber once it's right. To
+// receive, the letters not yet typed are blanks.
+func (g *Game) drawMemorialLetters(c *Canvas) {
+	right := 0 // letters drawn so far, spaces aside
+	for n, line := range wrap(g.word, bigLineLetters) {
+		x0 := 40 - BigTextWidth(line)/2
+		for col, ch := range strings.Split(line, "") {
+			color := Paper
+			if ch != " " {
+				switch {
+				case right < len(g.typed):
+					color = Amber
+				case g.mode == "decode":
+					ch, color = "_", Dim
+				}
+				right++
+			}
+			Big(c, x0+col*6, memorialTop+4*n, ch, color)
+		}
 	}
-	c.Center(15, help, Dim)
 }
 
 // memorialTop is the row a memorial beat's big letters start on, under the sea.
@@ -498,11 +520,12 @@ const memorialTop = 16
 // drawMemorialResult: the sea, and the beat's last line.
 func (g *Game) drawMemorialResult(c *Canvas, now float64) {
 	DrawCoverArt(c, "calmsea", now)
+	c.Center(2, g.text("memorial_line", nil), Paper)
 	for i, line := range wrap(g.withWord(g.beat.Win), 78) {
 		c.Center(18+i, line, Paper)
 	}
 	if g.readyToContinue(now) {
-		c.Center(23, g.text("continue", nil), Dim)
+		c.Center(23, g.text("continue", nil), Amber)
 	}
 }
 

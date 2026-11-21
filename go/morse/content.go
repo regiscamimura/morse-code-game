@@ -33,8 +33,8 @@ type Beat struct {
 	// lost. Blind beats to receive open on single words and end on sentences.
 	Blind bool `json:"blind"`
 	// Memorial is a blind beat about real people who died: no score, lives, clock, banners or
-	// game sounds, only the Morse itself over a calm sea at night. A wrong message is simply
-	// heard or keyed again.
+	// game sounds, only the Morse itself over a calm sea at night. Each right letter
+	// turns amber; a wrong one is quietly ignored.
 	Memorial bool `json:"memorial"`
 }
 
